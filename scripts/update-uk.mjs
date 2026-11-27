@@ -61,21 +61,28 @@ async function lines() {
 }
 
 // ---------- TfL roads ----------
-const CAT_RU = { 'Works': 'Дорожные работы', 'Collisions': 'Авария', 'Hazard(s)': 'Опасность на дороге', 'Hazards': 'Опасность на дороге',
+const CAT_RU = { 'Works': 'Дорожные работы', 'Planned events': 'Мероприятие', 'Surface damage': 'Повреждение покрытия', 'Collisions': 'Авария', 'Hazard(s)': 'Опасность на дороге', 'Hazards': 'Опасность на дороге',
   'Traffic Incidents': 'Происшествие', 'Special and Planned Events': 'Мероприятие', 'Signal Failure': 'Не работают светофоры', 'Breakdowns': 'Сломанная машина',
   'Infrastructure Issue': 'Проблема с дорогой', 'Traffic Volume': 'Большой трафик', 'Network delays': 'Задержки', 'Burst water main': 'Прорыв водопровода' };
 async function roads() {
   const r = await get('https://api.tfl.gov.uk/Road/all/Disruption?stripContent=true');
   const arr = await r.json();
-  const items = arr.filter(d => d.status === 'Active' && (d.hasClosures || /Serious|Severe/.test(d.severity || '')))
+  const SEV = { Severe: 3, Serious: 2, Moderate: 1 };
+  const title = s => s.toLowerCase().replace(/\b([a-z])/g, c => c.toUpperCase()).replace(/\b(And|Of|The|At|To)\b/g, w => w.toLowerCase());
+  const items = arr.filter(d => SEV[d.severity] && (!d.status || /active/i.test(d.status)) && (!d.startDateTime || new Date(d.startDateTime) <= now))
     .map(d => {
       const pt = (() => { try { const p = JSON.parse(d.point); return [+p[0], +p[1]]; } catch { return null; } })();
-      const road = ((d.location || '').match(/\b([AM]\d{1,4}[A-Z]?)\b/) || [])[1] || (d.corridorIds || [])[0]?.toUpperCase() || '';
-      const place = (d.location || '').replace(/^\s*\[[^\]]*\]\s*/, '').replace(/\s*\([^)]*\)\s*$/, '').trim();
-      return { badge: road || '!', title: place, text: `${CAT_RU[d.category] || d.category || 'Сбой'}${d.hasClosures ? ', дорога перекрыта' : ''}`,
-        severity: d.severity, closure: !!d.hasClosures, ll: pt };
+      const road = ((d.location || '').match(/\[([AM]\d{1,4}[A-Z]?)\]/) || [])[1] || (d.corridorIds || [])[0]?.toUpperCase() || '';
+      const m = (d.location || '').replace(/^\s*\[[^\]]*\]\s*/, '').match(/^([^(]+)(?:\([^)]*\))?\s*(?:\(([^)]*)\))?/) || [];
+      const place = [title((m[1] || '').trim()), m[2] ? `(${m[2]})` : ''].filter(Boolean).join(' ');
+      const txt = `${d.comments || ''} ${d.currentUpdate || ''}`;
+      const closed = d.hasClosures || /\b(is|are|currently) closed\b|closure|road closed|closed (northbound|southbound|eastbound|westbound)/i.test(txt);
+      const lanes = /reduced to (one|two|three|a single) lane|lane restriction|lane closure/i.test(txt);
+      const what = closed ? 'дорога частично перекрыта' : lanes ? 'сужение полос' : '';
+      return { badge: road || '!', title: place, text: `${CAT_RU[d.category] || d.category || 'Сбой'}${what ? ', ' + what : ''}`,
+        severity: d.severity, rank: SEV[d.severity] * 2 + (closed ? 1 : 0) + (d.levelOfInterest === 'High' ? 1 : 0), ll: pt };
     })
-    .sort((a, b) => (b.closure - a.closure) || (/Severe/.test(b.severity) - /Severe/.test(a.severity)));
+    .sort((a, b) => b.rank - a.rank);
   return { ok: true, total: items.length, items: items.slice(0, 6) };
 }
 
