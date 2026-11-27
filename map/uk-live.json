@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T22:28:37.289Z",
+ "updated": "2026-11-27T23:26:00.337Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 6,
+  "total": 7,
   "items": [
    {
     "id": "central",
@@ -33,6 +33,18 @@
     "cause": "",
     "text": "Сокращённое движение",
     "reason": "MILDMAY LINE: Friday 27 November, the 2159 train from Stratford to Richmond will terminate at Camden Road at 2219. The 2318 train from Richmond to Willesden Junction will not run"
+   },
+   {
+    "id": "suffragette",
+    "name": "Suffragette",
+    "bg": "#18A95D",
+    "fg": "#fff",
+    "mode": "overground",
+    "severity": 7,
+    "status": "Сокращённое движение",
+    "cause": "",
+    "text": "Сокращённое движение",
+    "reason": "SUFFRAGETTE LINE: Friday 27 November, the 2303 train from Barking Riverside to Gospel Oak will terminate at Upper Holloway at 2338"
    },
    {
     "id": "hammersmith-city",
@@ -86,19 +98,8 @@
  },
  "roads": {
   "ok": true,
-  "total": 10,
+  "total": 11,
   "items": [
-   {
-    "badge": "A3211",
-    "title": "Upper Thames Street (City of London)",
-    "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Serious",
-    "rank": 6,
-    "ll": [
-     -0.100438,
-     51.511324
-    ]
-   },
    {
     "badge": "A4202",
     "title": "Park Lane (Westminster)",
@@ -130,6 +131,17 @@
     "ll": [
      -0.004133,
      51.506783
+    ]
+   },
+   {
+    "badge": "A3211",
+    "title": "Upper Thames Street (City of London)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Moderate",
+    "rank": 4,
+    "ll": [
+     -0.100438,
+     51.511324
     ]
    },
    {
