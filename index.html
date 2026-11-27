@@ -30,7 +30,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 .ptop p{color:var(--mut);margin:10px auto 0;max-width:46ch}
 .globewrap{position:relative;display:grid;place-items:center;padding:8px 0}
 #gslot{--g:max(240px,min(540px,92vw,calc(100vh - 390px),calc(100dvh - 390px)));width:var(--g);height:var(--g)}
-#globe{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;display:block;touch-action:none;z-index:0}
+#globe{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;display:block;touch-action:none;z-index:0;will-change:transform,opacity}
 #picker>.ptop,#picker>.globewrap,#picker>.choices{position:relative;z-index:1;pointer-events:none;transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1)}
 #picker .choice{pointer-events:auto}
 #picker.flying>.ptop{opacity:0;transform:translateY(-14px)}
@@ -405,13 +405,13 @@ function show(v){
 Object.assign(R_,R);
 const globe=(()=>{
  const cv=$('#globe'),ctx=cv.getContext('2d'),tip=$('#tip'),slotEl=$('#gslot'),pk=$('#picker');
- let W=0,H=0,dpr=1,countries=null,borders=null,hover=null,running=false,auto=true,uz=1,pulse=0,raf=0,flying=false,fly0=null,intro=0;
+ let landM=null,soonM=null,active=[],W=0,H=0,dpr=1,countries=null,borders=null,hover=null,running=false,auto=true,uz=1,pulse=0,raf=0,flying=false,fly0=null,intro=0;
  let cx=0,cy=0,R=100,labelA=1;
  const proj=d3.geoOrthographic().clipAngle(90),path=d3.geoPath(proj,ctx);
  const sphere={type:'Sphere'},grat=d3.geoGraticule10();
  let rot=[-4,-40,0];
  const ease=d3.easeCubicInOut,cl=x=>Math.max(0,Math.min(1,x));
- function size(){dpr=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+ function size(){dpr=Math.min(innerWidth>1100?1:1.5,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
  function slot(){const b=slotEl.getBoundingClientRect();return [b.left+b.width/2,b.top+b.height/2,b.width/2*0.94]}
  function draw(){
   proj.scale(R).translate([cx,cy]).rotate(rot).clipExtent([[-2,-2],[W+2,H+2]]);
@@ -422,11 +422,11 @@ const globe=(()=>{
   ctx.beginPath();path(sphere);ctx.fillStyle=g;ctx.fill();
   ctx.beginPath();path(grat);ctx.strokeStyle='rgba(255,255,255,.05)';ctx.lineWidth=1;ctx.stroke();
   if(countries){
-   for(const f of countries.features){
-    const act=R_[f.reg];ctx.beginPath();path(f);
-    ctx.fillStyle=act?(hover===f?'#ff4652':'#e4232f'):f.soon?(hover===f?'#55565f':'#3a3b42'):'#26272c';ctx.fill();
-   }
+   ctx.beginPath();path(landM);ctx.fillStyle='#26272c';ctx.fill();
+   ctx.beginPath();path(soonM);ctx.fillStyle='#3a3b42';ctx.fill();
+   if(hover&&hover.soon&&!hover.reg){ctx.beginPath();path(hover);ctx.fillStyle='#55565f';ctx.fill()}
    ctx.beginPath();path(borders);ctx.strokeStyle='#0d0f17';ctx.lineWidth=.7;ctx.stroke();
+   for(const f of active){ctx.beginPath();path(f);ctx.fillStyle=(hover&&hover.reg===f.reg)?'#ff4652':'#e4232f';ctx.fill()}
    if(labelA>0.01){ctx.save();ctx.globalAlpha=labelA;
     for(const k of ['ch','uk']){
      const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;
@@ -444,11 +444,15 @@ const globe=(()=>{
  function loop(t){
   if(!running)return;pulse=(t%1600)/1600;
   if(flying&&fly0){
-   const p=cl((t-fly0.t0)/fly0.d),pr=ease(cl(p/0.62)),pz=ease(cl((p-0.12)/0.88));
+   if(fly0.frozen){raf=requestAnimationFrame(loop);return}
+   const p=cl((t-fly0.t0)/fly0.d),pr=ease(p);
    rot=fly0.ir(pr);cx=fly0.cx0+(W/2-fly0.cx0)*pr;cy=fly0.cy0+(H/2-fly0.cy0)*pr;
-   R=fly0.R0*Math.exp(Math.log(fly0.R1/fly0.R0)*pz);labelA=1-cl(p/0.25);
-   if(p>0.72&&!fly0.out){fly0.out=true;pk.classList.add('out')}
-   if(p>=1&&!fly0.done){fly0.done=true;setTimeout(fly0.go,120)}
+   R=fly0.R0*Math.exp(Math.log(fly0.R1/fly0.R0)*pr);labelA=1-cl(p/0.3);
+   if(p>=1){fly0.frozen=true;draw();
+    cv.style.transformOrigin=`${W/2}px ${H/2}px`;
+    cv.style.transition='transform .5s cubic-bezier(.55,0,.8,.2),opacity .45s ease-in';
+    requestAnimationFrame(()=>{cv.style.transform=`scale(${fly0.css})`;cv.style.opacity='0';pk.classList.add('out')});
+    setTimeout(fly0.go,430);raf=requestAnimationFrame(loop);return}
   }else{
    if(auto)rot[0]=-4+Math.sin(t/4000)*14;
    const [sx,sy,sr]=slot();const k=intro?1+0.18*(1-d3.easeCubicOut(cl((t-intro)/600))):1;
@@ -468,9 +472,10 @@ const globe=(()=>{
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!countries){go();return}
   const [[x0,y0],[x1,y1]]=d3.geoBounds(f),c=R_[f.reg].coord;
   const ext=Math.max((x1-x0)*Math.cos(c[1]*Math.PI/180),y1-y0)*Math.PI/180;
-  const R1=0.42*Math.min(W,H)/ext*2.2;
+  const R1=Math.min(Math.max(W,H)*1.1,0.36*Math.min(W,H)/ext);   // canvas zoom kept moderate (cheap to draw)
+  const css=Math.max(2.5,Math.min(7,(0.8*Math.min(W,H)/ext)/R1));     // rest of the zoom done by the GPU
   flying=true;pk.classList.add('flying');
-  fly0={t0:performance.now(),d:1050,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,R1,go,out:false,done:false};
+  fly0={t0:performance.now(),d:560,css,frozen:false,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,R1,go,out:false,done:false};
  }
  let down=null,moved=false;
  cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
@@ -488,12 +493,20 @@ const globe=(()=>{
  cv.addEventListener('pointerleave',()=>{hover=null;tip.style.opacity=0});
  cv.addEventListener('wheel',e=>{if(flying||!inSphere(e))return;e.preventDefault();uz=Math.max(1,Math.min(3,uz*(e.deltaY<0?1.08:.93)))},{passive:false});
  addEventListener('resize',()=>{if(running)size()});
- fetch('world.json').then(r=>r.json()).then(w=>{
-  countries=topojson.feature(w,w.objects.countries);
+ fetch('world-110m.json').then(r=>r.json()).then(w=>{
+  const o=w.objects.countries,gs=o.geometries;
+  countries=topojson.feature(w,o);
   for(const f of countries.features){f.reg=f.id==='756'?'ch':f.id==='826'?'uk':null;f.soon=SOON[f.id]||null}
-  borders=topojson.mesh(w,w.objects.countries,(a,b)=>a!==b);
+  landM=topojson.merge(w,gs.filter(g=>!SOON[g.id]&&g.id!=='756'&&g.id!=='826'));
+  soonM=topojson.merge(w,gs.filter(g=>SOON[g.id]));
+  borders=topojson.mesh(w,o,(a,b)=>a!==b);
+  active=countries.features.filter(f=>f.reg);
+  return fetch('world.json').then(r=>r.json()).then(w5=>{   // detailed shapes only for the two active countries
+   const hi=topojson.feature(w5,{type:'GeometryCollection',geometries:w5.objects.countries.geometries.filter(g=>g.id==='756'||g.id==='826')});
+   active=hi.features.map(f=>Object.assign(f,{reg:f.id==='756'?'ch':'uk'}));
+  });
  }).catch(()=>{});
- return{start(back){if(running)return;running=true;size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
+ return{start(back){if(running)return;running=true;cv.style.transition='none';cv.style.transform='';cv.style.opacity='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
         fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
 })();
