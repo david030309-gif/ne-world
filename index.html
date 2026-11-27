@@ -48,23 +48,37 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #picker.out #veil{opacity:1}
 #tip{z-index:5}
 /* opening animation: spinning planet, the countries ticking by, then the real globe settles in */
-#intro{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 42%,#1a1b23 0,#0c0c0d 70%);transition:opacity .55s ease,visibility .55s;cursor:pointer}
+#intro{position:fixed;inset:0;z-index:50;display:grid;place-items:center;transition:opacity .4s ease,visibility .4s;cursor:pointer}
+#intro .bgl{position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 42%,#1a1b23 0,#0c0c0d 70%);transition:opacity .35s .22s ease}
 #intro.out{opacity:0;visibility:hidden}
-#intro .stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 18%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 78% 12%,#fff6 50%,transparent 51%),radial-gradient(1.5px 1.5px at 30% 80%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 88% 66%,#fff7 50%,transparent 51%),radial-gradient(1px 1px at 55% 30%,#fff4 50%,transparent 51%),radial-gradient(1.5px 1.5px at 8% 60%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 66% 88%,#fff6 50%,transparent 51%);animation:tw 3s ease-in-out infinite alternate}
+#intro.go{pointer-events:none}#intro.go .bgl,#intro.go .stars{opacity:0}
+#intro .stars{position:absolute;inset:0;transition:opacity .4s;background-image:radial-gradient(1px 1px at 12% 18%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 78% 12%,#fff6 50%,transparent 51%),radial-gradient(1.5px 1.5px at 30% 80%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 88% 66%,#fff7 50%,transparent 51%),radial-gradient(1px 1px at 55% 30%,#fff4 50%,transparent 51%),radial-gradient(1.5px 1.5px at 8% 60%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 66% 88%,#fff6 50%,transparent 51%);animation:tw 3s ease-in-out infinite alternate}
 @keyframes tw{to{opacity:.4}}
 #intro .box{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-#intro svg{width:min(42vw,190px);height:auto;filter:drop-shadow(0 0 40px #e4232f55);animation:pin .9s cubic-bezier(.2,.9,.25,1.2) both}
+#intro .orb{transition:transform .62s cubic-bezier(.65,0,.35,1);will-change:transform}
+#intro svg{display:block;width:min(42vw,190px);height:auto;filter:drop-shadow(0 0 40px #e4232f55);animation:pin .9s cubic-bezier(.2,.9,.25,1.2) both}
 @keyframes pin{from{transform:scale(.3) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
 #intro .mer{transform-origin:100px 100px;animation:spinx 1.6s linear infinite}
 #intro .mer.b{animation-delay:-.53s}#intro .mer.c{animation-delay:-1.07s}
 @keyframes spinx{0%{transform:scaleX(1);opacity:.25}50%{transform:scaleX(0);opacity:1}100%{transform:scaleX(-1);opacity:.25}}
+#intro .dim{opacity:0;transition:opacity .3s ease-in}#intro.go .dim{opacity:1}
+#intro svg g,#intro .rim{transition:opacity .35s}#intro.go svg g{opacity:0}#intro.go .rim{opacity:.25}
+#intro.go svg{filter:none}
+#intro .dot{opacity:0;transform-box:fill-box;transform-origin:center;animation:lit .45s cubic-bezier(.2,.9,.3,1.4) forwards}
+#intro .dot.s{--o:.6}
+@keyframes lit{0%{opacity:0;transform:scale(3)}100%{opacity:var(--o,1);transform:none}}
+#intro .halo{opacity:0;transform-box:fill-box;transform-origin:center;animation:halo 1.6s ease-out infinite}
+@keyframes halo{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(3.2)}}
+#intro .txt{display:flex;flex-direction:column;align-items:center;gap:18px;transition:opacity .2s}
+#intro.go .txt,#intro.go .amg{opacity:0}
 #intro h1{margin:0;font:800 clamp(30px,8vw,46px)/1 Unbounded,system-ui,sans-serif;letter-spacing:.01em;opacity:0;animation:up .6s .35s ease-out forwards}
 #intro h1 b{color:#e4232f}
-#intro .tick{height:28px;overflow:hidden;opacity:0;animation:up .4s .6s ease-out forwards}
-#intro .tick div{display:flex;flex-direction:column;animation:roll 2.1s .75s steps(1,end) forwards}
-#intro .tick span{height:28px;line-height:28px;font:600 18px Onest,sans-serif;color:#e9e9ee}
-@keyframes roll{0%{transform:translateY(0)}14%{transform:translateY(-28px)}28%{transform:translateY(-56px)}42%{transform:translateY(-84px)}57%{transform:translateY(-112px)}71%{transform:translateY(-140px)}85%,100%{transform:translateY(-168px)}}
-#intro p{margin:0;color:#9a9aa1;font-size:14px;opacity:0;animation:up .5s 2.3s ease-out forwards}
+#intro p{margin:0;color:#9a9aa1;font-size:14px;opacity:0;animation:up .5s .75s ease-out forwards}
+#intro .amg{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);display:flex;flex-direction:column;align-items:center;gap:6px;transition:opacity .2s}
+#intro .amg span{font:500 11px Onest,sans-serif;color:#6d6d74;opacity:0;animation:up .5s .9s ease-out forwards}
+#intro .amg b{font:600 11.5px Onest,sans-serif;letter-spacing:.34em;padding-left:.34em;color:#c9c9cf;opacity:0;animation:up .5s 1s ease-out forwards}
+#intro.short h1{animation-delay:.15s}#intro.short p{animation-delay:.35s}#intro.short .amg span,#intro.short .amg b{animation-delay:.3s}
+#intro.short .dot{animation-delay:.3s!important}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
 #soon{position:fixed;z-index:6;left:50%;width:min(380px,calc(100vw - 32px));transform:translate(-50%,8px) scale(.97);opacity:0;pointer-events:none;
@@ -385,20 +399,24 @@ body.dz header{background:#15111dee}
 <body>
 
 <div id="intro" hidden aria-hidden="true">
-  <div class="stars"></div>
+  <div class="bgl"></div><div class="stars"></div>
   <div class="box">
-    <svg viewBox="0 0 200 200"><defs><radialGradient id="ig" cx="38%" cy="34%" r="70%"><stop offset="0" stop-color="#ff4a53"/><stop offset=".65" stop-color="#e4232f"/><stop offset="1" stop-color="#a5121c"/></radialGradient><clipPath id="ic"><circle cx="100" cy="100" r="78"/></clipPath></defs>
+    <div class="orb"><svg viewBox="0 0 200 200"><defs><radialGradient id="ig" cx="38%" cy="34%" r="70%"><stop offset="0" stop-color="#ff4a53"/><stop offset=".65" stop-color="#e4232f"/><stop offset="1" stop-color="#a5121c"/></radialGradient><clipPath id="ic"><circle cx="100" cy="100" r="78"/></clipPath></defs>
       <circle cx="100" cy="100" r="78" fill="url(#ig)"/>
       <g clip-path="url(#ic)" fill="none" stroke="#fff" stroke-width="3.2" stroke-opacity=".9">
         <path d="M22 100H178M28 64Q100 80 172 64M28 136Q100 120 172 136"/>
         <ellipse class="mer a" cx="100" cy="100" rx="78" ry="78"/><ellipse class="mer b" cx="100" cy="100" rx="78" ry="78"/><ellipse class="mer c" cx="100" cy="100" rx="78" ry="78"/>
       </g>
-      <circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width="3.2"/>
-    </svg>
+      <g><circle class="halo" cx="103.9" cy="90.7" r="3.6" fill="none" stroke="#fff" stroke-width="1.2" style="animation-delay:.75s"/><circle class="halo" cx="96.5" cy="84.4" r="3.6" fill="none" stroke="#fff" stroke-width="1.2" style="animation-delay:1.0s"/><circle class="dot " cx="103.9" cy="90.7" r="3.6" fill="#fff" style="animation-delay:0.55s"/><circle class="dot " cx="96.5" cy="84.4" r="3.6" fill="#fff" style="animation-delay:0.7s"/><circle class="dot s" cx="105.5" cy="84.8" r="2.8" fill="#fff" style="animation-delay:0.85s"/><circle class="dot s" cx="98.4" cy="91.0" r="2.8" fill="#fff" style="animation-delay:1.0s"/><circle class="dot s" cx="103.3" cy="94.9" r="2.8" fill="#fff" style="animation-delay:1.15s"/><circle class="dot s" cx="134.3" cy="105.4" r="2.8" fill="#fff" style="animation-delay:1.3s"/></g>
+      <circle class="dim" cx="100" cy="100" r="78" fill="#0c0c0d"/>
+      <circle class="rim" cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width="3.2"/>
+    </svg></div>
+    <div class="txt">
     <h1>Ne <b>World</b></h1>
-    <div class="tick"><div><span>🇨🇭 Швейцария</span><span>🇬🇧 Британия</span><span>🇩🇪 Германия</span><span>🇫🇷 Франция</span><span>🇲🇨 Монако</span><span>🇮🇱 Израиль</span><span>🌍 и дальше</span></div></div>
     <p>Новости на русском — там, где вы живёте</p>
+    </div>
   </div>
+  <div class="amg"><span>от</span><b>ALPINE MEDIA GROUP</b></div>
 </div>
 <section id="picker" class="view" hidden>
   <canvas id="globe" aria-label="Глобус: выберите страну"></canvas>
@@ -1013,12 +1031,13 @@ const globe=(()=>{
  }).catch(()=>{});
  const api={start(back){if(running)return;running=true;hideSoon();uzT=null;pk.classList.remove('gz');cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
-        settle(){intro=performance.now()},
+        settle(sp){intro=performance.now();if(sp){const d=1150,to=[-4+Math.sin((intro+d)/4000)*14,rot[1],0],from=[to[0]+200,to[1]+15,0];rot=from;spin={t0:intro,d,ir:d3.interpolate(from,to),done(){}}}},
         peek(k){const n=NEXT[k];if(!n||!countries)return;auto=false;intro=0;uzT=n.zoom||2.5;hideSoon();const nf=nextF.find(f=>f.next===n)||n.pseudo||(n.pseudo={next:n,properties:{}});hover=nf;tip.style.opacity=0;
           spin={t0:performance.now(),d:800,ir:d3.interpolate(rot.slice(),[-n.coord[0],-n.coord[1],0]),done(){const [x,y]=proj(n.coord);openSoon(n,x,y)}}},
         fly(k){hideSoon();const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
  return api;
 })();
+window.nwGlobe=globe;
 
 /* ---------- choices under the globe ---------- */
 $('#choices').innerHTML=['ch','uk'].map(k=>`<button class="choice" data-r="${k}"><img src="${R[k].logo}" alt=""><span><b>${R[k].label}</b><span>${R[k].name} · ${R[k].subs}</span></span></button>`).join('')+
@@ -1051,11 +1070,19 @@ function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{i
 Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
-<script>(()=>{const el=document.getElementById('intro');let seen=false;try{seen=sessionStorage.getItem('nwIntro')}catch(e){}
+<script>(()=>{const el=document.getElementById('intro');let seen=false,old=false;try{seen=sessionStorage.getItem('nwIntro');old=localStorage.getItem('nwIntro')}catch(e){}
  const h=location.hash;if(seen||!(h===''||h==='#'||h==='#globe')||matchMedia('(prefers-reduced-motion: reduce)').matches){el.remove();return}
- try{sessionStorage.setItem('nwIntro','1')}catch(e){}
- el.hidden=false;let done=false;const end=()=>{if(done)return;done=true;el.classList.add('out');try{globe.settle()}catch(e){}setTimeout(()=>el.remove(),600)};
- el.addEventListener('click',end);setTimeout(end,3100)})()</script>
+ try{sessionStorage.setItem('nwIntro','1');localStorage.setItem('nwIntro','1')}catch(e){}
+ if(old)el.classList.add('short');
+ el.hidden=false;let done=false;
+ // the red orb flies into the real globe's slot, then the live globe takes over
+ const end=()=>{if(done)return;done=true;let ok=false;
+  try{const o=el.querySelector('.orb'),a=o.getBoundingClientRect(),b=document.getElementById('gslot').getBoundingClientRect();
+   if(b.width>0&&a.width>0){const r=a.width*.39,R=b.width/2*.94*1.18,dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2);
+    o.style.transform=`translate(${dx}px,${dy}px) scale(${R/r})`;ok=true}}catch(e){}
+  el.classList.add('go');const w=ok?300:0;
+  setTimeout(()=>{try{window.nwGlobe.settle(ok)}catch(e){}el.classList.add('out')},w);setTimeout(()=>el.remove(),w+450)};
+ el.addEventListener('click',end);setTimeout(end,old?1250:2200)})()</script>
 <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
 </body>
 </html>

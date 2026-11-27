@@ -35,7 +35,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
 - `scripts/update-uk.mjs`: fetches TfL, Environment Agency floods and Met Office warnings into `map/uk-live.json`, using fixed Russian wording.
 - `.github/workflows/update-posts.yml` and `update-map.yml`: scheduled bots that commit as `ne-world-bot`. The GitHub schedule can be slow (roughly hourly at times). To run one by hand: `gh workflow run update-posts.yml`.
 - `manifest.webmanifest`, `sw.js`, `icons/`: installable app (PWA). The service worker is network-first, so news is always fresh, and the cache is only an offline fallback. To change the app icon, replace the files in `icons/` (keep the names and sizes: 512, 192, 180 apple-touch, 32) and bump `CACHE` in `sw.js`.
-- Opening animation: the `#intro` block plus a small script at the end of `index.html`. It plays once per session, only on `#globe` or an empty hash, then calls `globe.settle()`.
+- Opening animation: the `#intro` block plus a small script at the end of `index.html`. It plays once per session (a short ~1.3 s version after the first launch ever), only on `#globe` or an empty hash, then calls `window.nwGlobe.settle(true)`, which spins the real globe into place. Use `window.nwGlobe`, not `globe`: in the global scope `globe` is the `#globe` canvas element.
 - `docs/HISTORY.md`: project history, every decision David made, logo style rules and the backlog. **Read it first.** When something new is decided, write it there in the same commit.
 - `brand/`: final SVG logos, plus `brand/src/` with the Python generators (fontTools + Montserrat 800, which is included). Example: `cd brand/src && python3 monaco.py`. Render PNGs from the SVGs with a headless browser.
 
