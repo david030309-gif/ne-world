@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T13:47:43.592Z",
+ "updated": "2026-11-27T14:54:49.584Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,20 +8,8 @@
  },
  "lines": {
   "ok": true,
-  "total": 11,
+  "total": 10,
   "items": [
-   {
-    "id": "waterloo-city",
-    "name": "Waterloo & City",
-    "bg": "#95CDBA",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 2,
-    "status": "Не ходит",
-    "cause": "забастовка",
-    "text": "Не ходит, забастовка",
-    "reason": "Waterloo and City Line: No service due to strike action."
-   },
    {
     "id": "bakerloo",
     "name": "Bakerloo",
@@ -32,7 +20,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Bakerloo Line: No service between Queen's Park and Harrow & Wealdstone due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 10 minutes."
+    "reason": "Bakerloo Line: No service between Stonebridge Park and Harrow & Wealdstone, and SEVERE DELAYS on the rest of the line due to strike action. Services are operating approximately every 10 minutes between Stonebridge Park and Elephant & Castle."
    },
    {
     "id": "central",
@@ -44,7 +32,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Central Line: No service between White City and Liverpool Street due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 20 minutes."
+    "reason": "Central Line: No service between White City and Marble Arch due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 20 minutes."
    },
    {
     "id": "circle",
@@ -56,19 +44,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Circle Line: No service Aldgate and Edgware Road via Embankment due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 10 minutes."
-   },
-   {
-    "id": "metropolitan",
-    "name": "Metropolitan",
-    "bg": "#9B0056",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "забастовка",
-    "text": "Не ходит на части линии, забастовка",
-    "reason": "Metropolitan Line: No service between Baker Street and Aldgate and between Chalfont & Latimer and Chesham, and SEVERE DELAYS on the rest of the line due to strike action. Services are operating between Baker Street and Uxbridge / Watford every 15 minutes, between Baker Street and Amersham every 30 minutes ."
+    "reason": "Circle Line: No service anti-clockwise and SEVERE DELAYS clockwise due to strike action."
    },
    {
     "id": "piccadilly",
@@ -80,7 +56,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Piccadilly Line: No service between Acton Town and Uxbridge, and SEVERE DELAYS on the rest of the line due to strike action."
+    "reason": "Piccadilly Line: No service between Rayners Lane and Uxbridge, and SEVERE DELAYS between Acton Town and Rayners Lane and MINORS DELAYS on the rest of the line due to strike action."
    },
    {
     "id": "district",
@@ -104,7 +80,19 @@
     "status": "Сильные задержки",
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
-    "reason": "Hammersmith and City Line: Severe delays due to strike action. Services are operating every 20 minutes."
+    "reason": "Hammersmith and City Line: Severe delays due to strike action."
+   },
+   {
+    "id": "metropolitan",
+    "name": "Metropolitan",
+    "bg": "#9B0056",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Metropolitan Line: Severe delays due to strike action."
    },
    {
     "id": "northern",
@@ -119,6 +107,18 @@
     "reason": "Northern Line: Severe delays due to strike action."
    },
    {
+    "id": "victoria",
+    "name": "Victoria",
+    "bg": "#0098D4",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Victoria Line: Severe delays due to strike action."
+   },
+   {
     "id": "jubilee",
     "name": "Jubilee",
     "bg": "#A0A5A9",
@@ -129,18 +129,6 @@
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
     "reason": "Jubilee Line: Minor delays due to strike action."
-   },
-   {
-    "id": "victoria",
-    "name": "Victoria",
-    "bg": "#0098D4",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "забастовка",
-    "text": "Небольшие задержки, забастовка",
-    "reason": "Victoria Line: Minor delays due to strike action."
    }
   ]
  },
