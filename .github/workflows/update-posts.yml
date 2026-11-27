@@ -1,0 +1,31 @@
+name: Update posts from Telegram
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-posts
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install HTML parser
+        run: npm i --no-save --silent cheerio@1
+      - name: Read the public channel pages (t.me/s/...)
+        run: node scripts/update-posts.mjs
+      - name: Commit
+        run: |
+          git config user.name "ne-world-bot"
+          git config user.email "ne-world-bot@users.noreply.github.com"
+          git add posts.json img
+          if git diff --cached --quiet; then echo "No new posts"; exit 0; fi
+          git commit -m "New posts from Telegram"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done; exit 1

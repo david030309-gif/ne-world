@@ -951,7 +951,11 @@ $('#q').addEventListener('input',e=>{query=e.target.value.trim();location.hash.i
 addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
-Promise.all([fetch('posts.json').then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+const postsURL=()=>'posts.json?v='+Math.floor(Date.now()/6e4);
+// new Telegram posts arrive in posts.json via the bot; pick them up while the page is open
+function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{if(!d||JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
+  if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
+Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 </body>
