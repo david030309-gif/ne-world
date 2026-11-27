@@ -1,0 +1,27 @@
+name: Update Ne Mayfair Live map
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-map
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch open data (TfL, Environment Agency, Met Office)
+        run: node scripts/update-uk.mjs
+      - name: Commit
+        run: |
+          git config user.name "ne-world-bot"
+          git config user.email "ne-world-bot@users.noreply.github.com"
+          git add map/uk-live.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Ne Mayfair Live data update" && git pull --rebase && git push; fi
