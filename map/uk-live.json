@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T12:59:34.938Z",
+ "updated": "2026-11-27T13:00:54.107Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 10,
+  "total": 11,
   "items": [
    {
     "id": "waterloo-city",
@@ -69,6 +69,18 @@
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
     "reason": "Metropolitan Line: No service between Baker Street and Aldgate due to strike action. SEVERE DELAYS on the rest of the line. Services are operating between Baker Street and Uxbridge / Watford every 15 minutes, between Baker Street and Amersham every 30 minutes, and between Watford and Chesham every 30 minutes. Customers travelling to Chesham are advised to go to Watford and change."
+   },
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Piccadilly Line: Severe delays between Cockfosters and Heathrow Terminals westbound, and between Heathrow Terminals and Acton Town eastbound due to strike action. NO SERVICE on the rest of the line."
    },
    {
     "id": "district",
