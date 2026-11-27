@@ -404,7 +404,7 @@ function show(v){
 /* ---------- globe ---------- */
 Object.assign(R_,R);
 const globe=(()=>{
- const cv=$('#globe'),ctx=cv.getContext('2d'),tip=$('#tip'),slotEl=$('#gslot'),pk=$('#picker');
+ const veil=$('#veil'),cv=$('#globe'),ctx=cv.getContext('2d'),tip=$('#tip'),slotEl=$('#gslot'),pk=$('#picker');
  let landM=null,soonM=null,active=[],W=0,H=0,dpr=1,countries=null,borders=null,hover=null,running=false,auto=true,uz=1,pulse=0,raf=0,flying=false,fly0=null,intro=0;
  let cx=0,cy=0,R=100,labelA=1;
  const proj=d3.geoOrthographic().clipAngle(90),path=d3.geoPath(proj,ctx);
@@ -444,15 +444,17 @@ const globe=(()=>{
  function loop(t){
   if(!running)return;pulse=(t%1600)/1600;
   if(flying&&fly0){
-   if(fly0.frozen){raf=requestAnimationFrame(loop);return}
-   const p=cl((t-fly0.t0)/fly0.d),pr=ease(p);
-   rot=fly0.ir(pr);cx=fly0.cx0+(W/2-fly0.cx0)*pr;cy=fly0.cy0+(H/2-fly0.cy0)*pr;
-   R=fly0.R0*Math.exp(Math.log(fly0.R1/fly0.R0)*pr);labelA=1-cl(p/0.3);
-   if(p>=1){fly0.frozen=true;draw();
-    cv.style.transformOrigin=`${W/2}px ${H/2}px`;
-    cv.style.transition='transform .5s cubic-bezier(.55,0,.8,.2),opacity .45s ease-in';
-    requestAnimationFrame(()=>{cv.style.transform=`scale(${fly0.css})`;cv.style.opacity='0';pk.classList.add('out')});
-    setTimeout(fly0.go,430);raf=requestAnimationFrame(loop);return}
+   const p=cl((t-fly0.t0)/fly0.d),pr=ease(cl(p/0.5));
+   // one continuous camera move: turn + centre in the first half, zoom accelerates the whole time (never stops)
+   const Z=Math.exp(Math.log(fly0.Zmax)*Math.pow(p,2.3));
+   if(!fly0.frozen){
+    rot=fly0.ir(pr);cx=fly0.cx0+(W/2-fly0.cx0)*pr;cy=fly0.cy0+(H/2-fly0.cy0)*pr;labelA=1-cl(p/0.2);
+    if(Z<fly0.Zc||p<0.5){R=fly0.R0*Z;draw()}else{R=fly0.R0*fly0.Zc;rot=fly0.ir(1);cx=W/2;cy=H/2;draw();fly0.frozen=true}
+   }
+   if(fly0.frozen)cv.style.transform=`translateZ(0) scale(${(Z/fly0.Zc).toFixed(4)})`;
+   veil.style.opacity=cl((p-0.68)/0.32).toFixed(3);
+   if(p>=1&&!fly0.done){fly0.done=true;fly0.go()}
+   raf=requestAnimationFrame(loop);return
   }else{
    if(auto)rot[0]=-4+Math.sin(t/4000)*14;
    const [sx,sy,sr]=slot();const k=intro?1+0.18*(1-d3.easeCubicOut(cl((t-intro)/600))):1;
@@ -472,10 +474,10 @@ const globe=(()=>{
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!countries){go();return}
   const [[x0,y0],[x1,y1]]=d3.geoBounds(f),c=R_[f.reg].coord;
   const ext=Math.max((x1-x0)*Math.cos(c[1]*Math.PI/180),y1-y0)*Math.PI/180;
-  const R1=Math.min(Math.max(W,H)*1.1,0.36*Math.min(W,H)/ext);   // canvas zoom kept moderate (cheap to draw)
-  const css=Math.max(2.5,Math.min(7,(0.8*Math.min(W,H)/ext)/R1));     // rest of the zoom done by the GPU
-  flying=true;pk.classList.add('flying');
-  fly0={t0:performance.now(),d:560,css,frozen:false,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,R1,go,out:false,done:false};
+  const Zmax=Math.max(8,2.6*(0.8*Math.min(W,H)/ext)/R);   // dive well past the country
+  const Zc=Math.max(2.5,Math.min(Zmax,1.15*Math.max(W,H)/R)); // above this the GPU scales the finished frame
+  flying=true;pk.classList.add('flying');cv.style.transformOrigin=`${W/2}px ${H/2}px`;cv.style.transition='none';veil.style.transition='none';
+  fly0={t0:performance.now(),d:1150,Zmax,Zc,frozen:false,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,go,out:false,done:false};
  }
  let down=null,moved=false;
  cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
@@ -506,7 +508,7 @@ const globe=(()=>{
    active=hi.features.map(f=>Object.assign(f,{reg:f.id==='756'?'ch':'uk'}));
   });
  }).catch(()=>{});
- return{start(back){if(running)return;running=true;cv.style.transition='none';cv.style.transform='';cv.style.opacity='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
+ return{start(back){if(running)return;running=true;cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
         fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
 })();
