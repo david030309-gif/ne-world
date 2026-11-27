@@ -86,6 +86,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
  transition:opacity .25s ease,transform .25s ease;text-align:left}
 #soon.on{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}
 #soon.sd{transform:translate(0,8px) scale(.97)}#soon.sd.on{transform:none}
+#soon{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+@media(max-width:600px){#soon{max-height:78vh;max-height:78dvh}}
 #soon .logo{margin:-4px -4px 14px;padding:18px 14px 14px;border-radius:14px;background:radial-gradient(120% 90% at 50% 30%,#2a2c38 0%,#15161d 75%);display:grid;place-items:center}
 #soon img{display:block;width:100%;max-width:330px;height:auto;max-height:200px;object-fit:contain;filter:drop-shadow(0 6px 18px #0008)}
 @media(max-width:600px){#soon img{max-height:112px}#soon .logo{padding:12px 10px 10px;margin-bottom:10px}}
@@ -951,8 +953,8 @@ const globe=(()=>{
   soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="logo"><img src="${n.logo}" alt="${n.name}"></div><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
   soon.querySelector('.x').onclick=e=>{e.stopPropagation();hideSoon()};
   const h=soon.offsetHeight||330,w=soon.offsetWidth||340;
-  if(innerWidth<600){soon.classList.remove('sd');soon.style.left='50%';soon.style.top=Math.max(10,innerHeight-h-14)+'px'}
-  else{soon.classList.add('sd');const left=x+48+w<innerWidth-12?x+48:Math.max(12,x-48-w);   // beside the country, not on top of it
+  if(innerWidth<600){soon.classList.remove('sd');soon.style.left='50%';soon.style.top='auto';soon.style.bottom='calc(14px + env(safe-area-inset-bottom,0px))'}
+  else{soon.classList.add('sd');soon.style.bottom='';const left=x+48+w<innerWidth-12?x+48:Math.max(12,x-48-w);   // beside the country, not on top of it
    soon.style.left=left+'px';soon.style.top=Math.max(12,Math.min(innerHeight-h-12,y-h/2))+'px'}requestAnimationFrame(()=>soon.classList.add('on'))};
  const tipFor=f=>f.next?`<b>${f.next.label}</b> · ${f.next.name} — скоро`:R_[f.reg]?`<b>${R_[f.reg].label}</b> · ${R_[f.reg].name} — открыть ленту`:`<b>${esc(f.properties.ru||f.properties.name||'')}</b>${f.soon?' · скоро':''}`;
  let tipT=0;const showTip=(f,x,y,ms)=>{clearTimeout(tipT);tip.innerHTML=tipFor(f);tip.classList.toggle('act',!!R_[f.reg]);const tw=tip.offsetWidth;x=Math.max(tw/2+8,Math.min(innerWidth-tw/2-8,x));tip.style.left=x+'px';tip.style.top=y+'px';tip.style.opacity=1;if(ms)tipT=setTimeout(()=>{tip.style.opacity=0;hover=null},ms)};
