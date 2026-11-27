@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T13:02:09.581Z",
+ "updated": "2026-11-27T13:47:43.592Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -68,7 +68,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Metropolitan Line: No service between Baker Street and Aldgate due to strike action. SEVERE DELAYS on the rest of the line. Services are operating between Baker Street and Uxbridge / Watford every 15 minutes, between Baker Street and Amersham every 30 minutes, and between Watford and Chesham every 30 minutes. Customers travelling to Chesham are advised to go to Watford and change."
+    "reason": "Metropolitan Line: No service between Baker Street and Aldgate and between Chalfont & Latimer and Chesham, and SEVERE DELAYS on the rest of the line due to strike action. Services are operating between Baker Street and Uxbridge / Watford every 15 minutes, between Baker Street and Amersham every 30 minutes ."
    },
    {
     "id": "piccadilly",
@@ -80,7 +80,7 @@
     "status": "Не ходит на части линии",
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
-    "reason": "Piccadilly Line: Severe delays between Cockfosters and Heathrow Terminals westbound, and between Heathrow Terminals and Acton Town eastbound due to strike action. NO SERVICE on the rest of the line."
+    "reason": "Piccadilly Line: No service between Acton Town and Uxbridge, and SEVERE DELAYS on the rest of the line due to strike action."
    },
    {
     "id": "district",
@@ -146,14 +146,14 @@
  },
  "roads": {
   "ok": true,
-  "total": 10,
+  "total": 11,
   "items": [
    {
     "badge": "A41",
     "title": "Hendon Way (Barnet)",
     "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Moderate",
-    "rank": 4,
+    "severity": "Serious",
+    "rank": 6,
     "ll": [
      -0.21921,
      51.577073
