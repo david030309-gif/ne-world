@@ -77,7 +77,7 @@ function parse(html, channel) {
     const blocks = []; let cur = [];
     for (const l of raw) { if (!l.trim()) { if (cur.length) blocks.push(cur); cur = []; } else cur.push(l); }
     if (cur.length) blocks.push(cur);
-    const sig = new RegExp(`t\\.me/${channel}|подпис(аться|ывайтесь)|^\\s*(ne alpy|ne mayfair|nemyfair|eho|ехо|эхо)\\b`, 'i');
+    const sig = new RegExp(`t\\.me/${channel}|подпис(аться|ывайтесь)|прислать новость|^\\s*(ne alpy|ne mayfair|nemyfair|ehoschweiz|ehochweiz|eho|ехо|эхо)\\b`, 'i');
     const kept = blocks.filter(b => !(b.length <= 2 && b.every(l => sig.test(l) || !clean(l))));
     if (!kept.length && !m.find('.tgme_widget_message_photo_wrap, .tgme_widget_message_video_thumb').length) return;
     const first = kept.length ? kept[0] : [];
@@ -87,6 +87,9 @@ function parse(html, channel) {
       ...kept.slice(1).map(b => b.map(clean).filter(Boolean).map(esc).join('<br>')).filter(Boolean)];
     if (!title && paras.length) { title = cut(paras.shift().replace(/<br>/g, ' '), 90); }
     if (!title) return;   // picture without any text: nothing to show as news
+    const all = [title, ...paras].join(' ');
+    // not news: ads and channel announcements
+    if (/#?реклама|erid|партн[её]рск(ий|ая) материал|промокод|вход за репост|резервация стол|розыгрыш|^друзья[,!]|небольшой анонс/i.test(all)) return;
     const wholeRaw = raw.join(' ');
     const photo = m.find('.tgme_widget_message_photo_wrap').first();
     const vthumb = m.find('.tgme_widget_message_video_thumb').first();
@@ -112,6 +115,8 @@ async function saveImage(url, path) {
 
 // ---------- main ----------
 const data = JSON.parse(await readFile(FILE, 'utf8'));
+// posts removed by hand stay removed: list their ids in hidden.json, e.g. ["ch-1101"]
+const HIDDEN = new Set(JSON.parse(await readFile('hidden.json', 'utf8').catch(() => '[]')));
 await mkdir('img', { recursive: true });
 const report = {};
 for (const { key, channel, keep } of CHANNELS) {
@@ -122,6 +127,7 @@ for (const { key, channel, keep } of CHANNELS) {
   let added = 0;
   for (const p of posts) {
     const id = `${key}-${p.num}`, old = byId.get(id);
+    if (HIDDEN.has(id)) continue;
     if (old) { if (p.views > (old.views || 0)) old.views = p.views; continue; }   // known post: only refresh the view count
     let img = null;
     if (p.img) { const path = `img/${id}.jpg`; if (await saveImage(p.img, path)) img = path; }
@@ -136,7 +142,7 @@ for (const { key, channel, keep } of CHANNELS) {
     list.push(post); byId.set(id, post); added++;
   }
   list.sort((a, b) => new Date(b.date) - new Date(a.date));
-  data[key] = list.slice(0, keep);
+  data[key] = list.filter(p => !HIDDEN.has(p.id)).slice(0, keep);
   report[key] = `${posts.length} read, ${added} new`;
 }
 await writeFile(FILE, JSON.stringify(data));
