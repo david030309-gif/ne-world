@@ -506,6 +506,7 @@ const MAPS={ch:{title:'Швейцария сейчас',updated:'',tg:'https://t
  src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
 let LIVE=null,AVAL=null;
+const pl=(n,f)=>f[(n%10===1&&n%100!==11)?0:(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?1:2];
 function loadLive(){const v=Math.floor(Date.now()/3e5);
  return Promise.all([fetch('map/ch-live.json?v='+v).then(r=>r.ok?r.json():null).catch(()=>null),fetch('map/ch-avalanche.json?v='+v).then(r=>r.ok?r.json():null).catch(()=>null)])
   .then(([l,a])=>{if(l)LIVE=l;if(a)AVAL=a})}
@@ -515,7 +516,7 @@ const AVC=['','#3f5a2a','#8a7a1f','#b3621f','#b3261e','#7a0f0f'];
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
  const L=region==='ch'&&LIVE,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null;
- const bits=[];if(L&&L.trains&&L.trains.ok)bits.push(`${L.trains.total} сбоев в транспорте`);if(L&&L.warnings&&L.warnings.ok)bits.push(`${L.warnings.total} предупреждений властей`);if(av)bits.push(`лавинная опасность ${av.max} из 5`);
+ const bits=[];if(L&&L.trains&&L.trains.ok)bits.push(`${L.trains.total} ${pl(L.trains.total,['сбой','сбоя','сбоев'])} в транспорте`);if(L&&L.warnings&&L.warnings.ok)bits.push(`${L.warnings.total} ${pl(L.warnings.total,['предупреждение','предупреждения','предупреждений'])} властей`);if(av)bits.push(`лавинная опасность ${av.max} из 5`);
  return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${L?hmCH(L.updated):''}</span><span class="ms">${bits.join(' · ')}</span><span class="mgo">Карта →</span></button>`}
 let geoCache=null;
 function renderMap(){if(region==='ch'&&!LIVE&&!renderMap.tried){renderMap.tried=1;loadLive().then(()=>{if(location.hash==='#ch-map')renderMap()});}
@@ -523,11 +524,11 @@ function renderMap(){if(region==='ch'&&!LIVE&&!renderMap.tried){renderMap.tried=
  const groups=[
   ['train','Поезда и транспорт',tl?tl.items.slice(0,8).map(it=>({b:it.badge,t:it.title,x:it.reason||'',u:it.until?'до '+hmCH(it.until):''})):[],tl?(tl.total>8?`Ещё ${tl.total-8} сообщений`:(tl.total?'':'Сейчас сбоев нет')):'Сбои поездов скоро появятся здесь'],
   ['road','Дороги',[],'Дорожная обстановка скоро появится здесь'],
-  ['warn','Предупреждения властей',wl?wl.items.map(it=>({b:'!',t:it.place||it.kind,x:`${it.kind}${it.severity?' · '+it.severity:''}${it.canton?' · '+it.canton:''}. ${it.title}`,ll:it.ll})):[],wl?(wl.total?'':'Сейчас предупреждений нет'):'Данные загружаются'],
+  ['warn','Предупреждения властей',wl?wl.items.map(it=>({b:'!',t:it.place||it.kind,x:`${it.kind}${it.severity?' · '+it.severity:''}${it.canton?' · '+it.canton:''}. ${it.title}`,ll:it.ll,kt:(it.canton||'').split(',')[0].trim()})):[],wl?(wl.total?'':'Сейчас предупреждений нет'):'Данные загружаются'],
   ['aval','Горы',av?[{b:av.max+'/5',t:`Лавинная опасность ${av.max} из 5 — ${av.maxText}`,x:`В ${av.regionsAtMax} районах: ${av.topRegions.slice(0,4).join(', ')} и др. Вне лыжных трасс опасно`}]:[],av?`Бюллетень SLF от ${dCH(av.published)}, следующий — ${dCH(av.nextUpdate)}`:'Данные загружаются']];
  const stats=[[tl?String(tl.total):'—','сбоев в транспорте'],['—','событий на дорогах'],[wl?String(wl.total):'—','предупреждений властей'],[av?av.max+'/5':'—','лавинная опасность']];
  const upd=L?hmCH(L.updated):'—';
- const evs=[];groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
+ const evs=[];groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll||it.kt)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
   <div class="mapcard">
    <div class="mhead"><b>${M.title}</b><span class="mlive"><i class="live"></i>${upd}</span></div>
@@ -578,12 +579,14 @@ function drawVMap(M,evs,topo){
  mk.each(function(d){const el=d3.select(this),w=Math.max(22,d.b.length*8+12);
    el.append('rect').attr('x',-w/2).attr('y',-11).attr('width',w).attr('height',22).attr('rx',6);
    el.append('text').attr('text-anchor','middle').attr('dy','.35em').text(d.b)});
+ const KTID=Object.fromEntries(Object.entries(KT).map(([i,a])=>[a,+i]));const fan={};
+ evs.forEach(d=>{if(d.ll){d.xy=proj(d.ll);return}const f=cant.features.find(c=>+c.id===KTID[d.kt]);if(!f)return;const c=path.centroid(f),n=fan[d.kt]=(fan[d.kt]||0)+1;d.xy=[c[0]+(n-1)*26,c[1]+(n-1)*6]});
  let k=1;
- const place=()=>{mk.attr('transform',d=>{const [x,y]=proj(d.ll);return `translate(${x},${y}) scale(${1/k})`});lbl.attr('font-size',11/k)};
+ const place=()=>{mk.attr('transform',d=>d.xy?`translate(${d.xy[0]},${d.xy[1]}) scale(${1/k})`:'translate(-99,-99)');lbl.attr('font-size',11/k)};
  place();
  const pop=$('#vpop');
  function show(d){mk.classed('on',x=>x===d);document.querySelectorAll('.ev').forEach(e=>e.classList.toggle('on',+e.dataset.ev===d.i));
-  const t=d3.zoomTransform(svgEl),[x,y]=proj(d.ll),px=t.applyX(x),py=t.applyY(y);
+  const t=d3.zoomTransform(svgEl),[x,y]=d.xy,px=t.applyX(x),py=t.applyY(y);
   pop.innerHTML=`<span class="bd k-${d.k}">${esc(d.b)}</span><b>${esc(d.t)}</b><small>${esc(d.x)}${d.u?' · '+esc(d.u):''}</small>`;pop.hidden=false;
   pop.style.left=Math.max(8,Math.min(W-248,px-120))+'px';pop.style.top=(py>H*0.55?py-pop.offsetHeight-18:py+18)+'px'}
  const zoom=d3.zoom().scaleExtent([1,8]).translateExtent([[0,0],[W,H]])
@@ -608,7 +611,7 @@ function drawVMap(M,evs,topo){
  svgEl.addEventListener('pointermove',e=>{if(e.isPrimary&&Math.hypot(e.clientX-gest.x,e.clientY-gest.y)>8)gest.moved=true},true);
  svgEl.addEventListener('pointerup',e=>{if(!e.isPrimary||gest.multi||gest.moved||e.target.closest('.mk')){lastTap=0;return}
   const now=e.timeStamp;if(now-lastTap<300){const [x,y]=d3.pointer(e);svg.transition().duration(300).call(zoom.scaleTo,k>1.5?1:2.6,[x,y]);lastTap=0}else lastTap=now});
- const focus=d=>{const [x,y]=proj(d.ll);svg.transition().duration(500).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(3).translate(-x,-y)).on('end',()=>show(d))};
+ const focus=d=>{if(!d.xy)return;const [x,y]=d.xy;svg.transition().duration(500).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(3).translate(-x,-y)).on('end',()=>show(d))};
  mk.on('click',(e,d)=>{e.stopPropagation();show(d)}).on('keydown',(e,d)=>{if(e.key==='Enter')show(d)});
  svg.on('click',e=>{if(!e.target.closest('.mk')){pop.hidden=true;mk.classed('on',false)}});
  box.querySelector('.vctl').onclick=e=>{const b=e.target.closest('[data-mz]');if(!b)return;const z=b.dataset.mz;
