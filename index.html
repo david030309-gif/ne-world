@@ -59,6 +59,10 @@ header{position:sticky;top:0;z-index:20;background:#0c0c0dee;backdrop-filter:blu
 .region svg.ch{opacity:.7}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo .fl{width:32px;height:32px}
+.logo img{height:46px;width:auto;display:block}
+.brandc{display:flex;align-items:center;gap:14px;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:6px 0 4px}
+.brandc img{height:64px;width:auto;flex:none}.brandc b{display:block;font-family:Unbounded;font-size:17px}.brandc small{display:block;color:var(--mut);font-size:13px;margin-top:2px}
+.brandc .subs{margin-left:auto;background:var(--red);color:#fff;font-weight:600;font-size:14px;border-radius:999px;padding:9px 14px;white-space:nowrap}
 .logo b{font-family:Unbounded;font-weight:800;font-size:22px;letter-spacing:-.01em;white-space:nowrap}
 .tools{justify-self:end;display:flex;gap:4px}
 .ib{width:44px;height:44px;display:grid;place-items:center;border-radius:50%}
@@ -198,6 +202,32 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 .minfo p{margin:0 0 8px}
 .msrc{font-size:13px;color:var(--mut)}
 @media(max-width:860px){.mapv{grid-template-columns:minmax(0,1fr)}.mapcard{position:static}.mstrip .ms{display:none}}
+/* ---------- Ne Mayfair Live ---------- */
+.ukv{background:#171a24;border:1px solid #262a38;border-radius:20px;padding:clamp(16px,3vw,32px)}
+.ukhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ukhead h1{font-family:Inter,Onest,sans-serif;font-weight:800;font-size:clamp(28px,4.4vw,44px);margin:0;letter-spacing:-.01em}
+.tpill{display:flex;align-items:center;gap:8px;background:#232736;border-radius:999px;padding:8px 14px;font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.tpill i{width:9px;height:9px;border-radius:50%;background:#ef4444;animation:lv 1.8s infinite}
+.uksum{color:#c4c8d6;font-size:clamp(14px,1.6vw,17px);margin:8px 0 18px}
+.ukmaps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:start}
+.ukmap{position:relative}.ukmap svg{display:block;width:100%}
+.ukmap.ldn{background:#1e2230;border-radius:16px;padding:6px}.ukmap .ttl{position:absolute;left:18px;top:12px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#9aa1b8}
+.uklogo{position:absolute;left:0;top:0;width:clamp(90px,24%,150px);height:auto;z-index:1}
+.ukleg{position:absolute;left:4px;top:clamp(84px,23%,136px);font-size:12px;color:#c4c8d6;display:flex;align-items:center;gap:6px;z-index:1}.ukleg i{width:10px;height:10px;border-radius:50%;background:#8ab4ff}
+.ukc circle{fill:#e5e7eb}.ukc .ldot{fill:#fff}.ukc text{fill:#b9bed0;font:500 12px Onest,sans-serif}
+.ukb{fill:#9aa1b8;font-family:Onest,sans-serif;font-weight:600;pointer-events:none}.hrw{fill:#e5e7eb;font:600 11px Onest,sans-serif}
+.uklists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 32px;margin-top:22px}
+.uklists h3{font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#9aa1b8;margin:10px 0 8px;padding-bottom:6px;border-bottom:1px solid #2a2e3d}
+.li{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:15px}.li.tall{align-items:flex-start}.li b{display:block;font-size:16px}.li small{display:block;color:#9aa1b8;font-size:14px}
+.lb2{flex:none;border-radius:6px;padding:4px 9px;font-weight:700;font-size:13px;white-space:nowrap}
+.more3{color:#9aa1b8;font-size:14px;margin:4px 0}.okl{display:flex;align-items:center;gap:8px;margin:4px 0}
+.okl i,.wx i{width:10px;height:10px;border-radius:50%;flex:none}.okl .g,.wx .g{background:#22c55e}.wx .y{background:#facc15}.wx .b{background:#8ab4ff}.wx .r{background:#ef4444}
+.wxs{grid-column:1/-1}.wx{display:flex;align-items:baseline;gap:10px;margin:8px 0;font-size:15px}.wx span{color:#c4c8d6}
+.fl summary{cursor:pointer;color:#9aa1b8;font-size:14px;margin:6px 0}.fl p{margin:4px 0;font-size:14px;color:#c4c8d6}
+.ukfoot{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;border-top:1px solid #2a2e3d;margin-top:22px;padding-top:14px;font-size:14px;color:#9aa1b8}
+.ukfoot b{color:#fff;letter-spacing:.02em}.ukfoot a{color:#ef4444;font-weight:700;text-decoration:none}
+@media(max-width:760px){.ukmaps,.uklists{grid-template-columns:minmax(0,1fr)}.tpill{font-size:15px;padding:6px 11px}}
+
 /* ---------- Движ (ehoschweiz) ---------- */
 .seg{max-width:1060px;margin:0 auto;padding:0 16px 12px;display:flex;gap:8px}
 .seg button{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 14px;min-height:52px;text-align:left}
@@ -274,7 +304,7 @@ body.dz header{background:#15111dee}
  .hero{min-height:440px}.hero .in{padding:20px 18px}.hero li:nth-child(3){display:none}
  
  .region .nm{display:none}.region{padding:6px}
- .logo b{font-size:18px}
+ .logo b{font-size:18px}.logo img{height:38px}.brandc img{height:52px}.brandc .subs{display:none}
  .bar{grid-template-columns:auto 1fr auto}.logo{justify-self:center}
 }
 #picker>.ptop{transition:opacity .3s}#picker.gz>.ptop{opacity:.12}
@@ -434,7 +464,8 @@ function renderFeed(){
 function applyRegion(){
  const r=R[region];
  $('#regionBtn').innerHTML=`${flag(region)}<span class="nm">${r.label}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>`;
- $('#logo').innerHTML=flag(region)+`<b>${r.name}</b>`;
+ $('#logo').innerHTML=`<img src="${r.logo}" alt="${r.name}"><b>${r.name}</b>`;
+ {let ic=document.querySelector('link[rel=icon]');if(!ic){ic=document.createElement('link');ic.rel='icon';document.head.appendChild(ic)}ic.href=r.logo}
  $('#logo').href='#'+region;
  $('#foot').innerHTML=`${esc(r.name)} · <a href="https://t.me/${r.channel}">t.me/${r.channel}</a> · ${r.subs}`;
  document.title=r.title;
@@ -443,7 +474,8 @@ function applyRegion(){
 /* ---------- article ---------- */
 function renderPost(p){
  const r=R[region];
- $('#post').innerHTML=`<a class="back" href="#${region}">← Все новости · ${esc(r.label)}</a>
+ $('#post').innerHTML=`<a class="brandc" href="https://t.me/${r.channel}"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${region==='ch'?'Швейцарии':'Лондона и Британии'} на русском · t.me/${r.channel}</small></span><span class="subs">Подписаться</span></a>
+  <a class="back" href="#${region}">← Все новости · ${esc(r.label)}</a>
   <div class="cat" style="color:var(--red)">${esc(p.cat)}</div><h1 class="h">${esc(p.title)}</h1>${meta(p)}
   ${p.img?`<figure><img src="${p.img}" alt=""></figure>`:''}
   <div class="body">${p.paras.map(x=>`<p>${x}</p>`).join('')}</div>
@@ -491,7 +523,7 @@ function openSheet(id){const p=DATA.eho.find(x=>x.id===id);if(!p)return;closeShe
 function closeSheet(){const s=$('#sheet');if(s){s.remove();document.body.style.overflow=''}}
 
 /* ---------- live maps ---------- */
-const MAPS={ch:{title:'Швейцария сейчас',updated:'08:10',tg:'https://t.me/golosswiss/1094',
+const MAPS={uk:{title:'Ne Mayfair Live',tg:'https://t.me/NeMyfair'},ch:{title:'Швейцария сейчас',updated:'08:10',tg:'https://t.me/golosswiss/1094',
  geo:'map/ch-cantons.json',
  groups:[
   ['train','Поезда',[{b:'SBB',t:'IR26 · Giubiasco',x:'Техническая неисправность. Поезда опаздывают, часть поездов отменят',u:'до 15:00',ll:[9.006,46.172]},
@@ -507,9 +539,11 @@ const MAPS={ch:{title:'Швейцария сейчас',updated:'08:10',tg:'http
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
+ if(region==='uk'){const U=UKLIVE;if(!U)return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="ms">метро, дороги, погода, наводнения</span><span class="mgo">Карта →</span></button>`;
+  return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="mt">${hm(U.updated,'Europe/London')}</span><span class="ms">${ukSummary(U)}</span><span class="mgo">Карта →</span></button>`}
  return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${M.updated}</span><span class="ms">${M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
 let geoCache=null;
-function renderMap(){const M=MAPS[region];
+function renderMap(){if(region==='uk')return renderMapUK();const M=MAPS[region];
  const evs=[];M.groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
   <div class="mapcard">
@@ -591,6 +625,75 @@ function drawVMap(M,evs,topo){
  box.querySelector('.vctl').onclick=e=>{const b=e.target.closest('[data-mz]');if(!b)return;const z=b.dataset.mz;
   if(z==='0')svg.transition().duration(400).call(zoom.transform,d3.zoomIdentity);else svg.transition().duration(250).call(zoom.scaleBy,z==='in'?1.7:1/1.7)};
  document.querySelectorAll('.ev[data-ev]').forEach(b=>b.onclick=()=>{box.scrollIntoView({behavior:'smooth',block:'center'});focus(evs[+b.dataset.ev])});
+}
+
+/* ---------- Ne Mayfair Live (London & Britain) ---------- */
+let UKLIVE=null,UKGEO=null,THAMES=null;
+const pl=(n,f)=>f[(n%10===1&&n%100!==11)?0:(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?1:2];
+function loadUK(){return fetch('map/uk-live.json?v='+Math.floor(Date.now()/3e5)).then(r=>r.ok?r.json():null).then(j=>{if(j)UKLIVE=j}).catch(()=>{})}
+function ukSummary(U){const b=[],ln=U.lines&&U.lines.ok?U.lines.total:null,rd=U.roads&&U.roads.ok?U.roads.items.length:null,fl=U.floods&&U.floods.ok?U.floods:null,wx=U.weather&&U.weather.ok?U.weather.total:null;
+ if(ln!=null)b.push(ln?`${ln} ${pl(ln,['линия','линии','линий'])} метро со сбоями`:'метро без сбоев');
+ if(rd)b.push(`${rd} ${pl(rd,['сбой','сбоя','сбоев'])} на дорогах Лондона`);
+ if(fl&&fl.total)b.push(fl.warnings||fl.severe?`предупреждения о наводнениях: ${fl.warnings+fl.severe}`:`в ${fl.total} ${pl(fl.total,['районе','районах','районах'])} может подняться вода`);
+ if(wx)b.push(`${wx} ${pl(wx,['предупреждение','предупреждения','предупреждений'])} Met Office`);return b.join(' · ')}
+const BORO={'Barking and Dagenham':'Баркинг','Barnet':'Барнет','Bexley':'Бексли','Brent':'Брент','Bromley':'Бромли','Camden':'Камден','City of London':'Сити','Croydon':'Кройдон','Ealing':'Илинг','Enfield':'Энфилд','Greenwich':'Гринвич','Hackney':'Хакни','Hammersmith and Fulham':'Хаммерсмит','Haringey':'Харингей','Harrow':'Хэрроу','Havering':'Хаверинг','Hillingdon':'Хиллингдон','Hounslow':'Хаунслоу','Islington':'Ислингтон','Kensington and Chelsea':'Кенсингтон','Kingston upon Thames':'Кингстон','Lambeth':'Ламбет','Lewisham':'Луишем','Merton':'Мертон','Newham':'Ньюэм','Redbridge':'Редбридж','Richmond upon Thames':'Ричмонд','Southwark':'Саутуарк','Sutton':'Саттон','Tower Hamlets':'Тауэр-Хамлетс','Waltham Forest':'Уолтем-Форест','Wandsworth':'Уондсуэрт','Westminster':'Вестминстер'};
+const SMALLB=['City of London','Kensington and Chelsea','Islington','Hackney','Camden','Hammersmith and Fulham','Tower Hamlets','Southwark','Lambeth','Westminster'];
+const CITIES=[['Newcastle',-1.61,54.98],['Leeds',-1.55,53.80],['Manchester',-2.24,53.48],['Liverpool',-2.98,53.41,1],['Sheffield',-1.47,53.38],['Birmingham',-1.89,52.49],['Norwich',1.30,52.63,1],['Cambridge',0.12,52.21],['Bristol',-2.59,51.45,1],['Southampton',-1.40,50.91],['Plymouth',-4.14,50.38,1]];
+const rbadge=r=>/^M\d/.test(r)?['#0b5cad','#fff']:['#1f7a3a','#ffd800'];
+function renderMapUK(){
+ const U=UKLIVE,t=U?hm(U.updated,'Europe/London'):'—',L=U&&U.lines&&U.lines.ok?U.lines:null,RD=U&&U.roads&&U.roads.ok?U.roads:null,F=U&&U.floods&&U.floods.ok?U.floods:null,W=U&&U.weather&&U.weather.ok?U.weather:null;
+ const badge=(txt,bg,fg)=>`<span class="lb2" style="background:${bg};color:${fg}">${esc(txt)}</span>`;
+ const fp=n=>pl(n,['районе','районах','районах']);
+ $('#feed').innerHTML=`<section class="ukv">
+  <div class="ukhead"><h1>Ne Mayfair Live</h1><span class="tpill"><i></i>${t}</span></div>
+  <p class="uksum">${U?ukSummary(U):'Загружаем свежие данные…'}</p>
+  <div class="ukmaps"><div class="ukmap" id="ukE"><img class="uklogo" src="logo-uk.png" alt="Ne Mayfair"><span class="ukleg"><i></i>может подняться вода</span><svg></svg></div>
+   <div class="ukmap ldn" id="ukL"><b class="ttl">Лондон</b><svg></svg></div></div>
+  <div class="uklists">
+   <section><h3>Метро, Elizabeth line, Overground</h3>${L?(L.items.length?L.items.slice(0,8).map(x=>`<div class="li">${badge(x.name,x.bg,x.fg)}<span>${esc(x.text)}</span></div>`).join('')+(L.items.length>8?`<p class="more3">ещё ${L.items.length-8} ${pl(L.items.length-8,['линия','линии','линий'])} со сбоями</p>`:''):'<p class="okl"><i class="g"></i>Все линии работают нормально</p>'):'<p class="more3">Данные загружаются</p>'}</section>
+   <section><h3>Дороги Лондона</h3>${RD?(RD.items.length?RD.items.slice(0,5).map(x=>{const [bg,fg]=rbadge(x.badge);return `<div class="li tall">${badge(x.badge,bg,fg)}<span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span></div>`}).join(''):'<p class="okl"><i class="g"></i>Крупных перекрытий нет</p>'):'<p class="more3">Данные загружаются</p>'}
+    <h3>Трассы</h3><p class="more3">Перекрытия на трассах (National Highways) появятся здесь позже</p></section>
+   <section class="wxs">
+    <div class="wx"><i class="${W&&W.total?'y':'g'}"></i><b>Погода</b><span>${W?(W.total?W.items.map(x=>esc(x.text)).join(' · '):'предупреждений Met Office нет'):'—'}</span></div>
+    <div class="wx"><i class="${F&&(F.severe||F.warnings)?'r':F&&F.total?'b':'g'}"></i><b>Наводнения</b><span>${F?(F.severe||F.warnings?`${F.severe+F.warnings} ${pl(F.severe+F.warnings,['предупреждение','предупреждения','предупреждений'])}, ещё в ${F.alerts} ${fp(F.alerts)} может подняться вода`:F.total?`серьёзных предупреждений нет, в ${F.total} ${fp(F.total)} может подняться вода`:'предупреждений нет'):'—'}</span></div>
+    ${F&&F.items.length?`<details class="fl"><summary>Где может подняться вода</summary>${F.items.map(x=>`<p><b>${esc(x.area)}</b> · ${esc(x.county)} · ${esc(x.label)}</p>`).join('')}</details>`:''}
+   </section>
+  </div>
+  <footer class="ukfoot"><b>ALPINE MEDIA GROUP</b><span>TfL · Environment Agency · Met Office · обновляется каждые 10 минут</span><a href="https://t.me/NeMyfair">t.me/NeMyfair</a></footer>
+ </section>`;
+ const go=()=>drawUK(U);
+ if(UKGEO&&THAMES)go();else Promise.all([fetch('map/uk.json').then(r=>r.json()),fetch('map/thames.json').then(r=>r.json())]).then(([g,th])=>{UKGEO=g;THAMES=th;go()});
+ if(!U&&!renderMapUK.tried){renderMapUK.tried=1;loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()})}
+}
+function drawUK(U){
+ const E=document.querySelector('#ukE svg'),Ls=document.querySelector('#ukL svg');if(!E)return;
+ const regions=topojson.feature(UKGEO,UKGEO.objects.regions),bor=topojson.feature(UKGEO,UKGEO.objects.boroughs);
+ {const W=E.parentNode.clientWidth,H=Math.round(W*1.18);E.setAttribute('viewBox',`0 0 ${W} ${H}`);E.style.height=H+'px';
+  const pr=d3.geoMercator().fitExtent([[10,10],[W-10,H-10]],regions),pa=d3.geoPath(pr),s=d3.select(E);s.selectAll('*').remove();
+  s.append('g').selectAll('path').data(regions.features).join('path').attr('d',pa).attr('fill','#363b4f').attr('stroke','#252836').attr('stroke-width',1);
+  const lp=pr([-0.12,51.51]);s.append('rect').attr('x',lp[0]-13).attr('y',lp[1]-10).attr('width',26).attr('height',20).attr('rx',4).attr('fill','none').attr('stroke','#8c93ad').attr('stroke-dasharray','3 2');
+  const cg=s.append('g').attr('class','ukc');
+  for(const [n,x,y,left] of CITIES){const [px,py]=pr([x,y]);cg.append('circle').attr('cx',px).attr('cy',py).attr('r',2.6);cg.append('text').attr('x',left?px-6:px+6).attr('y',py+4).attr('text-anchor',left?'end':'start').text(n)}
+  cg.append('circle').attr('cx',lp[0]).attr('cy',lp[1]).attr('r',3.6).attr('class','ldot');
+  const F=U&&U.floods&&U.floods.ok?U.floods.items.filter(x=>x.ll):[];
+  s.append('g').selectAll('circle').data(F).join('circle').attr('cx',d=>pr(d.ll)[0]).attr('cy',d=>pr(d.ll)[1]).attr('r',d=>d.level<=2?7:5.5)
+   .attr('fill',d=>d.level===1?'#ef4444':d.level===2?'#3b82f6':'#8ab4ff').attr('stroke','#1b1e2a').attr('stroke-width',1.5).append('title').text(d=>`${d.area} — ${d.label}`);
+ }
+ {const W=Ls.parentNode.clientWidth,H=Math.round(W*0.78);Ls.setAttribute('viewBox',`0 0 ${W} ${H}`);Ls.style.height=H+'px';
+  const pr=d3.geoMercator().fitExtent([[10,34],[W-10,H-10]],bor),pa=d3.geoPath(pr),s=d3.select(Ls);s.selectAll('*').remove();
+  s.append('g').selectAll('path').data(bor.features).join('path').attr('d',pa).attr('fill','#363b4f').attr('stroke','#252836').attr('stroke-width',1);
+  s.append('defs').append('clipPath').attr('id','ldnclip').append('path').datum(topojson.merge(UKGEO,UKGEO.objects.boroughs.geometries)).attr('d',pa);
+  s.append('g').attr('clip-path','url(#ldnclip)').selectAll('path').data(THAMES.features).join('path').attr('d',pa).attr('fill','none').attr('stroke','#3b82f6').attr('stroke-width',4).attr('stroke-linecap','round');
+  const big=W>420;
+  s.append('g').attr('class','ukb').selectAll('text').data(bor.features).join('text').attr('transform',d=>`translate(${pa.centroid(d)})`).attr('text-anchor','middle').attr('dy','.35em')
+   .attr('font-size',d=>SMALLB.includes(d.properties.name)?(big?8:6.5):(big?10.5:8.5)).text(d=>BORO[d.properties.name]||'');
+  const hx=pr([-0.454,51.47]);s.append('rect').attr('x',hx[0]-4).attr('y',hx[1]-4).attr('width',8).attr('height',8).attr('rx',2).attr('fill','#e5e7eb');s.append('text').attr('class','hrw').attr('x',hx[0]).attr('y',hx[1]+16).attr('text-anchor','middle').text('Хитроу');
+  const RR=U&&U.roads&&U.roads.ok?U.roads.items.filter(x=>x.ll).slice(0,W<420?4:5):[];
+  const placed=[];RR.forEach(d=>{const [x,y]=pr(d.ll),w=d.badge.length*8+14;let up=0;while(placed.some(p=>Math.abs(p.x-x)<(p.w+w)/2+4&&Math.abs(p.y-(y-up))<24))up+=26;d.up=up;placed.push({x,y:y-up,w})});
+  const mk=s.append('g').selectAll('g').data(RR).join('g').attr('transform',d=>`translate(${pr(d.ll)})`);
+  mk.append('line').attr('y1',0).attr('y2',d=>-14-d.up).attr('stroke','#fff').attr('stroke-width',1.5);mk.append('circle').attr('r',3.5).attr('fill','#fff');
+  mk.each(function(d){const g=d3.select(this),w=d.badge.length*8+14,[bg,fg]=rbadge(d.badge);g.append('rect').attr('x',-w/2).attr('y',-36-d.up).attr('width',w).attr('height',22).attr('rx',5).attr('fill',bg).attr('stroke','#1e2230').attr('stroke-width',1.5);g.append('text').attr('y',-21-d.up).attr('text-anchor','middle').attr('fill',fg).attr('font-weight',700).attr('font-size',12).text(d.badge);g.append('title').text(`${d.title} — ${d.text}`)});
+ }
 }
 
 /* ---------- zoom viewer (pinch, drag, double-tap, wheel) ---------- */
@@ -822,7 +925,7 @@ $('#q').addEventListener('input',e=>{query=e.target.value.trim();location.hash.i
 addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
-fetch('posts.json').then(r=>r.json()).then(d=>{DATA=d;route()}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+Promise.all([fetch('posts.json').then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),3e5)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 </body>
