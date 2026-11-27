@@ -1,0 +1,38 @@
+{
+ "updated": "2026-11-27T12:22:48.095Z",
+ "sources": {
+  "slf": "ok",
+  "trains": "no_key"
+ },
+ "avalanche": {
+  "ok": true,
+  "max": 3,
+  "maxText": "значительная",
+  "published": "2026-11-26T16:00:00Z",
+  "nextUpdate": "2026-11-27T16:00:00Z",
+  "regionsAtMax": 79,
+  "topRegions": [
+   "Engstligen",
+   "Blüemlisalp",
+   "Jungfrau - Schilthorn",
+   "Schreckhorn",
+   "Guttannen",
+   "Gadmertal"
+  ],
+  "counts": [
+   14,
+   40,
+   79,
+   0,
+   0
+  ]
+ },
+ "trains": {
+  "ok": false,
+  "reason": "no_key"
+ },
+ "roads": {
+  "ok": false,
+  "reason": "not_connected"
+ }
+}
