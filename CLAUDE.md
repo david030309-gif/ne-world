@@ -15,7 +15,8 @@ The site is in Russian, and David writes in Russian and English.
 | `de` | Ne Ordnung 🇩🇪 | — | coming soon |
 | `fr` | Ne Provence 🇫🇷 | — | coming soon |
 | `mc` | Ne Lazurka 🇲🇨 (Monaco + Nice) | — | coming soon |
-Planned later: Ne Shalom 🇮🇱 and Ne Zhabka 🇵🇱 (logos are in `brand/`; they are not on the site yet).
+| `il` | Ne Kosher 🇮🇱 | — | coming soon |
+Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The old Ne Shalom idea was replaced by Ne Kosher.
 
 ## Files
 - `index.html`: the whole app in one file (HTML + CSS + JS). Routing uses the hash: `#globe`, `#ch`, `#uk`, `#ch-dvizh`, `#ch-1107` (article), `#eho-NNN`, `#ch-map`, `#uk-map`.
@@ -24,7 +25,7 @@ Planned later: Ne Shalom 🇮🇱 and Ne Zhabka 🇵🇱 (logos are in `brand/`;
 - `posts.json`: news posts for `ch`, `uk` and `eho`. The bot updates it, so don't rewrite it by hand unless you have to.
 - `hidden.json`: ids of posts that were removed for good (for example `["ch-1101"]`). The bot will never add them back. To remove a post from the site, add its id here and delete it from `posts.json`.
 - `img/`: pictures saved by the bot. `eho/`: ehoschweiz media and the giveaway poster.
-- `logo-*.png`: logos used on the site. They are white on a transparent background. `logo-de/fr/mc.png` share the same frame (877×755), so the teaser cards look identical.
+- `logo-*.png`: logos used on the site. They are white on a transparent background. `logo-de/fr/mc/il.png` share the same frame (877×755), so the teaser cards look identical.
 - `map/`:
   - `ch-cantons.json`: Swiss map. **It stays static, with data from 08:10.** David asked for it not to auto-update.
   - `uk.json` and `thames.json`: England and London map.
