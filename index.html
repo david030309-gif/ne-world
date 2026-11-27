@@ -444,15 +444,10 @@ const globe=(()=>{
  function loop(t){
   if(!running)return;pulse=(t%1600)/1600;
   if(flying&&fly0){
-   const p=cl((t-fly0.t0)/fly0.d),pr=ease(cl(p/0.5));
-   // one continuous camera move: turn + centre in the first half, zoom accelerates the whole time (never stops)
-   const Z=Math.exp(Math.log(fly0.Zmax)*Math.pow(p,2.3));
-   if(!fly0.frozen){
-    rot=fly0.ir(pr);cx=fly0.cx0+(W/2-fly0.cx0)*pr;cy=fly0.cy0+(H/2-fly0.cy0)*pr;labelA=1-cl(p/0.2);
-    if(Z<fly0.Zc||p<0.5){R=fly0.R0*Z;draw()}else{R=fly0.R0*fly0.Zc;rot=fly0.ir(1);cx=W/2;cy=H/2;draw();fly0.frozen=true}
-   }
-   if(fly0.frozen)cv.style.transform=`translateZ(0) scale(${(Z/fly0.Zc).toFixed(4)})`;
-   veil.style.opacity=cl((p-0.68)/0.32).toFixed(3);
+   // pure GPU zoom straight into the country: no redraw, no turning, no pause
+   const p=cl((t-fly0.t0)/fly0.d),lz=Math.log(fly0.Zmax)*(0.45*p+0.55*p*p);
+   cv.style.transform=`translateZ(0) scale(${Math.exp(lz).toFixed(4)})`;
+   veil.style.opacity=cl((p-0.5)/0.45).toFixed(3);
    if(p>=1&&!fly0.done){fly0.done=true;fly0.go()}
    raf=requestAnimationFrame(loop);return
   }else{
@@ -472,12 +467,13 @@ const globe=(()=>{
   tip.style.opacity=0;hover=f;auto=false;
   const go=()=>{location.hash=f.reg};
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!countries){go();return}
-  const [[x0,y0],[x1,y1]]=d3.geoBounds(f),c=R_[f.reg].coord;
-  const ext=Math.max((x1-x0)*Math.cos(c[1]*Math.PI/180),y1-y0)*Math.PI/180;
-  const Zmax=Math.max(8,2.6*(0.8*Math.min(W,H)/ext)/R);   // dive well past the country
-  const Zc=Math.max(2.5,Math.min(Zmax,1.15*Math.max(W,H)/R)); // above this the GPU scales the finished frame
-  flying=true;pk.classList.add('flying');cv.style.transformOrigin=`${W/2}px ${H/2}px`;cv.style.transition='none';veil.style.transition='none';
-  fly0={t0:performance.now(),d:1150,Zmax,Zc,frozen:false,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,go,out:false,done:false};
+  const c=R_[f.reg].coord;
+  let [ox,oy]=proj(c);
+  if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.4){ox=cx;oy=cy}   // country on the back side: dive into the globe centre
+  labelA=0;hover=f;draw();
+  flying=true;pk.classList.add('flying');
+  cv.style.transition='none';veil.style.transition='none';cv.style.transformOrigin=`${ox}px ${oy}px`;
+  fly0={t0:performance.now(),d:850,Zmax:f.reg==='ch'?90:45,go,done:false};
  }
  let down=null,moved=false;
  cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
