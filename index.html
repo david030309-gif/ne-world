@@ -505,26 +505,43 @@ const MAPS={ch:{title:'Швейцария сейчас',updated:'08:10',tg:'http
  what:'Сбои поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей.',
  src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
+let LIVE=null,AVAL=null;
+function loadLive(){const v=Math.floor(Date.now()/3e5);
+ return Promise.all([fetch('map/ch-live.json?v='+v).then(r=>r.ok?r.json():null).catch(()=>null),fetch('map/ch-avalanche.json?v='+v).then(r=>r.ok?r.json():null).catch(()=>null)])
+  .then(([l,a])=>{if(l)LIVE=l;if(a)AVAL=a})}
+const hmCH=iso=>new Date(iso).toLocaleTimeString('ru-RU',{timeZone:'Europe/Zurich',hour:'2-digit',minute:'2-digit'});
+const dCH=iso=>new Date(iso).toLocaleString('ru-RU',{timeZone:'Europe/Zurich',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+const AVC=['','#3f5a2a','#8a7a1f','#b3621f','#b3261e','#7a0f0f'];
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
- return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${M.updated}</span><span class="ms">${M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
+ const L=region==='ch'&&LIVE,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null;
+ const bits=[];if(L&&L.trains&&L.trains.ok)bits.push(`${L.trains.total} сбоев в транспорте`);if(av)bits.push(`лавинная опасность ${av.max} из 5`);
+ return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${L?hmCH(L.updated):M.updated}</span><span class="ms">${bits.length?bits.join(' · '):M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
 let geoCache=null;
-function renderMap(){const M=MAPS[region];
- const evs=[];M.groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
+function renderMap(){if(region==='ch'&&!LIVE&&!renderMap.tried){renderMap.tried=1;loadLive().then(()=>{if(location.hash==='#ch-map')renderMap()});}
+ const M=MAPS[region],L=region==='ch'?LIVE:null,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null,tl=L&&L.trains&&L.trains.ok?L.trains:null;
+ const groups=M.groups.map(g=>g.slice());
+ if(av){groups[3]=['aval','Горы',[{b:av.max+'/5',t:`Лавинная опасность ${av.max} из 5 — ${av.maxText}`,x:`В ${av.regionsAtMax} районах. ${av.topRegions.slice(0,4).join(', ')} и др. Вне лыжных трасс опасно`}],`Бюллетень SLF от ${dCH(av.published)}, следующий — ${dCH(av.nextUpdate)}`]}
+ if(tl){groups[0]=['train','Поезда и транспорт',tl.items.slice(0,8).map(it=>({b:it.badge,t:it.title,x:it.reason||'',u:it.until?'до '+hmCH(it.until):''})),tl.total>8?`Ещё ${tl.total-8} сообщений`:'']}
+ const sample=!tl;
+ const stats=[[tl?String(tl.total):M.stats[0][0],tl?'сбоев в транспорте':M.stats[0][1]+(sample?' *':'')],[M.stats[1][0],M.stats[1][1]+' *'],[M.stats[2][0],M.stats[2][1]+' *'],[av?av.max+'/5':M.stats[3][0],'лавинная опасность']];
+ const upd=L?hmCH(L.updated):M.updated;
+ const evs=[];groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
   <div class="mapcard">
-   <div class="mhead"><b>${M.title}</b><span class="mlive"><i class="live"></i>${M.updated}</span></div>
+   <div class="mhead"><b>${M.title}</b><span class="mlive"><i class="live"></i>${upd}</span></div>
    <div class="vmap" id="vmap"><svg id="vsvg" role="img" aria-label="Карта Швейцарии с событиями"></svg>
     <div class="vctl"><button data-mz="in" aria-label="Приблизить">+</button><button data-mz="out" aria-label="Отдалить">−</button><button data-mz="0" aria-label="Сбросить">⟲</button></div>
     <div class="vpop" id="vpop" hidden></div></div>
-   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span><span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span></div>
+   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span>${AVAL?[2,3,4,5].filter(l=>AVAL.features.some(f=>f.properties.level===l)).map(l=>`<span><i style="background:${AVC[l]}"></i>Лавины ${l}</span>`).join(''):'<span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span>'}</div>
    <p class="zline">Двумя пальцами — приблизить. Нажмите на значок, чтобы увидеть событие.</p>
   </div>
   <div class="minfo">
-   <div class="mlive"><i class="live"></i>Обновлено в ${M.updated} · каждые 5 минут</div>
+   <div class="mlive"><i class="live"></i>${L?`Обновлено в ${upd} · данные проверяются каждые 10 минут`:`Обновлено в ${upd}`}</div>
    <h1 class="h">${M.title}</h1>
-   <div class="mstats">${M.stats.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
-   ${M.groups.map(([k,name,items,more])=>`<h3>${name}</h3><div class="evl">${items.map(it=>`<button class="ev" ${it.ll?`data-ev="${it.i}"`:''}><span class="bd k-${k}">${esc(it.b)}</span><span><b>${esc(it.t)}</b><small>${esc(it.x)}</small></span>${it.u?`<em>${esc(it.u)}</em>`:''}</button>`).join('')}${more?`<p class="more2">${more} — <a href="${M.tg}">в Telegram</a></p>`:''}</div>`).join('')}
+   <div class="mstats">${stats.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
+   ${sample?`<p class="msrc">* Поезда, дороги и предупреждения пока показаны примером от 27 ноября, 08:10. Лавинная опасность — живые данные SLF.</p>`:''}
+   ${groups.map(([k,name,items,more])=>`<h3>${name}</h3><div class="evl">${items.map(it=>`<button class="ev" ${it.ll?`data-ev="${it.i}"`:''}><span class="bd k-${k}">${esc(it.b)}</span><span><b>${esc(it.t)}</b><small>${esc(it.x)}</small></span>${it.u?`<em>${esc(it.u)}</em>`:''}</button>`).join('')}${more?`<p class="more2">${more} — <a href="${M.tg}">в Telegram</a></p>`:''}</div>`).join('')}
    <h3>Важно</h3><p>${M.note}</p>
    <p class="msrc">Источники: ${M.src}</p>
    <a class="tg" href="${M.tg}">Открыть пост в Telegram ↗</a>
@@ -542,10 +559,16 @@ function drawVMap(M,evs,topo){
  defs.append('pattern').attr('id','hatch').attr('width',6).attr('height',6).attr('patternUnits','userSpaceOnUse').attr('patternTransform','rotate(45)')
    .append('rect').attr('width',2.2).attr('height',6).attr('fill','rgba(255,207,51,.22)');
  const g=svg.append('g');
- const av=new Set(M.aval);
+ const av=new Set(AVAL?[]:M.aval);
  g.append('g').selectAll('path').data(cant.features).join('path').attr('d',path)
    .attr('fill',d=>av.has(+d.id)?'#4a3d22':'#262a36').attr('stroke','#11131a').attr('stroke-width',1).attr('vector-effect','non-scaling-stroke');
- g.append('g').selectAll('path').data(cant.features.filter(d=>av.has(+d.id))).join('path').attr('d',path).attr('fill','url(#hatch)').attr('pointer-events','none');
+ if(AVAL){ // official SLF warning zones, clipped to the country outline
+  defs.append('clipPath').attr('id','chclip').append('path').datum(ctry).attr('d',path);
+  const zg=g.append('g').attr('clip-path','url(#chclip)').attr('pointer-events','none');
+  zg.selectAll('path.z').data(AVAL.features).join('path').attr('class','z').attr('d',path).attr('fill',d=>AVC[d.properties.level]).attr('fill-opacity',.6);
+  zg.selectAll('path.zh').data(AVAL.features.filter(d=>d.properties.level>=3)).join('path').attr('class','zh').attr('d',path).attr('fill','url(#hatch)');
+  g.append('g').selectAll('path').data(cant.features).join('path').attr('d',path).attr('fill','none').attr('stroke','#11131a').attr('stroke-width',1).attr('vector-effect','non-scaling-stroke').attr('pointer-events','none');
+ }else g.append('g').selectAll('path').data(cant.features.filter(d=>av.has(+d.id))).join('path').attr('d',path).attr('fill','url(#hatch)').attr('pointer-events','none');
  g.append('g').selectAll('path').data(lakes.features).join('path').attr('d',path).attr('fill','#16243a').attr('stroke','#1f3150').attr('stroke-width',.6).attr('vector-effect','non-scaling-stroke');
  g.append('path').datum(ctry).attr('d',path).attr('fill','none').attr('stroke','#5b6278').attr('stroke-width',1.4).attr('vector-effect','non-scaling-stroke');
  const lbl=g.append('g').attr('class','klab').selectAll('text').data(cant.features).join('text')
@@ -822,7 +845,7 @@ $('#q').addEventListener('input',e=>{query=e.target.value.trim();location.hash.i
 addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
-fetch('posts.json').then(r=>r.json()).then(d=>{DATA=d;route()}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+Promise.all([fetch('posts.json').then(r=>r.json()),loadLive()]).then(([d])=>{DATA=d;route();setInterval(()=>loadLive().then(()=>{if(location.hash==='#ch-map')renderMap()}),3e5)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 </body>
