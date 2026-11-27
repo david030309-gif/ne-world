@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T14:54:49.584Z",
+ "updated": "2026-11-27T15:48:58.018Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,44 +8,8 @@
  },
  "lines": {
   "ok": true,
-  "total": 10,
+  "total": 9,
   "items": [
-   {
-    "id": "bakerloo",
-    "name": "Bakerloo",
-    "bg": "#B36305",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "забастовка",
-    "text": "Не ходит на части линии, забастовка",
-    "reason": "Bakerloo Line: No service between Stonebridge Park and Harrow & Wealdstone, and SEVERE DELAYS on the rest of the line due to strike action. Services are operating approximately every 10 minutes between Stonebridge Park and Elephant & Castle."
-   },
-   {
-    "id": "central",
-    "name": "Central",
-    "bg": "#E32017",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "забастовка",
-    "text": "Не ходит на части линии, забастовка",
-    "reason": "Central Line: No service between White City and Marble Arch due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 20 minutes."
-   },
-   {
-    "id": "circle",
-    "name": "Circle",
-    "bg": "#FFD300",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "забастовка",
-    "text": "Не ходит на части линии, забастовка",
-    "reason": "Circle Line: No service anti-clockwise and SEVERE DELAYS clockwise due to strike action."
-   },
    {
     "id": "piccadilly",
     "name": "Piccadilly",
@@ -57,6 +21,42 @@
     "cause": "забастовка",
     "text": "Не ходит на части линии, забастовка",
     "reason": "Piccadilly Line: No service between Rayners Lane and Uxbridge, and SEVERE DELAYS between Acton Town and Rayners Lane and MINORS DELAYS on the rest of the line due to strike action."
+   },
+   {
+    "id": "bakerloo",
+    "name": "Bakerloo",
+    "bg": "#B36305",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Bakerloo Line: Severe delays due to strike action."
+   },
+   {
+    "id": "central",
+    "name": "Central",
+    "bg": "#E32017",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "нехватка персонала",
+    "text": "Сильные задержки, нехватка персонала",
+    "reason": "Central Line: Severe delays due to the unavailability of control room staff. Tickets will be accepted on London Buses, Liberty Line, Elizabeth Line, Chiltern Railways, Great Western Railways and Greater Anglia services via any reasonable route."
+   },
+   {
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Circle Line: Severe delays due to strike action."
    },
    {
     "id": "district",
@@ -117,24 +117,12 @@
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
     "reason": "Victoria Line: Severe delays due to strike action."
-   },
-   {
-    "id": "jubilee",
-    "name": "Jubilee",
-    "bg": "#A0A5A9",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "забастовка",
-    "text": "Небольшие задержки, забастовка",
-    "reason": "Jubilee Line: Minor delays due to strike action."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 11,
+  "total": 12,
   "items": [
    {
     "badge": "A41",
@@ -145,6 +133,17 @@
     "ll": [
      -0.21921,
      51.577073
+    ]
+   },
+   {
+    "badge": "A4202",
+    "title": "Park Lane (Westminster)",
+    "text": "Мероприятие",
+    "severity": "Serious",
+    "rank": 5,
+    "ll": [
+     -0.15332,
+     51.504823
     ]
    },
    {
@@ -170,14 +169,14 @@
     ]
    },
    {
-    "badge": "A4202",
-    "title": "Park Lane (Westminster)",
-    "text": "Мероприятие",
+    "badge": "A234",
+    "title": "High Street (Bromley)",
+    "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     -0.15332,
-     51.504823
+     -0.051835,
+     51.414039
     ]
    },
    {
@@ -189,17 +188,6 @@
     "ll": [
      0.058788,
      51.554479
-    ]
-   },
-   {
-    "badge": "A234",
-    "title": "High Street (Bromley)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     -0.051835,
-     51.414039
     ]
    }
   ]
