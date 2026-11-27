@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T15:48:58.018Z",
+ "updated": "2026-11-27T16:52:38.263Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -10,18 +10,6 @@
   "ok": true,
   "total": 9,
   "items": [
-   {
-    "id": "piccadilly",
-    "name": "Piccadilly",
-    "bg": "#003688",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "забастовка",
-    "text": "Не ходит на части линии, забастовка",
-    "reason": "Piccadilly Line: No service between Rayners Lane and Uxbridge, and SEVERE DELAYS between Acton Town and Rayners Lane and MINORS DELAYS on the rest of the line due to strike action."
-   },
    {
     "id": "bakerloo",
     "name": "Bakerloo",
@@ -83,28 +71,16 @@
     "reason": "Hammersmith and City Line: Severe delays due to strike action."
    },
    {
-    "id": "metropolitan",
-    "name": "Metropolitan",
-    "bg": "#9B0056",
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
     "fg": "#fff",
     "mode": "tube",
     "severity": 6,
     "status": "Сильные задержки",
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
-    "reason": "Metropolitan Line: Severe delays due to strike action."
-   },
-   {
-    "id": "northern",
-    "name": "Northern",
-    "bg": "#000000",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "забастовка",
-    "text": "Сильные задержки, забастовка",
-    "reason": "Northern Line: Severe delays due to strike action."
+    "reason": "Piccadilly Line: Severe delays between Acton Town and Uxbridge and MINOR DELAYS between Acton town and Heathrow terminals due to strike action. GOOD SERVICE on the rest of the line."
    },
    {
     "id": "victoria",
@@ -117,6 +93,30 @@
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
     "reason": "Victoria Line: Severe delays due to strike action."
+   },
+   {
+    "id": "metropolitan",
+    "name": "Metropolitan",
+    "bg": "#9B0056",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Metropolitan Line: Minor delays due to strike action."
+   },
+   {
+    "id": "northern",
+    "name": "Northern",
+    "bg": "#000000",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Northern Line: Minor delays due to strike action."
    }
   ]
  },
@@ -180,25 +180,36 @@
     ]
    },
    {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
     "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     0.058788,
-     51.554479
+     -0.068175,
+     51.605584
     ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 4,
+  "total": 5,
   "severe": 0,
   "warnings": 0,
-  "alerts": 4,
+  "alerts": 5,
   "items": [
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "South Devon coast from Start Point to Dawlish Warren",
+    "county": "Devon, Torbay",
+    "river": "South Devon Coast",
+    "ll": [
+     -3.64452,
+     50.28593
+    ]
+   },
    {
     "level": 3,
     "label": "Может подняться вода",
