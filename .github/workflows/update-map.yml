@@ -20,9 +20,7 @@ jobs:
       - name: Fetch official data
         env:
           OTD_API_KEY: ${{ secrets.OTD_API_KEY }}
-        run: |
-          node scripts/probe.mjs || true
-          node scripts/update-map.mjs
+        run: node scripts/update-map.mjs
       - name: Commit if changed
         run: |
           git config user.name "ne-world-bot"
