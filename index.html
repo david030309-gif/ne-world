@@ -39,6 +39,21 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #veil{position:fixed;inset:0;background:var(--bg);opacity:0;pointer-events:none;z-index:4;transition:opacity .3s cubic-bezier(.4,0,.2,1)}
 #picker.out #veil{opacity:1}
 #tip{z-index:5}
+#soon{position:fixed;z-index:6;left:50%;width:min(340px,calc(100vw - 32px));transform:translate(-50%,8px) scale(.97);opacity:0;pointer-events:none;
+ background:rgba(16,17,23,.94);border:1px solid #2c2e38;border-radius:18px;padding:18px 18px 16px;box-shadow:0 18px 50px #000a;backdrop-filter:blur(8px);
+ transition:opacity .25s ease,transform .25s ease;text-align:left}
+#soon.on{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}
+#soon.sd{transform:translate(0,8px) scale(.97)}#soon.sd.on{transform:none}
+#soon img{display:block;height:64px;width:auto;max-width:200px;margin:2px 0 12px}
+#soon .sbadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#e4232f;color:#fff;border-radius:999px;padding:3px 9px;margin-bottom:8px}
+#soon h3{margin:0 0 2px;font-size:19px;font-weight:700;color:#fff}
+#soon .ctry{color:#9a9ca6;font-size:13px;margin-bottom:10px}
+#soon .hook{font-weight:600;color:#fff;margin:0 0 6px;font-size:15px}
+#soon p.d{margin:0 0 12px;color:#c9cbd3;font-size:14px;line-height:1.45}
+#soon .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#soon .tags span{font-size:12px;color:#d9dbe2;background:#24262f;border-radius:999px;padding:4px 10px}
+#soon .foot{font-size:12px;color:#8d909b}
+#soon .x{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:0;background:#24262f;color:#cfd1d8;font-size:18px;line-height:30px;cursor:pointer}
 #globe.grab{cursor:grab}#globe.ptr{cursor:pointer}#globe.drag{cursor:grabbing}
 #tip{position:fixed;pointer-events:none;background:#000c;border:1px solid var(--line);padding:6px 10px;border-radius:8px;font-size:13px;white-space:nowrap;transform:translate(-50%,-130%);opacity:0;transition:opacity .12s}
 #tip b{color:#fff;font-weight:600}#tip.act b{color:var(--red)}
@@ -352,6 +367,7 @@ body.dz header{background:#15111dee}
   </div>
   <div class="choices" id="choices"></div>
   <div id="tip"></div>
+  <div id="soon" role="dialog" aria-live="polite"></div>
   <div id="veil"></div>
 </section>
 
@@ -386,9 +402,19 @@ const flag=(r,cls='fl')=>{const i=++uid;return r==='ch'
  :`<svg class="${cls}" viewBox="15 0 30 30" preserveAspectRatio="xMidYMid slice"><clipPath id="t${i}"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#t${i})" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>`};
 
 const R_={};
-const NEXT={de:{id:'de',iso:'276',name:'Ne Ordnung',label:'Германия',coord:[10.4,51.1],logo:'logo-de.png',lab:[12,-12]},
- fr:{id:'fr',iso:'250',name:'Ne Provence',label:'Франция',coord:[2.4,46.8],logo:'logo-fr.png',lab:[-12,20]},
- mc:{id:'mc',iso:null,name:'Ne Lazurka',label:'Монако',coord:[7.42,43.74],logo:'logo-mc.png',lab:[12,20]}};
+// channels that are coming next: clicking one zooms the globe in and opens a short teaser card
+const NEXT={de:{id:'de',iso:'276',name:'Ne Ordnung',label:'Германия',coord:[10.4,51.1],logo:'logo-de.png',lab:[12,-12],zoom:3.2,
+   hook:'Порядок — это не про нас.',
+   desc:'Германия без занудства: главные новости, бюрократия человеческим языком, лайфхаки с Termin и Anmeldung, техно-ночи Берлина и всё, о чём говорят свои.',
+   tags:['Новости','Бюрократия без боли','Тусовки']},
+ fr:{id:'fr',iso:'250',name:'Ne Provence',label:'Франция',coord:[2.4,46.8],logo:'logo-fr.png',lab:[-12,20],zoom:2.9,
+   hook:'C’est la vie — но с новостями.',
+   desc:'Забастовки, багеты и вечное «c’est la vie» — объясняем Францию коротко и по делу. Новости, жизнь в Париже и на юге, учёба, работа, вечеринки и места, куда реально стоит сходить.',
+   tags:['Новости','Париж и юг','Афиша']},
+ mc:{id:'mc',iso:null,name:'Ne Lazurka',label:'Монако',coord:[7.42,43.74],logo:'logo-mc.png',lab:[12,20],zoom:5.5,
+   hook:'Маленькая страна. Большие истории.',
+   desc:'Яхты, Гран-при, закрытые вечеринки и светская жизнь Лазурки — от Монако до Ниццы. И всё полезное для тех, кто здесь живёт, учится и тусуется.',
+   tags:['Яхты и Гран-при','Светская жизнь','Ницца и Канны']}};
 const SOON={'276':'Германия','380':'Италия','250':'Франция','724':'Испания','040':'Австрия','528':'Нидерланды','616':'Польша','203':'Чехия','196':'Кипр','376':'Израиль','840':'США','124':'Канада','792':'Турция','784':'ОАЭ','268':'Грузия','688':'Сербия','499':'Черногория','620':'Португалия','428':'Латвия','233':'Эстония','440':'Литва','246':'Финляндия'};
 const R={
  ch:{id:'ch',name:'Ne Alpy',label:'Швейцария',iso:'756',coord:[8.23,46.8],tz:'Europe/Zurich',channel:'golosswiss',subs:'2,56 тыс. подписчиков',logo:'logo-ch.png',
@@ -851,6 +877,15 @@ const globe=(()=>{
   for(const k of ['ch','uk']){const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<18)return countries.features.find(f=>f.reg===k)}
   for(const n of Object.values(NEXT)){const c=n.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])<1.45){const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<14)return nextF.find(f=>f.next===n)||n.pseudo||(n.pseudo={next:n,properties:{}})}}
   return countries.features.find(f=>d3.geoContains(f,p))||null}
+ const soon=$('#soon');
+ const hideSoon=()=>soon.classList.remove('on');
+ const openSoon=(n,x,y)=>{tip.style.opacity=0;
+  soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><img src="${n.logo}" alt="${n.name}"><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
+  soon.querySelector('.x').onclick=e=>{e.stopPropagation();hideSoon()};
+  const h=soon.offsetHeight||330,w=soon.offsetWidth||340;
+  if(innerWidth<600){soon.classList.remove('sd');soon.style.left='50%';soon.style.top=Math.max(10,innerHeight-h-14)+'px'}
+  else{soon.classList.add('sd');const left=x+48+w<innerWidth-12?x+48:Math.max(12,x-48-w);   // beside the country, not on top of it
+   soon.style.left=left+'px';soon.style.top=Math.max(12,Math.min(innerHeight-h-12,y-h/2))+'px'}requestAnimationFrame(()=>soon.classList.add('on'))};
  const tipFor=f=>f.next?`<b>${f.next.label}</b> · ${f.next.name} — скоро`:R_[f.reg]?`<b>${R_[f.reg].label}</b> · ${R_[f.reg].name} — открыть ленту`:`<b>${esc(f.properties.ru||f.properties.name||'')}</b>${f.soon?' · скоро':''}`;
  let tipT=0;const showTip=(f,x,y,ms)=>{clearTimeout(tipT);tip.innerHTML=tipFor(f);tip.classList.toggle('act',!!R_[f.reg]);const tw=tip.offsetWidth;x=Math.max(tw/2+8,Math.min(innerWidth-tw/2-8,x));tip.style.left=x+'px';tip.style.top=y+'px';tip.style.opacity=1;if(ms)tipT=setTimeout(()=>{tip.style.opacity=0;hover=null},ms)};
  function fly(f){
@@ -877,7 +912,7 @@ const globe=(()=>{
   if(pinch&&tps.size>=2){   // two fingers: pinch to zoom, move both to turn the globe
    const [mx,my,d]=mid(),k=75/R;uz=Math.max(1,Math.min(6,pinch.uz0*d/pinch.d));
    rot=[pinch.r0[0]+(mx-pinch.mx)*k,Math.max(-80,Math.min(80,pinch.r0[1]-(my-pinch.my)*k)),0];return}
-  if(down){const dx=e.clientX-down[0],dy=e.clientY-down[1];if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
+  if(down){const dx=e.clientX-down[0],dy=e.clientY-down[1];if(Math.abs(dx)+Math.abs(dy)>4){moved=true;hideSoon()}
    const k=75/R;rot=[down[2]+dx*k,Math.max(-80,Math.min(80,down[3]-dy*k)),0];tip.style.opacity=0;return}
   if(e.pointerType==='touch')return;
   const f=at(e);hover=f;
@@ -888,7 +923,7 @@ const globe=(()=>{
   if(tps.size<2)pinch=null;
   if(tps.size===1){const [p]=[...tps.values()];down=[p[0],p[1],rot[0],rot[1]];moved=true;return}   // keep turning with the finger that stays
   cv.classList.remove('drag');const was=down;down=null;
-  if(e.type==='pointerup'&&was&&!moved){const f=at(e);if(f&&R_[f.reg]){fly(f)}else{
+  if(e.type==='pointerup'&&was&&!moved){const f=at(e);if(f&&R_[f.reg]){fly(f)}else if(f&&f.next){api.peek(f.next.id)}else{hideSoon();
     if(f){hover=f;showTip(f,e.clientX,e.clientY,e.pointerType==='mouse'?0:2600)}else{hover=null;tip.style.opacity=0}
     const now=e.timeStamp;if(now-lastTap<320){uzT=uz>1.3?1:2.5;lastTap=0}else lastTap=now}}moved=false};
  cv.addEventListener('pointerup',lift);cv.addEventListener('pointercancel',lift);
@@ -896,7 +931,7 @@ const globe=(()=>{
  const tmid=t=>{const a=t[0],b=t[1];return [(a.clientX+b.clientX)/2,(a.clientY+b.clientY)/2,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)||1]};
  cv.addEventListener('touchstart',e=>{if(flying)return;
   if(e.touches.length>=2){e.preventDefault();const [mx,my,d]=tmid(e.touches);tpin={d,uz0:uz,mx,my,r0:rot.slice()};
-   down=null;pinch=null;tps.clear();moved=true;auto=false;intro=0;uzT=null;tip.style.opacity=0}},{passive:false});
+   down=null;pinch=null;tps.clear();moved=true;auto=false;intro=0;uzT=null;tip.style.opacity=0;hideSoon()}},{passive:false});
  cv.addEventListener('touchmove',e=>{if(!tpin)return;e.preventDefault();if(e.touches.length<2)return;
   const [mx,my,d]=tmid(e.touches),k=75/R;uz=Math.max(1,Math.min(6,tpin.uz0*d/tpin.d));
   rot=[tpin.r0[0]+(mx-tpin.mx)*k,Math.max(-80,Math.min(80,tpin.r0[1]-(my-tpin.my)*k)),0]},{passive:false});
@@ -926,11 +961,12 @@ const globe=(()=>{
    active=hi.features.map(f=>Object.assign(f,{reg:f.id==='756'?'ch':'uk'}));
   });
  }).catch(()=>{});
- return{start(back){if(running)return;running=true;uzT=null;pk.classList.remove('gz');cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
+ const api={start(back){if(running)return;running=true;hideSoon();uzT=null;pk.classList.remove('gz');cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
-        peek(k){const n=NEXT[k];if(!n||!countries)return;auto=false;intro=0;uzT=1;const nf=nextF.find(f=>f.next===n)||n.pseudo||(n.pseudo={next:n,properties:{}});hover=nf;tip.style.opacity=0;
-          spin={t0:performance.now(),d:800,ir:d3.interpolate(rot.slice(),[-n.coord[0],-n.coord[1],0]),done(){const [x,y]=proj(n.coord);if(nf)showTip(nf,x,y-8,3200)}}},
-        fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
+        peek(k){const n=NEXT[k];if(!n||!countries)return;auto=false;intro=0;uzT=n.zoom||2.5;hideSoon();const nf=nextF.find(f=>f.next===n)||n.pseudo||(n.pseudo={next:n,properties:{}});hover=nf;tip.style.opacity=0;
+          spin={t0:performance.now(),d:800,ir:d3.interpolate(rot.slice(),[-n.coord[0],-n.coord[1],0]),done(){const [x,y]=proj(n.coord);openSoon(n,x,y)}}},
+        fly(k){hideSoon();const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
+ return api;
 })();
 
 /* ---------- choices under the globe ---------- */
