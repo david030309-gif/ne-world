@@ -277,6 +277,7 @@ body.dz header{background:#15111dee}
  .logo b{font-size:18px}
  .bar{grid-template-columns:auto 1fr auto}.logo{justify-self:center}
 }
+#picker>.ptop{transition:opacity .3s}#picker.gz>.ptop{opacity:.12}
 #picker.arrive>.ptop,#picker.arrive>.choices,#picker.arrive .hint{animation:fadeIn .4s .1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes fadeIn{from{opacity:0}}
 #feedview.enter header{animation:fadeIn .3s cubic-bezier(.2,.7,.2,1) both}
@@ -712,6 +713,8 @@ const globe=(()=>{
    raf=requestAnimationFrame(loop);return
   }else{
    if(auto)rot[0]=-4+Math.sin(t/4000)*14;
+   if(uzT!=null){uz+=(uzT-uz)*0.22;if(Math.abs(uzT-uz)<0.01){uz=uzT;uzT=null}}
+   pk.classList.toggle('gz',uz>1.3);
    const [sx,sy,sr]=slot();const k=intro?1+0.18*(1-d3.easeCubicOut(cl((t-intro)/600))):1;
    cx=sx;cy=sy;R=sr*uz*k;labelA=intro?cl((t-intro-200)/350):1;
   }
@@ -731,21 +734,36 @@ const globe=(()=>{
   flying=true;pk.classList.add('flying');veil.style.transition='none';
   fly0={t0:performance.now(),d:900,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),R0:R,cx0:cx,cy0:cy,Z:f.reg==='ch'?2.4:2.0,go,done:false};
  }
- let down=null,moved=false;
- cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
+ let down=null,moved=false,pinch=null,uzT=null,lastTap=0;const tps=new Map();
+ const mid=()=>{const [a,b]=[...tps.values()];return [(a[0]+b[0])/2,(a[1]+b[1])/2,Math.hypot(a[0]-b[0],a[1]-b[1])]};
+ cv.addEventListener('pointerdown',e=>{if(flying)return;if(!tps.size&&!inSphere(e))return;
+  tps.set(e.pointerId,[e.clientX,e.clientY]);try{cv.setPointerCapture(e.pointerId)}catch(_){}
+  auto=false;intro=0;tip.style.opacity=0;cv.classList.add('drag');
+  if(tps.size===1){down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false}
+  else if(tps.size===2){const [mx,my,d]=mid();pinch={d,uz0:uz,mx,my,r0:rot.slice()};down=null;moved=true}});
  cv.addEventListener('pointermove',e=>{
   if(flying)return;
+  if(tps.has(e.pointerId))tps.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pinch&&tps.size>=2){   // two fingers: pinch to zoom, move both to turn the globe
+   const [mx,my,d]=mid(),k=75/R;uz=Math.max(1,Math.min(6,pinch.uz0*d/pinch.d));
+   rot=[pinch.r0[0]+(mx-pinch.mx)*k,Math.max(-80,Math.min(80,pinch.r0[1]-(my-pinch.my)*k)),0];return}
   if(down){const dx=e.clientX-down[0],dy=e.clientY-down[1];if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
    const k=75/R;rot=[down[2]+dx*k,Math.max(-80,Math.min(80,down[3]-dy*k)),0];tip.style.opacity=0;return}
+  if(e.pointerType==='touch')return;
   const f=at(e);hover=f;
   cv.className=f&&R_[f.reg]?'ptr':inSphere(e)?'grab':'';
   if(f){tip.innerHTML=R_[f.reg]?`<b>${R_[f.reg].label}</b> · ${R_[f.reg].name} — открыть ленту`:`${f.soon} · скоро`;
    tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.opacity=1}
   else tip.style.opacity=0;
  });
- cv.addEventListener('pointerup',e=>{cv.classList.remove('drag');const was=down;down=null;if(was&&!moved){const f=at(e);if(f&&R_[f.reg])fly(f)}moved=false});
+ const lift=e=>{if(!tps.has(e.pointerId))return;tps.delete(e.pointerId);
+  if(tps.size<2)pinch=null;
+  if(tps.size===1){const [p]=[...tps.values()];down=[p[0],p[1],rot[0],rot[1]];moved=true;return}   // keep turning with the finger that stays
+  cv.classList.remove('drag');const was=down;down=null;
+  if(e.type==='pointerup'&&was&&!moved){const f=at(e);if(f&&R_[f.reg]){fly(f)}else{const now=e.timeStamp;if(now-lastTap<320){uzT=uz>1.3?1:2.5;lastTap=0}else lastTap=now}}moved=false};
+ cv.addEventListener('pointerup',lift);cv.addEventListener('pointercancel',lift);
  cv.addEventListener('pointerleave',()=>{hover=null;tip.style.opacity=0});
- cv.addEventListener('wheel',e=>{if(flying||!inSphere(e))return;e.preventDefault();uz=Math.max(1,Math.min(3,uz*(e.deltaY<0?1.08:.93)))},{passive:false});
+ cv.addEventListener('wheel',e=>{if(flying||!inSphere(e))return;e.preventDefault();uz=Math.max(1,Math.min(6,uz*(e.deltaY<0?1.08:.93)))},{passive:false});
  addEventListener('resize',()=>{if(running)size()});
  fetch('world-110m.json').then(r=>r.json()).then(w=>{
   const o=w.objects.countries,gs=o.geometries;
@@ -760,7 +778,7 @@ const globe=(()=>{
    active=hi.features.map(f=>Object.assign(f,{reg:f.id==='756'?'ch':'uk'}));
   });
  }).catch(()=>{});
- return{start(back){if(running)return;running=true;cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
+ return{start(back){if(running)return;running=true;uzT=null;pk.classList.remove('gz');cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
         fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
 })();
