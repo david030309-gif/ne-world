@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T18:33:13.848Z",
+ "updated": "2026-11-27T19:33:51.611Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,32 +8,8 @@
  },
  "lines": {
   "ok": true,
-  "total": 9,
+  "total": 6,
   "items": [
-   {
-    "id": "bakerloo",
-    "name": "Bakerloo",
-    "bg": "#B36305",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "",
-    "text": "Сильные задержки",
-    "reason": "Bakerloo Line: Severe delays due to train cancellations. Lioness line, Thameslink, London Buses and London Northwestern Railway are accepting valid tickets."
-   },
-   {
-    "id": "central",
-    "name": "Central",
-    "bg": "#E32017",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "нехватка персонала",
-    "text": "Сильные задержки, нехватка персонала",
-    "reason": "Central Line: Severe delays due to the unavailability of control room staff. Tickets will be accepted on London Buses, Liberty Line, Elizabeth Line, Chiltern Railways, Great Western Railways and Greater Anglia services via any reasonable route."
-   },
    {
     "id": "mildmay",
     "name": "Mildmay",
@@ -56,19 +32,19 @@
     "status": "Сильные задержки",
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
-    "reason": "Victoria Line: Severe delays due to strike action."
+    "reason": "Victoria Line: Severe delays due to the earlier strike action."
    },
    {
-    "id": "circle",
-    "name": "Circle",
-    "bg": "#FFD300",
-    "fg": "#111",
+    "id": "central",
+    "name": "Central",
+    "bg": "#E32017",
+    "fg": "#fff",
     "mode": "tube",
     "severity": 9,
     "status": "Небольшие задержки",
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
-    "reason": "Circle Line: Minor delays due to strike action."
+    "reason": "Central Line: Minor delays due to the earlier strike action."
    },
    {
     "id": "hammersmith-city",
@@ -80,7 +56,7 @@
     "status": "Небольшие задержки",
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
-    "reason": "Hammersmith and City Line: Minor delays due to strike action."
+    "reason": "Hammersmith and City Line: Minor delays due to the earlier strike action."
    },
    {
     "id": "metropolitan",
@@ -92,7 +68,7 @@
     "status": "Небольшие задержки",
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
-    "reason": "Metropolitan Line: Minor delays due to strike action."
+    "reason": "Metropolitan Line: Minor delays between Harrow on the Hill and Uxbridge due to the earlier strike action. GOOD SERVICE on the rest of the line"
    },
    {
     "id": "northern",
@@ -105,24 +81,12 @@
     "cause": "проблема с путями",
     "text": "Небольшие задержки, проблема с путями",
     "reason": "Northern Line: Minor delays between Camden Town and Kennington via Charing Cross due to a points failure at Kennington. GOOD SERVICE on the rest of the line."
-   },
-   {
-    "id": "piccadilly",
-    "name": "Piccadilly",
-    "bg": "#003688",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "забастовка",
-    "text": "Небольшие задержки, забастовка",
-    "reason": "Piccadilly Line: Minor delays between Acton Town and Uxbridge due to strike action. GOOD SERVICE on the rest of the line."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 10,
+  "total": 11,
   "items": [
    {
     "badge": "A41",
@@ -133,6 +97,17 @@
     "ll": [
      -0.21921,
      51.577073
+    ]
+   },
+   {
+    "badge": "A406",
+    "title": "Angel Road (Enfield)",
+    "text": "Сломанная машина",
+    "severity": "Serious",
+    "rank": 5,
+    "ll": [
+     -0.053739,
+     51.61352
     ]
    },
    {
@@ -166,17 +141,6 @@
     "ll": [
      -0.174278,
      51.520091
-    ]
-   },
-   {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     0.058788,
-     51.554479
     ]
    },
    {
