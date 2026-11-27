@@ -39,12 +39,14 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #veil{position:fixed;inset:0;background:var(--bg);opacity:0;pointer-events:none;z-index:4;transition:opacity .3s cubic-bezier(.4,0,.2,1)}
 #picker.out #veil{opacity:1}
 #tip{z-index:5}
-#soon{position:fixed;z-index:6;left:50%;width:min(340px,calc(100vw - 32px));transform:translate(-50%,8px) scale(.97);opacity:0;pointer-events:none;
+#soon{position:fixed;z-index:6;left:50%;width:min(380px,calc(100vw - 32px));transform:translate(-50%,8px) scale(.97);opacity:0;pointer-events:none;
  background:rgba(16,17,23,.94);border:1px solid #2c2e38;border-radius:18px;padding:18px 18px 16px;box-shadow:0 18px 50px #000a;backdrop-filter:blur(8px);
  transition:opacity .25s ease,transform .25s ease;text-align:left}
 #soon.on{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}
 #soon.sd{transform:translate(0,8px) scale(.97)}#soon.sd.on{transform:none}
-#soon img{display:block;height:64px;width:auto;max-width:200px;margin:2px 0 12px}
+#soon .logo{margin:-4px -4px 14px;padding:18px 14px 14px;border-radius:14px;background:radial-gradient(120% 90% at 50% 30%,#2a2c38 0%,#15161d 75%);display:grid;place-items:center}
+#soon img{display:block;width:100%;max-width:330px;height:auto;max-height:200px;object-fit:contain;filter:drop-shadow(0 6px 18px #0008)}
+@media(max-width:600px){#soon img{max-height:112px}#soon .logo{padding:12px 10px 10px;margin-bottom:10px}}
 #soon .sbadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#e4232f;color:#fff;border-radius:999px;padding:3px 9px;margin-bottom:8px}
 #soon h3{margin:0 0 2px;font-size:19px;font-weight:700;color:#fff}
 #soon .ctry{color:#9a9ca6;font-size:13px;margin-bottom:10px}
@@ -880,7 +882,7 @@ const globe=(()=>{
  const soon=$('#soon');
  const hideSoon=()=>soon.classList.remove('on');
  const openSoon=(n,x,y)=>{tip.style.opacity=0;
-  soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><img src="${n.logo}" alt="${n.name}"><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
+  soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="logo"><img src="${n.logo}" alt="${n.name}"></div><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
   soon.querySelector('.x').onclick=e=>{e.stopPropagation();hideSoon()};
   const h=soon.offsetHeight||330,w=soon.offsetWidth||340;
   if(innerWidth<600){soon.classList.remove('sd');soon.style.left='50%';soon.style.top=Math.max(10,innerHeight-h-14)+'px'}
