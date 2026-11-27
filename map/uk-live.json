@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T13:00:54.107Z",
+ "updated": "2026-11-27T13:02:09.581Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -146,8 +146,75 @@
  },
  "roads": {
   "ok": true,
-  "total": 0,
-  "items": []
+  "total": 10,
+  "items": [
+   {
+    "badge": "A41",
+    "title": "Hendon Way (Barnet)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Moderate",
+    "rank": 4,
+    "ll": [
+     -0.21921,
+     51.577073
+    ]
+   },
+   {
+    "badge": "A1080",
+    "title": "Westbury Avenue (Haringey)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Moderate",
+    "rank": 4,
+    "ll": [
+     -0.098252,
+     51.593518
+    ]
+   },
+   {
+    "badge": "A40",
+    "title": "Westway (Westminster)",
+    "text": "Дорожные работы, сужение полос",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.174278,
+     51.520091
+    ]
+   },
+   {
+    "badge": "A4202",
+    "title": "Park Lane (Westminster)",
+    "text": "Мероприятие",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.15332,
+     51.504823
+    ]
+   },
+   {
+    "badge": "A118",
+    "title": "Romford Road (Newham,Redbridge)",
+    "text": "Дорожные работы",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     0.058788,
+     51.554479
+    ]
+   },
+   {
+    "badge": "A234",
+    "title": "High Street (Bromley)",
+    "text": "Дорожные работы",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.051835,
+     51.414039
+    ]
+   }
+  ]
  },
  "floods": {
   "ok": true,
