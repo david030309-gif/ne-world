@@ -114,6 +114,37 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 #post .body p{font-size:17px;margin:0 0 16px}
 .tg{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:12px;min-height:44px;margin-top:8px}
 
+/* ---------- calm feed ---------- */
+.lab{display:block;font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+.lab.urg{color:var(--red)}.lab.urg::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:2px}
+.top{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.lead{display:block;text-align:left;width:100%}
+.lth,.rth,.sth{display:block;background:var(--card) center/cover no-repeat;position:relative}
+.lth{aspect-ratio:16/9;border-radius:14px;margin-bottom:16px}
+.lt{font-family:Unbounded,Onest,sans-serif;font-weight:600;font-size:clamp(22px,2.6vw,30px);line-height:1.18;margin:0 0 12px;text-wrap:balance}
+.lb{list-style:none;padding:0;margin:0 0 12px;color:#cfcfd4;font-size:15px}
+.lb li{position:relative;padding-left:14px;margin:3px 0}.lb li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:#6b6b73}
+.also .sh,.dh{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);margin:0 0 6px}
+.side{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:14px 0;border-top:1px solid var(--line)}
+.side:first-of-type{border-top:0}
+.sth{width:84px;aspect-ratio:4/3;border-radius:8px;flex:none}
+.st{display:block;font-weight:600;font-size:16px;line-height:1.3}.sm{display:block;color:var(--mut);font-size:13px;margin-top:4px}
+.night{display:block;width:100%;text-align:left;margin-top:24px;background:var(--card);border-radius:14px;padding:16px 18px}
+.night .nh{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px}.night .nh span{color:var(--mut);font-size:13px}
+.night ul{margin:0;padding-left:18px;color:#cfcfd4;font-size:15px}.night li{margin:3px 0}
+.day{margin-top:30px}
+.dh{display:flex;gap:8px;align-items:baseline;padding-bottom:8px;border-bottom:1px solid var(--line);margin:0}
+.dh b{color:var(--ink);font-size:15px;text-transform:none;letter-spacing:0}.dh span{text-transform:none;letter-spacing:0;font-weight:400}
+.row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:start;text-align:left;width:100%;padding:16px 0;border-bottom:1px solid var(--line)}
+.row time{color:var(--mut);font-size:14px;padding-top:1px;font-variant-numeric:tabular-nums}
+.rt{display:block;font-weight:600;font-size:17px;line-height:1.3}
+.rs{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--mut);font-size:15px;margin-top:4px}
+.rth{width:128px;aspect-ratio:4/3;border-radius:10px}
+.row:hover .rt,.side:hover .st,.lead:hover .lt{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.pl{position:absolute;left:8px;bottom:8px;width:24px;height:24px;border-radius:50%;background:#000a}
+.pl::after{content:"";position:absolute;left:9px;top:7px;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:860px){.top{grid-template-columns:minmax(0,1fr);gap:18px}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr) auto;gap:12px}.row time{grid-column:1/-1;font-size:13px;margin-bottom:-8px}.rth{width:96px}.rt{font-size:16px}.rs{font-size:14px}}
 /* ---------- live map ---------- */
 .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 0 0 #2ecc7199;animation:lv 1.8s infinite;margin-right:6px;vertical-align:middle}
 @keyframes lv{70%{box-shadow:0 0 0 8px #2ecc7100}100%{box-shadow:0 0 0 0 #2ecc7100}}
@@ -122,7 +153,29 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 .mstrip b{white-space:nowrap}.mstrip .mt{color:var(--mut);white-space:nowrap}
 .mstrip .ms{color:#cfcfd4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .mstrip .mgo{color:#2ecc71;font-weight:600;white-space:nowrap}
-.mapv{display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:28px;align-items:start}
+.mapv{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:start}
+.mapcard{background:#151821;border:1px solid var(--line);border-radius:16px;padding:14px;position:sticky;top:150px}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin:2px 4px 10px}.mhead b{font-family:Unbounded;font-size:18px}
+.vmap{position:relative}.vmap svg{display:block;width:100%;cursor:grab}
+.klab{fill:#8b90a3;font-family:Onest,sans-serif;font-weight:600;pointer-events:none}
+.mk{cursor:pointer}.mk rect{stroke:#0c0d12;stroke-width:1.5}.mk text{fill:#fff;font:700 11px Onest,sans-serif;pointer-events:none}
+.mk .halo{fill:none;stroke-width:2;opacity:0}.mk.on .halo{opacity:1;animation:hal 1.4s infinite}
+@keyframes hal{from{r:12;opacity:.9}to{r:24;opacity:0}}
+.k-train rect,.mk.k-train .halo{fill:#e4232f;stroke:#e4232f}.k-road rect{fill:#c2410c}.mk.k-road .halo{stroke:#c2410c}.k-warn rect{fill:#7c5cff}.mk.k-warn .halo{stroke:#7c5cff}
+.mk.k-train .halo{fill:none}
+.bd{display:inline-grid;place-items:center;min-width:34px;height:24px;padding:0 6px;border-radius:6px;font:700 11px Onest,sans-serif;color:#fff;flex:none}
+.bd.k-train{background:#e4232f}.bd.k-road{background:#c2410c}.bd.k-warn{background:#7c5cff}.bd.k-aval{background:#d69e2e;color:#1a1300}
+.vctl{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}
+.vctl button{width:38px;height:38px;border-radius:10px;background:#0c0d12cc;border:1px solid #ffffff1f;color:#fff;font-size:18px}
+.vpop{position:absolute;width:240px;background:#0c0d12f2;border:1px solid #ffffff26;border-radius:12px;padding:10px 12px;display:grid;gap:4px;box-shadow:0 10px 30px #000a;pointer-events:none}
+.vpop .bd{justify-self:start}.vpop b{font-size:14px}.vpop small{color:#b9bdc9;font-size:13px}
+.mleg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 4px 0;font-size:12px;color:var(--mut)}
+.mleg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mleg .k-train{background:#e4232f}.mleg .k-road{background:#c2410c}.mleg .k-warn{background:#7c5cff}.mleg .k-aval{background:#4a3d22;outline:1px solid #d69e2e88}
+.evl{display:grid;gap:2px}
+.ev{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;text-align:left;width:100%;padding:10px 8px;border-radius:10px}
+.ev:hover,.ev.on{background:var(--card)}.ev b{display:block;font-size:15px}.ev small{display:block;color:var(--mut);font-size:13px;margin-top:2px}.ev em{font-style:normal;font-size:13px;color:#cfcfd4;white-space:nowrap}
+.more2{font-size:13px;color:var(--mut);margin:2px 8px 6px}
 .mimg{display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#181a22}
 .mimg{position:relative;width:100%;aspect-ratio:671/839;overflow:hidden;touch-action:pan-y;cursor:zoom-in}
 .mimg img{position:absolute;left:0;top:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;max-width:none;will-change:transform}
@@ -144,7 +197,7 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 .minfo h3{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin:16px 0 4px}
 .minfo p{margin:0 0 8px}
 .msrc{font-size:13px;color:var(--mut)}
-@media(max-width:860px){.mapv{grid-template-columns:minmax(0,1fr)}.mstrip .ms{display:none}}
+@media(max-width:860px){.mapv{grid-template-columns:minmax(0,1fr)}.mapcard{position:static}.mstrip .ms{display:none}}
 /* ---------- Движ (ehoschweiz) ---------- */
 .seg{max-width:1060px;margin:0 auto;padding:0 16px 12px;display:flex;gap:8px}
 .seg button{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 14px;min-height:52px;text-align:left}
@@ -227,7 +280,7 @@ body.dz header{background:#15111dee}
 #picker.arrive>.ptop,#picker.arrive>.choices,#picker.arrive .hint{animation:fadeIn .4s .1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes fadeIn{from{opacity:0}}
 #feedview.enter header{animation:fadeIn .3s cubic-bezier(.2,.7,.2,1) both}
-#feedview.enter main>*,#feedview.enter .row3>*,#feedview.enter .grid>*:nth-child(-n+6),#feedview.enter .board,#feedview.enter .dzwrap>*{animation:fadeUp .4s cubic-bezier(.2,.7,.2,1) both}
+#feedview.enter main>*,#feedview.enter .top>*,#feedview.enter .board,#feedview.enter .dzwrap>*{animation:fadeUp .4s cubic-bezier(.2,.7,.2,1) both}
 #feedview.enter main>:nth-child(1){animation-delay:.04s}
 #feedview.enter .row3>:nth-child(1){animation-delay:.1s}#feedview.enter .row3>:nth-child(2){animation-delay:.14s}#feedview.enter .row3>:nth-child(3){animation-delay:.18s}
 #feedview.enter main>:nth-child(n+3){animation-delay:.2s}
@@ -311,7 +364,8 @@ const views=n=>n>=1000?(n/1000).toFixed(1).replace('.',',')+' тыс.':String(n)
 
 /* ---------- feed ---------- */
 function filtered(){
- const r=R[region];let ps=DATA[region];
+ const r=R[region];const seen=new Set(),mt=MAPS[region]&&MAPS[region].tg;
+ let ps=DATA[region].filter(p=>p.tg!==mt&&!seen.has(p.title)&&seen.add(p.title));
  if(chip===r.home)ps=ps.filter(p=>p.cat!=='Мир');
  else if(chip==='Лондон')ps=ps.filter(p=>p.london);
  else if(chip!=='Главная')ps=ps.filter(p=>p.cat===chip);
@@ -328,26 +382,41 @@ function card(p){
  if(!p.img)return `<button class="card" data-id="${p.id}"><div class="text"><div class="k">${p.urgent?'Срочно':esc(p.cat)}</div><div class="h">${esc(p.title)}</div></div>${meta(p)}</button>`;
  return `<button class="card" data-id="${p.id}">${thumb(p)}<div class="k">${esc(p.cat)}</div><div class="h">${esc(p.title)}</div>${meta(p)}</button>`;
 }
+const hm=(iso,tz)=>new Date(iso).toLocaleTimeString('ru-RU',{timeZone:tz,hour:'2-digit',minute:'2-digit'});
+function dayLabel(iso,tz){const d=new Date(iso),k=x=>x.toLocaleDateString('ru-RU',{timeZone:tz});
+ const dm=d.toLocaleDateString('ru-RU',{timeZone:tz,day:'numeric',month:'long'});
+ if(k(d)===k(new Date()))return ['Сегодня',dm];if(k(d)===k(new Date(Date.now()-864e5)))return ['Вчера',dm];
+ return [d.toLocaleDateString('ru-RU',{timeZone:tz,weekday:'long'}).replace(/^./,c=>c.toUpperCase()),dm]}
+const lab=p=>p.urgent?'<span class="lab urg">Срочно</span>':`<span class="lab">${esc(p.cat)}</span>`;
+function row(p){const tz=R[region].tz;
+ return `<button class="row" data-id="${p.id}"><time>${hm(p.date,tz)}</time>
+  <span class="rb">${lab(p)}<span class="rt">${esc(p.title)}</span>${p.bullets[0]?`<span class="rs">${esc(p.bullets[0])}</span>`:''}</span>
+  ${p.img?`<span class="rth" style="background-image:url(${p.img})">${p.video?'<i class="pl"></i>':''}</span>`:''}</button>`}
+function side(p){return `<button class="side" data-id="${p.id}">${p.img?`<span class="sth" style="background-image:url(${p.img})"></span>`:''}<span>${lab(p)}<span class="st">${esc(p.title)}</span><span class="sm">${when(p.date,R[region].tz)}</span></span></button>`}
 function renderFeed(){
- const r=R[region];
+ const r=R[region],tz=r.tz;
  $('#chips').innerHTML=r.chips.map(c=>`<button class="${c===chip?'on':''}">${c}</button>`).join('');
  let ps=filtered();
  const feed=$('#feed');
  if(!ps.length){feed.innerHTML=`<p class="empty">Здесь пока нет новостей. Попробуйте другую рубрику.</p>`;return}
- const fresh=ps.filter(p=>!p.digest);
- const hero=[...(fresh.length?fresh:ps)].filter(p=>p.img).sort((a,b)=>score(b)-score(a))[0]||ps[0];
- let rest=ps.filter(p=>p!==hero);
- const dig=chip==='Главная'?rest.find(p=>p.digest):null;
- if(dig)rest=rest.filter(p=>p!==dig);
- const top=rest.slice(0,3),more=rest.slice(3);
- feed.innerHTML=mapStrip()+
-  `<button class="hero" data-id="${hero.id}" style="${hero.img?`background-image:url(${hero.img})`:''}"><div class="in">
-    <span class="tag">${hero.video?'ВИДЕО':hero.img?'ФОТО':'ТЕКСТ'}</span>${hero.urgent?'<span class="tag">СРОЧНО</span>':''}
-    <div class="cat">${esc(hero.cat)}</div><h2 class="h">${esc(hero.title)}</h2>
-    <ul>${hero.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></div></button>`+
-  (top.length?`<div class="row3">${top.map(card).join('')}</div>`:'')+
-  (dig?`<button class="digest" data-id="${dig.id}"><span class="moon">🌙</span><span><div class="h">${esc(dig.title)}</div><p>${esc(dig.bullets[0]||'')}</p></span></button>`:'')+
-  (more.length?`<div class="sec"><h3 class="h">Лента</h3><span>${more.length} новостей</span></div><div class="grid">${more.map(card).join('')}</div>`:'');
+ let html=mapStrip(),rest=ps;
+ if(chip==='Главная'&&!query){
+  const pool=ps.filter(p=>!p.digest&&Date.now()-new Date(p.date)<3*864e5);
+  const lead=[...(pool.length?pool:ps)].filter(p=>p.img).sort((a,b)=>score(b)-score(a))[0]||ps[0];
+  const also=[...pool].filter(p=>p!==lead).sort((a,b)=>score(b)-score(a)).slice(0,3);
+  const dig=ps.find(p=>p.digest);
+  html+=`<section class="top"><button class="lead" data-id="${lead.id}">
+     ${lead.img?`<span class="lth" style="background-image:url(${lead.img})">${lead.video?'<i class="pl"></i>':''}</span>`:''}
+     ${lab(lead)}<h2 class="lt">${esc(lead.title)}</h2>
+     <ul class="lb">${lead.bullets.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${meta(lead)}</button>
+    <aside class="also"><h3 class="sh">Также важно</h3>${also.map(side).join('')}</aside></section>`;
+  if(dig)html+=`<button class="night" data-id="${dig.id}"><span class="nh"><b>${esc(dig.title.replace(/^.*?(за ночь.*)$/i,(m,x)=>'Британия '+x))}</b><span>${hm(dig.date,tz)}</span></span><ul>${dig.bullets.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></button>`;
+  const shown=new Set([lead,...also,dig].filter(Boolean));rest=ps.filter(p=>!shown.has(p));
+ }
+ // the rest: a calm timeline grouped by day
+ const groups=[];for(const p of rest){const [d,dm]=dayLabel(p.date,tz);let g=groups[groups.length-1];if(!g||g.d!==d+dm){g={d:d+dm,t:d,dm,ps:[]};groups.push(g)}g.ps.push(p)}
+ html+=groups.map(g=>`<section class="day"><h3 class="dh"><b>${g.t}</b><span>${g.dm}</span></h3>${g.ps.map(row).join('')}</section>`).join('');
+ feed.innerHTML=html;
 }
 function applyRegion(){
  const r=R[region];
@@ -409,28 +478,106 @@ function openSheet(id){const p=DATA.eho.find(x=>x.id===id);if(!p)return;closeShe
 function closeSheet(){const s=$('#sheet');if(s){s.remove();document.body.style.overflow=''}}
 
 /* ---------- live maps ---------- */
-const MAPS={ch:{title:'Швейцария сейчас',img:'map/ch.jpg',updated:'08:10',tg:'https://t.me/golosswiss/1094',
+const MAPS={ch:{title:'Швейцария сейчас',updated:'08:10',tg:'https://t.me/golosswiss/1094',
+ geo:'map/ch-cantons.json',
+ groups:[
+  ['train','Поезда',[{b:'SBB',t:'IR26 · Giubiasco',x:'Техническая неисправность. Поезда опаздывают, часть поездов отменят',u:'до 15:00',ll:[9.006,46.172]},
+                     {b:'RBS',t:'S9 · Bern Felsenau',x:'Техническая неисправность. Поездов меньше обычного',u:'до 12:30',ll:[7.444,46.967]}],'Ещё 1 сбой на местных и горных линиях'],
+  ['road','Дороги',[{b:'A1',t:'Effretikon – км 316.5, на St. Gallen',x:'Участок закрыт после аварии',ll:[8.69,47.43]},
+                    {b:'A14',t:'Zug – Baar, на Walterswil',x:'Пробка, много машин',ll:[8.52,47.19]}],'Ещё 1 событие на дорогах'],
+  ['warn','Предупреждения властей',[{b:'!',t:'Bristenstrasse',x:'Движение по дороге ограничено, возможны задержки',ll:[8.69,46.77]}],'Ещё 2 предупреждения'],
+  ['aval','Горы',[{b:'3/5',t:'Лавинная опасность 3 из 5',x:'Graubünden, Wallis, Bern и ещё 6 кантонов. Вне лыжных трасс опасно'}],'']],
+ aval:[23,18,2,4,8,21,5,6,7],
  stats:[['2','сбоя на железной дороге'],['3','события на дорогах'],['3','предупреждения властей'],['3/5','лавинная опасность']],
- what:'Сбои поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей. У каждого события свой номер, такой же номер стоит в списке под картой.',
+ what:'Сбои поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей.',
  src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
+const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
  return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${M.updated}</span><span class="ms">${M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
+let geoCache=null;
 function renderMap(){const M=MAPS[region];
+ const evs=[];M.groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
-  <div><div class="mimg" id="mapbox"><img src="${M.img}" alt="Карта: ${M.title}" draggable="false"><button class="zhint" data-zoom="${M.img}" aria-label="На весь экран"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>На весь экран</button><span class="zreset" hidden>Сбросить</span></div><p class="zline">Двумя пальцами — приблизить, двойной тап — увеличить место</p></div>
+  <div class="mapcard">
+   <div class="mhead"><b>${M.title}</b><span class="mlive"><i class="live"></i>${M.updated}</span></div>
+   <div class="vmap" id="vmap"><svg id="vsvg" role="img" aria-label="Карта Швейцарии с событиями"></svg>
+    <div class="vctl"><button data-mz="in" aria-label="Приблизить">+</button><button data-mz="out" aria-label="Отдалить">−</button><button data-mz="0" aria-label="Сбросить">⟲</button></div>
+    <div class="vpop" id="vpop" hidden></div></div>
+   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span><span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span></div>
+   <p class="zline">Двумя пальцами — приблизить. Нажмите на значок, чтобы увидеть событие.</p>
+  </div>
   <div class="minfo">
    <div class="mlive"><i class="live"></i>Обновлено в ${M.updated} · каждые 5 минут</div>
    <h1 class="h">${M.title}</h1>
    <div class="mstats">${M.stats.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
-   <h3>Что на карте</h3><p>${M.what}</p>
+   ${M.groups.map(([k,name,items,more])=>`<h3>${name}</h3><div class="evl">${items.map(it=>`<button class="ev" ${it.ll?`data-ev="${it.i}"`:''}><span class="bd k-${k}">${esc(it.b)}</span><span><b>${esc(it.t)}</b><small>${esc(it.x)}</small></span>${it.u?`<em>${esc(it.u)}</em>`:''}</button>`).join('')}${more?`<p class="more2">${more} — <a href="${M.tg}">в Telegram</a></p>`:''}</div>`).join('')}
    <h3>Важно</h3><p>${M.note}</p>
    <p class="msrc">Источники: ${M.src}</p>
-   <a class="tg" href="${M.tg}">Открыть в Telegram ↗</a>
+   <a class="tg" href="${M.tg}">Открыть пост в Telegram ↗</a>
   </div></section>`;
- const box=$('#mapbox'),rs=box.querySelector('.zreset');
- const z=zoomable(box,box.querySelector('img'),{onzoom:s=>{rs.hidden=s<=1.01}});
- rs.onclick=()=>z.reset();
+ const go=geo=>drawVMap(M,evs,geo);
+ geoCache?go(geoCache):fetch(M.geo).then(r=>r.json()).then(g=>{geoCache=g;go(g)});
+}
+function drawVMap(M,evs,topo){
+ const box=$('#vmap'),svgEl=$('#vsvg');if(!box)return;
+ const W=box.clientWidth,H=Math.round(W*0.66);svgEl.setAttribute('viewBox',`0 0 ${W} ${H}`);svgEl.style.height=H+'px';
+ const cant=topojson.feature(topo,topo.objects.cantons),lakes=topojson.feature(topo,topo.objects.lakes),ctry=topojson.feature(topo,topo.objects.country);
+ const proj=d3.geoMercator().fitExtent([[12,12],[W-12,H-12]],ctry),path=d3.geoPath(proj);
+ const svg=d3.select(svgEl);svg.selectAll('*').remove();
+ const defs=svg.append('defs');
+ defs.append('pattern').attr('id','hatch').attr('width',6).attr('height',6).attr('patternUnits','userSpaceOnUse').attr('patternTransform','rotate(45)')
+   .append('rect').attr('width',2.2).attr('height',6).attr('fill','rgba(255,207,51,.22)');
+ const g=svg.append('g');
+ const av=new Set(M.aval);
+ g.append('g').selectAll('path').data(cant.features).join('path').attr('d',path)
+   .attr('fill',d=>av.has(+d.id)?'#4a3d22':'#262a36').attr('stroke','#11131a').attr('stroke-width',1).attr('vector-effect','non-scaling-stroke');
+ g.append('g').selectAll('path').data(cant.features.filter(d=>av.has(+d.id))).join('path').attr('d',path).attr('fill','url(#hatch)').attr('pointer-events','none');
+ g.append('g').selectAll('path').data(lakes.features).join('path').attr('d',path).attr('fill','#16243a').attr('stroke','#1f3150').attr('stroke-width',.6).attr('vector-effect','non-scaling-stroke');
+ g.append('path').datum(ctry).attr('d',path).attr('fill','none').attr('stroke','#5b6278').attr('stroke-width',1.4).attr('vector-effect','non-scaling-stroke');
+ const lbl=g.append('g').attr('class','klab').selectAll('text').data(cant.features).join('text')
+   .attr('transform',d=>{const c=path.centroid(d);return `translate(${c})`}).attr('text-anchor','middle').attr('dy','.35em').text(d=>KT[+d.id]||'');
+ const mk=g.append('g').selectAll('g').data(evs).join('g').attr('class',d=>'mk k-'+d.k).attr('tabindex',0).attr('role','button').attr('aria-label',d=>d.t);
+ mk.append('circle').attr('class','halo').attr('r',13);
+ mk.each(function(d){const el=d3.select(this),w=Math.max(22,d.b.length*8+12);
+   el.append('rect').attr('x',-w/2).attr('y',-11).attr('width',w).attr('height',22).attr('rx',6);
+   el.append('text').attr('text-anchor','middle').attr('dy','.35em').text(d.b)});
+ let k=1;
+ const place=()=>{mk.attr('transform',d=>{const [x,y]=proj(d.ll);return `translate(${x},${y}) scale(${1/k})`});lbl.attr('font-size',11/k)};
+ place();
+ const pop=$('#vpop');
+ function show(d){mk.classed('on',x=>x===d);document.querySelectorAll('.ev').forEach(e=>e.classList.toggle('on',+e.dataset.ev===d.i));
+  const t=d3.zoomTransform(svgEl),[x,y]=proj(d.ll),px=t.applyX(x),py=t.applyY(y);
+  pop.innerHTML=`<span class="bd k-${d.k}">${esc(d.b)}</span><b>${esc(d.t)}</b><small>${esc(d.x)}${d.u?' · '+esc(d.u):''}</small>`;pop.hidden=false;
+  pop.style.left=Math.max(8,Math.min(W-248,px-120))+'px';pop.style.top=(py>H*0.55?py-pop.offsetHeight-18:py+18)+'px'}
+ const zoom=d3.zoom().scaleExtent([1,8]).translateExtent([[0,0],[W,H]])
+   .filter(e=>e.type==='wheel'?(e.ctrlKey||k>1.01):e.type.startsWith('touch')?false:!e.button)
+   .on('zoom',e=>{k=e.transform.k;g.attr('transform',e.transform);place();svgEl.style.touchAction=k>1.01?'none':'pan-y';if(!pop.hidden)pop.hidden=true});
+ svg.call(zoom).on('dblclick.zoom',null);svgEl.style.touchAction='pan-y';
+ // touch: own pinch / pan (one finger scrolls the page until the map is zoomed)
+ const tp=new Map();let pz=null;
+ svgEl.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;tp.set(e.pointerId,[e.clientX,e.clientY]);
+  if(tp.size===2){const [a,b]=[...tp.values()],t=d3.zoomTransform(svgEl),r=svgEl.getBoundingClientRect(),sc=W/r.width;
+   pz={d:Math.hypot(a[0]-b[0],a[1]-b[1]),t,mx:((a[0]+b[0])/2-r.left)*sc,my:((a[1]+b[1])/2-r.top)*sc,sc,r};tp.forEach((v,id)=>{try{svgEl.setPointerCapture(id)}catch(_){}})}
+  else if(k>1.01){pz={pan:true,t:d3.zoomTransform(svgEl),x:e.clientX,y:e.clientY};svgEl.setPointerCapture(e.pointerId)}});
+ svgEl.addEventListener('pointermove',e=>{if(!tp.has(e.pointerId)||!pz)return;tp.set(e.pointerId,[e.clientX,e.clientY]);
+  if(tp.size===2&&!pz.pan){const [a,b]=[...tp.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]),mx=((a[0]+b[0])/2-pz.r.left)*pz.sc,my=((a[1]+b[1])/2-pz.r.top)*pz.sc;
+   const ns=Math.max(1,Math.min(8,pz.t.k*d/pz.d)),ox=(pz.mx-pz.t.x)/pz.t.k,oy=(pz.my-pz.t.y)/pz.t.k;
+   svg.call(zoom.transform,d3.zoomIdentity.translate(mx-ox*ns,my-oy*ns).scale(ns))}
+  else if(pz.pan&&tp.size===1){const sc=W/svgEl.getBoundingClientRect().width;svg.call(zoom.transform,pz.t.translate((e.clientX-pz.x)*sc/pz.t.k,(e.clientY-pz.y)*sc/pz.t.k))}});
+ const tup=e=>{tp.delete(e.pointerId);if(tp.size<2&&pz&&!pz.pan)pz=null;if(!tp.size)pz=null};
+ svgEl.addEventListener('pointerup',tup);svgEl.addEventListener('pointercancel',tup);
+ let lastTap=0,gest={multi:false,moved:false,x:0,y:0};
+ svgEl.addEventListener('pointerdown',e=>{if(tp.size<=1&&e.isPrimary)gest={multi:false,moved:false,x:e.clientX,y:e.clientY};if(tp.size>=2||!e.isPrimary)gest.multi=true},true);
+ svgEl.addEventListener('pointermove',e=>{if(e.isPrimary&&Math.hypot(e.clientX-gest.x,e.clientY-gest.y)>8)gest.moved=true},true);
+ svgEl.addEventListener('pointerup',e=>{if(!e.isPrimary||gest.multi||gest.moved||e.target.closest('.mk')){lastTap=0;return}
+  const now=e.timeStamp;if(now-lastTap<300){const [x,y]=d3.pointer(e);svg.transition().duration(300).call(zoom.scaleTo,k>1.5?1:2.6,[x,y]);lastTap=0}else lastTap=now});
+ const focus=d=>{const [x,y]=proj(d.ll);svg.transition().duration(500).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(3).translate(-x,-y)).on('end',()=>show(d))};
+ mk.on('click',(e,d)=>{e.stopPropagation();show(d)}).on('keydown',(e,d)=>{if(e.key==='Enter')show(d)});
+ svg.on('click',e=>{if(!e.target.closest('.mk')){pop.hidden=true;mk.classed('on',false)}});
+ box.querySelector('.vctl').onclick=e=>{const b=e.target.closest('[data-mz]');if(!b)return;const z=b.dataset.mz;
+  if(z==='0')svg.transition().duration(400).call(zoom.transform,d3.zoomIdentity);else svg.transition().duration(250).call(zoom.scaleBy,z==='in'?1.7:1/1.7)};
+ document.querySelectorAll('.ev[data-ev]').forEach(b=>b.onclick=()=>{box.scrollIntoView({behavior:'smooth',block:'center'});focus(evs[+b.dataset.ev])});
 }
 
 /* ---------- zoom viewer (pinch, drag, double-tap, wheel) ---------- */
