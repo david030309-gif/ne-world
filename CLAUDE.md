@@ -34,6 +34,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
 - `scripts/update-posts.mjs`: reads the public pages `t.me/s/<channel>` and adds new posts and photos. It uses no AI: titles come from the first line of the post, and categories come from fixed keyword rules (`CATS`). It skips ads and announcements.
 - `scripts/update-uk.mjs`: fetches TfL, Environment Agency floods and Met Office warnings into `map/uk-live.json`, using fixed Russian wording.
 - `.github/workflows/update-posts.yml` and `update-map.yml`: scheduled bots that commit as `ne-world-bot`. The GitHub schedule can be slow (roughly hourly at times). To run one by hand: `gh workflow run update-posts.yml`.
+- `docs/HISTORY.md`: project history, decisions and backlog (read it first).
 - `brand/`: final SVG logos, plus `brand/src/` with the Python generators (fontTools + Montserrat 800, which is included). Example: `cd brand/src && python3 monaco.py`. Render PNGs from the SVGs with a headless browser.
 
 ## Rules when editing
