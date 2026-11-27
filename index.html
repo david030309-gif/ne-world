@@ -31,12 +31,12 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 .globewrap{position:relative;display:grid;place-items:center;padding:8px 0}
 #gslot{--g:max(240px,min(540px,92vw,calc(100vh - 390px),calc(100dvh - 390px)));width:var(--g);height:var(--g)}
 #globe{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;display:block;touch-action:none;z-index:0}
-#picker>.ptop,#picker>.globewrap,#picker>.choices{position:relative;z-index:1;pointer-events:none;transition:opacity .4s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1)}
+#picker>.ptop,#picker>.globewrap,#picker>.choices{position:relative;z-index:1;pointer-events:none;transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1)}
 #picker .choice{pointer-events:auto}
 #picker.flying>.ptop{opacity:0;transform:translateY(-14px)}
 #picker.flying>.choices,#picker.flying>.globewrap .hint{opacity:0;transform:translateY(14px)}
-#picker .hint{transition:opacity .4s,transform .5s}
-#veil{position:fixed;inset:0;background:var(--bg);opacity:0;pointer-events:none;z-index:4;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+#picker .hint{transition:opacity .25s,transform .3s}
+#veil{position:fixed;inset:0;background:var(--bg);opacity:0;pointer-events:none;z-index:4;transition:opacity .3s cubic-bezier(.4,0,.2,1)}
 #picker.out #veil{opacity:1}
 #tip{z-index:5}
 #globe.grab{cursor:grab}#globe.ptr{cursor:pointer}#globe.drag{cursor:grabbing}
@@ -192,13 +192,13 @@ body.dz header{background:#15111dee}
  .logo b{font-size:18px}
  .bar{grid-template-columns:auto 1fr auto}.logo{justify-self:center}
 }
-#picker.arrive>.ptop,#picker.arrive>.choices,#picker.arrive .hint{animation:fadeIn .6s .15s cubic-bezier(.2,.7,.2,1) both}
+#picker.arrive>.ptop,#picker.arrive>.choices,#picker.arrive .hint{animation:fadeIn .4s .1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes fadeIn{from{opacity:0}}
-#feedview.enter header{animation:fadeIn .5s cubic-bezier(.2,.7,.2,1) both}
-#feedview.enter main>*,#feedview.enter .row3>*,#feedview.enter .grid>*:nth-child(-n+6),#feedview.enter .board,#feedview.enter .dzwrap>*{animation:fadeUp .55s cubic-bezier(.2,.7,.2,1) both}
-#feedview.enter main>:nth-child(1){animation-delay:.08s}
-#feedview.enter .row3>:nth-child(1){animation-delay:.18s}#feedview.enter .row3>:nth-child(2){animation-delay:.24s}#feedview.enter .row3>:nth-child(3){animation-delay:.3s}
-#feedview.enter main>:nth-child(n+3){animation-delay:.34s}
+#feedview.enter header{animation:fadeIn .3s cubic-bezier(.2,.7,.2,1) both}
+#feedview.enter main>*,#feedview.enter .row3>*,#feedview.enter .grid>*:nth-child(-n+6),#feedview.enter .board,#feedview.enter .dzwrap>*{animation:fadeUp .4s cubic-bezier(.2,.7,.2,1) both}
+#feedview.enter main>:nth-child(1){animation-delay:.04s}
+#feedview.enter .row3>:nth-child(1){animation-delay:.1s}#feedview.enter .row3>:nth-child(2){animation-delay:.14s}#feedview.enter .row3>:nth-child(3){animation-delay:.18s}
+#feedview.enter main>:nth-child(n+3){animation-delay:.2s}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}}
 .choice.on{border-color:var(--red);background:#2a1215}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -447,12 +447,12 @@ const globe=(()=>{
    const p=cl((t-fly0.t0)/fly0.d),pr=ease(cl(p/0.62)),pz=ease(cl((p-0.12)/0.88));
    rot=fly0.ir(pr);cx=fly0.cx0+(W/2-fly0.cx0)*pr;cy=fly0.cy0+(H/2-fly0.cy0)*pr;
    R=fly0.R0*Math.exp(Math.log(fly0.R1/fly0.R0)*pz);labelA=1-cl(p/0.25);
-   if(p>0.78&&!fly0.out){fly0.out=true;pk.classList.add('out')}
-   if(p>=1&&!fly0.done){fly0.done=true;setTimeout(fly0.go,380)}
+   if(p>0.72&&!fly0.out){fly0.out=true;pk.classList.add('out')}
+   if(p>=1&&!fly0.done){fly0.done=true;setTimeout(fly0.go,120)}
   }else{
    if(auto)rot[0]=-4+Math.sin(t/4000)*14;
-   const [sx,sy,sr]=slot();const k=intro?1+0.18*(1-d3.easeCubicOut(cl((t-intro)/900))):1;
-   cx=sx;cy=sy;R=sr*uz*k;labelA=intro?cl((t-intro-300)/500):1;
+   const [sx,sy,sr]=slot();const k=intro?1+0.18*(1-d3.easeCubicOut(cl((t-intro)/600))):1;
+   cx=sx;cy=sy;R=sr*uz*k;labelA=intro?cl((t-intro-200)/350):1;
   }
   draw();raf=requestAnimationFrame(loop);
  }
@@ -470,7 +470,7 @@ const globe=(()=>{
   const ext=Math.max((x1-x0)*Math.cos(c[1]*Math.PI/180),y1-y0)*Math.PI/180;
   const R1=0.42*Math.min(W,H)/ext*2.2;
   flying=true;pk.classList.add('flying');
-  fly0={t0:performance.now(),d:1700,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,R1,go,out:false,done:false};
+  fly0={t0:performance.now(),d:1050,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),cx0:cx,cy0:cy,R0:R,R1,go,out:false,done:false};
  }
  let down=null,moved=false;
  cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
