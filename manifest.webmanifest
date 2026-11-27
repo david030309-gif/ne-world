@@ -1,0 +1,17 @@
+{
+  "name": "Ne World — новости на русском",
+  "short_name": "Ne World",
+  "description": "Русскоязычные новости там, где вы живёте: Швейцария, Лондон и Британия — и скоро другие страны.",
+  "lang": "ru",
+  "start_url": "./#globe",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c0c0d",
+  "theme_color": "#0c0c0d",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

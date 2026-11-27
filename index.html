@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ne World</title>
+<!-- installable app (PWA): add to home screen on iPhone/Android -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0c0c0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Ne World">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600&family=Dela+Gothic+One&display=swap" rel="stylesheet">
 <style>
@@ -1006,5 +1014,6 @@ function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{i
 Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
+<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
 </body>
 </html>
