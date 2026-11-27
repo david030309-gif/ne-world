@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T21:28:33.454Z",
+ "updated": "2026-11-27T22:28:37.289Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 7,
+  "total": 6,
   "items": [
    {
     "id": "central",
@@ -16,11 +16,23 @@
     "bg": "#E32017",
     "fg": "#fff",
     "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
+    "severity": 6,
+    "status": "Сильные задержки",
     "cause": "забастовка",
-    "text": "Небольшие задержки, забастовка",
-    "reason": "Central Line: Minor delays due to the earlier strike action."
+    "text": "Сильные задержки, забастовка",
+    "reason": "Central Line: Severe delays due to the earlier strike action."
+   },
+   {
+    "id": "mildmay",
+    "name": "Mildmay",
+    "bg": "#006FE6",
+    "fg": "#fff",
+    "mode": "overground",
+    "severity": 7,
+    "status": "Сокращённое движение",
+    "cause": "",
+    "text": "Сокращённое движение",
+    "reason": "MILDMAY LINE: Friday 27 November, the 2159 train from Stratford to Richmond will terminate at Camden Road at 2219. The 2318 train from Richmond to Willesden Junction will not run"
    },
    {
     "id": "hammersmith-city",
@@ -47,18 +59,6 @@
     "reason": "Metropolitan Line: Minor delays between Harrow on the Hill and Uxbridge due to the earlier strike action. GOOD SERVICE on the rest of the line"
    },
    {
-    "id": "mildmay",
-    "name": "Mildmay",
-    "bg": "#006FE6",
-    "fg": "#fff",
-    "mode": "overground",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "неисправность поезда",
-    "text": "Небольшие задержки, неисправность поезда",
-    "reason": "Mildmay Line: Minor delays due to an earlier faulty train at Kensington (Olympia)."
-   },
-   {
     "id": "northern",
     "name": "Northern",
     "bg": "#000000",
@@ -69,18 +69,6 @@
     "cause": "проблема с путями",
     "text": "Небольшие задержки, проблема с путями",
     "reason": "Northern Line: Minor delays between Camden Town and Kennington via Charing Cross due to a points failure at Kennington. GOOD SERVICE on the rest of the line."
-   },
-   {
-    "id": "piccadilly",
-    "name": "Piccadilly",
-    "bg": "#003688",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "сбой сигнализации",
-    "text": "Небольшие задержки, сбой сигнализации",
-    "reason": "Piccadilly Line: Minor delays between Acton Town and Uxbridge / Heathrow Terminals due to an earlier signalling problem. GOOD SERVICE on the rest of the line."
    },
    {
     "id": "victoria",
@@ -98,8 +86,19 @@
  },
  "roads": {
   "ok": true,
-  "total": 8,
+  "total": 10,
   "items": [
+   {
+    "badge": "A3211",
+    "title": "Upper Thames Street (City of London)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Serious",
+    "rank": 6,
+    "ll": [
+     -0.100438,
+     51.511324
+    ]
+   },
    {
     "badge": "A4202",
     "title": "Park Lane (Westminster)",
@@ -123,6 +122,17 @@
     ]
    },
    {
+    "badge": "A102",
+    "title": "Blackwall Tunnel (Greenwich,Tower Hamlets)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Moderate",
+    "rank": 4,
+    "ll": [
+     -0.004133,
+     51.506783
+    ]
+   },
+   {
     "badge": "A1080",
     "title": "Westbury Avenue (Haringey)",
     "text": "Дорожные работы, дорога частично перекрыта",
@@ -142,28 +152,6 @@
     "ll": [
      -0.174278,
      51.520091
-    ]
-   },
-   {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     0.058788,
-     51.554479
-    ]
-   },
-   {
-    "badge": "A1010",
-    "title": "High Road (Enfield,Haringey)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     -0.068175,
-     51.605584
     ]
    }
   ]
