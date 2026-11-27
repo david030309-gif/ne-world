@@ -910,7 +910,10 @@ const globe=(()=>{
  fetch('world-110m.json').then(r=>r.json()).then(w=>{
   const o=w.objects.countries,gs=o.geometries;
   countries=topojson.feature(w,o);
-  nextF=Object.values(NEXT).map(n=>{const f=countries.features.find(f=>f.id===n.iso);if(f)f.next=n;return f}).filter(Boolean);
+  // keep only the European part of a "next" country (France: drop French Guiana and other overseas parts)
+  nextF=Object.values(NEXT).map(n=>{const f=countries.features.find(f=>f.id===n.iso);if(!f)return null;f.next=n;
+    if(f.geometry.type==='MultiPolygon')f.geometry={type:'MultiPolygon',coordinates:f.geometry.coordinates.filter(pl=>d3.geoDistance(d3.geoCentroid({type:'Polygon',coordinates:pl}),n.coord)<.2)};
+    return f}).filter(Boolean);
   for(const f of countries.features){f.reg=f.id==='756'?'ch':f.id==='826'?'uk':null;f.soon=SOON[f.id]||null}
   landM=topojson.merge(w,gs.filter(g=>!SOON[g.id]&&g.id!=='756'&&g.id!=='826'));
   soonM=topojson.merge(w,gs.filter(g=>SOON[g.id]));
