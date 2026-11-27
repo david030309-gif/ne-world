@@ -1,0 +1,214 @@
+{
+ "updated": "2026-11-27T12:58:02.279Z",
+ "sources": {
+  "lines": "ok",
+  "roads": "ok",
+  "floods": "ok",
+  "weather": "ok"
+ },
+ "lines": {
+  "ok": true,
+  "total": 11,
+  "items": [
+   {
+    "id": "waterloo-city",
+    "name": "Waterloo & City",
+    "bg": "#95CDBA",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 2,
+    "status": "Не ходит",
+    "cause": "забастовка",
+    "text": "Не ходит, забастовка",
+    "reason": "Waterloo and City Line: No service due to strike action."
+   },
+   {
+    "id": "bakerloo",
+    "name": "Bakerloo",
+    "bg": "#B36305",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Bakerloo Line: No service between Queen's Park and Harrow & Wealdstone due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 10 minutes."
+   },
+   {
+    "id": "central",
+    "name": "Central",
+    "bg": "#E32017",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Central Line: No service between White City and Liverpool Street due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 20 minutes."
+   },
+   {
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Circle Line: No service Aldgate and Edgware Road via Embankment due to strike action. SEVERE DELAYS on the rest of the line. Services are operating every 10 minutes."
+   },
+   {
+    "id": "metropolitan",
+    "name": "Metropolitan",
+    "bg": "#9B0056",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Metropolitan Line: No service between Baker Street and Aldgate due to strike action. SEVERE DELAYS on the rest of the line. Services are operating between Baker Street and Uxbridge / Watford every 15 minutes, between Baker Street and Amersham every 30 minutes, and between Watford and Chesham every 30 minutes. Customers travelling to Chesham are advised to go to Watford and change."
+   },
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "забастовка",
+    "text": "Не ходит на части линии, забастовка",
+    "reason": "Piccadilly Line: Severe delays between Arnos Grove and Cockfosters and between Acton Town and Heathrow Terminals 2&3 due to strike action. Services are operating every 25 minutes between Arnos Grove and Cockfosters and every 20 minutes between Acton Town and Heathrow Terminals 2&3. NO SERVICE on the rest of the line."
+   },
+   {
+    "id": "district",
+    "name": "District",
+    "bg": "#00782A",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "District Line: Severe delays due to strike action. If you're travelling beyond Earl's Court, please take the first train and change there. Services are operating every 10 minutes."
+   },
+   {
+    "id": "hammersmith-city",
+    "name": "Hammersmith & City",
+    "bg": "#F3A9BB",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Hammersmith and City Line: Severe delays due to strike action. Services are operating every 20 minutes."
+   },
+   {
+    "id": "northern",
+    "name": "Northern",
+    "bg": "#000000",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "забастовка",
+    "text": "Сильные задержки, забастовка",
+    "reason": "Northern Line: Severe delays due to strike action."
+   },
+   {
+    "id": "jubilee",
+    "name": "Jubilee",
+    "bg": "#A0A5A9",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Jubilee Line: Minor delays due to strike action."
+   },
+   {
+    "id": "victoria",
+    "name": "Victoria",
+    "bg": "#0098D4",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Victoria Line: Minor delays due to strike action."
+   }
+  ]
+ },
+ "roads": {
+  "ok": true,
+  "total": 0,
+  "items": []
+ },
+ "floods": {
+  "ok": true,
+  "total": 4,
+  "severe": 0,
+  "warnings": 0,
+  "alerts": 4,
+  "items": [
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "North Sea coast at Bridlington",
+    "county": "East Riding of Yorkshire",
+    "river": "North Sea",
+    "ll": [
+     -0.17992,
+     54.06263
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Tidal Fal Estuary",
+    "county": "Cornwall",
+    "river": "South Cornwall Coast, Tidal Fal Estuary",
+    "ll": [
+     -5.11166,
+     50.20627
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "West Cornwall Rivers",
+    "county": "Cornwall",
+    "river": "River Hayle, Perrancoombe Stream, Bolingey Stream, Portreath Stream, Newlyn Coombe River",
+    "ll": [
+     -5.40613,
+     50.15847
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Hunstanton coast in Norfolk",
+    "county": "Norfolk",
+    "river": "North Sea",
+    "ll": [
+     0.48414,
+     52.92924
+    ]
+   }
+  ]
+ },
+ "weather": {
+  "ok": true,
+  "total": 0,
+  "items": []
+ },
+ "motorways": {
+  "ok": false,
+  "reason": "needs_registration"
+ }
+}
