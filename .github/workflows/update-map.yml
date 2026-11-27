@@ -1,7 +1,7 @@
 name: Update Ne Mayfair Live map
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
