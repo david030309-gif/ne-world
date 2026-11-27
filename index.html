@@ -114,11 +114,33 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 #post .body p{font-size:17px;margin:0 0 16px}
 .tg{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:12px;min-height:44px;margin-top:8px}
 
+/* ---------- live map ---------- */
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 0 0 #2ecc7199;animation:lv 1.8s infinite;margin-right:6px;vertical-align:middle}
+@keyframes lv{70%{box-shadow:0 0 0 8px #2ecc7100}100%{box-shadow:0 0 0 0 #2ecc7100}}
+.mstrip{display:flex;align-items:center;gap:10px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;text-align:left;min-height:48px;font-size:14px}
+.mstrip:hover{border-color:#2ecc7180}
+.mstrip b{white-space:nowrap}.mstrip .mt{color:var(--mut);white-space:nowrap}
+.mstrip .ms{color:#cfcfd4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.mstrip .mgo{color:#2ecc71;font-weight:600;white-space:nowrap}
+.mapv{display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:28px;align-items:start}
+.mimg{display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#181a22}
+.mimg img{width:100%;display:block}
+.mlive{font-size:13px;color:#2ecc71;font-weight:600}
+.minfo .h{font-size:clamp(26px,3.4vw,36px);margin:8px 0 16px}
+.mstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.mstats div{background:var(--card);border-radius:12px;padding:12px 14px}
+.mstats b{display:block;font-family:Unbounded;font-size:24px}
+.mstats span{font-size:13px;color:var(--mut)}
+.minfo h3{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin:16px 0 4px}
+.minfo p{margin:0 0 8px}
+.msrc{font-size:13px;color:var(--mut)}
+@media(max-width:860px){.mapv{grid-template-columns:minmax(0,1fr)}.mstrip .ms{display:none}}
 /* ---------- Движ (ehoschweiz) ---------- */
 .seg{max-width:1060px;margin:0 auto;padding:0 16px 12px;display:flex;gap:8px}
 .seg button{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 14px;min-height:52px;text-align:left}
 .seg button b{font-family:Unbounded;font-weight:600;font-size:14px}
-.seg button span{font-size:12px;color:var(--mut)}
+.seg button span{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:600px){.seg{gap:6px}.seg button{min-height:44px;padding:6px 10px;border-radius:12px}.seg button b{font-size:13px}}
 .seg button.on{border-color:var(--red);background:#2a1215}
 body.dz{--dz:#15111d;--y:#ffcf33;--co:#ff5a5f;--li:#c9b8ff;background:var(--dz)}
 body.dz header{background:#15111dee}
@@ -308,7 +330,7 @@ function renderFeed(){
  const dig=chip==='Главная'?rest.find(p=>p.digest):null;
  if(dig)rest=rest.filter(p=>p!==dig);
  const top=rest.slice(0,3),more=rest.slice(3);
- feed.innerHTML=
+ feed.innerHTML=mapStrip()+
   `<button class="hero" data-id="${hero.id}" style="${hero.img?`background-image:url(${hero.img})`:''}"><div class="in">
     <span class="tag">${hero.video?'ВИДЕО':hero.img?'ФОТО':'ТЕКСТ'}</span>${hero.urgent?'<span class="tag">СРОЧНО</span>':''}
     <div class="cat">${esc(hero.cat)}</div><h2 class="h">${esc(hero.title)}</h2>
@@ -376,20 +398,44 @@ function openSheet(id){const p=DATA.eho.find(x=>x.id===id);if(!p)return;closeShe
 }
 function closeSheet(){const s=$('#sheet');if(s){s.remove();document.body.style.overflow=''}}
 
+/* ---------- live maps ---------- */
+const MAPS={ch:{title:'Швейцария сейчас',img:'map/ch.jpg',updated:'08:10',tg:'https://t.me/golosswiss/1094',
+ stats:[['2','сбоя на железной дороге'],['3','события на дорогах'],['3','предупреждения властей'],['3/5','лавинная опасность']],
+ what:'Сбои поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей. У каждого события свой номер, такой же номер стоит в списке под картой.',
+ src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
+ note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
+function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
+ return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${M.updated}</span><span class="ms">${M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
+function renderMap(){const M=MAPS[region];
+ $('#feed').innerHTML=`<section class="mapv">
+  <a class="mimg" href="${M.img}" aria-label="Открыть карту целиком"><img src="${M.img}" alt="Карта: ${M.title}"></a>
+  <div class="minfo">
+   <div class="mlive"><i class="live"></i>Обновлено в ${M.updated} · каждые 5 минут</div>
+   <h1 class="h">${M.title}</h1>
+   <div class="mstats">${M.stats.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
+   <h3>Что на карте</h3><p>${M.what}</p>
+   <h3>Важно</h3><p>${M.note}</p>
+   <p class="msrc">Источники: ${M.src}</p>
+   <a class="tg" href="${M.tg}">Открыть в Telegram ↗</a>
+  </div></section>`}
+
 /* ---------- routing ---------- */
 function route(){
  const h=location.hash.slice(1);
- const m=h.match(/^(ch|uk|eho)(?:-(\d+|dvizh))?$/);if(m&&m[1]==='eho'){m[1]='ch';m.dvizh=true}if(m&&m[2]==='dvizh')m.dvizh=true;
+ const m=h.match(/^(ch|uk|eho)(?:-(\d+|dvizh|map))?$/);if(m&&m[1]==='eho'){m[1]='ch';m.dvizh=true}if(m&&m[2]==='dvizh')m.dvizh=true;
  if(!m){ if(h==='globe'||!store.get()){show('picker');return} location.replace('#'+store.get());return }
  if(region!==m[1]){region=m[1];chip='Главная';query='';$('#q').value='';store.set(region);applyRegion()}
  show('feed');
- const dz=!!m.dvizh;
- $('#seg').hidden=region!=='ch';
- $('#seg').innerHTML=region==='ch'?`<button data-go="ch" class="${dz?'':'on'}"><b>Новости</b><span>Ne Alpy</span></button><button data-go="ch-dvizh" class="${dz?'on':''}"><b>Движ</b><span>ehoschweiz · видео и истории</span></button>`:'';
- const p=!dz&&m[2]&&DATA[region].find(x=>x.id===h);
- $('#feed').hidden=!!p;$('#post').hidden=!p;$('#chips').hidden=!!p||dz;
+ const dz=!!m.dvizh,mp=m[2]==='map'&&!!MAPS[region];
+ const tabs=[[region,'Новости',R[region].name,!dz&&!mp]];
+ if(region==='ch')tabs.push(['ch-dvizh','Движ','ehoschweiz · видео и истории',dz]);
+ if(MAPS[region])tabs.push([region+'-map','Карта','<i class="live"></i>'+MAPS[region].title,mp]);
+ $('#seg').hidden=tabs.length<2;
+ $('#seg').innerHTML=tabs.map(([go,b,sp,on])=>`<button data-go="${go}" class="${on?'on':''}"><b>${b}</b><span>${sp}</span></button>`).join('');
+ const p=!dz&&!mp&&m[2]&&DATA[region].find(x=>x.id===h);
+ $('#feed').hidden=!!p;$('#post').hidden=!p;$('#chips').hidden=!!p||dz||mp;
  document.body.classList.toggle('dz',dz);if(!dz)closeSheet();
- if(dz){renderDvizh(h.startsWith('eho-')?h:null)} else if(p){renderPost(p);scrollTo(0,0)} else renderFeed();
+ if(dz){renderDvizh(h.startsWith('eho-')?h:null)} else if(mp){renderMap();scrollTo(0,0)} else if(p){renderPost(p);scrollTo(0,0)} else renderFeed();
 }
 let lastView=null;
 function show(v){
@@ -444,10 +490,11 @@ const globe=(()=>{
  function loop(t){
   if(!running)return;pulse=(t%1600)/1600;
   if(flying&&fly0){
-   // pure GPU zoom straight into the country: no redraw, no turning, no pause
-   const p=cl((t-fly0.t0)/fly0.d),lz=Math.log(fly0.Zmax)*(0.45*p+0.55*p*p);
-   cv.style.transform=`translateZ(0) scale(${Math.exp(lz).toFixed(4)})`;
-   veil.style.opacity=cl((p-0.5)/0.45).toFixed(3);
+   // the original move, smoothed: globe turns to the country and leans in, then a soft crossfade
+   const p=cl((t-fly0.t0)/fly0.d),e=ease(p);
+   rot=fly0.ir(e);R=fly0.R0*(1+(fly0.Z-1)*ease(cl(p/0.95)));cx=fly0.cx0;cy=fly0.cy0;
+   labelA=1-cl(p/0.25);draw();
+   veil.style.opacity=ease(cl((p-0.62)/0.38)).toFixed(3);
    if(p>=1&&!fly0.done){fly0.done=true;fly0.go()}
    raf=requestAnimationFrame(loop);return
   }else{
@@ -468,12 +515,8 @@ const globe=(()=>{
   const go=()=>{location.hash=f.reg};
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!countries){go();return}
   const c=R_[f.reg].coord;
-  let [ox,oy]=proj(c);
-  if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.4){ox=cx;oy=cy}   // country on the back side: dive into the globe centre
-  labelA=0;hover=f;draw();
-  flying=true;pk.classList.add('flying');
-  cv.style.transition='none';veil.style.transition='none';cv.style.transformOrigin=`${ox}px ${oy}px`;
-  fly0={t0:performance.now(),d:850,Zmax:f.reg==='ch'?90:45,go,done:false};
+  flying=true;pk.classList.add('flying');veil.style.transition='none';
+  fly0={t0:performance.now(),d:900,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),R0:R,cx0:cx,cy0:cy,Z:f.reg==='ch'?2.4:2.0,go,done:false};
  }
  let down=null,moved=false;
  cv.addEventListener('pointerdown',e=>{if(flying||!inSphere(e))return;down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;intro=0;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
