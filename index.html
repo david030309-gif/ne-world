@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ne World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a Russian-language city newsroom at night: fast, confident, scannable.
+   IDEA: the existing Ne Alpy site, plus a night-side globe you spin to pick your country.
+   PICTURE: a dark globe with Switzerland and the UK lit red; the rest of the world waits in grey.
+   COLOUR and TYPE: near-black ground, graphite cards, one red; Unbounded headlines, Onest body.
+   LAYOUT: picker = globe centred with two country cards; feed = copy of the live site per region. */
+:root{color-scheme:dark;--bg:#0c0c0d;--card:#1b1b1d;--card2:#242427;--line:#2c2c30;--ink:#f3f3f4;--mut:#9a9aa1;--red:#e4232f;--land:#2a2b30;--hi:#e4232f}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Onest,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.h{font-family:Unbounded,Onest,sans-serif;font-weight:800;line-height:1.12;text-wrap:balance;margin:0}
+[hidden]{display:none!important}
+
+/* ---------- picker ---------- */
+#picker{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;background:radial-gradient(120% 80% at 50% 45%,#17171b 0,#0c0c0d 60%)}
+.ptop{padding:28px max(5vw,16px) 0;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:Unbounded;font-weight:800;font-size:20px;margin-bottom:18px}
+.brand svg{width:34px;height:34px}
+.ptop .h{font-size:clamp(28px,4.4vw,46px)}
+.ptop p{color:var(--mut);margin:10px auto 0;max-width:46ch}
+.globewrap{position:relative;display:grid;place-items:center;padding:8px 0}
+#globe{width:min(580px,92vw,64vh);height:min(580px,92vw,64vh);touch-action:none;cursor:grab;display:block}
+#globe.drag{cursor:grabbing}
+#tip{position:fixed;pointer-events:none;background:#000c;border:1px solid var(--line);padding:6px 10px;border-radius:8px;font-size:13px;white-space:nowrap;transform:translate(-50%,-130%);opacity:0;transition:opacity .12s}
+#tip b{color:var(--red);font-weight:600}
+.hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--mut);white-space:nowrap}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,280px));gap:14px;justify-content:center;padding:6px max(5vw,16px) 36px}
+.choice{display:flex;gap:14px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;min-height:76px;transition:border-color .15s,transform .15s}
+.choice:hover,.choice.on{border-color:var(--red);transform:translateY(-2px)}
+.choice img{width:64px;height:48px;object-fit:contain}
+.choice b{display:block;font-family:Unbounded;font-weight:600;font-size:15px}
+.choice span{font-size:13px;color:var(--mut)}
+.soon{grid-column:1/-1;text-align:center;font-size:13px;color:var(--mut)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:20;background:#0c0c0dee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 16px}
+.region{justify-self:start;display:flex;align-items:center;gap:8px;background:var(--card2);border-radius:999px;padding:6px 12px 6px 6px;min-height:40px;font-size:14px}
+.region .fl{width:28px;height:28px}
+.region svg.ch{opacity:.7}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo .fl{width:32px;height:32px}
+.logo b{font-family:Unbounded;font-weight:800;font-size:22px;letter-spacing:-.01em;white-space:nowrap}
+.tools{justify-self:end;display:flex;gap:4px}
+.ib{width:44px;height:44px;display:grid;place-items:center;border-radius:50%}
+.ib:hover{background:var(--card2)}
+.fl{border-radius:7px;overflow:hidden;flex:none;display:block}
+.chips{max-width:1060px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;scrollbar-width:none}
+.chips button{flex:none;background:var(--card);border-radius:999px;padding:9px 15px;font-size:14px;min-height:40px}
+.chips button.on{background:var(--ink);color:#000}
+#search{max-width:1060px;margin:0 auto;padding:0 16px 12px}
+#search input{width:100%;font-size:16px;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 14px}
+
+/* ---------- feed ---------- */
+main{max-width:1060px;margin:0 auto;padding:20px 16px 40px}
+.hero{position:relative;display:block;width:100%;text-align:left;border-radius:16px;overflow:hidden;min-height:420px;background:var(--card) center/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 20%,#000d 72%)}
+.hero .in{position:absolute;left:0;right:0;bottom:0;padding:26px 24px;z-index:1}
+.tag{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:5px;margin-right:6px}
+.cat{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin:8px 0 6px}
+.hero .h{font-size:clamp(24px,3.4vw,38px);max-width:22ch}
+.hero ul{list-style:none;padding:0;margin:14px 0 0;font-size:15px}
+.hero li{position:relative;padding-left:16px;margin:4px 0;color:#e9e9ec}
+.hero li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin:36px 0 14px}
+.sec .h{font-size:22px}
+.sec span{color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px}
+.card{display:flex;flex-direction:column;text-align:left;gap:8px;width:100%}
+.thumb{aspect-ratio:16/10;border-radius:12px;background:var(--card) center/cover no-repeat;position:relative;overflow:hidden}
+.thumb.none{display:grid;place-items:center;background:linear-gradient(135deg,#1f1f22,#141416)}
+.thumb.none img{width:44%;opacity:.16}
+.thumb .play{position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;background:#000a;display:grid;place-items:center}
+.card .k{color:var(--red);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.card .h{font-size:17px;line-height:1.25}
+.meta{color:var(--mut);font-size:13px;display:flex;gap:10px;align-items:center;white-space:nowrap}
+.text{background:var(--card);border-radius:14px;padding:18px;border-left:3px solid var(--red);flex:1}
+.text .h{font-size:19px}
+.digest{background:var(--card);border-radius:16px;padding:20px 22px;margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;text-align:left;width:100%}
+.digest .moon{width:46px;height:46px;border-radius:12px;background:#2a2340;display:grid;place-items:center;font-size:22px}
+.digest .h{font-size:18px;margin-bottom:6px}
+.digest p{margin:0;color:#cfcfd4;font-size:15px}
+.empty{color:var(--mut);padding:40px 0;text-align:center}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* ---------- article ---------- */
+#post{max-width:720px;margin:0 auto;padding:18px 16px 60px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--mut);min-height:44px;font-size:14px}
+#post .h{font-size:clamp(26px,4vw,36px);margin:6px 0 12px}
+#post>.meta{margin-bottom:18px}
+#post figure{margin:18px 0;border-radius:14px;overflow:hidden}
+#post figure img{width:100%;display:block}
+#post .body p{font-size:17px;margin:0 0 16px}
+.tg{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:12px;min-height:44px;margin-top:8px}
+
+/* ---------- Движ (ehoschweiz) ---------- */
+.seg{max-width:1060px;margin:0 auto;padding:0 16px 12px;display:flex;gap:8px}
+.seg button{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 14px;min-height:52px;text-align:left}
+.seg button b{font-family:Unbounded;font-weight:600;font-size:14px}
+.seg button span{font-size:12px;color:var(--mut)}
+.seg button.on{border-color:var(--red);background:#2a1215}
+body.dz{--dz:#15111d;--y:#ffcf33;--co:#ff5a5f;--li:#c9b8ff;background:var(--dz)}
+body.dz header{background:#15111dee}
+.dg{font-family:"Dela Gothic One",Unbounded,sans-serif;font-weight:400;line-height:1.08;margin:0;text-wrap:balance}
+.dzwrap{max-width:1060px;margin:0 auto}
+/* giveaway ticket */
+.ticket{display:grid;grid-template-columns:240px minmax(0,1fr) 190px;background:var(--y);color:#15111d;border-radius:20px;position:relative;overflow:hidden}
+.ticket .poster{display:block;background:#111;position:relative}
+.ticket .poster{background:#141414}.ticket .poster img{width:100%;height:100%;object-fit:contain;display:block}
+.ticket .main{padding:22px 24px;display:grid;gap:12px}
+.ticket .kick{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-weight:600;font-size:13px}
+.ticket .kick span{background:#15111d;color:var(--y);border-radius:999px;padding:4px 10px}
+.ticket .dg{font-size:clamp(26px,4vw,40px)}
+.ticket .info{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-weight:500}
+.ticket .info b{font-weight:700}
+.steps{display:grid;gap:6px;margin:2px 0 0;padding:0;list-style:none}
+.steps li{display:flex;align-items:center;gap:10px;background:#15111d14;border-radius:12px;padding:8px 10px;font-size:14px}
+.steps .st{flex:1}
+.steps li a{flex:none;font-weight:700;text-decoration:none;background:#15111d;color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.steps li.ok a{background:#2f9e5b}
+.steps .n{width:24px;height:24px;border-radius:50%;background:#15111d;color:var(--y);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.join{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:#15111d;color:#fff;text-decoration:none;font-weight:700;border-radius:14px;min-height:48px;padding:0 20px}
+.stub{border-left:3px dashed #15111d55;display:grid;place-items:center;text-align:center;padding:18px;gap:4px;position:relative}
+.stub::before,.stub::after{content:"";position:absolute;left:-13px;width:24px;height:24px;border-radius:50%;background:var(--dz)}
+.stub::before{top:-12px}.stub::after{bottom:-12px}
+.stub .big{font-family:"Dela Gothic One",Unbounded;font-size:64px;line-height:1}
+.stub small{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.stub .cd{font-size:13px;font-weight:600;background:#15111d;color:var(--y);border-radius:10px;padding:6px 10px;margin-top:6px}
+/* filters */
+.stick{display:flex;gap:8px;overflow-x:auto;padding:22px 0 16px;scrollbar-width:none}
+.stick button{flex:none;border:2px solid #ffffff26;border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:42px;transform:rotate(var(--r,0deg))}
+.stick button.on{background:var(--li);color:#15111d;border-color:var(--li)}
+/* board */
+.board{columns:3 240px;column-gap:14px}
+.tile{break-inside:avoid;margin:0 0 14px;display:block;width:100%;text-align:left;background:#211b2c;border-radius:16px;overflow:hidden}
+.tile .ph{position:relative;background:#000}
+.tile .ph img{width:100%;display:block;max-height:420px;object-fit:cover}
+.tile .tb{padding:12px 14px 14px;display:grid;gap:6px}
+.tile .tt{font-weight:600;font-size:16px;line-height:1.3}
+.tile .mt{display:flex;gap:10px;color:#ffffff8c;font-size:12px;white-space:nowrap}
+.pill{position:absolute;left:10px;top:10px;background:#000b;color:#fff;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:600}
+.pill.red{background:var(--red)}
+.vplay{position:absolute;inset:0;display:grid;place-items:center}
+.vplay span{width:60px;height:60px;border-radius:50%;background:#ffffff33;backdrop-filter:blur(6px);border:2px solid #ffffffb3;display:grid;place-items:center}
+.note{background:var(--li);color:#15111d}.note .mt{color:#15111d99}
+.note .q{font-family:"Dela Gothic One",Unbounded;font-size:44px;line-height:.6;margin-top:10px}
+.word{background:var(--co);color:#fff}
+.word .dg{font-size:34px;margin-top:4px}
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:50;background:#000a;display:grid;align-items:end;justify-items:center}
+.sheet>div{width:min(640px,100%);max-height:92vh;overflow:auto;background:#1d1727;border-radius:22px 22px 0 0;padding:0 0 26px}
+@media(min-width:700px){.sheet{align-items:center}.sheet>div{border-radius:22px}}
+.sheet .ph img{width:100%;display:block;max-height:60vh;object-fit:contain;background:#000}
+.sheet .kb img{animation:kb 9s ease-in-out infinite alternate}
+@keyframes kb{to{transform:scale(1.12)}}
+.sheet .ph{position:relative;overflow:hidden}
+.sheet .in{padding:18px 20px 0}
+.sheet .dg{font-size:24px;margin:6px 0 12px}
+.sheet p{margin:0 0 12px;color:#ffffffe0}
+.x{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:50%;background:#000a;color:#fff;font-size:22px;z-index:2}
+.fab{position:fixed;right:18px;bottom:18px;z-index:30;background:var(--y);color:#15111d;font-weight:700;text-decoration:none;border-radius:999px;padding:0 20px;min-height:52px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px #0008}
+@media(max-width:860px){.ticket{grid-template-columns:200px minmax(0,1fr)}.stub{grid-column:1/-1}}
+@media(max-width:600px){.ticket{grid-template-columns:minmax(0,1fr)}.ticket .poster img{aspect-ratio:1015/1280;height:auto}.stub{border-left:0;border-top:3px dashed #15111d55;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;text-align:left}.stub::before,.stub::after{display:none}.stub .big{order:-1;font-size:44px}.stub .pre{order:1}.stub .cd{order:2}.stub .cd{margin:0 0 0 auto}.steps li a{padding:6px 10px;font-size:12px}.fab{padding:0 16px;min-height:46px;font-size:14px}.board{columns:2 150px;column-gap:10px}.tile{margin-bottom:10px}.tile .tt{font-size:14px}.tile .tb{padding:10px}}
+@media(prefers-reduced-motion:reduce){.sheet .kb img{animation:none}}
+@media(max-width:860px){.row3,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.row3>:last-child{display:none}}
+@media(max-width:600px){
+ .row3,.grid{grid-template-columns:minmax(0,1fr)}.row3>:last-child{display:flex}
+ .hero{min-height:440px}.hero .in{padding:20px 18px}.hero li:nth-child(3){display:none}
+ .choices{grid-template-columns:minmax(0,1fr)}
+ .region .nm{display:none}.region{padding:6px}
+ .logo b{font-size:18px}
+ .bar{grid-template-columns:auto 1fr auto}.logo{justify-self:center}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<section id="picker" class="view" hidden>
+  <div class="ptop">
+    <div class="brand"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="#e4232f"/><g fill="none" stroke="#fff" stroke-width="1.8"><circle cx="16" cy="16" r="10"/><path d="M6 16h20M16 6c3 2.8 4.4 6.1 4.4 10S19 23.2 16 26c-3-2.8-4.4-6.1-4.4-10S13 8.8 16 6z"/></g></svg>Ne World</div>
+    <h1 class="h">Где вы находитесь?</h1>
+    <p>Русскоязычные новости там, где вы живёте. Выберите страну на глобусе — лента подстроится под неё.</p>
+  </div>
+  <div class="globewrap">
+    <canvas id="globe" aria-label="Глобус: выберите страну"></canvas>
+    <div class="hint">Крутите глобус · нажмите на страну</div>
+  </div>
+  <div class="choices" id="choices"></div>
+  <div id="tip"></div>
+</section>
+
+<section id="feedview" class="view" hidden>
+  <header>
+    <div class="bar">
+      <button class="region" id="regionBtn" aria-label="Сменить страну"></button>
+      <a class="logo" id="logo" href="#"></a>
+      <div class="tools">
+        <button class="ib" id="searchBtn" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+        <button class="ib" id="globeBtn" aria-label="Глобус"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg></button>
+      </div>
+    </div>
+    <div id="search" hidden><input id="q" type="search" placeholder="Поиск по новостям" autocomplete="off"></div>
+    <div class="seg" id="seg" hidden></div>
+    <nav class="chips" id="chips"></nav>
+  </header>
+  <main id="feed"></main>
+  <article id="post" hidden></article>
+  <footer><div><span id="foot"></span><span>Прототип · посты — снимок Telegram-каналов на 27 ноября 2026</span></div></footer>
+</section>
+
+<script src="d3.min.js"></script>
+<script src="topojson-client.min.js"></script>
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let uid=0;
+const flag=(r,cls='fl')=>{const i=++uid;return r==='ch'
+ ?`<svg class="${cls}" viewBox="0 0 32 32"><rect width="32" height="32" fill="#e4232f"/><path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z" fill="#fff"/></svg>`
+ :`<svg class="${cls}" viewBox="15 0 30 30" preserveAspectRatio="xMidYMid slice"><clipPath id="t${i}"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#t${i})" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>`};
+
+const SOON={'276':'Германия','380':'Италия','250':'Франция','724':'Испания','040':'Австрия','528':'Нидерланды','616':'Польша','203':'Чехия','196':'Кипр','376':'Израиль','840':'США','124':'Канада','792':'Турция','784':'ОАЭ','268':'Грузия','688':'Сербия','499':'Черногория','620':'Португалия','428':'Латвия','233':'Эстония','440':'Литва','246':'Финляндия'};
+const R={
+ ch:{id:'ch',name:'Ne Alpy',label:'Швейцария',iso:'756',coord:[8.23,46.8],tz:'Europe/Zurich',channel:'golosswiss',subs:'2,56 тыс. подписчиков',logo:'logo-ch.png',
+     home:'Швейцария',chips:['Главная','Швейцария','Транспорт','Экономика','Происшествия','Политика','Общество','Здоровье','Спорт','Мир','Афиша'],
+     title:'Ne Alpy — новости Швейцарии на русском'},
+ uk:{id:'uk',name:'Ne Mayfair',label:'Лондон и Британия',iso:'826',coord:[-2.2,53.6],tz:'Europe/London',channel:'NeMyfair',subs:'382 подписчика',logo:'logo-uk.png',
+     home:'Британия',chips:['Главная','Британия','Лондон','Главное за ночь','Транспорт','Экономика','Происшествия','Политика','Общество','Здоровье','Спорт','Мир','Афиша'],
+     title:'Ne Mayfair — новости Лондона и Британии на русском'}
+};
+let DATA=null, region=null, chip='Главная', query='';
+const store={get(){try{return localStorage.getItem('region')}catch(e){return null}},set(v){try{localStorage.setItem('region',v)}catch(e){}}};
+
+/* ---------- dates ---------- */
+function when(iso,tz){
+ const d=new Date(iso),now=new Date();
+ const day=x=>x.toLocaleDateString('ru-RU',{timeZone:tz});
+ const t=d.toLocaleTimeString('ru-RU',{timeZone:tz,hour:'2-digit',minute:'2-digit'});
+ if(day(d)===day(now))return 'сегодня, '+t;
+ if(day(d)===day(new Date(now-864e5)))return 'вчера, '+t;
+ return d.toLocaleDateString('ru-RU',{timeZone:tz,day:'numeric',month:'long'})+', '+t;
+}
+const eye='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+const views=n=>n>=1000?(n/1000).toFixed(1).replace('.',',')+' тыс.':String(n);
+
+/* ---------- feed ---------- */
+function filtered(){
+ const r=R[region];let ps=DATA[region];
+ if(chip===r.home)ps=ps.filter(p=>p.cat!=='Мир');
+ else if(chip==='Лондон')ps=ps.filter(p=>p.london);
+ else if(chip!=='Главная')ps=ps.filter(p=>p.cat===chip);
+ if(query){const q=query.toLowerCase();ps=ps.filter(p=>(p.title+' '+p.paras.join(' ')).toLowerCase().includes(q))}
+ return ps;
+}
+function score(p){const h=(Date.now()-new Date(p.date))/36e5;return (p.img?1:.35)*(p.views+40)/Math.pow(h+6,0.9)}
+function thumb(p){
+ if(!p.img)return `<div class="thumb none"><img src="${R[region].logo}" alt=""></div>`;
+ return `<div class="thumb" style="background-image:url(${p.img})">${p.video?'<span class="play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 4v16l13-8z"/></svg></span>':''}</div>`;
+}
+const meta=p=>`<div class="meta"><span>${when(p.date,R[region].tz)}</span><span>${eye} ${views(p.views)}</span></div>`;
+function card(p){
+ if(!p.img)return `<button class="card" data-id="${p.id}"><div class="text"><div class="k">${p.urgent?'Срочно':esc(p.cat)}</div><div class="h">${esc(p.title)}</div></div>${meta(p)}</button>`;
+ return `<button class="card" data-id="${p.id}">${thumb(p)}<div class="k">${esc(p.cat)}</div><div class="h">${esc(p.title)}</div>${meta(p)}</button>`;
+}
+function renderFeed(){
+ const r=R[region];
+ $('#chips').innerHTML=r.chips.map(c=>`<button class="${c===chip?'on':''}">${c}</button>`).join('');
+ let ps=filtered();
+ const feed=$('#feed');
+ if(!ps.length){feed.innerHTML=`<p class="empty">Здесь пока нет новостей. Попробуйте другую рубрику.</p>`;return}
+ const fresh=ps.filter(p=>!p.digest);
+ const hero=[...(fresh.length?fresh:ps)].filter(p=>p.img).sort((a,b)=>score(b)-score(a))[0]||ps[0];
+ let rest=ps.filter(p=>p!==hero);
+ const dig=chip==='Главная'?rest.find(p=>p.digest):null;
+ if(dig)rest=rest.filter(p=>p!==dig);
+ const top=rest.slice(0,3),more=rest.slice(3);
+ feed.innerHTML=
+  `<button class="hero" data-id="${hero.id}" style="${hero.img?`background-image:url(${hero.img})`:''}"><div class="in">
+    <span class="tag">${hero.video?'ВИДЕО':hero.img?'ФОТО':'ТЕКСТ'}</span>${hero.urgent?'<span class="tag">СРОЧНО</span>':''}
+    <div class="cat">${esc(hero.cat)}</div><h2 class="h">${esc(hero.title)}</h2>
+    <ul>${hero.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></div></button>`+
+  (top.length?`<div class="row3">${top.map(card).join('')}</div>`:'')+
+  (dig?`<button class="digest" data-id="${dig.id}"><span class="moon">🌙</span><span><div class="h">${esc(dig.title)}</div><p>${esc(dig.bullets[0]||'')}</p></span></button>`:'')+
+  (more.length?`<div class="sec"><h3 class="h">Лента</h3><span>${more.length} новостей</span></div><div class="grid">${more.map(card).join('')}</div>`:'');
+}
+function applyRegion(){
+ const r=R[region];
+ $('#regionBtn').innerHTML=`${flag(region)}<span class="nm">${r.label}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>`;
+ $('#logo').innerHTML=flag(region)+`<b>${r.name}</b>`;
+ $('#logo').href='#'+region;
+ $('#foot').innerHTML=`${esc(r.name)} · <a href="https://t.me/${r.channel}">t.me/${r.channel}</a> · ${r.subs}`;
+ document.title=r.title;
+}
+
+/* ---------- article ---------- */
+function renderPost(p){
+ const r=R[region];
+ $('#post').innerHTML=`<a class="back" href="#${region}">← Все новости · ${esc(r.label)}</a>
+  <div class="cat" style="color:var(--red)">${esc(p.cat)}</div><h1 class="h">${esc(p.title)}</h1>${meta(p)}
+  ${p.img?`<figure><img src="${p.img}" alt=""></figure>`:''}
+  <div class="body">${p.paras.map(x=>`<p>${x}</p>`).join('')}</div>
+  <a class="tg" href="${p.tg}">Открыть в Telegram ↗</a>`;
+}
+
+/* ---------- Движ ---------- */
+const GIVE={title:'Scally Milano — Цюрих',prize:'2 билета на концерт',date:'2026-12-14T19:30:00+01:00',place:'Maison25 · Talstrasse 25, Zürich',doors:'двери 19:30',tg:'https://t.me/ehochweiz/449',
+ steps:[['ehoschweiz','https://t.me/ehochweiz'],['Ne Alpy','https://t.me/golosswiss'],['Ne Mayfair','https://t.me/NeMyfair']]};
+let dzf='Всё';const subs=new Set();
+const DZF=['Всё','Видео','Фото','От подписчиков','Срочно'];
+function dzList(){let ps=DATA.eho;
+ if(dzf==='Видео')ps=ps.filter(p=>p.video);else if(dzf==='Фото')ps=ps.filter(p=>p.img&&!p.video);else if(dzf==='От подписчиков')ps=ps.filter(p=>p.sub);else if(dzf==='Срочно')ps=ps.filter(p=>p.urgent);
+ if(query){const q=query.toLowerCase();ps=ps.filter(p=>(p.title+' '+p.paras.join(' ')).toLowerCase().includes(q))}return ps}
+function ticket(){const days=Math.max(0,Math.ceil((new Date(GIVE.date)-Date.now())/864e5));
+ return `<section class="ticket" aria-label="Розыгрыш"><a class="poster" href="${GIVE.tg}" aria-label="Постер концерта"><img src="eho/giveaway.jpg" alt="Постер: Scally Milano, Zurich, 14.12, Maison25"></a><div class="main">
+  <div class="kick"><span>🎟 Розыгрыш</span>${GIVE.prize}</div>
+  <h2 class="dg">${GIVE.title}</h2>
+  <div class="info"><span><b>14 декабря</b> · ${GIVE.doors}</span><span>${GIVE.place}</span></div>
+  <ol class="steps">${GIVE.steps.map(([n,u],i)=>`<li class="${subs.has(i)?'ok':''}"><span class="n">${i+1}</span><span class="st">Подпишись на <b>${n}</b></span><a href="${u}" data-sub="${i}">${subs.has(i)?'✓ Готово':'Подписаться'}</a></li>`).join('')}</ol>
+  <a class="join" href="${GIVE.tg}">Участвовать в Telegram ↗</a>
+ </div><div class="stub"><small class="pre">до концерта</small><div class="big">${days}</div><small class="dn">${days%10===1&&days%100!==11?'день':(days%10>=2&&days%10<=4&&(days%100<10||days%100>=20))?'дня':'дней'}</small><div class="cd">Итоги — в канале</div></div></section>`}
+function tile(p){
+ const m=`<div class="mt"><span>${when(p.date,R.ch.tz)}</span><span>${eye} ${views(p.views)}</span></div>`;
+ if(p.id==='eho-425')return `<button class="tile word" data-eho="${p.id}"><div class="tb"><small>Слово года у подростков</small><div class="dg">«Würd mi»</div><div class="tt">«меня бы это бесило». Что ещё в топе →</div>${m}</div></button>`;
+ if(!p.img)return `<button class="tile note" data-eho="${p.id}"><div class="tb"><div class="q">“</div>${p.sub?'<small><b>От подписчика</b></small>':''}<div class="tt">${esc(p.sub?p.title.replace(/^От подписчика:\s*/,''):p.title)}</div>${m}</div></button>`;
+ const pill=p.urgent?'<span class="pill red">Срочно</span>':p.video?`<span class="pill">▶ ${esc(p.dur)}</span>`:'';
+ return `<button class="tile" data-eho="${p.id}"><div class="ph"><img src="${p.img}" alt="" loading="lazy" style="aspect-ratio:${p.ar}">${pill}${p.video?'<span class="vplay"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span></span>':''}</div><div class="tb"><div class="tt">${esc(p.title)}</div>${m}</div></button>`;
+}
+function renderDvizh(focus){
+ const ps=dzList();
+ $('#feed').innerHTML=`<div class="dzwrap">${ticket()}
+  <div class="stick">${DZF.map((f,i)=>`<button data-dzf="${f}" class="${f===dzf?'on':''}" style="--r:${[-2,1.5,-1,2,-1.5][i]}deg">${f}</button>`).join('')}</div>
+  ${ps.length?`<div class="board">${ps.map(tile).join('')}</div>`:'<p class="empty">Пока пусто. Пришли что-нибудь своё!</p>'}</div>
+  <a class="fab" href="https://t.me/ehochweiz?direct">＋ Прислать видео</a>`;
+ if(focus)openSheet(focus);else scrollTo(0,0);
+}
+function openSheet(id){const p=DATA.eho.find(x=>x.id===id);if(!p)return;closeSheet();
+ const el=document.createElement('div');el.className='sheet';el.id='sheet';
+ el.innerHTML=`<div role="dialog" aria-label="${esc(p.title)}">${p.img?`<div class="ph ${p.video?'kb':''}"><button class="x" aria-label="Закрыть">×</button><img src="${p.img}" alt="">${p.video?`<a class="vplay" href="${p.tg}" aria-label="Смотреть видео"><span><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span></a>`:''}</div>`:'<button class="x" aria-label="Закрыть" style="position:sticky;float:right">×</button>'}
+  <div class="in">${meta(p)}<h2 class="dg">${esc(p.title)}</h2>${p.paras.map(x=>`<p>${x}</p>`).join('')}
+  <a class="tg" href="${p.tg}">${p.video?'Смотреть видео в Telegram ↗':'Обсудить в Telegram ↗'}</a></div></div>`;
+ document.body.appendChild(el);document.body.style.overflow='hidden';
+}
+function closeSheet(){const s=$('#sheet');if(s){s.remove();document.body.style.overflow=''}}
+
+/* ---------- routing ---------- */
+function route(){
+ const h=location.hash.slice(1);
+ const m=h.match(/^(ch|uk|eho)(?:-(\d+|dvizh))?$/);if(m&&m[1]==='eho'){m[1]='ch';m.dvizh=true}if(m&&m[2]==='dvizh')m.dvizh=true;
+ if(!m){ if(h==='globe'||!store.get()){show('picker');return} location.replace('#'+store.get());return }
+ if(region!==m[1]){region=m[1];chip='Главная';query='';$('#q').value='';store.set(region);applyRegion()}
+ show('feed');
+ const dz=!!m.dvizh;
+ $('#seg').hidden=region!=='ch';
+ $('#seg').innerHTML=region==='ch'?`<button data-go="ch" class="${dz?'':'on'}"><b>Новости</b><span>Ne Alpy</span></button><button data-go="ch-dvizh" class="${dz?'on':''}"><b>Движ</b><span>ehoschweiz · видео и истории</span></button>`:'';
+ const p=!dz&&m[2]&&DATA[region].find(x=>x.id===h);
+ $('#feed').hidden=!!p;$('#post').hidden=!p;$('#chips').hidden=!!p||dz;
+ document.body.classList.toggle('dz',dz);if(!dz)closeSheet();
+ if(dz){renderDvizh(h.startsWith('eho-')?h:null)} else if(p){renderPost(p);scrollTo(0,0)} else renderFeed();
+}
+function show(v){
+ $('#picker').hidden=v!=='picker';$('#feedview').hidden=v!=='feed';
+ if(v==='picker'){globe.start();document.title='Ne World — выберите страну'} else globe.stop();
+}
+
+/* ---------- globe ---------- */
+const globe=(()=>{
+ const cv=$('#globe'),ctx=cv.getContext('2d'),tip=$('#tip');
+ let W=0,proj=d3.geoOrthographic().clipAngle(90),path=d3.geoPath(proj,ctx),countries=null,borders=null,hover=null,running=false,auto=true,zoom=1,pulse=0,raf=0;
+ const sphere={type:'Sphere'},grat=d3.geoGraticule10();
+ let rot=[-4,-40,0];
+ function size(){const r=cv.getBoundingClientRect(),d=devicePixelRatio||1;W=r.width;cv.width=W*d;cv.height=W*d;ctx.setTransform(d,0,0,d,0,0)}
+ function draw(){
+  const r=W/2*0.92*zoom;proj.scale(r).translate([W/2,W/2]).rotate(rot);
+  ctx.clearRect(0,0,W,W);
+  const g=ctx.createRadialGradient(W*.42,W*.38,r*.1,W/2,W/2,r);g.addColorStop(0,'#1d2233');g.addColorStop(1,'#0e1018');
+  ctx.beginPath();path(sphere);ctx.fillStyle=g;ctx.fill();
+  ctx.save();ctx.beginPath();path(sphere);ctx.clip();
+  ctx.beginPath();path(grat);ctx.strokeStyle='#ffffff0d';ctx.lineWidth=1;ctx.stroke();
+  if(countries){
+   for(const f of countries.features){
+    const act=R[f.reg];ctx.beginPath();path(f);
+    ctx.fillStyle=act?(hover===f?'#ff4652':'#e4232f'):f.soon?(hover===f?'#55565f':'#3a3b42'):'#26272c';ctx.fill();
+   }
+   ctx.beginPath();path(borders);ctx.strokeStyle='#0e1018';ctx.lineWidth=.7;ctx.stroke();
+   for(const k of ['ch','uk']){
+    const c=R[k].coord,on=d3.geoDistance(c,[-rot[0],-rot[1]])<1.45;if(!on)continue;
+    const [x,y]=proj(c),s=(pulse%1);
+    ctx.beginPath();ctx.arc(x,y,6+s*18,0,7);ctx.strokeStyle=`rgba(228,35,47,${1-s})`;ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.arc(x,y,5,0,7);ctx.fillStyle='#fff';ctx.fill();
+    ctx.font='600 13px Onest,sans-serif';const lab=R[k].label;const tw=ctx.measureText(lab).width;
+    const lx=k==='uk'?x-tw-26:x+14,ly=y-(k==='uk'?14:-4);
+    ctx.fillStyle='#000b';ctx.beginPath();ctx.roundRect(lx-6,ly-14,tw+12,22,6);ctx.fill();
+    ctx.fillStyle='#fff';ctx.fillText(lab,lx,ly+1);
+   }
+  }
+  ctx.restore();
+  ctx.beginPath();path(sphere);ctx.strokeStyle='#ffffff22';ctx.lineWidth=1;ctx.stroke();
+ }
+ function loop(t){if(!running)return;pulse=(t%1600)/1600;if(auto)rot[0]=(-4+Math.sin(t/4000)*14);draw();raf=requestAnimationFrame(loop)}
+ function at(e){const r=cv.getBoundingClientRect(),p=proj.invert([e.clientX-r.left,e.clientY-r.top]);if(!p||!countries)return null;
+  if(d3.geoDistance(p,[-rot[0],-rot[1]])>Math.PI/2)return null;
+  for(const k of ['ch','uk']){const [x,y]=proj(R[k].coord);if(Math.hypot(e.clientX-r.left-x,e.clientY-r.top-y)<16)return countries.features.find(f=>f.reg===k)}
+  return countries.features.find(f=>(f.reg||f.soon)&&d3.geoContains(f,p))||null}
+ function fly(f){
+  auto=false;const c=R[f.reg].coord,from=rot.slice(),to=[-c[0],-c[1],0],z0=zoom;
+  d3.select(cv).transition().duration(900).ease(d3.easeCubicInOut).tween('fly',()=>{const ir=d3.interpolate(from,to);return t=>{rot=ir(t);zoom=z0+(2.6-z0)*t}})
+   .on('end',()=>{location.hash=f.reg;setTimeout(()=>{zoom=1;auto=true},400)});
+ }
+ let down=null,moved=false;
+ cv.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY,rot[0],rot[1]];moved=false;auto=false;cv.setPointerCapture(e.pointerId);cv.classList.add('drag')});
+ cv.addEventListener('pointermove',e=>{
+  if(down){const dx=e.clientX-down[0],dy=e.clientY-down[1];if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
+   const k=75/(W/2*zoom);rot=[down[2]+dx*k,Math.max(-80,Math.min(80,down[3]-dy*k)),0];tip.style.opacity=0;return}
+  const f=at(e);hover=f;
+  if(f){tip.innerHTML=R[f.reg]?`<b>${R[f.reg].label}</b> · ${R[f.reg].name} — открыть ленту`:`${f.soon} · скоро`;
+   tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.opacity=1;cv.style.cursor=R[f.reg]?'pointer':'grab'}
+  else{tip.style.opacity=0;cv.style.cursor='grab'}
+ });
+ cv.addEventListener('pointerup',e=>{cv.classList.remove('drag');down=null;if(!moved){const f=at(e);if(f&&R[f.reg]){tip.style.opacity=0;fly(f)}}else setTimeout(()=>auto=false,0);moved=false});
+ cv.addEventListener('pointerleave',()=>{hover=null;tip.style.opacity=0});
+ cv.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(1,Math.min(4,zoom*(e.deltaY<0?1.1:.9)))},{passive:false});
+ new ResizeObserver(()=>{size();draw()}).observe(cv);
+ fetch('world.json').then(r=>r.json()).then(w=>{
+  countries=topojson.feature(w,w.objects.countries);
+  for(const f of countries.features){f.reg=f.id==='756'?'ch':f.id==='826'?'uk':null;f.soon=SOON[f.id]||null}
+  borders=topojson.mesh(w,w.objects.countries,(a,b)=>a!==b);draw();
+ }).catch(()=>{});
+ return{start(){if(running)return;running=true;size();raf=requestAnimationFrame(loop)},stop(){running=false;cancelAnimationFrame(raf)},fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
+})();
+
+/* ---------- choices under the globe ---------- */
+$('#choices').innerHTML=['ch','uk'].map(k=>`<button class="choice" data-r="${k}"><img src="${R[k].logo}" alt=""><span><b>${R[k].label}</b><span>${R[k].name} · ${R[k].subs}</span></span></button>`).join('')+
+ `<div class="soon">Светлее отмечены страны, которые появятся следующими</div>`;
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+ const c=e.target.closest('[data-id]');if(c){location.hash=c.dataset.id;return}
+ const ch=e.target.closest('.choice');if(ch){globe.fly(ch.dataset.r);return}
+ const g=e.target.closest('[data-go]');if(g){location.hash=g.dataset.go;return}
+ const sh=e.target.closest('#sheet');if(sh&&(e.target===sh||e.target.closest('.x'))){closeSheet();return}
+ const t=e.target.closest('[data-eho]');if(t){openSheet(t.dataset.eho);return}
+ const f=e.target.closest('[data-dzf]');if(f){dzf=f.dataset.dzf;renderDvizh();return}
+ const sb=e.target.closest('[data-sub]');if(sb){subs.add(+sb.dataset.sub);setTimeout(()=>{const y=scrollY;renderDvizh();scrollTo(0,y)},300)}
+ const b=e.target.closest('#chips button');if(b){chip=b.textContent;renderFeed();return}
+});
+$('#regionBtn').onclick=$('#globeBtn').onclick=()=>{location.hash='globe'};
+$('#searchBtn').onclick=()=>{const s=$('#search');s.hidden=!s.hidden;if(!s.hidden)$('#q').focus();else{query='';$('#q').value='';renderFeed()}};
+$('#q').addEventListener('input',e=>{query=e.target.value.trim();location.hash.includes('dvizh')?renderDvizh():renderFeed()});
+addEventListener('hashchange',route);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+
+fetch('posts.json').then(r=>r.json()).then(d=>{DATA=d;route()}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+}
+</script>
+</body>
+</html>
