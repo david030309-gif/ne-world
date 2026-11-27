@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T16:52:38.263Z",
+ "updated": "2026-11-27T17:43:17.172Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -18,9 +18,9 @@
     "mode": "tube",
     "severity": 6,
     "status": "Сильные задержки",
-    "cause": "забастовка",
-    "text": "Сильные задержки, забастовка",
-    "reason": "Bakerloo Line: Severe delays due to strike action."
+    "cause": "",
+    "text": "Сильные задержки",
+    "reason": "Bakerloo Line: Severe delays due to train cancellations. Lioness line, Thameslink, London Buses and London Northwestern Railway are accepting valid tickets."
    },
    {
     "id": "central",
@@ -35,30 +35,6 @@
     "reason": "Central Line: Severe delays due to the unavailability of control room staff. Tickets will be accepted on London Buses, Liberty Line, Elizabeth Line, Chiltern Railways, Great Western Railways and Greater Anglia services via any reasonable route."
    },
    {
-    "id": "circle",
-    "name": "Circle",
-    "bg": "#FFD300",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "забастовка",
-    "text": "Сильные задержки, забастовка",
-    "reason": "Circle Line: Severe delays due to strike action."
-   },
-   {
-    "id": "district",
-    "name": "District",
-    "bg": "#00782A",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "забастовка",
-    "text": "Сильные задержки, забастовка",
-    "reason": "District Line: Severe delays due to strike action. If you're travelling beyond Earl's Court, please take the first train and change there. Services are operating every 10 minutes."
-   },
-   {
     "id": "hammersmith-city",
     "name": "Hammersmith & City",
     "bg": "#F3A9BB",
@@ -71,18 +47,6 @@
     "reason": "Hammersmith and City Line: Severe delays due to strike action."
    },
    {
-    "id": "piccadilly",
-    "name": "Piccadilly",
-    "bg": "#003688",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "забастовка",
-    "text": "Сильные задержки, забастовка",
-    "reason": "Piccadilly Line: Severe delays between Acton Town and Uxbridge and MINOR DELAYS between Acton town and Heathrow terminals due to strike action. GOOD SERVICE on the rest of the line."
-   },
-   {
     "id": "victoria",
     "name": "Victoria",
     "bg": "#0098D4",
@@ -93,6 +57,30 @@
     "cause": "забастовка",
     "text": "Сильные задержки, забастовка",
     "reason": "Victoria Line: Severe delays due to strike action."
+   },
+   {
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Circle Line: Minor delays due to strike action."
+   },
+   {
+    "id": "district",
+    "name": "District",
+    "bg": "#00782A",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "District Line: Minor delays due to strike action."
    },
    {
     "id": "metropolitan",
@@ -117,6 +105,18 @@
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
     "reason": "Northern Line: Minor delays due to strike action."
+   },
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "забастовка",
+    "text": "Небольшие задержки, забастовка",
+    "reason": "Piccadilly Line: Minor delays between Acton Town and Uxbridge due to strike action. GOOD SERVICE on the rest of the line."
    }
   ]
  },
@@ -169,14 +169,14 @@
     ]
    },
    {
-    "badge": "A234",
-    "title": "High Street (Bromley)",
+    "badge": "A118",
+    "title": "Romford Road (Newham,Redbridge)",
     "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     -0.051835,
-     51.414039
+     0.058788,
+     51.554479
     ]
    },
    {
