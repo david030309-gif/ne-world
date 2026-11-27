@@ -18,7 +18,9 @@ jobs:
         with:
           node-version: 20
       - name: Fetch open data (TfL, Environment Agency, Met Office)
-        run: node scripts/update-uk.mjs
+        run: |
+          node scripts/probe.mjs || true
+          node scripts/update-uk.mjs
       - name: Commit
         run: |
           git config user.name "ne-world-bot"
