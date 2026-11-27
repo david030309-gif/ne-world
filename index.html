@@ -43,7 +43,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #tip{position:fixed;pointer-events:none;background:#000c;border:1px solid var(--line);padding:6px 10px;border-radius:8px;font-size:13px;white-space:nowrap;transform:translate(-50%,-130%);opacity:0;transition:opacity .12s}
 #tip b{color:#fff;font-weight:600}#tip.act b{color:var(--red)}
 .hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--mut);white-space:nowrap}
-.choices{display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:12px;justify-content:center;padding:4px max(5vw,16px) 18px}
+.choices{display:grid;grid-template-columns:repeat(4,minmax(0,240px));gap:12px;justify-content:center;padding:4px max(5vw,16px) 18px}
 .choice{display:flex;gap:14px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;min-height:76px;transition:border-color .15s,transform .15s}
 .choice:hover,.choice.on{border-color:var(--red);transform:translateY(-2px)}
 .choice img{width:64px;height:48px;object-fit:contain}
@@ -327,7 +327,7 @@ body.dz header{background:#15111dee}
  .ptop .h{font-size:23px}.ptop p{font-size:13px;margin-top:4px;line-height:1.4}
  .globewrap{padding:4px 0}#picker .hint{display:none}
  #gslot{--g:max(190px,min(88vw,calc(100svh - 300px)))}
- .choices{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:4px 12px max(12px,env(safe-area-inset-bottom))}
+ .choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:4px 12px max(12px,env(safe-area-inset-bottom))}
  .choice{flex-direction:column;align-items:flex-start;gap:6px;min-height:0;padding:10px 12px;border-radius:14px}
  .choice img{width:44px;height:30px;object-position:left}.choice b{font-size:13px}.choice span span{font-size:11px;line-height:1.3}
  .soon{font-size:11px}
@@ -385,7 +385,8 @@ const flag=(r,cls='fl')=>{const i=++uid;return r==='ch'
  :`<svg class="${cls}" viewBox="15 0 30 30" preserveAspectRatio="xMidYMid slice"><clipPath id="t${i}"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#t${i})" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>`};
 
 const R_={};
-const NEXT={de:{id:'de',iso:'276',name:'Ne Ordnung',label:'Германия',coord:[10.4,51.1],logo:'logo-de.png'}};
+const NEXT={de:{id:'de',iso:'276',name:'Ne Ordnung',label:'Германия',coord:[10.4,51.1],logo:'logo-de.png',lab:[12,-12]},
+ fr:{id:'fr',iso:'250',name:'Ne Provence',label:'Франция',coord:[2.4,46.8],logo:'logo-fr.png',lab:[-12,20]}};
 const SOON={'276':'Германия','380':'Италия','250':'Франция','724':'Испания','040':'Австрия','528':'Нидерланды','616':'Польша','203':'Чехия','196':'Кипр','376':'Израиль','840':'США','124':'Канада','792':'Турция','784':'ОАЭ','268':'Грузия','688':'Сербия','499':'Черногория','620':'Португалия','428':'Латвия','233':'Эстония','440':'Литва','246':'Финляндия'};
 const R={
  ch:{id:'ch',name:'Ne Alpy',label:'Швейцария',iso:'756',coord:[8.23,46.8],tz:'Europe/Zurich',channel:'golosswiss',subs:'2,56 тыс. подписчиков',logo:'logo-ch.png',
@@ -779,7 +780,7 @@ function show(v){
 Object.assign(R_,R);
 const globe=(()=>{
  const veil=$('#veil'),cv=$('#globe'),ctx=cv.getContext('2d'),tip=$('#tip'),slotEl=$('#gslot'),pk=$('#picker');
- let landM=null,soonM=null,active=[],W=0,H=0,dpr=1,countries=null,borders=null,hover=null,running=false,auto=true,uz=1,pulse=0,raf=0,flying=false,fly0=null,intro=0,deF=null,spin=null;
+ let landM=null,soonM=null,active=[],W=0,H=0,dpr=1,countries=null,borders=null,hover=null,running=false,auto=true,uz=1,pulse=0,raf=0,flying=false,fly0=null,intro=0,nextF=[],spin=null;
  let cx=0,cy=0,R=100,labelA=1;
  const proj=d3.geoOrthographic().clipAngle(90),path=d3.geoPath(proj,ctx);
  const sphere={type:'Sphere'},grat=d3.geoGraticule10();
@@ -799,9 +800,9 @@ const globe=(()=>{
    ctx.beginPath();path(landM);ctx.fillStyle='#26272c';ctx.fill();
    ctx.beginPath();path(soonM);ctx.fillStyle='#3a3b42';ctx.fill();
    if(hover&&!hover.reg){ctx.beginPath();path(hover);ctx.fillStyle=hover.soon?'#5a5c66':'#3d3f49';ctx.fill();ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=1;ctx.stroke()}
-   if(deF){ctx.beginPath();path(deF);ctx.fillStyle=(hover===deF)?'#7a3a40':'#5a2a30';ctx.fill()}
+   for(const f of nextF){ctx.beginPath();path(f);ctx.fillStyle=(hover===f)?'#7a3a40':'#5a2a30';ctx.fill()}
    ctx.beginPath();path(borders);ctx.strokeStyle='#0d0f17';ctx.lineWidth=.7;ctx.stroke();
-   if(deF){ctx.save();ctx.setLineDash([4,3]);ctx.beginPath();path(deF);ctx.strokeStyle='rgba(255,120,128,.85)';ctx.lineWidth=1.2;ctx.stroke();ctx.restore()}
+   for(const f of nextF){ctx.save();ctx.setLineDash([4,3]);ctx.beginPath();path(f);ctx.strokeStyle='rgba(255,120,128,.85)';ctx.lineWidth=1.2;ctx.stroke();ctx.restore()}
    for(const f of active){ctx.beginPath();path(f);ctx.fillStyle=(hover&&hover.reg===f.reg)?'#ff4652':'#e4232f';ctx.fill()}
    if(labelA>0.01){ctx.save();ctx.globalAlpha=labelA;
     for(const k of ['ch','uk']){
@@ -814,11 +815,11 @@ const globe=(()=>{
      ctx.fillStyle='rgba(0,0,0,.72)';ctx.beginPath();ctx.roundRect(lx-6,ly-14,tw+12,22,6);ctx.fill();
      ctx.fillStyle='#fff';ctx.fillText(lab,lx,ly+1);
     }
-    {const c=NEXT.de.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])<1.45){
+    for(const n of Object.values(NEXT)){const c=n.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;
      const [x,y]=proj(c);ctx.beginPath();ctx.arc(x,y,4,0,7);ctx.fillStyle='#cfcfd4';ctx.fill();
-     ctx.font='600 12px Onest,sans-serif';const lab='Германия · скоро',tw=ctx.measureText(lab).width;const lx=x+12,ly=y-12;
+     ctx.font='600 12px Onest,sans-serif';const lab=n.label+' · скоро',tw=ctx.measureText(lab).width;const lx=n.lab[0]<0?x-tw-12:x+12,ly=y+n.lab[1];
      ctx.fillStyle='rgba(0,0,0,.6)';ctx.beginPath();ctx.roundRect(lx-6,ly-13,tw+12,20,6);ctx.fill();
-     ctx.fillStyle='#cfcfd4';ctx.fillText(lab,lx,ly+1)}}
+     ctx.fillStyle='#cfcfd4';ctx.fillText(lab,lx,ly+1)}
     ctx.restore()}
   }
   ctx.beginPath();path(sphere);ctx.strokeStyle='rgba(255,255,255,.12)';ctx.lineWidth=1;ctx.stroke();
@@ -846,9 +847,9 @@ const globe=(()=>{
  function inSphere(e){return Math.hypot(e.clientX-cx,e.clientY-cy)<R}
  function at(e){if(!countries||!inSphere(e))return null;const p=proj.invert([e.clientX,e.clientY]);if(!p)return null;
   for(const k of ['ch','uk']){const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<18)return countries.features.find(f=>f.reg===k)}
-  if(deF){const c=NEXT.de.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])<1.45){const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<18)return deF}}
+  for(const f of nextF){const c=f.next.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])<1.45){const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<14)return f}}
   return countries.features.find(f=>d3.geoContains(f,p))||null}
- const tipFor=f=>f===deF?`<b>Германия</b> · Ne Ordnung — скоро`:R_[f.reg]?`<b>${R_[f.reg].label}</b> · ${R_[f.reg].name} — открыть ленту`:`<b>${esc(f.properties.ru||f.properties.name||'')}</b>${f.soon?' · скоро':''}`;
+ const tipFor=f=>f.next?`<b>${f.next.label}</b> · ${f.next.name} — скоро`:R_[f.reg]?`<b>${R_[f.reg].label}</b> · ${R_[f.reg].name} — открыть ленту`:`<b>${esc(f.properties.ru||f.properties.name||'')}</b>${f.soon?' · скоро':''}`;
  let tipT=0;const showTip=(f,x,y,ms)=>{clearTimeout(tipT);tip.innerHTML=tipFor(f);tip.classList.toggle('act',!!R_[f.reg]);const tw=tip.offsetWidth;x=Math.max(tw/2+8,Math.min(innerWidth-tw/2-8,x));tip.style.left=x+'px';tip.style.top=y+'px';tip.style.opacity=1;if(ms)tipT=setTimeout(()=>{tip.style.opacity=0;hover=null},ms)};
  function fly(f){
   if(flying)return;
@@ -909,7 +910,7 @@ const globe=(()=>{
  fetch('world-110m.json').then(r=>r.json()).then(w=>{
   const o=w.objects.countries,gs=o.geometries;
   countries=topojson.feature(w,o);
-  deF=countries.features.find(f=>f.id==='276')||null;
+  nextF=Object.values(NEXT).map(n=>{const f=countries.features.find(f=>f.id===n.iso);if(f)f.next=n;return f}).filter(Boolean);
   for(const f of countries.features){f.reg=f.id==='756'?'ch':f.id==='826'?'uk':null;f.soon=SOON[f.id]||null}
   landM=topojson.merge(w,gs.filter(g=>!SOON[g.id]&&g.id!=='756'&&g.id!=='826'));
   soonM=topojson.merge(w,gs.filter(g=>SOON[g.id]));
@@ -922,8 +923,8 @@ const globe=(()=>{
  }).catch(()=>{});
  return{start(back){if(running)return;running=true;uzT=null;pk.classList.remove('gz');cv.style.transition='none';cv.style.transform='';cv.style.opacity='';veil.style.opacity='';veil.style.transition='';size();flying=false;fly0=null;hover=null;uz=1;auto=true;intro=back?performance.now():0;raf=requestAnimationFrame(loop)},
         stop(){running=false;cancelAnimationFrame(raf);flying=false;fly0=null},
-        peek(k){const n=NEXT[k];if(!n||!countries)return;auto=false;intro=0;uzT=1;hover=deF;tip.style.opacity=0;
-          spin={t0:performance.now(),d:800,ir:d3.interpolate(rot.slice(),[-n.coord[0],-n.coord[1],0]),done(){const [x,y]=proj(n.coord);showTip(deF,x,y-8,3200)}}},
+        peek(k){const n=NEXT[k];if(!n||!countries)return;auto=false;intro=0;uzT=1;const nf=nextF.find(f=>f.next===n);hover=nf;tip.style.opacity=0;
+          spin={t0:performance.now(),d:800,ir:d3.interpolate(rot.slice(),[-n.coord[0],-n.coord[1],0]),done(){const [x,y]=proj(n.coord);if(nf)showTip(nf,x,y-8,3200)}}},
         fly(k){const f=countries&&countries.features.find(x=>x.reg===k);if(f)fly(f);else location.hash=k}};
 })();
 
