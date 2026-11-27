@@ -1,0 +1,7 @@
+{
+  "_about": "Free Mixkit clips (mixkit.co, free license). The build-videos workflow cuts each list into one short silent loop: video/<key>.mp4 + poster video/<key>.jpg. Edit ids here and push to rebuild.",
+  "de": [30511, 26941, 27091, 27102],
+  "fr": [31652, 27045, 4024, 4348],
+  "mc": [4300, 4301, 20845, 4446],
+  "il": [22050, 27382, 22049, 12770]
+}

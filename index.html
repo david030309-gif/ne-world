@@ -91,6 +91,17 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #soon .logo{margin:-4px -4px 14px;padding:18px 14px 14px;border-radius:14px;background:radial-gradient(120% 90% at 50% 30%,#2a2c38 0%,#15161d 75%);display:grid;place-items:center}
 #soon img{display:block;width:100%;max-width:330px;height:auto;max-height:200px;object-fit:contain;filter:drop-shadow(0 6px 18px #0008)}
 @media(max-width:600px){#soon img{max-height:112px}#soon .logo{padding:12px 10px 10px;margin-bottom:10px}}
+#soon .logo{position:relative;overflow:hidden;aspect-ratio:16/9;align-self:stretch;box-sizing:border-box;width:calc(100% + 8px)}
+#soon .logo>img{max-height:78%!important;width:auto;max-width:88%}
+#soon .logo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.18);transition:opacity .7s ease .15s,transform 1.4s cubic-bezier(.2,.7,.2,1) .15s}
+#soon .logo img{position:relative;z-index:1;transform-origin:50% 45%;transition:transform .75s cubic-bezier(.55,0,.75,.2),opacity .5s ease .2s}
+#soon .logo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,#000a 0,#0000 45%);opacity:0;transition:opacity .6s .6s;pointer-events:none}
+#soon .logo.fly video{opacity:1;transform:none}
+#soon .logo .mini{position:absolute;z-index:2;left:12px;bottom:10px;width:34%;max-width:34%!important;max-height:none!important;opacity:0;transform:translateY(6px);transition:opacity .5s ease 1s,transform .5s ease 1s;filter:drop-shadow(0 2px 8px #000c)}
+#soon .logo.fly img:not(.mini){animation:flyin .75s cubic-bezier(.55,0,.75,.2) forwards}
+#soon .logo.fly .mini{opacity:1;transform:none}
+#soon .logo.fly::after{opacity:1}
+@keyframes flyin{to{transform:scale(6);opacity:0}}
 #soon .sbadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#e4232f;color:#fff;border-radius:999px;padding:3px 9px;margin-bottom:8px}
 #soon h3{margin:0 0 2px;font-size:19px;font-weight:700;color:#fff}
 #soon .ctry{color:#9a9ca6;font-size:13px;margin-bottom:10px}
@@ -950,8 +961,11 @@ const globe=(()=>{
  const soon=$('#soon');
  const hideSoon=()=>soon.classList.remove('on');
  const openSoon=(n,x,y)=>{tip.style.opacity=0;
-  soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="logo"><img src="${n.logo}" alt="${n.name}"></div><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
+  soon.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="logo"><video muted loop playsinline preload="auto" poster="video/${n.id}.jpg" src="video/${n.id}.mp4"></video><img src="${n.logo}" alt="${n.name}"><img class="mini" src="${n.logo}" alt=""></div><span class="sbadge">Скоро</span><h3>${n.name}</h3><div class="ctry">${n.label} · новый канал в Telegram</div><p class="hook">${n.hook}</p><p class="d">${n.desc}</p><div class="tags">${n.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="foot">Запуск совсем скоро — следите за Ne World</div>`;
   soon.querySelector('.x').onclick=e=>{e.stopPropagation();hideSoon()};
+  {const lg=soon.querySelector('.logo'),v=lg.querySelector('video'),t0=performance.now();   // logo first, then the camera flies into it and the clip starts
+   v.addEventListener('loadeddata',()=>{setTimeout(()=>{if(!soon.contains(v))return;v.play().catch(()=>{});lg.classList.add('fly')},Math.max(0,900-(performance.now()-t0)))},{once:true});
+   v.addEventListener('error',()=>v.remove(),{once:true})}
   const h=soon.offsetHeight||330,w=soon.offsetWidth||340;
   if(innerWidth<600){soon.classList.remove('sd');soon.style.left='50%';soon.style.top='auto';soon.style.bottom='calc(14px + env(safe-area-inset-bottom,0px))'}
   else{soon.classList.add('sd');soon.style.bottom='';const left=x+48+w<innerWidth-12?x+48:Math.max(12,x-48-w);   // beside the country, not on top of it
