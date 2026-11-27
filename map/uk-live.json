@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T20:28:35.741Z",
+ "updated": "2026-11-27T21:28:33.454Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,20 +8,8 @@
  },
  "lines": {
   "ok": true,
-  "total": 5,
+  "total": 7,
   "items": [
-   {
-    "id": "mildmay",
-    "name": "Mildmay",
-    "bg": "#006FE6",
-    "fg": "#fff",
-    "mode": "overground",
-    "severity": 6,
-    "status": "Сильные задержки",
-    "cause": "неисправность поезда",
-    "text": "Сильные задержки, неисправность поезда",
-    "reason": "Mildmay Line: Severe delays due to an earlier faulty train at Kensington (Olympia). London Buses and London Underground are accepting valid tickets via any reasonable route."
-   },
    {
     "id": "central",
     "name": "Central",
@@ -33,6 +21,18 @@
     "cause": "забастовка",
     "text": "Небольшие задержки, забастовка",
     "reason": "Central Line: Minor delays due to the earlier strike action."
+   },
+   {
+    "id": "hammersmith-city",
+    "name": "Hammersmith & City",
+    "bg": "#F3A9BB",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "",
+    "text": "Небольшие задержки",
+    "reason": "Hammersmith and City Line: Minor delays due to train cancellations."
    },
    {
     "id": "metropolitan",
@@ -47,6 +47,18 @@
     "reason": "Metropolitan Line: Minor delays between Harrow on the Hill and Uxbridge due to the earlier strike action. GOOD SERVICE on the rest of the line"
    },
    {
+    "id": "mildmay",
+    "name": "Mildmay",
+    "bg": "#006FE6",
+    "fg": "#fff",
+    "mode": "overground",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "неисправность поезда",
+    "text": "Небольшие задержки, неисправность поезда",
+    "reason": "Mildmay Line: Minor delays due to an earlier faulty train at Kensington (Olympia)."
+   },
+   {
     "id": "northern",
     "name": "Northern",
     "bg": "#000000",
@@ -57,6 +69,18 @@
     "cause": "проблема с путями",
     "text": "Небольшие задержки, проблема с путями",
     "reason": "Northern Line: Minor delays between Camden Town and Kennington via Charing Cross due to a points failure at Kennington. GOOD SERVICE on the rest of the line."
+   },
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "сбой сигнализации",
+    "text": "Небольшие задержки, сбой сигнализации",
+    "reason": "Piccadilly Line: Minor delays between Acton Town and Uxbridge / Heathrow Terminals due to an earlier signalling problem. GOOD SERVICE on the rest of the line."
    },
    {
     "id": "victoria",
@@ -74,30 +98,8 @@
  },
  "roads": {
   "ok": true,
-  "total": 12,
+  "total": 8,
   "items": [
-   {
-    "badge": "A41",
-    "title": "Hendon Way (Barnet)",
-    "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Serious",
-    "rank": 6,
-    "ll": [
-     -0.21921,
-     51.577073
-    ]
-   },
-   {
-    "badge": "A406",
-    "title": "Angel Road (Enfield)",
-    "text": "Сломанная машина",
-    "severity": "Serious",
-    "rank": 5,
-    "ll": [
-     -0.053739,
-     51.61352
-    ]
-   },
    {
     "badge": "A4202",
     "title": "Park Lane (Westminster)",
@@ -107,6 +109,17 @@
     "ll": [
      -0.15332,
      51.504823
+    ]
+   },
+   {
+    "badge": "A41",
+    "title": "Hendon Way (Barnet)",
+    "text": "Дорожные работы, дорога частично перекрыта",
+    "severity": "Moderate",
+    "rank": 4,
+    "ll": [
+     -0.21921,
+     51.577073
     ]
    },
    {
@@ -140,6 +153,17 @@
     "ll": [
      0.058788,
      51.554479
+    ]
+   },
+   {
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
+    "text": "Дорожные работы",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.068175,
+     51.605584
     ]
    }
   ]
