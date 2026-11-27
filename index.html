@@ -491,7 +491,7 @@ function openSheet(id){const p=DATA.eho.find(x=>x.id===id);if(!p)return;closeShe
 function closeSheet(){const s=$('#sheet');if(s){s.remove();document.body.style.overflow=''}}
 
 /* ---------- live maps ---------- */
-const MAPS={ch:{title:'Швейцария сейчас',updated:'08:10',tg:'https://t.me/golosswiss/1094',
+const MAPS={ch:{title:'Швейцария сейчас',updated:'',tg:'https://t.me/golosswiss/1094',
  geo:'map/ch-cantons.json',
  groups:[
   ['train','Поезда',[{b:'SBB',t:'IR26 · Giubiasco',x:'Техническая неисправность. Поезда опаздывают, часть поездов отменят',u:'до 15:00',ll:[9.006,46.172]},
@@ -515,17 +515,18 @@ const AVC=['','#3f5a2a','#8a7a1f','#b3621f','#b3261e','#7a0f0f'];
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
  const L=region==='ch'&&LIVE,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null;
- const bits=[];if(L&&L.trains&&L.trains.ok)bits.push(`${L.trains.total} сбоев в транспорте`);if(av)bits.push(`лавинная опасность ${av.max} из 5`);
- return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${L?hmCH(L.updated):M.updated}</span><span class="ms">${bits.length?bits.join(' · '):M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
+ const bits=[];if(L&&L.trains&&L.trains.ok)bits.push(`${L.trains.total} сбоев в транспорте`);if(L&&L.warnings&&L.warnings.ok)bits.push(`${L.warnings.total} предупреждений властей`);if(av)bits.push(`лавинная опасность ${av.max} из 5`);
+ return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${L?hmCH(L.updated):''}</span><span class="ms">${bits.join(' · ')}</span><span class="mgo">Карта →</span></button>`}
 let geoCache=null;
 function renderMap(){if(region==='ch'&&!LIVE&&!renderMap.tried){renderMap.tried=1;loadLive().then(()=>{if(location.hash==='#ch-map')renderMap()});}
- const M=MAPS[region],L=region==='ch'?LIVE:null,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null,tl=L&&L.trains&&L.trains.ok?L.trains:null;
- const groups=M.groups.map(g=>g.slice());
- if(av){groups[3]=['aval','Горы',[{b:av.max+'/5',t:`Лавинная опасность ${av.max} из 5 — ${av.maxText}`,x:`В ${av.regionsAtMax} районах. ${av.topRegions.slice(0,4).join(', ')} и др. Вне лыжных трасс опасно`}],`Бюллетень SLF от ${dCH(av.published)}, следующий — ${dCH(av.nextUpdate)}`]}
- if(tl){groups[0]=['train','Поезда и транспорт',tl.items.slice(0,8).map(it=>({b:it.badge,t:it.title,x:it.reason||'',u:it.until?'до '+hmCH(it.until):''})),tl.total>8?`Ещё ${tl.total-8} сообщений`:'']}
- const sample=!tl;
- const stats=[[tl?String(tl.total):M.stats[0][0],tl?'сбоев в транспорте':M.stats[0][1]+(sample?' *':'')],[M.stats[1][0],M.stats[1][1]+' *'],[M.stats[2][0],M.stats[2][1]+' *'],[av?av.max+'/5':M.stats[3][0],'лавинная опасность']];
- const upd=L?hmCH(L.updated):M.updated;
+ const M=MAPS[region],L=region==='ch'?LIVE:null,av=L&&L.avalanche&&L.avalanche.ok?L.avalanche:null,tl=L&&L.trains&&L.trains.ok?L.trains:null,wl=L&&L.warnings&&L.warnings.ok?L.warnings:null;
+ const groups=[
+  ['train','Поезда и транспорт',tl?tl.items.slice(0,8).map(it=>({b:it.badge,t:it.title,x:it.reason||'',u:it.until?'до '+hmCH(it.until):''})):[],tl?(tl.total>8?`Ещё ${tl.total-8} сообщений`:(tl.total?'':'Сейчас сбоев нет')):'Сбои поездов скоро появятся здесь'],
+  ['road','Дороги',[],'Дорожная обстановка скоро появится здесь'],
+  ['warn','Предупреждения властей',wl?wl.items.map(it=>({b:'!',t:it.place||it.kind,x:`${it.kind}${it.severity?' · '+it.severity:''}${it.canton?' · '+it.canton:''}. ${it.title}`,ll:it.ll})):[],wl?(wl.total?'':'Сейчас предупреждений нет'):'Данные загружаются'],
+  ['aval','Горы',av?[{b:av.max+'/5',t:`Лавинная опасность ${av.max} из 5 — ${av.maxText}`,x:`В ${av.regionsAtMax} районах: ${av.topRegions.slice(0,4).join(', ')} и др. Вне лыжных трасс опасно`}]:[],av?`Бюллетень SLF от ${dCH(av.published)}, следующий — ${dCH(av.nextUpdate)}`:'Данные загружаются']];
+ const stats=[[tl?String(tl.total):'—','сбоев в транспорте'],['—','событий на дорогах'],[wl?String(wl.total):'—','предупреждений властей'],[av?av.max+'/5':'—','лавинная опасность']];
+ const upd=L?hmCH(L.updated):'—';
  const evs=[];groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
   <div class="mapcard">
@@ -533,17 +534,16 @@ function renderMap(){if(region==='ch'&&!LIVE&&!renderMap.tried){renderMap.tried=
    <div class="vmap" id="vmap"><svg id="vsvg" role="img" aria-label="Карта Швейцарии с событиями"></svg>
     <div class="vctl"><button data-mz="in" aria-label="Приблизить">+</button><button data-mz="out" aria-label="Отдалить">−</button><button data-mz="0" aria-label="Сбросить">⟲</button></div>
     <div class="vpop" id="vpop" hidden></div></div>
-   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span>${AVAL?[2,3,4,5].filter(l=>AVAL.features.some(f=>f.properties.level===l)).map(l=>`<span><i style="background:${AVC[l]}"></i>Лавины ${l}</span>`).join(''):'<span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span>'}</div>
+   <div class="mleg">${tl?'<span><i class="k-train"></i>Транспорт</span>':''}<span><i class="k-warn"></i>Предупреждения</span>${AVAL?[2,3,4,5].filter(l=>AVAL.features.some(f=>f.properties.level===l)).map(l=>`<span><i style="background:${AVC[l]}"></i>Лавины ${l}</span>`).join(''):'<span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span>'}</div>
    <p class="zline">Двумя пальцами — приблизить. Нажмите на значок, чтобы увидеть событие.</p>
   </div>
   <div class="minfo">
-   <div class="mlive"><i class="live"></i>${L?`Обновлено в ${upd} · данные проверяются каждые 10 минут`:`Обновлено в ${upd}`}</div>
+   <div class="mlive"><i class="live"></i>${L?`Обновлено в ${upd} · данные проверяются каждые 10 минут`:'Загружаем свежие данные…'}</div>
    <h1 class="h">${M.title}</h1>
    <div class="mstats">${stats.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
-   ${sample?`<p class="msrc">* Поезда, дороги и предупреждения пока показаны примером от 27 ноября, 08:10. Лавинная опасность — живые данные SLF.</p>`:''}
-   ${groups.map(([k,name,items,more])=>`<h3>${name}</h3><div class="evl">${items.map(it=>`<button class="ev" ${it.ll?`data-ev="${it.i}"`:''}><span class="bd k-${k}">${esc(it.b)}</span><span><b>${esc(it.t)}</b><small>${esc(it.x)}</small></span>${it.u?`<em>${esc(it.u)}</em>`:''}</button>`).join('')}${more?`<p class="more2">${more} — <a href="${M.tg}">в Telegram</a></p>`:''}</div>`).join('')}
+   ${groups.map(([k,name,items,more])=>`<h3>${name}</h3><div class="evl">${items.map(it=>`<button class="ev" ${it.ll?`data-ev="${it.i}"`:''}><span class="bd k-${k}">${esc(it.b)}</span><span><b>${esc(it.t)}</b><small>${esc(it.x)}</small></span>${it.u?`<em>${esc(it.u)}</em>`:''}</button>`).join('')}${more?`<p class="more2">${more}</p>`:''}</div>`).join('')}
    <h3>Важно</h3><p>${M.note}</p>
-   <p class="msrc">Источники: ${M.src}</p>
+   <p class="msrc">Источники: SLF (лавины), Alertswiss (предупреждения властей)${tl?', opentransportdata.swiss (транспорт)':''}. Тексты предупреждений — в официальной формулировке.</p>
    <a class="tg" href="${M.tg}">Открыть пост в Telegram ↗</a>
   </div></section>`;
  const go=geo=>drawVMap(M,evs,geo);
@@ -559,7 +559,7 @@ function drawVMap(M,evs,topo){
  defs.append('pattern').attr('id','hatch').attr('width',6).attr('height',6).attr('patternUnits','userSpaceOnUse').attr('patternTransform','rotate(45)')
    .append('rect').attr('width',2.2).attr('height',6).attr('fill','rgba(255,207,51,.22)');
  const g=svg.append('g');
- const av=new Set(AVAL?[]:M.aval);
+ const av=new Set([]);
  g.append('g').selectAll('path').data(cant.features).join('path').attr('d',path)
    .attr('fill',d=>av.has(+d.id)?'#4a3d22':'#262a36').attr('stroke','#11131a').attr('stroke-width',1).attr('vector-effect','non-scaling-stroke');
  if(AVAL){ // official SLF warning zones, clipped to the country outline

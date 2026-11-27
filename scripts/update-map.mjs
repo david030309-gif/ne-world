@@ -6,7 +6,7 @@
 // Sources:
 //   SLF avalanche bulletin (open, no key)       https://aws.slf.ch/api/bulletin/caaml
 //   Public transport disruptions (needs key)    https://api.opentransportdata.swiss/la/siri-sx
-import { writeFile, readFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 
 const LEVEL = { low: 1, moderate: 2, considerable: 3, high: 4, very_high: 5 };
 const LEVEL_RU = ['', 'слабая', 'умеренная', 'значительная', 'большая', 'очень большая'];
@@ -124,6 +124,36 @@ async function trains() {
   return { ok: true, total: out.length, items: out.slice(0, 25) };
 }
 
+// ---------- 3. Official warnings (Alertswiss, the federal/cantonal alert system) ----------
+const EVENT_RU = [[/flood|hochwasser/i,'Наводнение'],[/fire|brand/i,'Пожар'],[/storm|sturm|wind/i,'Буря'],[/water|wasser/i,'Питьевая вода'],
+  [/power|strom/i,'Отключение электричества'],[/landslide|rock|rutsch|fels/i,'Оползень / камнепад'],[/avalanche|lawine/i,'Лавины'],
+  [/chemical|toxic|gift/i,'Опасные вещества'],[/earthquake|erdbeben/i,'Землетрясение'],[/heat|hitze/i,'Жара'],[/closure|sperr|closed|traffic|verkehr/i,'Ограничение движения'],
+  [/police|polizei/i,'Полиция'],[/test/i,'Тест']];
+const SEV_RU = { extreme: 'чрезвычайное', severe: 'серьёзное', moderate: 'умеренное', minor: 'незначительное' };
+async function warnings() {
+  const r = await get('https://www.alert.swiss/content/alertswiss-internet/en/home/_jcr_content/polyalert.alertswiss_alerts.actual.json');
+  const j = await r.json();
+  const items = [];
+  for (const a of j.alerts || []) {
+    if (a.allClear || a.testAlert || a.technicalTestAlert) continue;
+    const area = (a.areas || [])[0] || {};
+    let ll = null;
+    const c = (area.circles || [])[0];
+    if (c && c.centerPosition) ll = [ +c.centerPosition[1], +c.centerPosition[0] ];
+    else if ((area.polygons || [])[0]) {
+      const pts = (area.polygons[0].coordinates || area.polygons[0]).map(p => Array.isArray(p) ? p : [p.longitude ?? p[1], p.latitude ?? p[0]]);
+      if (pts.length) ll = [ pts.reduce((s, p) => s + +p[1], 0) / pts.length, pts.reduce((s, p) => s + +p[0], 0) / pts.length ].reverse();
+    }
+    if (ll && !(ll[0] > 5.8 && ll[0] < 10.6 && ll[1] > 45.7 && ll[1] < 47.9)) ll = null;   // keep only points inside Switzerland
+    const title = a.title?.title || a.title?.titleGtransOrigin || '';
+    const kind = (EVENT_RU.find(([re]) => re.test(`${a.event} ${title}`)) || [, 'Предупреждение'])[1];
+    const place = area.description?.description || (area.regions || []).map(x => x.region).join(', ');
+    items.push({ type: 'warn', badge: '!', kind, place, title, severity: SEV_RU[a.severity] || a.severity || '',
+      canton: (area.regions || []).map(x => x.region).join(', '), publisher: a.publisherName || '', ll });
+  }
+  return { ok: true, total: items.length, items };
+}
+
 // ---------- run ----------
 const live = { updated: now.toISOString(), sources: {} };
 let geo = null;
@@ -131,14 +161,13 @@ try { const a = await avalanche(); geo = a.geo; live.avalanche = a.summary; live
 catch (e) { live.avalanche = { ok: false }; live.sources.slf = 'error: ' + e.message; console.error('SLF failed:', e.message); }
 try { live.trains = await trains(); live.sources.trains = live.trains.ok ? 'ok' : live.trains.reason; }
 catch (e) { live.trains = { ok: false, reason: 'error' }; live.sources.trains = 'error: ' + e.message; console.error('Trains failed:', e.message); }
+try { live.warnings = await warnings(); live.sources.alertswiss = 'ok'; }
+catch (e) { live.warnings = { ok: false }; live.sources.alertswiss = 'error: ' + e.message; console.error('Alertswiss failed:', e.message); }
 live.roads = { ok: false, reason: 'not_connected' };
 
 // Keep the previous avalanche zones if SLF was unreachable this time
 if (geo) await writeFile('map/ch-avalanche.json', JSON.stringify(geo));
 // Only rewrite the summary when something besides the timestamp changed (saves needless site rebuilds),
 // but always refresh it at least once an hour so the "updated" time stays honest.
-let prev = null; try { prev = JSON.parse(await readFile('map/ch-live.json', 'utf8')); } catch {}
-const strip = o => JSON.stringify({ ...o, updated: undefined });
-const stale = !prev || (now - new Date(prev.updated)) > 55 * 60 * 1000;
-if (!prev || strip(prev) !== strip(live) || stale) await writeFile('map/ch-live.json', JSON.stringify(live, null, 1));
-console.log(JSON.stringify({ avalanche: live.avalanche?.max, zones: geo?.features.length, trains: live.sources.trains }));
+await writeFile('map/ch-live.json', JSON.stringify(live, null, 1));
+console.log(JSON.stringify({ avalanche: live.avalanche?.max, zones: geo?.features.length, trains: live.sources.trains, warnings: live.warnings?.total }));
