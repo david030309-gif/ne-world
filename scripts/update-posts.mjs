@@ -34,6 +34,8 @@ function parse(html, channel) {
     if (textEl.length) {
       const c = textEl.clone();
       c.find('i.emoji').each((_, e) => { $(e).replaceWith($(e).text()); });
+      { const lead = c.contents().filter((_, n) => !(n.type === 'text' && !$(n).text().trim())).first();   // bold opening = the headline
+        if (lead.length && /^(b|strong)$/i.test(lead[0].tagName || '') && lead.text().trim().length >= 8) lead.after('\n'); }
       c.find('br').replaceWith('\n');
       c.find('tg-spoiler').each((_, e) => { $(e).replaceWith($(e).text()); });
       lines = c.text().split('\n');
@@ -73,7 +75,10 @@ for (const { key, channel, keep } of CHANNELS) {
   for (const p of posts) {
     const id = `${key}-${p.num}`, old = byId.get(id);
     if (HIDDEN.has(id)) continue;
-    if (old) { if (p.views > (old.views || 0)) old.views = p.views; continue; }   // known post: only refresh the view count
+    if (old) {   // known post: refresh the view count and the text (edited in Telegram, or parsed better now)
+      if (p.views > (old.views || 0)) old.views = p.views;
+      if (p.title !== old.title || JSON.stringify(p.paras) !== JSON.stringify(old.paras)) { const f = toPost(p, key, channel, old.img); old.title = f.title; old.paras = f.paras; if (f.bullets) old.bullets = f.bullets; }
+      continue; }
     let img = null;
     if (p.img) { const path = `img/${id}.jpg`; if (await saveImage(p.img, path)) img = path; }
     const post = toPost(p, key, channel, img);

@@ -51,6 +51,7 @@ export function fromMessage(m, channel) {
   const first = kept.length ? kept[0] : [];
   let title = clean(first[0] || '');
   const restFirst = first.slice(1).map(clean).filter(Boolean);
+  if (title.length > 120) { const s = sentences(title); if (s.length > 1 && s[0].length >= 20 && s[0].length <= 140) { title = s[0]; restFirst.unshift(s.slice(1).join(' ')); } }
   const paras = [...(restFirst.length ? [restFirst.map(esc).join('<br>')] : []),
     ...kept.slice(1).map(b => b.map(clean).filter(Boolean).map(esc).join('<br>')).filter(Boolean)];
   if (!title && paras.length) title = cut(paras.shift().replace(/<br>/g, ' '), 90);

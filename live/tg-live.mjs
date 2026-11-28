@@ -11,6 +11,8 @@ function parse(html, channel) {
     if (textEl) {
       const c = textEl.cloneNode(true);
       c.querySelectorAll('i.emoji, tg-spoiler').forEach(e => e.replaceWith(doc.createTextNode(e.textContent)));
+      { const lead = [...c.childNodes].find(n => !(n.nodeType === 3 && !n.textContent.trim()));   // bold opening = the headline
+        if (lead && /^(B|STRONG)$/.test(lead.nodeName) && lead.textContent.trim().length >= 8) lead.after(doc.createTextNode('\n')); }
       c.querySelectorAll('br').forEach(e => e.replaceWith(doc.createTextNode('\n')));
       lines = c.textContent.split('\n');
     }
