@@ -441,14 +441,15 @@ body.dz header{background:#15111dee}
 .lmap .leaflet-popup-content-wrapper,.lmap .leaflet-popup-tip{background:#1b1b1d;color:var(--ink);border:1px solid var(--line)}
 .lmap .leaflet-popup-content{margin:12px}.lmap a.leaflet-popup-close-button{color:#aaa}
 .lmap.leaflet-container{font-family:Inter,system-ui,sans-serif;background:#0f1116}
-.leaflet-control-attribution{background:rgba(12,12,13,.7)!important;color:#888!important}.leaflet-control-attribution a{color:#aaa!important}
+.leaflet-control-attribution{background:rgba(12,12,13,.7)!important;color:#888!important}.lmap .leaflet-control-attribution{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}   /* one line, so the «Транспорт live» pill above it never covers it */.leaflet-control-attribution a{color:#aaa!important}
 .lmap .leaflet-bar a{background:#1b1b1d;color:#eee;border-color:#2c2c30}.lmap .leaflet-bar a:hover{background:#242427}
 .lpop{display:flex;flex-direction:column;gap:4px}.lpop img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-bottom:4px}
 .lpop small{font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.04em}.lpop b{font-size:15px;line-height:1.3}.lpop span{color:var(--mut);font-size:13px}
 .lpop a{color:#fff!important;font-weight:700;margin-top:4px}
 figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}.cred a{color:var(--mut)}
 @media(max-width:860px){.lmap{height:62vh}.mchero{height:150px}.mcwx{font-size:17px}.mchero{height:auto}.mcv{padding:16px}.mchero .mgo{position:static;align-self:flex-start;margin-top:6px;font-size:13px}.mce{flex-basis:62vw}.mci{aspect-ratio:16/10}}
-.lwrap{position:relative}.ljump{position:absolute;right:10px;top:10px;z-index:500;display:flex;gap:4px;background:rgba(12,12,13,.8);border-radius:999px;padding:3px}
+.lwrap{position:relative;isolation:isolate;z-index:0}   /* Leaflet panes use z-index 400+: keep them inside the card, under the sticky header */
+.ljump{position:absolute;right:10px;top:10px;z-index:500;display:flex;gap:4px;background:rgba(12,12,13,.8);border-radius:999px;padding:3px}
 .ljump button{padding:5px 10px;border-radius:999px;font-size:12px;color:#ddd}.ljump button.on{background:var(--ink);color:#0c0c0d}
 @media(max-width:860px){.mhead .mcwx{display:none}}
 .osmdark{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.92) saturate(.55)}
@@ -983,8 +984,10 @@ function mcTop(){const ev=mcEvents();loadMCW().then(mcPaint);
   <span class="mcs">${ev.filter(mcNow).length?`${ev.filter(mcNow).length} идёт сейчас · `:''}${ev.length} ${pl(ev.length,['событие','события','событий'])} на карте</span><span class="mgo">Карта движа →</span></span></button>
   ${ev.length?`<section class="mcdz"><h3 class="sh">Движ — ближайшие события</h3><div class="mcrow">${ev.slice(0,10).map(mcCard).join('')}</div></section>`:''}`}
 function needLeaflet(){if(window.L)return Promise.resolve();return needLeaflet.p||(needLeaflet.p=new Promise((ok,no)=>{
- const c=document.createElement('link');c.rel='stylesheet';c.href='leaflet/leaflet.css';document.head.appendChild(c);
- const s=document.createElement('script');s.src='leaflet/leaflet.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)}))}
+ // wait for BOTH the stylesheet and the script: a map built before leaflet.css applies measures itself wrong (grey tiles, wrong view)
+ const c=document.createElement('link');c.rel='stylesheet';c.href='leaflet/leaflet.css';const css=new Promise(r=>{c.onload=c.onerror=r});document.head.appendChild(c);
+ const js=new Promise((r,x)=>{const s=document.createElement('script');s.src='leaflet/leaflet.js';s.onload=r;s.onerror=x;document.head.appendChild(s)});
+ Promise.all([css,js]).then(ok,no)}))}
 const MCB={mc:[[43.7265,7.4105],[43.7485,7.4395]],nice:[[43.690,7.245],[43.712,7.285]],all:[[43.684,7.235],[43.752,7.447]]};
 let mcf='Всё',mcMap=null,mcLayer=null,mcMk={};
 const MCF={'Всё':p=>1,'Движ':p=>['Тусовки','Афиша','Нетворкинг'].includes(p.cat),'Тусовки':p=>p.cat==='Тусовки','Афиша':p=>p.cat==='Афиша','Нетворкинг':p=>p.cat==='Нетворкинг','Спорт':p=>p.cat==='Спорт','Новости':p=>!p.start&&!['Тусовки','Афиша','Нетворкинг'].includes(p.cat)};
@@ -1012,6 +1015,8 @@ function renderMapMC(){const ev=mcEvents(),now=ev.filter(mcNow),next=ev.filter(p
  loadMCW().then(mcPaint);
  needLeaflet().then(()=>{const el=$('#lmap');if(!el)return;if(mcMap){mcMap.remove();mcMap=null}
   mcMap=L.map(el,{zoomSnap:.5,attributionControl:true}).fitBounds(MCB.mc);
+  {const m=mcMap,b=()=>document.querySelector('[data-mcj].on')?.dataset.mcj||'mc';let moved=false;['pointerdown','wheel','touchstart'].forEach(t=>el.addEventListener(t,()=>{moved=true},{passive:true}));document.querySelectorAll('[data-mcj]').forEach(x=>x.addEventListener('click',()=>{moved=false}));   // the map box changes size (fonts, phone toolbar, 62vh): re-measure, and re-fit while the user hasn't moved it
+   const ro=new ResizeObserver(()=>{if(mcMap!==m){ro.disconnect();return}m.invalidateSize(false);if(!moved)m.fitBounds(MCB[b()]||MCB.mc,{animate:false})});ro.observe(el);requestAnimationFrame(()=>{m.invalidateSize(false);if(!moved)m.fitBounds(MCB.mc,{animate:false})})}
   document.querySelectorAll('[data-mcj]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mcj]').forEach(x=>x.classList.toggle('on',x===b));mcMap.flyToBounds(MCB[b.dataset.mcj],{duration:.8})});
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'osmdark',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · транспорт Ниццы: Lignes d\'Azur (open data)'}).addTo(mcMap);
   mcDistricts();mcTransit();
