@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T01:37:51.983Z",
+ "updated": "2026-11-28T02:37:02.783Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 3,
+  "total": 2,
   "items": [
    {
     "id": "northern",
@@ -33,18 +33,6 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
-   },
-   {
-    "id": "jubilee",
-    "name": "Jubilee",
-    "bg": "#A0A5A9",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "происшествие с пассажиром",
-    "text": "Небольшие задержки, происшествие с пассажиром",
-    "reason": "Jubilee Line: Minor delays due to an earlier customer incident at Green Park."
    }
   ]
  },
