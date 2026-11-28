@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T05:32:13.270Z",
+ "updated": "2026-11-28T06:30:46.225Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 8,
+  "total": 9,
   "items": [
    {
     "id": "hammersmith-city",
@@ -105,6 +105,18 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
+   },
+   {
+    "id": "northern",
+    "name": "Northern",
+    "bg": "#000000",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "проблема с путями",
+    "text": "Небольшие задержки, проблема с путями",
+    "reason": "Northern Line: Minor delays due to a points failure at Kennington."
    }
   ]
  },
@@ -168,14 +180,14 @@
     ]
    },
    {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
     "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     0.058788,
-     51.554479
+     -0.068175,
+     51.605584
     ]
    }
   ]
