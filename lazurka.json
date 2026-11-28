@@ -24,7 +24,13 @@
    "tg": "https://www.asmonaco.com/en/news",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Stade Louis II Monaco",
+   "geo": [
+    43.7276,
+    7.4155
+   ],
+   "place": "Стад Луи II"
   },
   {
    "id": "mc-2",
@@ -50,7 +56,13 @@
    "tg": "https://www.asmonaco.com/en/news",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Stade Louis II stadium football",
+   "geo": [
+    43.7276,
+    7.4155
+   ],
+   "place": "Стад Луи II"
   },
   {
    "id": "mc-3",
@@ -74,7 +86,13 @@
    "tg": "https://www.hellomonaco.com/category/news/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Salle Gaston Médecin basketball",
+   "geo": [
+    43.7272,
+    7.4162
+   ],
+   "place": "Зал Гастон Медсен"
   },
   {
    "id": "mc-4",
@@ -100,7 +118,13 @@
    "tg": "https://news.mc/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Monaco street view",
+   "geo": [
+    43.7384,
+    7.4246
+   ],
+   "place": "Монако"
   },
   {
    "id": "mc-5",
@@ -126,7 +150,13 @@
    "tg": "https://www.gouv.mc/en/news/fatf-plenary-reaches-preliminary-conclusion-that-monaco-has-substantially-completed-its-action-plan",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Monaco panorama Tête de Chien",
+   "geo": [
+    43.7311,
+    7.4197
+   ],
+   "place": "Монако"
   },
   {
    "id": "mc-6",
@@ -150,7 +180,13 @@
    "tg": "https://monacolife.net/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Yacht Club de Monaco",
+   "geo": [
+    43.7383,
+    7.4262
+   ],
+   "place": "Яхт-клуб Монако"
   },
   {
    "id": "mc-7",
@@ -174,7 +210,13 @@
    "tg": "https://www.hellomonaco.com/category/news/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Larvotto beach Monaco",
+   "geo": [
+    43.7457,
+    7.4337
+   ],
+   "place": "Ларвотто"
   },
   {
    "id": "mc-8",
@@ -198,7 +240,13 @@
    "tg": "https://www.hellomonaco.com/category/news/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Monaco skyline night",
+   "geo": [
+    43.7408,
+    7.429
+   ],
+   "place": "Монако"
   },
   {
    "id": "mc-9",
@@ -224,7 +272,15 @@
    "tg": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Opéra de Monte-Carlo Salle Garnier",
+   "geo": [
+    43.7394,
+    7.4279
+   ],
+   "place": "Опера Монте-Карло",
+   "start": "2026-11-29T20:00:00+01:00",
+   "end": "2026-11-29T23:30:00+01:00"
   },
   {
    "id": "mc-10",
@@ -248,7 +304,15 @@
    "tg": "https://monacolife.net/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Cathédrale de Monaco",
+   "geo": [
+    43.7303,
+    7.4232
+   ],
+   "place": "Монако, разные площадки",
+   "start": "2026-11-24T00:00:00+01:00",
+   "end": "2026-12-06T23:00:00+01:00"
   },
   {
    "id": "mc-11",
@@ -273,7 +337,13 @@
    "tg": "https://www.nicecotedazur.org/",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Baie des Anges Nice",
+   "geo": [
+    43.696,
+    7.27
+   ],
+   "place": "Ницца"
   },
   {
    "id": "mc-12",
@@ -299,7 +369,15 @@
    "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Cap d'Antibes coast",
+   "geo": [
+    43.62,
+    7.12
+   ],
+   "place": "Побережье Канны — Ницца",
+   "start": "2026-11-30T09:00:00+01:00",
+   "end": "2026-11-30T13:00:00+01:00"
   },
   {
    "id": "mc-13",
@@ -323,7 +401,13 @@
    "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Promenade des Anglais Nice",
+   "geo": [
+    43.6935,
+    7.256
+   ],
+   "place": "Английская набережная"
   },
   {
    "id": "mc-14",
@@ -347,7 +431,13 @@
    "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Gare de Nice-Ville",
+   "geo": [
+    43.7046,
+    7.2619
+   ],
+   "place": "Вокзал Ницца-Виль"
   },
   {
    "id": "mc-15",
@@ -373,7 +463,15 @@
    "tg": "https://www.explorenicecotedazur.com/?p=103977",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Carnaval de Nice",
+   "geo": [
+    43.6975,
+    7.27
+   ],
+   "place": "Площадь Массена",
+   "start": "2027-02-09T00:00:00+01:00",
+   "end": "2027-02-28T23:00:00+01:00"
   },
   {
    "id": "mc-16",
@@ -400,7 +498,15 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "when": "4 декабря — 3 января"
+   "when": "4 декабря — 3 января",
+   "pic": "Port Hercule Monaco",
+   "geo": [
+    43.7347,
+    7.4232
+   ],
+   "place": "Набережная Альбера I",
+   "start": "2026-12-04T16:00:00+01:00",
+   "end": "2027-01-03T22:30:00+01:00"
   },
   {
    "id": "mc-17",
@@ -426,7 +532,15 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "when": "31 декабря"
+   "when": "31 декабря",
+   "pic": "Monte-Carlo Sporting",
+   "geo": [
+    43.7466,
+    7.4364
+   ],
+   "place": "Jimmy'z, Sporting Monte-Carlo",
+   "start": "2026-12-31T23:00:00+01:00",
+   "end": "2027-01-01T05:00:00+01:00"
   },
   {
    "id": "mc-18",
@@ -452,7 +566,13 @@
    "tg": "https://www.montecarlosbm.com/en/agenda",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Hôtel de Paris Monte-Carlo",
+   "geo": [
+    43.7393,
+    7.427
+   ],
+   "place": "Монте-Карло"
   },
   {
    "id": "mc-19",
@@ -479,7 +599,13 @@
    "tg": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost",
    "digest": false,
    "london": false,
-   "urgent": false
+   "urgent": false,
+   "pic": "Grimaldi Forum Monaco",
+   "geo": [
+    43.7437,
+    7.4313
+   ],
+   "place": "Grimaldi Forum / IUM"
   },
   {
    "id": "mc-20",
@@ -506,7 +632,15 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "when": "21–24 января"
+   "when": "21–24 января",
+   "pic": "Rallye Monte-Carlo",
+   "geo": [
+    43.735,
+    7.424
+   ],
+   "place": "Старт — порт Монако",
+   "start": "2027-01-21T00:00:00+01:00",
+   "end": "2027-01-24T23:00:00+01:00"
   },
   {
    "id": "mc-21",
@@ -533,7 +667,15 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "when": "22–31 января"
+   "when": "22–31 января",
+   "pic": "Festival international du cirque de Monte-Carlo",
+   "geo": [
+    43.729,
+    7.417
+   ],
+   "place": "Шапито Фонвьей",
+   "start": "2027-01-22T00:00:00+01:00",
+   "end": "2027-01-31T23:00:00+01:00"
   }
  ]
 }
