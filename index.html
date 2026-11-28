@@ -1305,7 +1305,7 @@ function pollLive(){if(!LIVE_RELAY||!DATA||liveBusy||document.visibilityState===
     for(const k in fr){const cur=LIVEP[k]||(LIVEP[k]=[]),ids=new Set(cur.map(p=>p.id));for(const p of fr[k])if(!ids.has(p.id)){cur.push(p);n++}}
     if(n){DATA=mergeLive(DATA);if(['ch','uk','mc','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}
   }).catch(()=>{}).finally(()=>{liveBusy=false})}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pollLive()});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){pollLive();refreshPosts()}});   // back in the app: fresh posts and Lazurka right away, not after the 2-min timer
 // new Telegram posts arrive in posts.json via the bot; pick them up while the page is open
 function refreshPosts(){Promise.all([fetch(postsURL()).then(r=>r.ok?r.json():null),loadSite()]).then(([d])=>{if(!d)return;d=withSite(mergeLive(d));if(JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
   if(['ch','uk','mc','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
