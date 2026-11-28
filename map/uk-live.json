@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T10:27:44.035Z",
+ "updated": "2026-11-28T11:23:01.760Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -122,7 +122,7 @@
  },
  "roads": {
   "ok": true,
-  "total": 8,
+  "total": 9,
   "items": [
    {
     "badge": "A41",
@@ -180,24 +180,24 @@
     ]
    },
    {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
     "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     0.058788,
-     51.554479
+     -0.068175,
+     51.605584
     ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 5,
+  "total": 3,
   "severe": 0,
   "warnings": 0,
-  "alerts": 5,
+  "alerts": 3,
   "items": [
    {
     "level": 3,
@@ -224,17 +224,6 @@
    {
     "level": 3,
     "label": "Может подняться вода",
-    "area": "Tidal Fal Estuary",
-    "county": "Cornwall",
-    "river": "South Cornwall Coast, Tidal Fal Estuary",
-    "ll": [
-     -5.11166,
-     50.20627
-    ]
-   },
-   {
-    "level": 3,
-    "label": "Может подняться вода",
     "area": "West Cornwall Rivers",
     "county": "Cornwall",
     "river": "River Hayle, Perrancoombe Stream, Bolingey Stream, Portreath Stream, Newlyn Coombe River",
@@ -242,24 +231,24 @@
      -5.40613,
      50.15847
     ]
-   },
-   {
-    "level": 3,
-    "label": "Может подняться вода",
-    "area": "Hunstanton coast in Norfolk",
-    "county": "Norfolk",
-    "river": "North Sea",
-    "ll": [
-     0.48414,
-     52.92924
-    ]
    }
   ]
  },
  "weather": {
   "ok": true,
-  "total": 0,
-  "items": []
+  "total": 2,
+  "items": [
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting North West England"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Wales"
+   }
+  ]
  },
  "motorways": {
   "ok": false,
