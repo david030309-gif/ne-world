@@ -1080,7 +1080,6 @@ Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;
 <script>(()=>{const el=document.getElementById('intro');let seen=false,old=false;try{seen=sessionStorage.getItem('nwIntro');old=localStorage.getItem('nwIntro')}catch(e){}
  const h=location.hash;if(seen||!(h===''||h==='#'||h==='#globe')||matchMedia('(prefers-reduced-motion: reduce)').matches){el.remove();return}
  try{sessionStorage.setItem('nwIntro','1');localStorage.setItem('nwIntro','1')}catch(e){}
- if(old)el.classList.add('short');
  el.hidden=false;let done=false;
  // the red orb flies into the real globe's slot, then the live globe takes over
  const end=()=>{if(done)return;done=true;let ok=false;
@@ -1089,7 +1088,14 @@ Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;
     o.style.transform=`translate(${dx}px,${dy}px) scale(${R/r})`;ok=true}}catch(e){}
   el.classList.add('go');const w=ok?300:0;
   setTimeout(()=>{try{window.nwGlobe.settle(ok)}catch(e){}el.classList.add('out')},w);setTimeout(()=>el.remove(),w+450)};
- el.addEventListener('click',end);setTimeout(end,old?1250:2200)})()</script>
+ el.addEventListener('click',end);setTimeout(end,3400)})()</script>
+<script>(()=>{// back in the app after 10+ min away: reload fresh news and show the welcome screen again
+ const K='nwAway',MIN=10*60e3;
+ document.addEventListener('visibilitychange',()=>{try{
+  if(document.hidden){sessionStorage.setItem(K,String(Date.now()));return}
+  const t=+sessionStorage.getItem(K)||0;sessionStorage.removeItem(K);
+  if(t&&Date.now()-t>MIN){sessionStorage.removeItem('nwIntro');location.replace(location.pathname)}
+ }catch(e){}})})()</script>
 <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
 </body>
 </html>
