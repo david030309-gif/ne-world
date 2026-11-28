@@ -16,7 +16,7 @@
     "Соперник — шотландский «Хартс»",
     "Обзор и реакция игроков — на сайте клуба"
    ],
-   "img": null,
+   "img": "img/mc/mc-1.jpg",
    "src": {
     "name": "AS Monaco",
     "url": "https://www.asmonaco.com/en/news"
@@ -30,7 +30,13 @@
     43.7276,
     7.4155
    ],
-   "place": "Стад Луи II"
+   "place": "Стад Луи II",
+   "credit": {
+    "by": "Валерий Дед",
+    "lic": "CC BY 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monaco_Stade_Louis-II_1.jpg",
+    "file": "File:Monaco Stade Louis-II 1.jpg"
+   }
   },
   {
    "id": "mc-2",
@@ -78,7 +84,7 @@
     "Ключевой отрыв — во второй четверти",
     "+23 к перерыву"
    ],
-   "img": null,
+   "img": "img/mc/mc-3.jpg",
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/category/news/"
@@ -92,7 +98,13 @@
     43.7272,
     7.4162
    ],
-   "place": "Зал Гастон Медсен"
+   "place": "Зал Гастон Медсен",
+   "credit": {
+    "by": "Gael13011",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Salle_Gaston_M%C3%A9decin.JPG",
+    "file": "File:Salle Gaston Médecin.JPG"
+   }
   },
   {
    "id": "mc-4",
@@ -110,7 +122,7 @@
     "Отдельный бонус за грузовые велосипеды и лонгтейлы",
     "Для жителей и компаний"
    ],
-   "img": null,
+   "img": "img/mc/mc-4.jpg",
    "src": {
     "name": "news.mc",
     "url": "https://news.mc/"
@@ -124,7 +136,13 @@
     43.7384,
     7.4246
    ],
-   "place": "Монако"
+   "place": "Монако",
+   "credit": {
+    "by": "Spike",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monaco_02.jpg",
+    "file": "File:Monaco 02.jpg"
+   }
   },
   {
    "id": "mc-5",
@@ -142,7 +160,7 @@
     "В списке княжество было с июня 2024 года",
     "Приговоров по отмыванию: 3 в 2021 → 28 в 2025"
    ],
-   "img": null,
+   "img": "img/mc/mc-5.jpg",
    "src": {
     "name": "Gouvernement Princier",
     "url": "https://www.gouv.mc/en/news/fatf-plenary-reaches-preliminary-conclusion-that-monaco-has-substantially-completed-its-action-plan"
@@ -156,7 +174,13 @@
     43.7311,
     7.4197
    ],
-   "place": "Монако"
+   "place": "Монако",
+   "credit": {
+    "by": "Tobi 87",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Panorama_von_Monaco-La_Turbie.jpg",
+    "file": "File:Panorama von Monaco-La Turbie.jpg"
+   }
   },
   {
    "id": "mc-6",
@@ -172,7 +196,7 @@
     "Голосовать может любой желающий",
     "Премия «Sailor of the Year 2026»"
    ],
-   "img": null,
+   "img": "img/mc/mc-6.jpg",
    "src": {
     "name": "Monaco Life",
     "url": "https://monacolife.net/"
@@ -186,7 +210,13 @@
     43.7383,
     7.4262
    ],
-   "place": "Яхт-клуб Монако"
+   "place": "Яхт-клуб Монако",
+   "credit": {
+    "by": "Charles JACQUES from Cernay la ville, France",
+    "lic": "CC BY-SA 2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Yacht_Club_de_Monaco_(51429816991).jpg",
+    "file": "File:Yacht Club de Monaco (51429816991).jpg"
+   }
   },
   {
    "id": "mc-7",
@@ -202,7 +232,7 @@
     "Ночной ремонт дороги у Ларвотто",
     "Изменён доступ к парковкам"
    ],
-   "img": null,
+   "img": "img/mc/mc-7.jpg",
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/category/news/"
@@ -216,7 +246,13 @@
     43.7457,
     7.4337
    ],
-   "place": "Ларвотто"
+   "place": "Ларвотто",
+   "credit": {
+    "by": "Benoît Prieur",
+    "lic": "CC0",
+    "url": "https://commons.wikimedia.org/wiki/File:Plage_de_Larvotto_(Monaco)_en_novembre_2021_(3).jpg",
+    "file": "File:Plage de Larvotto (Monaco) en novembre 2021 (3).jpg"
+   }
   },
   {
    "id": "mc-8",
@@ -264,7 +300,7 @@
     "Финал — Soweto Gospel Choir",
     "Билеты 60–100 €"
    ],
-   "img": null,
+   "img": "img/mc/mc-9.jpg",
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival"
@@ -280,7 +316,13 @@
    ],
    "place": "Опера Монте-Карло",
    "start": "2026-11-29T20:00:00+01:00",
-   "end": "2026-11-29T23:30:00+01:00"
+   "end": "2026-11-29T23:30:00+01:00",
+   "credit": {
+    "by": "Diego Delso",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Casino_de_Montecarlo,_M%C3%B3naco,_2016-06-23,_DD_06.jpg",
+    "file": "File:Casino de Montecarlo, Mónaco, 2016-06-23, DD 06.jpg"
+   }
   },
   {
    "id": "mc-10",
@@ -296,7 +338,7 @@
     "8 концертов, вход свободный",
     "Старт — 24 ноября"
    ],
-   "img": null,
+   "img": "img/mc/mc-10.jpg",
    "src": {
     "name": "Monaco Life",
     "url": "https://monacolife.net/"
@@ -312,7 +354,13 @@
    ],
    "place": "Монако, разные площадки",
    "start": "2026-11-24T00:00:00+01:00",
-   "end": "2026-12-06T23:00:00+01:00"
+   "end": "2026-12-06T23:00:00+01:00",
+   "credit": {
+    "by": "Roger Culos",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Retablemonaco.jpg",
+    "file": "File:Retablemonaco.jpg"
+   }
   },
   {
    "id": "mc-11",
@@ -329,7 +377,7 @@
     "Жёлтый уровень: ливни и грозы",
     "Déchetterie Nice Nord закрыта на день"
    ],
-   "img": null,
+   "img": "img/mc/mc-11.jpg",
    "src": {
     "name": "Métropole Nice Côte d'Azur",
     "url": "https://www.nicecotedazur.org/"
@@ -343,7 +391,13 @@
     43.696,
     7.27
    ],
-   "place": "Ницца"
+   "place": "Ницца",
+   "credit": {
+    "by": "W. M. Connolley",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Nice-night-view-with-blurred-cars_1200x900.jpg",
+    "file": "File:Nice-night-view-with-blurred-cars 1200x900.jpg"
+   }
   },
   {
    "id": "mc-12",
@@ -361,7 +415,7 @@
     "Учения на случай цунами",
     "Сирены между Каннами и Ниццей"
    ],
-   "img": null,
+   "img": "img/mc/mc-12.jpg",
    "src": {
     "name": "France 3 Côte d'Azur",
     "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
@@ -377,7 +431,13 @@
    ],
    "place": "Побережье Канны — Ницца",
    "start": "2026-11-30T09:00:00+01:00",
-   "end": "2026-11-30T13:00:00+01:00"
+   "end": "2026-11-30T13:00:00+01:00",
+   "credit": {
+    "by": "Txllxt TxllxT",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Pointe_de_l%27Aiguille_-_Boulevard_de_la_Corniche_d%27Or_-_View_NE_on_Juan-les-Pins,_Cap_d%27Antibes_%26_Ile_Sainte_Marguerite.jpg",
+    "file": "File:Pointe de l'Aiguille - Boulevard de la Corniche d'Or - View NE on Juan-les-Pins, Cap d'Antibes & Ile Sainte Marguerite.jpg"
+   }
   },
   {
    "id": "mc-13",
@@ -393,7 +453,7 @@
     "Вечер 26 ноября",
     "Проверка водителей на Английской набережной"
    ],
-   "img": null,
+   "img": "img/mc/mc-13.jpg",
    "src": {
     "name": "France 3 Côte d'Azur",
     "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
@@ -407,7 +467,13 @@
     43.6935,
     7.256
    ],
-   "place": "Английская набережная"
+   "place": "Английская набережная",
+   "credit": {
+    "by": "Uhooep",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Promenade_des_Anglais_(Nice),_plage.jpg",
+    "file": "File:Promenade des Anglais (Nice), plage.jpg"
+   }
   },
   {
    "id": "mc-14",
@@ -423,7 +489,7 @@
     "Без новых вагонов: Ницца — Марсель — Париж",
     "И Бриансон — Париж тоже"
    ],
-   "img": null,
+   "img": "img/mc/mc-14.jpg",
    "src": {
     "name": "France 3 Côte d'Azur",
     "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
@@ -437,7 +503,13 @@
     43.7046,
     7.2619
    ],
-   "place": "Вокзал Ницца-Виль"
+   "place": "Вокзал Ницца-Виль",
+   "credit": {
+    "by": "H.R. Tsua",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Nice-Ville_railway_station.jpg",
+    "file": "File:Nice-Ville railway station.jpg"
+   }
   },
   {
    "id": "mc-15",
@@ -455,7 +527,7 @@
     "56 событий, 45 из них бесплатные",
     "Битвы цветов: 17, 20, 24, 27 февраля"
    ],
-   "img": null,
+   "img": "img/mc/mc-15.jpg",
    "src": {
     "name": "Nice Côte d'Azur Tourisme",
     "url": "https://www.explorenicecotedazur.com/?p=103977"
@@ -471,7 +543,13 @@
    ],
    "place": "Площадь Массена",
    "start": "2027-02-09T00:00:00+01:00",
-   "end": "2027-02-28T23:00:00+01:00"
+   "end": "2027-02-28T23:00:00+01:00",
+   "credit": {
+    "by": "Agence Rol",
+    "lic": "Public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:Carnaval_de_Nice_1924_Mr_Carnaval.jpg",
+    "file": "File:Carnaval de Nice 1924 Mr Carnaval.jpg"
+   }
   },
   {
    "id": "mc-16",
@@ -489,7 +567,7 @@
     "Quai Albert Ier, порт Эркюль",
     "Пт–Сб до 23:00"
    ],
-   "img": null,
+   "img": "img/mc/mc-16.jpg",
    "src": {
     "name": "Holafly / Mairie de Monaco",
     "url": "https://esim.holafly.com/fr/conseils-voyage/marche-noel-monaco/"
@@ -506,7 +584,13 @@
    ],
    "place": "Набережная Альбера I",
    "start": "2026-12-04T16:00:00+01:00",
-   "end": "2027-01-03T22:30:00+01:00"
+   "end": "2027-01-03T22:30:00+01:00",
+   "credit": {
+    "by": "Renek78",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Yachts_in_Port_Hercule,_Monaco_(July_2020)_01.jpg",
+    "file": "File:Yachts in Port Hercule, Monaco (July 2020) 01.jpg"
+   }
   },
   {
    "id": "mc-17",
@@ -523,7 +607,7 @@
     "31 декабря, Sporting Monte-Carlo",
     "Бронь: +377 98 06 70 68"
    ],
-   "img": null,
+   "img": "img/mc/mc-17.jpg",
    "src": {
     "name": "Monte-Carlo SBM",
     "url": "https://www.montecarlosbm.com/it/agenda/new-year-at-jimmyz-monte-carlo"
@@ -540,7 +624,13 @@
    ],
    "place": "Jimmy'z, Sporting Monte-Carlo",
    "start": "2026-12-31T23:00:00+01:00",
-   "end": "2027-01-01T05:00:00+01:00"
+   "end": "2027-01-01T05:00:00+01:00",
+   "credit": {
+    "by": "Resilentos",
+    "lic": "CC BY 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monte_Carlo_Sporting_Club_in_2023.jpg",
+    "file": "File:Monte Carlo Sporting Club in 2023.jpg"
+   }
   },
   {
    "id": "mc-18",
@@ -558,7 +648,7 @@
     "Спорт и бранчи — Marlow",
     "Воскресный бранч — Le Pavyllon"
    ],
-   "img": null,
+   "img": "img/mc/mc-18.jpg",
    "src": {
     "name": "Monte-Carlo SBM",
     "url": "https://www.montecarlosbm.com/en/agenda"
@@ -572,7 +662,13 @@
     43.7393,
     7.427
    ],
-   "place": "Монте-Карло"
+   "place": "Монте-Карло",
+   "credit": {
+    "by": "Arnaud 25",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Paris_Monte-Carlo_001.jpg",
+    "file": "File:Hôtel de Paris Monte-Carlo 001.jpg"
+   }
   },
   {
    "id": "mc-19",
@@ -591,7 +687,7 @@
     "Monaco Boost + JCI — афтерворки",
     "Monaco Women Network — happy hours"
    ],
-   "img": null,
+   "img": "img/mc/mc-19.jpg",
    "src": {
     "name": "Gouvernement Princier / IUM",
     "url": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost"
@@ -605,7 +701,13 @@
     43.7437,
     7.4313
    ],
-   "place": "Grimaldi Forum / IUM"
+   "place": "Grimaldi Forum / IUM",
+   "credit": {
+    "by": "Grimaldi Forum Monaco",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
+    "file": "File:Grimaldi Forum Monaco - photographe Olivia Marocco.jpg"
+   }
   },
   {
    "id": "mc-20",
@@ -623,7 +725,7 @@
     "27 января – 3 февраля — Historique",
     "Финиш в порту Эркюль"
    ],
-   "img": null,
+   "img": "img/mc/mc-20.jpg",
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
@@ -640,7 +742,13 @@
    ],
    "place": "Старт — порт Монако",
    "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00"
+   "end": "2027-01-24T23:00:00+01:00",
+   "credit": {
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:Rallye_Monte_Carlo_v_Dravogradu_1956.jpg",
+    "file": "File:Rallye Monte Carlo v Dravogradu 1956.jpg"
+   }
   },
   {
    "id": "mc-21",
@@ -658,7 +766,7 @@
     "Гала — 26 января",
     "Билеты 35–110 €, гала 45–210 €"
    ],
-   "img": null,
+   "img": "img/mc/mc-21.jpg",
    "src": {
     "name": "Monte-Carlo Festival",
     "url": "https://www.montecarlofestival.mc/?lang=en"
@@ -675,7 +783,13 @@
    ],
    "place": "Шапито Фонвьей",
    "start": "2027-01-22T00:00:00+01:00",
-   "end": "2027-01-31T23:00:00+01:00"
+   "end": "2027-01-31T23:00:00+01:00",
+   "credit": {
+    "by": "Mister No",
+    "lic": "CC BY 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Festival_International_du_Cirque_de_Monte-Carlo_-_panoramio.jpg",
+    "file": "File:Festival International du Cirque de Monte-Carlo - panoramio.jpg"
+   }
   }
  ]
 }
