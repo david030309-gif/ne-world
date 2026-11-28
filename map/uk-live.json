@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T11:23:01.760Z",
+ "updated": "2026-11-28T12:08:36.270Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -10,18 +10,6 @@
   "ok": true,
   "total": 9,
   "items": [
-   {
-    "id": "lioness",
-    "name": "Lioness",
-    "bg": "#FAA61A",
-    "fg": "#111",
-    "mode": "overground",
-    "severity": 3,
-    "status": "Не ходит на части линии",
-    "cause": "неисправность поезда",
-    "text": "Не ходит на части линии, неисправность поезда",
-    "reason": "Lioness Line: No service between Euston and Kilburn High Road and MINOR DELAYS on the rest of the line while we fix a faulty train at Euston. London Underground are accepting tickets via any reasonable route."
-   },
    {
     "id": "hammersmith-city",
     "name": "Hammersmith & City",
@@ -117,6 +105,18 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
+   },
+   {
+    "id": "central",
+    "name": "Central",
+    "bg": "#E32017",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "неисправность поезда",
+    "text": "Сильные задержки, неисправность поезда",
+    "reason": "Central Line: Severe delays while we fix a faulty train at Queensway. Tickets are being accepted on London Buses, Chiltern and Greater Anglia services"
    }
   ]
  },
@@ -194,10 +194,10 @@
  },
  "floods": {
   "ok": true,
-  "total": 3,
+  "total": 4,
   "severe": 0,
   "warnings": 0,
-  "alerts": 3,
+  "alerts": 4,
   "items": [
    {
     "level": 3,
@@ -231,13 +231,39 @@
      -5.40613,
      50.15847
     ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Tributaries in Leicester City",
+    "county": "Leicester, Leicestershire",
+    "river": "Willow Brook, Evington Brook, Bushby Brook, Thurnby Brook, Scraptoft Brook, Melton Brook, Braunstone Brook",
+    "ll": [
+     -1.09708,
+     52.63938
+    ]
    }
   ]
  },
  "weather": {
   "ok": true,
-  "total": 2,
+  "total": 8,
   "items": [
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Dumfries, Galloway, Lothian &amp; Borders"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Grampian"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Highlands &amp; Eilean Siar"
+   },
    {
     "color": "Yellow",
     "text": "Жёлтое предупреждение: дождь",
@@ -246,7 +272,22 @@
    {
     "color": "Yellow",
     "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting North West England"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Central, Tayside &amp; Fife"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
     "title": "Yellow warning of rain affecting Wales"
+   },
+   {
+    "color": "Yellow",
+    "text": "Жёлтое предупреждение: дождь",
+    "title": "Yellow warning of rain affecting Strathclyde"
    }
   ]
  },
