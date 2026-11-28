@@ -274,7 +274,7 @@
     "Expo 2030 пройдёт в Эр-Рияде",
     "Монако готовит свой павильон"
    ],
-   "img": null,
+   "img": "img/mc/mc-8.jpg",
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/category/news/"
@@ -288,7 +288,13 @@
     43.7408,
     7.429
    ],
-   "place": "Монако"
+   "place": "Монако",
+   "credit": {
+    "by": "FromMorningToMidnight",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monte-Carlo_harbour_at_night.jpg",
+    "file": "File:Monte-Carlo harbour at night.jpg"
+   }
   },
   {
    "id": "mc-9",
@@ -344,7 +350,7 @@
     "8 концертов, вход свободный",
     "Старт — 24 ноября"
    ],
-   "img": null,
+   "img": "img/mc/mc-10.jpg",
    "src": {
     "name": "Monaco Life",
     "url": "https://monacolife.net/"
@@ -360,7 +366,13 @@
    ],
    "place": "Монако, разные площадки",
    "start": "2026-11-24T00:00:00+01:00",
-   "end": "2026-12-06T23:00:00+01:00"
+   "end": "2026-12-06T23:00:00+01:00",
+   "credit": {
+    "by": "Nur Cholis",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Plasa_Telkom_-_OPMC_Cibinong_-_panoramio.jpg",
+    "file": "File:Plasa Telkom - OPMC Cibinong - panoramio.jpg"
+   }
   },
   {
    "id": "mc-11",
@@ -725,7 +737,7 @@
     "27 января – 3 февраля — Historique",
     "Финиш в порту Эркюль"
    ],
-   "img": null,
+   "img": "img/mc/mc-20.jpg",
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
@@ -742,7 +754,13 @@
    ],
    "place": "Старт — порт Монако",
    "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00"
+   "end": "2027-01-24T23:00:00+01:00",
+   "credit": {
+    "by": "Aurélien JEANNE",
+    "lic": "CC BY-SA 2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:2014_Rallye_Monte_Carlo_-_S%C3%A9bastien_Ogier.jpg",
+    "file": "File:2014 Rallye Monte Carlo - Sébastien Ogier.jpg"
+   }
   },
   {
    "id": "mc-21",
