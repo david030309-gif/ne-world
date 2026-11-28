@@ -11,7 +11,7 @@
     "В 14-м туре Лиги 1 «Ницца» играет дома с «Лансом». Матч пройдёт в субботу, 12 декабря.",
     "Точное время начала пока не объявлено, следите за сайтом клуба — там же продаются билеты."
    ],
-   "img": null,
+   "img": "img/mc/mc-27.jpg",
    "src": {
     "name": "Explore Nice Côte d'Azur",
     "url": "https://www.explorenicecotedazur.com/evenement/match-ligue-1-ogc-nice-rc-lens/"
@@ -28,7 +28,13 @@
    "place": "«Альянц Ривьера»",
    "start": "2026-12-12T00:00:00+01:00",
    "end": "2026-12-12T23:30:00+01:00",
-   "when": "12 декабря"
+   "when": "12 декабря",
+   "credit": {
+    "by": "Mirasol",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Allianzcoupdenvoi.jpg",
+    "file": "File:Allianzcoupdenvoi.jpg"
+   }
   },
   {
    "id": "mc-26",
@@ -46,7 +52,7 @@
     "PLK — 6 декабря, 45–72 €",
     "Паньи — 7 декабря, 42–82 €"
    ],
-   "img": null,
+   "img": "img/mc/mc-26.jpg",
    "src": {
     "name": "Timenjoy",
     "url": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/"
@@ -63,7 +69,13 @@
    "place": "Palais Nikaïa",
    "start": "2026-12-04T20:00:00+01:00",
    "end": "2026-12-07T23:30:00+01:00",
-   "when": "4–7 декабря"
+   "when": "4–7 декабря",
+   "credit": {
+    "by": "Jesmar",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Palais_Nika%C3%AFa_(Nice,_FRA)_2012.JPG",
+    "file": "File:Palais Nikaïa (Nice, FRA) 2012.JPG"
+   }
   },
   {
    "id": "mc-25",
@@ -80,7 +92,7 @@
     "Вход свободный",
     "Деревня Рождества — до 3 января"
    ],
-   "img": null,
+   "img": "img/mc/mc-25.jpg",
    "src": {
     "name": "Timenjoy",
     "url": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/"
@@ -97,7 +109,13 @@
    "place": "Авеню Жан-Медсен",
    "start": "2026-12-06T00:00:00+01:00",
    "end": "2026-12-06T23:00:00+01:00",
-   "when": "6 декабря"
+   "when": "6 декабря",
+   "credit": {
+    "by": "mwanasimba",
+    "lic": "CC BY-SA 2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Avenue_Jean-M%C3%A9decin_-_Place_Mass%C3%A9na_-_Nice.jpg",
+    "file": "File:Avenue Jean-Médecin - Place Masséna - Nice.jpg"
+   }
   },
   {
    "id": "mc-24",
