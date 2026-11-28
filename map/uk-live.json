@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T17:22:39.328Z",
+ "updated": "2026-11-28T18:05:07.535Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 13,
+  "total": 12,
   "items": [
    {
     "id": "piccadilly",
@@ -131,18 +131,6 @@
     "reason": "Victoria Line: Severe delays due to congestion on the platforms in the Central London area and due to train cancellations."
    },
    {
-    "id": "bakerloo",
-    "name": "Bakerloo",
-    "bg": "#B36305",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "",
-    "text": "Небольшие задержки",
-    "reason": "Bakerloo Line: Minor delays due to train cancellations."
-   },
-   {
     "id": "central",
     "name": "Central",
     "bg": "#E32017",
@@ -170,7 +158,7 @@
  },
  "roads": {
   "ok": true,
-  "total": 15,
+  "total": 14,
   "items": [
    {
     "badge": "A41",
