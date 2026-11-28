@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T14:59:15.513Z",
+ "updated": "2026-11-28T15:46:45.398Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -158,7 +158,7 @@
  },
  "roads": {
   "ok": true,
-  "total": 14,
+  "total": 15,
   "items": [
    {
     "badge": "A41",
@@ -205,6 +205,17 @@
     ]
    },
    {
+    "badge": "A3220",
+    "title": "West Cross Route (Hammersmith & Fulham,Kensington & Chelsea)",
+    "text": "Задержки",
+    "severity": "Serious",
+    "rank": 5,
+    "ll": [
+     -0.219311,
+     51.509197
+    ]
+   },
+   {
     "badge": "A4020",
     "title": "Uxbridge Road (Ealing)",
     "text": "Дорожные работы",
@@ -214,26 +225,15 @@
      -0.31411,
      51.511686
     ]
-   },
-   {
-    "badge": "A40",
-    "title": "Westway (Westminster)",
-    "text": "Дорожные работы, сужение полос",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     -0.174278,
-     51.520091
-    ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 6,
+  "total": 9,
   "severe": 0,
   "warnings": 0,
-  "alerts": 6,
+  "alerts": 9,
   "items": [
    {
     "level": 3,
@@ -244,6 +244,28 @@
     "ll": [
      -3.01594,
      50.78851
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Rivers Otter and Sid, and Exmouth area",
+    "county": "Devon, Somerset",
+    "river": "River Otter, River Sid",
+    "ll": [
+     -3.18402,
+     50.82516
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "West Dorset Rivers and Streams",
+    "county": "Devon, Dorset Council",
+    "river": "River Asker, River Brit, River Bride, River Char, River Lim",
+    "ll": [
+     -2.74036,
+     50.75397
     ]
    },
    {
@@ -277,6 +299,17 @@
     "ll": [
      -1.2794,
      52.94101
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "River Cole, Dorcan Brook and South Marston Brook",
+    "county": "Oxfordshire, Swindon",
+    "river": "River Cole",
+    "ll": [
+     -1.69256,
+     51.6096
     ]
    },
    {
