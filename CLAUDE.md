@@ -1,6 +1,6 @@
 # Ne World — notes for Claude (and for people)
 
-Ne World is a Russian-language news site for the AMG Telegram channels. You pick a country on a 3D globe and get that country's news feed.
+**Ne Globus** (renamed from Ne World on 28.11.2026; the repository and URL keep the old `ne-world` name) is a Russian-language news site and installable app for the AMG Telegram channels. You pick a country on a 3D globe and get that country's news feed.
 Live site: https://david030309-gif.github.io/ne-world/ (GitHub Pages; it deploys automatically on every push to `main`, in about 1 minute).
 
 Owner: David. Anyone else editing the site (for example David's brother) works through this repository.
@@ -38,6 +38,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
 - Opening animation: the `#intro` block plus a small script at the end of `index.html`. It plays once per session (~3.4 s, the same length every time so the text can be read), only on `#globe` or an empty hash, and again when the user comes back to the app after 10+ minutes away (a small script reloads the page fresh on `visibilitychange`), then calls `window.nwGlobe.settle(true)`, which spins the real globe into place. Use `window.nwGlobe`, not `globe`: in the global scope `globe` is the `#globe` canvas element.
 - `video/`: coming-soon card clips. `video/sources.json` lists Mixkit clip ids per country; pushing a change there runs `.github/workflows/build-videos.yml` (via `scripts/build-videos.sh`), which downloads, cuts and commits `video/<key>.mp4` and `.jpg`. The card shows the logo first, then flies into it and plays the clip; if the clip is missing, the logo stays.
 - `docs/HISTORY.md`: project history, every decision David made, logo style rules and the backlog. **Read it first.** When something new is decided, write it there in the same commit.
+- `brand/ne-globus-*.png`: the app brand. `ne-globus-icon-1024.png` (app icon: globe, top half meridians, equator = our bar, the channels' inverted landmarks hanging inside the bottom half), `ne-globus-mark.png` (the round mark, used in the intro and the header), `ne-globus-wordmark.png` (NeGlobus over the bar with all channels' landmarks).
 - `brand/`: final SVG logos, plus `brand/src/` with the Python generators (fontTools + Montserrat 800, which is included). Example: `cd brand/src && python3 monaco.py`. Render PNGs from the SVGs with a headless browser.
 
 ## Rules when editing
