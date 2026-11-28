@@ -93,7 +93,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 #soon img{display:block;width:100%;max-width:330px;height:auto;max-height:200px;object-fit:contain;filter:drop-shadow(0 6px 18px #0008)}
 @media(max-width:600px){#soon img{max-height:112px}#soon .logo{padding:12px 10px 10px;margin-bottom:10px}}
 #soon .logo{position:relative;overflow:hidden;aspect-ratio:16/9;align-self:stretch;box-sizing:border-box;width:calc(100% + 8px)}
-#soon .logo>img{max-height:78%!important;width:auto;max-width:88%}
+#soon .logo>img{position:absolute!important;inset:0 0 4% 0;margin:auto;height:90%;max-height:none!important;width:auto;max-width:92%;object-fit:contain}   /* whole logo, incl. the Eiffel Tower, sits inside the panel (slightly raised) */
 #soon .logo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.18);transition:opacity .7s ease .15s,transform 1.4s cubic-bezier(.2,.7,.2,1) .15s}
 #soon .logo img{position:relative;z-index:1;transform-origin:50% 45%;transition:transform .75s cubic-bezier(.55,0,.75,.2),opacity .5s ease .2s}
 #soon .logo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,#000a 0,#0000 45%);opacity:0;transition:opacity .6s .6s;pointer-events:none}
