@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T23:26:00.337Z",
+ "updated": "2026-11-28T00:16:44.714Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -23,28 +23,28 @@
     "reason": "Central Line: Severe delays due to the earlier strike action."
    },
    {
-    "id": "mildmay",
-    "name": "Mildmay",
-    "bg": "#006FE6",
-    "fg": "#fff",
-    "mode": "overground",
-    "severity": 7,
-    "status": "Сокращённое движение",
-    "cause": "",
-    "text": "Сокращённое движение",
-    "reason": "MILDMAY LINE: Friday 27 November, the 2159 train from Stratford to Richmond will terminate at Camden Road at 2219. The 2318 train from Richmond to Willesden Junction will not run"
+    "id": "jubilee",
+    "name": "Jubilee",
+    "bg": "#A0A5A9",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "происшествие с пассажиром",
+    "text": "Сильные задержки, происшествие с пассажиром",
+    "reason": "Jubilee Line: Severe delays while we deal with a customer incident. Tickets are being accepted on London Buses, Mildmay Line, DLR, Elizabeth Line, C2C, Southeastern and Thameslink services via any reasonable route."
    },
    {
-    "id": "suffragette",
-    "name": "Suffragette",
-    "bg": "#18A95D",
-    "fg": "#fff",
-    "mode": "overground",
-    "severity": 7,
-    "status": "Сокращённое движение",
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
     "cause": "",
-    "text": "Сокращённое движение",
-    "reason": "SUFFRAGETTE LINE: Friday 27 November, the 2303 train from Barking Riverside to Gospel Oak will terminate at Upper Holloway at 2338"
+    "text": "Небольшие задержки",
+    "reason": "Circle Line: Minor delays due to train cancellations."
    },
    {
     "id": "hammersmith-city",
@@ -98,19 +98,8 @@
  },
  "roads": {
   "ok": true,
-  "total": 11,
+  "total": 8,
   "items": [
-   {
-    "badge": "A4202",
-    "title": "Park Lane (Westminster)",
-    "text": "Мероприятие",
-    "severity": "Serious",
-    "rank": 5,
-    "ll": [
-     -0.15332,
-     51.504823
-    ]
-   },
    {
     "badge": "A41",
     "title": "Hendon Way (Barnet)",
@@ -164,6 +153,17 @@
     "ll": [
      -0.174278,
      51.520091
+    ]
+   },
+   {
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
+    "text": "Дорожные работы",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.068175,
+     51.605584
     ]
    }
   ]
