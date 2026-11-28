@@ -287,7 +287,7 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 .ukmap{position:relative}.ukmap svg{display:block;width:100%}
 .ukmap.ldn{background:#1e2230;border-radius:16px;padding:6px}.ukmap .ttl{position:absolute;left:18px;top:12px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#9aa1b8}
 .uklogo{position:absolute;left:0;top:0;width:clamp(90px,24%,150px);height:auto;z-index:1}
-.ukleg{position:absolute;left:4px;top:6px;font-size:12px;color:#c4c8d6;display:flex;align-items:center;gap:6px;z-index:1}.ukleg i{width:10px;height:10px;border-radius:50%;background:#8ab4ff}
+.ukleg{position:absolute;left:4px;top:6px;font-size:12px;color:#c4c8d6;display:flex;align-items:center;gap:6px;z-index:1}.ukleg i{width:10px;height:10px;border-radius:50%;background:#8ab4ff}.ukleg i.mw{width:8px;height:8px;border-radius:2px;background:#ef4444;transform:rotate(45deg);margin-left:8px}
 .ukc circle{fill:#e5e7eb}.ukc .ldot{fill:#fff}.ukc text{fill:#b9bed0;font:500 12px Onest,sans-serif}
 .ukb{fill:#9aa1b8;font-family:Onest,sans-serif;font-weight:600;pointer-events:none}.hrw{fill:#e5e7eb;font:600 11px Onest,sans-serif}
 .uklists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 32px;margin-top:22px}
@@ -759,39 +759,49 @@ const pl=(n,f)=>f[(n%10===1&&n%100!==11)?0:(n%10>=2&&n%10<=4&&(n%100<10||n%100>=
 // Base data (floods, weather) comes from the bot's file; Tube and London roads are fetched live from TfL in the browser.
 function tflLive(){return import('./map/uk-core.mjs').then(m=>{const get=u=>fetch(u).then(r=>{if(!r.ok)throw new Error(r.status);return r});
   return Promise.all([m.lines(get),m.roads(get)])}).catch(()=>null)}
-function loadUK(){return Promise.all([fetch('map/uk-live.json?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).catch(()=>null),tflLive()]).then(([j,t])=>{
-  if(!j&&!t)return;const U=j||{sources:{}};
+// The AMG server (same job as the Ne Mayfair channel map) publishes live-uk.json to a gist every 5 min: motorways (National Highways) and floods come from there.
+const UKS_URL='https://gist.githubusercontent.com/rezniklev341-create/b6997af7d51f5a673ce7978503adf4c1/raw/live-uk.json';
+function ukServer(){return fetch(UKS_URL+'?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).catch(()=>null)}
+function mergeUKS(U,S){if(!S||!Array.isArray(S.items))return;const it=S.items;
+ const mw=it.filter(i=>i.sec==='motorways').map(i=>({road:i.road||'',place:i.place||'',what:i.what||'',sev:+i.sev||0,ll:(i.at||[])[0]||null})).sort((a,b)=>a.sev-b.sev);
+ U.motorways={ok:true,items:mw};
+ if(!(S.errors||[]).some(e=>/flood/i.test(String(e)))){const fl=it.filter(i=>i.sec==='floods');
+  U.floods={ok:true,total:fl.length,severe:fl.filter(i=>i.lv===1).length,warnings:fl.filter(i=>i.lv===2).length,alerts:fl.filter(i=>i.lv>=3).length,
+   items:fl.map(i=>({area:i.place||'',county:i.county||'',label:i.what||'',level:+i.lv||3,ll:(i.at||[])[0]||null}))}}}
+function loadUK(){return Promise.all([fetch('map/uk-live.json?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).catch(()=>null),tflLive(),ukServer()]).then(([j,t,S])=>{
+  if(!j&&!t&&!S)return;const U=j||{sources:{}};mergeUKS(U,S);
   if(t){U.lines=t[0];U.roads=t[1];U.updated=new Date().toISOString()}
   UKLIVE=U})}
 function ukSummary(U){const b=[],ln=U.lines&&U.lines.ok?U.lines.total:null,rd=U.roads&&U.roads.ok?U.roads.items.length:null,fl=U.floods&&U.floods.ok?U.floods:null,wx=U.weather&&U.weather.ok?U.weather.total:null;
  if(ln!=null)b.push(ln?`${ln} ${pl(ln,['линия','линии','линий'])} метро со сбоями`:'метро без сбоев');
  if(rd)b.push(`${rd} ${pl(rd,['сбой','сбоя','сбоев'])} на дорогах Лондона`);
  if(fl&&fl.total)b.push(fl.warnings||fl.severe?`предупреждения о наводнениях: ${fl.warnings+fl.severe}`:`в ${fl.total} ${pl(fl.total,['районе','районах','районах'])} может подняться вода`);
+ const mw=U.motorways&&U.motorways.ok?U.motorways.items.length:0;if(mw)b.push(`${mw} ${pl(mw,['событие','события','событий'])} на трассах`);
  if(wx)b.push(`${wx} ${pl(wx,['предупреждение','предупреждения','предупреждений'])} Met Office`);return b.join(' · ')}
 const BORO={'Barking and Dagenham':'Баркинг','Barnet':'Барнет','Bexley':'Бексли','Brent':'Брент','Bromley':'Бромли','Camden':'Камден','City of London':'Сити','Croydon':'Кройдон','Ealing':'Илинг','Enfield':'Энфилд','Greenwich':'Гринвич','Hackney':'Хакни','Hammersmith and Fulham':'Хаммерсмит','Haringey':'Харингей','Harrow':'Хэрроу','Havering':'Хаверинг','Hillingdon':'Хиллингдон','Hounslow':'Хаунслоу','Islington':'Ислингтон','Kensington and Chelsea':'Кенсингтон','Kingston upon Thames':'Кингстон','Lambeth':'Ламбет','Lewisham':'Луишем','Merton':'Мертон','Newham':'Ньюэм','Redbridge':'Редбридж','Richmond upon Thames':'Ричмонд','Southwark':'Саутуарк','Sutton':'Саттон','Tower Hamlets':'Тауэр-Хамлетс','Waltham Forest':'Уолтем-Форест','Wandsworth':'Уондсуэрт','Westminster':'Вестминстер'};
 const SMALLB=['City of London','Kensington and Chelsea','Islington','Hackney','Camden','Hammersmith and Fulham','Tower Hamlets','Southwark','Lambeth','Westminster'];
 const CITIES=[['Newcastle',-1.61,54.98],['Leeds',-1.55,53.80],['Manchester',-2.24,53.48],['Liverpool',-2.98,53.41,1],['Sheffield',-1.47,53.38],['Birmingham',-1.89,52.49],['Norwich',1.30,52.63,1],['Cambridge',0.12,52.21],['Bristol',-2.59,51.45,1],['Southampton',-1.40,50.91],['Plymouth',-4.14,50.38,1]];
 const rbadge=r=>/^M\d/.test(r)?['#0b5cad','#fff']:['#1f7a3a','#ffd800'];
 function renderMapUK(){
- const U=UKLIVE,t=U?hm(U.updated,'Europe/London'):'—',L=U&&U.lines&&U.lines.ok?U.lines:null,RD=U&&U.roads&&U.roads.ok?U.roads:null,F=U&&U.floods&&U.floods.ok?U.floods:null,W=U&&U.weather&&U.weather.ok?U.weather:null;
+ const U=UKLIVE,t=U?hm(U.updated,'Europe/London'):'—',L=U&&U.lines&&U.lines.ok?U.lines:null,RD=U&&U.roads&&U.roads.ok?U.roads:null,F=U&&U.floods&&U.floods.ok?U.floods:null,W=U&&U.weather&&U.weather.ok?U.weather:null,MW=U&&U.motorways&&U.motorways.ok?U.motorways:null;
  const badge=(txt,bg,fg)=>`<span class="lb2" style="background:${bg};color:${fg}">${esc(txt)}</span>`;
  const fp=n=>pl(n,['районе','районах','районах']);
  $('#feed').innerHTML=`<section class="ukv">
   <div class="ukhead"><h1>Ne Mayfair Live</h1><span class="tpill"><i></i>${t}</span></div>
   <p class="uksum">${U?ukSummary(U):'Загружаем свежие данные…'}</p>
-  <div class="ukmaps"><div class="ukmap" id="ukE"><span class="ukleg"><i></i>может подняться вода</span><svg></svg></div>
+  <div class="ukmaps"><div class="ukmap" id="ukE"><span class="ukleg"><i></i>может подняться вода<i class="mw"></i>трассы</span><svg></svg></div>
    <div class="ukmap ldn" id="ukL"><b class="ttl">Лондон</b><svg></svg></div></div>
   <div class="uklists">
    <section><h3>Метро, Elizabeth line, Overground</h3>${L?(L.items.length?L.items.slice(0,8).map(x=>`<div class="li">${badge(x.name,x.bg,x.fg)}<span>${esc(x.text)}</span></div>`).join('')+(L.items.length>8?`<p class="more3">ещё ${L.items.length-8} ${pl(L.items.length-8,['линия','линии','линий'])} со сбоями</p>`:''):'<p class="okl"><i class="g"></i>Все линии работают нормально</p>'):'<p class="more3">Данные загружаются</p>'}</section>
    <section><h3>Дороги Лондона</h3>${RD?(RD.items.length?RD.items.slice(0,5).map(x=>{const [bg,fg]=rbadge(x.badge);return `<div class="li tall">${badge(x.badge,bg,fg)}<span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span></div>`}).join(''):'<p class="okl"><i class="g"></i>Крупных перекрытий нет</p>'):'<p class="more3">Данные загружаются</p>'}
-    <h3>Трассы</h3><p class="more3">Перекрытия на трассах (National Highways) появятся здесь позже</p></section>
+    <h3>Трассы</h3>${MW?(MW.items.length?MW.items.slice(0,6).map(x=>{const m=/^M/.test(x.road);return `<div class="li tall">${badge(x.road,m?'#0b5fae':'#00703c',m?'#fff':'#ffd200')}<span><b>${esc(x.what)}</b><small>${esc(x.place)}</small></span></div>`}).join('')+(MW.items.length>6?`<p class="more3">ещё ${MW.items.length-6} ${pl(MW.items.length-6,['событие','события','событий'])} на трассах — <a href="https://t.me/NeMyfair">в Telegram</a></p>`:''):'<p class="okl"><i class="g"></i>Перекрытий на трассах нет</p>'):'<p class="more3">Данные о трассах загружаются…</p>'}</section>
    <section class="wxs">
     <div class="wx"><i class="${W&&W.total?'y':'g'}"></i><b>Погода</b><span>${W?(W.total?W.items.map(x=>esc(x.text)).join(' · '):'предупреждений Met Office нет'):'—'}</span></div>
     <div class="wx"><i class="${F&&(F.severe||F.warnings)?'r':F&&F.total?'b':'g'}"></i><b>Наводнения</b><span>${F?(F.severe||F.warnings?`${F.severe+F.warnings} ${pl(F.severe+F.warnings,['предупреждение','предупреждения','предупреждений'])}, ещё в ${F.alerts} ${fp(F.alerts)} может подняться вода`:F.total?`серьёзных предупреждений нет, в ${F.total} ${fp(F.total)} может подняться вода`:'предупреждений нет'):'—'}</span></div>
     ${F&&F.items.length?`<details class="fl"><summary>Где может подняться вода</summary>${F.items.map(x=>`<p><b>${esc(x.area)}</b> · ${esc(x.county)} · ${esc(x.label)}</p>`).join('')}</details>`:''}
    </section>
   </div>
-  <footer class="ukfoot"><b>ALPINE MEDIA GROUP</b><span>TfL · Environment Agency · Met Office · обновляется каждые 10 минут</span><a href="https://t.me/NeMyfair">t.me/NeMyfair</a></footer>
+  <footer class="ukfoot"><b>ALPINE MEDIA GROUP</b><span>TfL · National Highways · Environment Agency · Met Office · обновляется каждые 5 минут</span><a href="https://t.me/NeMyfair">t.me/NeMyfair</a></footer>
  </section>`;
  const go=()=>drawUK(U);
  if(UKGEO&&THAMES)go();else Promise.all([fetch('map/uk.json').then(r=>r.json()),fetch('map/thames.json').then(r=>r.json())]).then(([g,th])=>{UKGEO=g;THAMES=th;go()});
@@ -807,6 +817,9 @@ function drawUK(U){
   const cg=s.append('g').attr('class','ukc');
   for(const [n,x,y,left] of CITIES){const [px,py]=pr([x,y]);cg.append('circle').attr('cx',px).attr('cy',py).attr('r',2.6);cg.append('text').attr('x',left?px-6:px+6).attr('y',py+4).attr('text-anchor',left?'end':'start').text(n)}
   cg.append('circle').attr('cx',lp[0]).attr('cy',lp[1]).attr('r',3.6).attr('class','ldot');
+  const MWs=U&&U.motorways&&U.motorways.ok?U.motorways.items.filter(x=>x.ll):[];
+  s.append('g').selectAll('rect').data(MWs).join('rect').attr('x',d=>pr(d.ll)[0]-4).attr('y',d=>pr(d.ll)[1]-4).attr('width',8).attr('height',8).attr('rx',2).attr('transform',d=>`rotate(45 ${pr(d.ll)[0]} ${pr(d.ll)[1]})`)
+   .attr('fill',d=>d.sev===0?'#ef4444':'#f59e0b').attr('stroke','#1b1e2a').attr('stroke-width',1.2).append('title').text(d=>`${d.road} — ${d.what}, ${d.place}`);
   const F=U&&U.floods&&U.floods.ok?U.floods.items.filter(x=>x.ll):[];
   s.append('g').selectAll('circle').data(F).join('circle').attr('cx',d=>pr(d.ll)[0]).attr('cy',d=>pr(d.ll)[1]).attr('r',d=>d.level<=2?7:5.5)
    .attr('fill',d=>d.level===1?'#ef4444':d.level===2?'#3b82f6':'#8ab4ff').attr('stroke','#1b1e2a').attr('stroke-width',1.5).append('title').text(d=>`${d.area} — ${d.label}`);

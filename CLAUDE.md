@@ -29,7 +29,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
 - `map/`:
   - `ch-cantons.json`: Swiss map shapes (cantons, lakes). **The Swiss map is live since 28.11.2026:** the AMG server (DigitalOcean, `nealpy-livemap.timer`, the same job that edits t.me/golosswiss/1094 every 5 min) publishes its `live.json` to a secret gist of `rezniklev341-create` (`CHLIVE` in `index.html`). The browser loads it at start and at :01, :06, :11… (`loadCH` → `chFromLive`), draws `items` as markers and `areas` as SLF avalanche polygons. If the gist fails, the old hard-coded 08:10 data in `MAPS.ch` stays as a fallback. No keys ever go in the site.
   - `uk.json` and `thames.json`: England and London map.
-  - `uk-live.json`: bot output for the UK map.
+  - `uk-live.json`: bot output for the UK map. Since 28.11.2026 the UK map also reads the AMG server's `live-uk.json` from the same gist (`UKS_URL`, `mergeUKS`): motorways (National Highways, new «Трассы» section + diamond markers) and floods come from there, so they match the Ne Mayfair channel. Tube lines and London roads still come live from TfL in the browser. National Rail is not in the file yet (waiting for Rail Data Marketplace access).
   - `uk-core.mjs`: shared TfL logic (Tube lines and London roads). The browser uses it directly, and so does the bot.
 - `scripts/update-posts.mjs`: reads the public pages `t.me/s/<channel>` and adds new posts and photos. It uses no AI: titles come from the first line of the post, and categories come from fixed keyword rules (`CATS`). It skips ads and announcements.
 - `scripts/update-uk.mjs`: fetches TfL, Environment Agency floods and Met Office warnings into `map/uk-live.json`, using fixed Russian wording.
