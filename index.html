@@ -644,6 +644,23 @@ const MAPS={uk:{title:'Ne Mayfair Live',tg:'https://t.me/NeMyfair'},ch:{title:'�
  src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
+/* ---------- Live Swiss map: the same live.json the server uses for t.me/golosswiss/1094, published to a gist every 5 min ---------- */
+const CHLIVE='https://gist.githubusercontent.com/rezniklev341-create/b6997af7d51f5a673ce7978503adf4c1/raw/live.json';
+const CHG=[['trains','train','Поезда и транспорт'],['roads','road','Дороги'],['alerts','warn','Предупреждения властей'],['weather','aval','Горы']];
+function chFromLive(J){const groups=[],cnt={};
+ for(const [sec,k,name] of CHG){
+  const its=(J.items||[]).filter(i=>i.sec===sec).sort((a,b)=>(a.minor?1:0)-(b.minor?1:0));cnt[k]=its.length;
+  const rows=its.map(it=>{const [h,...rest]=(it.kicker||'').split(' · ');let x=it.what||'',u='';
+   const m=x.match(/\.?\s*Примерно (до \d{1,2}:\d\d)\.?$/);if(m){u=m[1];x=x.slice(0,m.index)}
+   const at=Array.isArray(it.at)?it.at:[];
+   if(k==='aval')return {b:((it.kicker||'').match(/(\d) из 5/)||[,'!'])[1]+(/из 5/.test(it.kicker||'')?'/5':''),t:it.kicker||'Лавины',x:[it.place,x].filter(Boolean).join('. ')};
+   return {b:k==='warn'?'!':(it.op||h||'•'),t:[k==='warn'?'':(it.line||rest.join(' · ')),it.place].filter(Boolean).join(' · ')||h,x,u,ll:at[0]||null}});
+  if(rows.length)groups.push([k,name,rows.slice(0,8),rows.length>8?`Ещё ${rows.length-8}`:''])}
+ const av=(J.items||[]).find(i=>i.sec==='weather'),lvl=av&&((av.kicker||'').match(/(\d) из 5/)||[])[1];
+ const stats=[[cnt.train,pl(cnt.train,['сбой','сбоя','сбоев'])+' на транспорте'],[cnt.road,pl(cnt.road,['событие','события','событий'])+' на дорогах'],[cnt.warn,pl(cnt.warn,['предупреждение','предупреждения','предупреждений'])+' властей']];
+ if(lvl)stats.push([lvl+'/5','лавинная опасность']);
+ Object.assign(MAPS.ch,{updated:J.time||MAPS.ch.updated,groups:groups.length?groups:MAPS.ch.groups,stats,areas:Array.isArray(J.areas)?J.areas:[],errors:J.errors||[],live:true})}
+function loadCH(){return fetch(CHLIVE+'?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).then(j=>{if(j&&Array.isArray(j.items))chFromLive(j)}).catch(()=>{})}
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
  if(region==='uk'){const U=UKLIVE;if(!U)return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="ms">метро, дороги, погода, наводнения</span><span class="mgo">Карта →</span></button>`;
   return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="mt">${hm(U.updated,'Europe/London')}</span><span class="ms">${ukSummary(U)}</span><span class="mgo">Карта →</span></button>`}
@@ -657,7 +674,7 @@ function renderMap(){if(region==='uk')return renderMapUK();const M=MAPS[region];
    <div class="vmap" id="vmap"><svg id="vsvg" role="img" aria-label="Карта Швейцарии с событиями"></svg>
     <div class="vctl"><button data-mz="in" aria-label="Приблизить">+</button><button data-mz="out" aria-label="Отдалить">−</button><button data-mz="0" aria-label="Сбросить">⟲</button></div>
     <div class="vpop" id="vpop" hidden></div></div>
-   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span><span><i class="k-aval"></i>Лавинная опасность 3+ (по кантонам, упрощённо)</span></div>
+   <div class="mleg"><span><i class="k-train"></i>Поезда</span><span><i class="k-road"></i>Дороги</span><span><i class="k-warn"></i>Предупреждения</span><span><i class="k-aval"></i>${M.areas&&M.areas.length?'Лавинная опасность (районы SLF)':'Лавинная опасность 3+ (по кантонам, упрощённо)'}</span></div>
    <p class="zline">Двумя пальцами — приблизить. Нажмите на значок, чтобы увидеть событие.</p>
   </div>
   <div class="minfo">
@@ -682,10 +699,13 @@ function drawVMap(M,evs,topo){
  defs.append('pattern').attr('id','hatch').attr('width',6).attr('height',6).attr('patternUnits','userSpaceOnUse').attr('patternTransform','rotate(45)')
    .append('rect').attr('width',2.2).attr('height',6).attr('fill','rgba(255,207,51,.22)');
  const g=svg.append('g');
- const av=new Set(M.aval);
+ const AR=M.areas&&M.areas.length?M.areas:null,av=new Set(AR?[]:M.aval);
  g.append('g').selectAll('path').data(cant.features).join('path').attr('d',path)
    .attr('fill',d=>av.has(+d.id)?'#4a3d22':'#262a36').attr('stroke','#11131a').attr('stroke-width',1).attr('vector-effect','non-scaling-stroke');
  g.append('g').selectAll('path').data(cant.features.filter(d=>av.has(+d.id))).join('path').attr('d',path).attr('fill','url(#hatch)').attr('pointer-events','none');
+ if(AR)g.append('g').attr('pointer-events','none').selectAll('path').data(AR.filter(a=>a.poly&&a.poly.length>2)).join('path')
+   .attr('d',a=>'M'+a.poly.map(p=>proj(p).map(v=>v.toFixed(1)).join(',')).join('L')+'Z')
+   .attr('fill',a=>`rgba(${(a.col||[255,150,0]).join(',')},.30)`).attr('stroke',a=>`rgba(${(a.col||[255,150,0]).join(',')},.75)`).attr('stroke-width',.8).attr('vector-effect','non-scaling-stroke');
  g.append('g').selectAll('path').data(lakes.features).join('path').attr('d',path).attr('fill','#16243a').attr('stroke','#1f3150').attr('stroke-width',.6).attr('vector-effect','non-scaling-stroke');
  g.append('path').datum(ctry).attr('d',path).attr('fill','none').attr('stroke','#5b6278').attr('stroke-width',1.4).attr('vector-effect','non-scaling-stroke');
  const lbl=g.append('g').attr('class','klab').selectAll('text').data(cant.features).join('text')
@@ -1074,7 +1094,7 @@ const postsURL=()=>'posts.json?v='+Math.floor(Date.now()/6e4);
 // new Telegram posts arrive in posts.json via the bot; pick them up while the page is open
 function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{if(!d||JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
   if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
-Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK()]).then(([d])=>{DATA=d;route();setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK(),loadCH()]).then(([d])=>{DATA=d;route();setInterval(()=>{if(new Date().getMinutes()%5===1)loadCH().then(()=>{if(location.hash==='#ch-map')renderMap()})},6e4);setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 <script>(()=>{const el=document.getElementById('intro');let seen=false,old=false;try{seen=sessionStorage.getItem('nwIntro');old=localStorage.getItem('nwIntro')}catch(e){}

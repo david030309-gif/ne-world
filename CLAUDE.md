@@ -27,7 +27,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
 - `img/`: pictures saved by the bot. `eho/`: ehoschweiz media and the giveaway poster.
 - `logo-*.png`: logos used on the site. They are white on a transparent background. `logo-de/fr/mc/il.png` share the same frame (877×755), so the teaser cards look identical.
 - `map/`:
-  - `ch-cantons.json`: Swiss map. **It stays static, with data from 08:10.** David asked for it not to auto-update.
+  - `ch-cantons.json`: Swiss map shapes (cantons, lakes). **The Swiss map is live since 28.11.2026:** the AMG server (DigitalOcean, `nealpy-livemap.timer`, the same job that edits t.me/golosswiss/1094 every 5 min) publishes its `live.json` to a secret gist of `rezniklev341-create` (`CHLIVE` in `index.html`). The browser loads it at start and at :01, :06, :11… (`loadCH` → `chFromLive`), draws `items` as markers and `areas` as SLF avalanche polygons. If the gist fails, the old hard-coded 08:10 data in `MAPS.ch` stays as a fallback. No keys ever go in the site.
   - `uk.json` and `thames.json`: England and London map.
   - `uk-live.json`: bot output for the UK map.
   - `uk-core.mjs`: shared TfL logic (Tube lines and London roads). The browser uses it directly, and so does the bot.
