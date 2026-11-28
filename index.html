@@ -184,9 +184,11 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 
 /* ---------- article ---------- */
 #post{max-width:720px;margin:0 auto;padding:18px 16px 60px}
-.pback{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:40;display:inline-flex;align-items:center;gap:4px;padding:12px 18px 12px 12px;box-shadow:0 8px 28px #000b;border-radius:999px;border:1px solid #ffffff1f;background:#16171ccc;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 15px Onest,system-ui,sans-serif;cursor:pointer}
+.pback{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:40;display:inline-flex;align-items:center;gap:4px;padding:12px 18px 12px 12px;box-shadow:0 8px 28px #000b;border-radius:999px;border:0;background:var(--red,#e4232f);color:#fff;transform:translateY(calc(100% + 40px));opacity:0;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s;font:600 15px Onest,system-ui,sans-serif;cursor:pointer}
 #post,#feed{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
 #toglobe span{letter-spacing:.01em}
+.pback.show{transform:none;opacity:1}
+.pback:active{transform:scale(.96)}
 .pback svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .back{display:inline-flex;align-items:center;gap:6px;color:var(--mut);min-height:44px;font-size:14px}
 #post .h{font-size:clamp(26px,4vw,36px);margin:6px 0 12px}
@@ -512,7 +514,7 @@ figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}
   </header>
   <main id="feed"></main>
   <article id="post" hidden></article>
-  <button id="toglobe" class="pback" data-globe hidden aria-label="Все страны на глобусе"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg><span>Глобус</span></button>
+  <button id="toglobe" class="pback" data-globe hidden aria-label="Все страны на глобусе"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>Все страны</span></button>
   <footer><div><span id="foot"></span><span>Ne Globus · Alpine Media Group</span></div></footer>
 </section>
 
@@ -1067,6 +1069,9 @@ function loadAir(){return fetch('https://air-quality-api.open-meteo.com/v1/air-q
 setInterval(()=>{if(location.hash==='#mc-map'||(location.hash==='#mc'&&chip==='Главная')){MCW.t=0;loadMCW().then(mcPaint)}},6e5);
 
 /* ---------- routing ---------- */
+// back buttons: shown on entry and while scrolling, hidden ~2.5 s after the reader stops
+let navT;function peekNav(){const b=[...document.querySelectorAll('.pback')].filter(x=>!x.hidden&&!x.closest('[hidden]'));b.forEach(x=>x.classList.add('show'));clearTimeout(navT);navT=setTimeout(()=>b.forEach(x=>x.classList.remove('show')),2600)}
+addEventListener('scroll',()=>{if(!$('#feedview').hidden)peekNav()},{passive:true});
 let prevH='',prevFeed='';const FEEDY={};const isFeedH=h=>/^(ch|uk|mc)$/.test(h);
 function route(){
  const h=location.hash.slice(1),from=prevH;prevH=h;
@@ -1086,6 +1091,7 @@ function route(){
  document.body.classList.toggle('dz',dz);if(!dz)closeSheet();
  if(dz){renderDvizh(h.startsWith('eho-')?h:null)} else if(mp){renderMap();scrollTo(0,0)} else if(p){renderPost(p);scrollTo(0,0)} else{renderFeed();
   if(isFeedH(h)&&FEEDY[h]!=null&&from.startsWith(h+'-')){const y=FEEDY[h];requestAnimationFrame(()=>{scrollTo(0,y);requestAnimationFrame(()=>scrollTo(0,y))})}}   // back from an article: same place in the feed
+ requestAnimationFrame(()=>requestAnimationFrame(peekNav));   // let a newcomer see the way back
 }
 let lastView=null;
 function show(v){
