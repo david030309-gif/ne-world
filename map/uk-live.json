@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T07:49:56.988Z",
+ "updated": "2026-11-28T08:38:53.440Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -45,18 +45,6 @@
     "cause": "погода",
     "text": "Закрыта (плановые работы), погода",
     "reason": "Waterloo & City line: service operates 06:00 until 00:30, Monday to Friday only. There is no service on Saturdays, Sundays and on bank/public holidays."
-   },
-   {
-    "id": "circle",
-    "name": "Circle",
-    "bg": "#FFD300",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 5,
-    "status": "Частично закрыта",
-    "cause": "плановые работы",
-    "text": "Частично закрыта, плановые работы",
-    "reason": "Circle Line : Saturday 28 and Sunday 29 November - No service between Hammersmith and Tower Hill, Edgware Road and High Street Kensington due to planned engineering work. Circle Line: No service between Hammersmith and Tower Hill, and between Edgware Road and High Street Kensington due to planned engineering work. MINOR DELAYS between Tower Hill and High Street Kensington due to train cancellations."
    },
    {
     "id": "district",
@@ -105,12 +93,24 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
+   },
+   {
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "плановые работы",
+    "text": "Небольшие задержки, плановые работы",
+    "reason": "Circle Line: No service between Hammersmith and Tower Hill, and between Edgware Road and High Street Kensington due to planned engineering work. MINOR DELAYS between Tower Hill and High Street Kensington due to train cancellations."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 7,
+  "total": 6,
   "items": [
    {
     "badge": "A41",
@@ -132,17 +132,6 @@
     "ll": [
      -0.004133,
      51.506783
-    ]
-   },
-   {
-    "badge": "A3211",
-    "title": "Upper Thames Street (City of London)",
-    "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Moderate",
-    "rank": 4,
-    "ll": [
-     -0.100438,
-     51.511324
     ]
    },
    {
@@ -176,6 +165,17 @@
     "ll": [
      -0.068175,
      51.605584
+    ]
+   },
+   {
+    "badge": "A118",
+    "title": "Romford Road (Newham,Redbridge)",
+    "text": "Дорожные работы",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     0.058788,
+     51.554479
     ]
    }
   ]
