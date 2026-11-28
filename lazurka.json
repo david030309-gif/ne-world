@@ -1,6 +1,524 @@
 {
  "mc": [
   {
+   "id": "mc-27",
+   "date": "2026-11-28T18:50:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Спорт",
+   "title": "«Ницца» примет «Ланс» на «Альянц Ривьере» 12 декабря",
+   "paras": [
+    "В 14-м туре Лиги 1 «Ницца» играет дома с «Лансом». Матч пройдёт в субботу, 12 декабря.",
+    "Точное время начала пока не объявлено, следите за сайтом клуба — там же продаются билеты."
+   ],
+   "img": null,
+   "src": {
+    "name": "Explore Nice Côte d'Azur",
+    "url": "https://www.explorenicecotedazur.com/evenement/match-ligue-1-ogc-nice-rc-lens/"
+   },
+   "tg": "https://www.explorenicecotedazur.com/evenement/match-ligue-1-ogc-nice-rc-lens/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Allianz Riviera Nice",
+   "geo": [
+    43.7051,
+    7.1926
+   ],
+   "place": "«Альянц Ривьера»",
+   "start": "2026-12-12T00:00:00+01:00",
+   "end": "2026-12-12T23:30:00+01:00",
+   "when": "12 декабря"
+  },
+  {
+   "id": "mc-26",
+   "date": "2026-11-28T18:40:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Тусовки",
+   "title": "Декабрь в Palais Nikaïa: PLK, Кристоф Маэ и Флоран Паньи",
+   "paras": [
+    "Главный концертный зал Ниццы в начале декабря работает почти без пауз. 4 декабря поёт Кристоф Маэ, 6 декабря приезжает рэпер PLK со своим туром, 7 декабря — Флоран Паньи с программой к 65-летию.",
+    "Для тех, кто больше по классике, 8 и 17 декабря там же дают «Щелкунчика». Билеты лучше брать заранее: на рэп и поп в выходные залы обычно заполняются."
+   ],
+   "bullets": [
+    "Маэ — 4 декабря, от 40 €",
+    "PLK — 6 декабря, 45–72 €",
+    "Паньи — 7 декабря, 42–82 €"
+   ],
+   "img": null,
+   "src": {
+    "name": "Timenjoy",
+    "url": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/"
+   },
+   "tg": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Palais Nikaïa Nice",
+   "geo": [
+    43.6834,
+    7.2016
+   ],
+   "place": "Palais Nikaïa",
+   "start": "2026-12-04T20:00:00+01:00",
+   "end": "2026-12-07T23:30:00+01:00",
+   "when": "4–7 декабря"
+  },
+  {
+   "id": "mc-25",
+   "date": "2026-11-28T18:30:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Афиша",
+   "title": "Большой рождественский парад пройдёт по авеню Жан-Медсен",
+   "paras": [
+    "6 декабря главная торговая улица Ниццы станет сценой для Grande Parade de Noël — большого праздничного шествия.",
+    "Смотреть можно бесплатно прямо с тротуара. Рядом уже работает рождественская деревня — её открыли 25 ноября, она будет до 3 января."
+   ],
+   "bullets": [
+    "Вход свободный",
+    "Деревня Рождества — до 3 января"
+   ],
+   "img": null,
+   "src": {
+    "name": "Timenjoy",
+    "url": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/"
+   },
+   "tg": "https://timenjoy.club/agenda/que-faire-a-nice-en-decembre/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Avenue Jean Médecin Nice",
+   "geo": [
+    43.703,
+    7.2662
+   ],
+   "place": "Авеню Жан-Медсен",
+   "start": "2026-12-06T00:00:00+01:00",
+   "end": "2026-12-06T23:00:00+01:00",
+   "when": "6 декабря"
+  },
+  {
+   "id": "mc-24",
+   "date": "2026-11-28T18:20:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Спорт",
+   "title": "В порту Эркюль гребут за Кубок принца Альбера II",
+   "paras": [
+    "В эти выходные порт Монако превращается в гребной стадион: проходит Challenge Prince Albert II по прибрежной гребле. Место — набережная Луи II.",
+    "Гонки идут утром, примерно с 8:30 до 13:00, так что посмотреть можно за завтраком на набережной. В воскресенье — второй день соревнований."
+   ],
+   "img": null,
+   "src": {
+    "name": "Monte-Carlo Living",
+    "url": "https://montecarloliving.com/en/actuality/weekend-events-2026-in-monaco-22223/"
+   },
+   "tg": "https://montecarloliving.com/en/actuality/weekend-events-2026-in-monaco-22223/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Port Hercule Monaco rowing",
+   "geo": [
+    43.7338,
+    7.423
+   ],
+   "place": "Порт Эркюль, набережная Луи II",
+   "start": "2026-11-28T08:30:00+01:00",
+   "end": "2026-11-29T13:00:00+01:00",
+   "when": "28–29 ноября"
+  },
+  {
+   "id": "mc-23",
+   "date": "2026-11-28T18:10:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Monte-Carlo Gastronomie: гастрономическая ярмарка под шатром в Фонвьее",
+   "paras": [
+    "До понедельника под шатром Фонвьей идёт Monte-Carlo Gastronomie — большая гастрономическая ярмарка. Хороший повод закупиться вкусным к праздникам.",
+    "В субботу открыто с 10 до 21, в воскресенье — с 10 до 20. Последний день — 30 ноября."
+   ],
+   "bullets": [
+    "Вход 5 €, до 12 лет — бесплатно",
+    "Адрес: 5 avenue des Ligures"
+   ],
+   "img": null,
+   "src": {
+    "name": "Monte-Carlo Living",
+    "url": "https://montecarloliving.com/en/actuality/weekend-events-2026-in-monaco-22223/"
+   },
+   "tg": "https://montecarloliving.com/en/actuality/weekend-events-2026-in-monaco-22223/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Chapiteau de Fontvieille Monaco",
+   "geo": [
+    43.7303,
+    7.4152
+   ],
+   "place": "Шатёр Фонвьей",
+   "start": "2026-11-27T10:00:00+01:00",
+   "end": "2026-11-30T20:00:00+01:00",
+   "when": "27–30 ноября"
+  },
+  {
+   "id": "mc-22",
+   "date": "2026-11-28T18:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Монако зажгло рождественские огни, а 4 декабря в порту откроется каток",
+   "paras": [
+    "В пятницу в Монако включили праздничную подсветку: около сотни деревьев и больше 20 километров гирлянд. В парке Принцессы Антуанетты поставили светящийся паровозик в память о старом детском поезде, парк открыт каждый день до 18:00.",
+    "Следующий шаг — 4 декабря: в порту Эркюль откроется Рождественская деревня «Зачарованный лес», а вечером после открытия заработает каток. Он простоит до 7 марта."
+   ],
+   "bullets": [
+    "Подсветка — до 3 января",
+    "Каток: 8 € с прокатом коньков",
+    "Детям до 5 лет — бесплатно"
+   ],
+   "img": null,
+   "src": {
+    "name": "Monaco Life",
+    "url": "https://monacolife.net/monaco-lights-up-for-christmas-with-more-than-20-kilometres-of-garlands/"
+   },
+   "tg": "https://monacolife.net/monaco-lights-up-for-christmas-with-more-than-20-kilometres-of-garlands/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Port Hercule Monaco Christmas ice rink",
+   "geo": [
+    43.735,
+    7.4225
+   ],
+   "place": "Каток в порту Эркюль",
+   "start": "2026-12-04T18:00:00+01:00",
+   "end": "2027-03-07T22:00:00+01:00",
+   "when": "4 декабря — 7 марта"
+  },
+  {
+   "id": "mc-21",
+   "date": "2026-11-28T09:50:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Цирковой фестиваль Монте-Карло: с 22 по 31 января",
+   "paras": [
+    "49-й Международный цирковой фестиваль Монте-Карло и 14-й New Generation пройдут под шапито Фонвьей с 22 по 31 января 2027 года. Гала и вручение «Золотых клоунов» — 26 января.",
+    "Билеты от 35 до 110 евро, на гала — от 45 до 210 евро. Онлайн-продажа скоро откроется."
+   ],
+   "bullets": [
+    "22–31 января 2027, шапито Фонвьей",
+    "Гала — 26 января",
+    "Билеты 35–110 €, гала 45–210 €"
+   ],
+   "img": "img/mc/mc-21.jpg",
+   "src": {
+    "name": "Monte-Carlo Festival",
+    "url": "https://www.montecarlofestival.mc/?lang=en"
+   },
+   "tg": "https://www.montecarlofestival.mc/?lang=en",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "when": "22–31 января",
+   "pic": "Festival international du cirque de Monte-Carlo",
+   "geo": [
+    43.729,
+    7.417
+   ],
+   "place": "Шапито Фонвьей",
+   "start": "2027-01-22T00:00:00+01:00",
+   "end": "2027-01-31T23:00:00+01:00",
+   "credit": {
+    "by": "Mister No",
+    "lic": "CC BY 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Festival_International_du_Cirque_de_Monte-Carlo_-_panoramio.jpg",
+    "file": "File:Festival International du Cirque de Monte-Carlo - panoramio.jpg"
+   }
+  },
+  {
+   "id": "mc-20",
+   "date": "2026-11-28T09:40:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Ралли Монте-Карло 2027 откроет сезон WRC",
+   "paras": [
+    "95-е ралли Монте-Карло пройдёт с 21 по 24 января 2027 года и, как всегда, откроет чемпионат мира. Маршрут снова завязан на Гап и горные дороги между Альпами и Лазурным берегом.",
+    "С 27 января по 3 февраля — Rallye Monte-Carlo Historique с машинами, которые участвовали в ралли с 1911 по 1986 год."
+   ],
+   "bullets": [
+    "21–24 января 2027 — WRC",
+    "27 января – 3 февраля — Historique",
+    "Финиш в порту Эркюль"
+   ],
+   "img": "img/mc/mc-20.jpg",
+   "src": {
+    "name": "Visit Monaco",
+    "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
+   },
+   "tg": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "when": "21–24 января",
+   "pic": "Sébastien Ogier Rallye Monte-Carlo",
+   "geo": [
+    43.735,
+    7.424
+   ],
+   "place": "Старт — порт Монако",
+   "start": "2027-01-21T00:00:00+01:00",
+   "end": "2027-01-24T23:00:00+01:00",
+   "credit": {
+    "by": "Aurélien JEANNE",
+    "lic": "CC BY-SA 2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:2014_Rallye_Monte_Carlo_-_S%C3%A9bastien_Ogier.jpg",
+    "file": "File:2014 Rallye Monte Carlo - Sébastien Ogier.jpg"
+   }
+  },
+  {
+   "id": "mc-19",
+   "date": "2026-11-28T09:30:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Нетворкинг",
+   "title": "Где заводить полезные знакомства в Монако",
+   "paras": [
+    "International University of Monaco регулярно проводит карьерные события: презентации компаний, воркшопы и нетворкинг со студентами и выпускниками.",
+    "Monaco Boost вместе с Junior Chamber International Monaco устраивает афтерворки для молодых предпринимателей. Monaco Women Network собирает профессионалов на networking happy hour — например, на пляже Ларвотто.",
+    "Раз в год в Grimaldi Forum проходит форум «Monaco pour l'Emploi». Ещё больше встреч в Монако и Ницце — на Eventbrite и Meetup."
+   ],
+   "bullets": [
+    "IUM — карьерные события и нетворкинг",
+    "Monaco Boost + JCI — афтерворки",
+    "Monaco Women Network — happy hours"
+   ],
+   "img": "img/mc/mc-19.jpg",
+   "src": {
+    "name": "Gouvernement Princier / IUM",
+    "url": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost"
+   },
+   "tg": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Grimaldi Forum Monaco",
+   "geo": [
+    43.7437,
+    7.4313
+   ],
+   "place": "Grimaldi Forum / IUM",
+   "credit": {
+    "by": "Grimaldi Forum Monaco",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
+    "file": "File:Grimaldi Forum Monaco - photographe Olivia Marocco.jpg"
+   }
+  },
+  {
+   "id": "mc-18",
+   "date": "2026-11-28T09:20:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Тусовки",
+   "title": "Куда пойти вечером в Монако этой зимой",
+   "paras": [
+    "Bar Américain в Hôtel de Paris до конца года каждый вечер играет живая музыка. В Marlow на площади Принцессы Габриэллы показывают большие матчи под еду и напитки, по выходным там бранч.",
+    "По воскресеньям — бранч в Le Pavyllon от Янника Аллено. Для азарта — ежемесячный челлендж в Casino Café de Paris."
+   ],
+   "bullets": [
+    "Живая музыка — Bar Américain",
+    "Спорт и бранчи — Marlow",
+    "Воскресный бранч — Le Pavyllon"
+   ],
+   "img": "img/mc/mc-18.jpg",
+   "src": {
+    "name": "Monte-Carlo SBM",
+    "url": "https://www.montecarlosbm.com/en/agenda"
+   },
+   "tg": "https://www.montecarlosbm.com/en/agenda",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Hôtel de Paris Monte-Carlo",
+   "geo": [
+    43.7393,
+    7.427
+   ],
+   "place": "Монте-Карло",
+   "credit": {
+    "by": "Arnaud 25",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Paris_Monte-Carlo_001.jpg",
+    "file": "File:Hôtel de Paris Monte-Carlo 001.jpg"
+   }
+  },
+  {
+   "id": "mc-17",
+   "date": "2026-11-28T09:10:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Тусовки",
+   "title": "Новый год в Jimmy'z: главная ночь в Монте-Карло",
+   "paras": [
+    "Легендарный клуб Jimmy'z в Sporting Monte-Carlo устраивает новогоднюю вечеринку 31 декабря. Летом там играли Quavo и Bob Sinclar, так что планка высокая.",
+    "Столы лучше бронировать заранее: +377 98 06 70 68 или jimmyz@sbm.mc."
+   ],
+   "bullets": [
+    "31 декабря, Sporting Monte-Carlo",
+    "Бронь: +377 98 06 70 68"
+   ],
+   "img": "img/mc/mc-17.jpg",
+   "src": {
+    "name": "Monte-Carlo SBM",
+    "url": "https://www.montecarlosbm.com/it/agenda/new-year-at-jimmyz-monte-carlo"
+   },
+   "tg": "https://www.montecarlosbm.com/it/agenda/new-year-at-jimmyz-monte-carlo",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "when": "31 декабря",
+   "pic": "Monte-Carlo Sporting",
+   "geo": [
+    43.7466,
+    7.4364
+   ],
+   "place": "Jimmy'z, Sporting Monte-Carlo",
+   "start": "2026-12-31T23:00:00+01:00",
+   "end": "2027-01-01T05:00:00+01:00",
+   "credit": {
+    "by": "Resilentos",
+    "lic": "CC BY 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monte_Carlo_Sporting_Club_in_2023.jpg",
+    "file": "File:Monte Carlo Sporting Club in 2023.jpg"
+   }
+  },
+  {
+   "id": "mc-16",
+   "date": "2026-11-28T09:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Рождественская деревня в порту Эркюль: с 4 декабря",
+   "paras": [
+    "С 4 декабря 2026 по 3 января 2027 года на набережной Альбера I работает рождественская деревня: домики, угощения, аттракционы и каток.",
+    "В первый день открытие в 16:00. Дальше — с 11:00 до 22:30, по пятницам и субботам до 23:00, 24 декабря до 19:30. 8 декабря в Монако выходной, народу будет больше."
+   ],
+   "bullets": [
+    "4 декабря — 3 января",
+    "Quai Albert Ier, порт Эркюль",
+    "Пт–Сб до 23:00"
+   ],
+   "img": "img/mc/mc-16.jpg",
+   "src": {
+    "name": "Holafly / Mairie de Monaco",
+    "url": "https://esim.holafly.com/fr/conseils-voyage/marche-noel-monaco/"
+   },
+   "tg": "https://esim.holafly.com/fr/conseils-voyage/marche-noel-monaco/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "when": "4 декабря — 3 января",
+   "pic": "Port Hercule Monaco",
+   "geo": [
+    43.7347,
+    7.4232
+   ],
+   "place": "Набережная Альбера I",
+   "start": "2026-12-04T16:00:00+01:00",
+   "end": "2027-01-03T22:30:00+01:00",
+   "credit": {
+    "by": "Renek78",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Yachts_in_Port_Hercule,_Monaco_(July_2020)_01.jpg",
+    "file": "File:Yachts in Port Hercule, Monaco (July 2020) 01.jpg"
+   }
+  },
+  {
+   "id": "mc-12",
+   "date": "2026-11-27T10:00:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Общество",
+   "title": "В понедельник между Каннами и Ниццей завоют сирены — это учения",
+   "paras": [
+    "30 ноября власти Приморских Альп проводят масштабные учения на случай цунами. Между Каннами и Ниццей включат сирены оповещения.",
+    "Паниковать не нужно: это тренировка, регион действительно относится к зонам риска землетрясений и наводнений."
+   ],
+   "bullets": [
+    "Понедельник, 30 ноября",
+    "Учения на случай цунами",
+    "Сирены между Каннами и Ниццей"
+   ],
+   "img": "img/mc/mc-12.jpg",
+   "src": {
+    "name": "France 3 Côte d'Azur",
+    "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
+   },
+   "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Cap d'Antibes coast",
+   "geo": [
+    43.62,
+    7.12
+   ],
+   "place": "Побережье Канны — Ницца",
+   "start": "2026-11-30T09:00:00+01:00",
+   "end": "2026-11-30T13:00:00+01:00",
+   "credit": {
+    "by": "Txllxt TxllxT",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Pointe_de_l%27Aiguille_-_Boulevard_de_la_Corniche_d%27Or_-_View_NE_on_Juan-les-Pins,_Cap_d%27Antibes_%26_Ile_Sainte_Marguerite.jpg",
+    "file": "File:Pointe de l'Aiguille - Boulevard de la Corniche d'Or - View NE on Juan-les-Pins, Cap d'Antibes & Ile Sainte Marguerite.jpg"
+   }
+  },
+  {
+   "id": "mc-9",
+   "date": "2026-11-27T09:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Афиша",
+   "title": "Джазовому фестивалю Монте-Карло 20 лет: финал — 29 ноября",
+   "paras": [
+    "Юбилейный Monte-Carlo Jazz Festival идёт в зале Гарнье Оперы Монте-Карло до 29 ноября. Закроет его шоу JOY хора Soweto Gospel Choir — трёхкратных обладателей «Грэмми».",
+    "Билеты стоят от 60 до 100 евро."
+   ],
+   "bullets": [
+    "До 29 ноября, Опера Монте-Карло",
+    "Финал — Soweto Gospel Choir",
+    "Билеты 60–100 €"
+   ],
+   "img": "img/mc/mc-9.jpg",
+   "src": {
+    "name": "Visit Monaco",
+    "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival"
+   },
+   "tg": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Opéra de Monte-Carlo Salle Garnier",
+   "geo": [
+    43.7394,
+    7.4279
+   ],
+   "place": "Опера Монте-Карло",
+   "start": "2026-11-29T20:00:00+01:00",
+   "end": "2026-11-29T23:30:00+01:00",
+   "credit": {
+    "by": "Diego Delso",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Casino_de_Montecarlo,_M%C3%B3naco,_2016-06-23,_DD_06.jpg",
+    "file": "File:Casino de Montecarlo, Mónaco, 2016-06-23, DD 06.jpg"
+   }
+  },
+  {
    "id": "mc-1",
    "date": "2026-11-26T23:10:00+01:00",
    "views": 0,
@@ -39,77 +557,39 @@
    }
   },
   {
-   "id": "mc-2",
-   "date": "2026-11-21T23:30:00+01:00",
+   "id": "mc-13",
+   "date": "2026-11-26T22:00:00+01:00",
    "views": 0,
-   "city": "Монако",
-   "cat": "Спорт",
-   "title": "В Лиге 1 у «Монако» шесть матчей без побед",
+   "city": "Ницца",
+   "cat": "Происшествия",
+   "title": "Полиция Ниццы устроила большую проверку на Английской набережной",
    "paras": [
-    "На «Луи II» команда Филипе Луиса сыграла 1:1 с «Осером» и не выигрывает в чемпионате уже шесть туров подряд.",
-    "Эрик Дайер после игры сказал, что команде нужно лучше вскрывать соперников, которые глубоко обороняются."
+    "Вечером 26 ноября на Promenade des Anglais прошла крупная операция дорожной полиции. По словам полицейских, аварии там случаются регулярно — водителям напомнили правила."
    ],
    "bullets": [
-    "«Монако» — «Осер» 1:1",
-    "Шесть туров подряд без побед",
-    "Дайер: нужно лучше ломать плотную оборону"
+    "Вечер 26 ноября",
+    "Проверка водителей на Английской набережной"
    ],
-   "img": "img/mc/mc-2.jpg",
+   "img": "img/mc/mc-13.jpg",
    "src": {
-    "name": "AS Monaco",
-    "url": "https://www.asmonaco.com/en/news"
+    "name": "France 3 Côte d'Azur",
+    "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
    },
-   "tg": "https://www.asmonaco.com/en/news",
+   "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "AS Monaco match Louis II",
+   "pic": "Promenade des Anglais Nice",
    "geo": [
-    43.7276,
-    7.4155
+    43.6935,
+    7.256
    ],
-   "place": "Стад Луи II",
+   "place": "Английская набережная",
    "credit": {
-    "by": "FromMorningToMidnight",
+    "by": "Uhooep",
     "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:OGC_Nice_fans_at_Stade_Louis_II,_Monaco.jpg",
-    "file": "File:OGC Nice fans at Stade Louis II, Monaco.jpg"
-   }
-  },
-  {
-   "id": "mc-3",
-   "date": "2026-11-25T22:00:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Спорт",
-   "title": "«Монако Баскет» выиграл дерби и ушёл на перерыв с отрывом в 23 очка",
-   "paras": [
-    "Баскетболисты «Монако» разгромно провели вторую четверть и к большому перерыву вели с преимуществом в 23 очка. Дерби осталось за монегасками."
-   ],
-   "bullets": [
-    "Ключевой отрыв — во второй четверти",
-    "+23 к перерыву"
-   ],
-   "img": "img/mc/mc-3.jpg",
-   "src": {
-    "name": "HelloMonaco",
-    "url": "https://www.hellomonaco.com/category/news/"
-   },
-   "tg": "https://www.hellomonaco.com/category/news/",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Salle Gaston Médecin basketball",
-   "geo": [
-    43.7272,
-    7.4162
-   ],
-   "place": "Зал Гастон Медсен",
-   "credit": {
-    "by": "Gael13011",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Salle_Gaston_M%C3%A9decin.JPG",
-    "file": "File:Salle Gaston Médecin.JPG"
+    "url": "https://commons.wikimedia.org/wiki/File:Promenade_des_Anglais_(Nice),_plage.jpg",
+    "file": "File:Promenade des Anglais (Nice), plage.jpg"
    }
   },
   {
@@ -148,6 +628,42 @@
     "lic": "CC BY-SA 4.0",
     "url": "https://commons.wikimedia.org/wiki/File:Monaco_02.jpg",
     "file": "File:Monaco 02.jpg"
+   }
+  },
+  {
+   "id": "mc-3",
+   "date": "2026-11-25T22:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Спорт",
+   "title": "«Монако Баскет» выиграл дерби и ушёл на перерыв с отрывом в 23 очка",
+   "paras": [
+    "Баскетболисты «Монако» разгромно провели вторую четверть и к большому перерыву вели с преимуществом в 23 очка. Дерби осталось за монегасками."
+   ],
+   "bullets": [
+    "Ключевой отрыв — во второй четверти",
+    "+23 к перерыву"
+   ],
+   "img": "img/mc/mc-3.jpg",
+   "src": {
+    "name": "HelloMonaco",
+    "url": "https://www.hellomonaco.com/category/news/"
+   },
+   "tg": "https://www.hellomonaco.com/category/news/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Salle Gaston Médecin basketball",
+   "geo": [
+    43.7272,
+    7.4162
+   ],
+   "place": "Зал Гастон Медсен",
+   "credit": {
+    "by": "Gael13011",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Salle_Gaston_M%C3%A9decin.JPG",
+    "file": "File:Salle Gaston Médecin.JPG"
    }
   },
   {
@@ -225,115 +741,40 @@
    }
   },
   {
-   "id": "mc-7",
-   "date": "2026-11-23T11:00:00+01:00",
+   "id": "mc-11",
+   "date": "2026-11-25T08:00:00+01:00",
    "views": 0,
-   "city": "Монако",
+   "city": "Ницца",
    "cat": "Общество",
-   "title": "Ларвотто: из-за ночного ремонта дороги меняется доступ к парковкам",
+   "title": "В Ницце жёлтый уровень опасности: ливни и грозы",
    "paras": [
-    "В районе Ларвотто ночью перекладывают асфальт, поэтому на время работ в Монако изменили въезд на парковки. Если ездите туда вечером, проверьте схему заранее."
+    "Метрополия Ниццы объявила погодную тревогу на 25 ноября: жёлтый уровень из-за дождей с риском подтоплений и гроз.",
+    "Из-за непогоды на весь день закрыли мусороприёмный пункт Nice Nord."
    ],
    "bullets": [
-    "Ночной ремонт дороги у Ларвотто",
-    "Изменён доступ к парковкам"
+    "Жёлтый уровень: ливни и грозы",
+    "Déchetterie Nice Nord закрыта на день"
    ],
-   "img": "img/mc/mc-7.jpg",
+   "img": "img/mc/mc-11.jpg",
    "src": {
-    "name": "HelloMonaco",
-    "url": "https://www.hellomonaco.com/category/news/"
+    "name": "Métropole Nice Côte d'Azur",
+    "url": "https://www.nicecotedazur.org/"
    },
-   "tg": "https://www.hellomonaco.com/category/news/",
+   "tg": "https://www.nicecotedazur.org/",
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Larvotto beach Monaco",
+   "pic": "Baie des Anges Nice",
    "geo": [
-    43.7457,
-    7.4337
+    43.696,
+    7.27
    ],
-   "place": "Ларвотто",
+   "place": "Ницца",
    "credit": {
-    "by": "Benoît Prieur",
-    "lic": "CC0",
-    "url": "https://commons.wikimedia.org/wiki/File:Plage_de_Larvotto_(Monaco)_en_novembre_2021_(3).jpg",
-    "file": "File:Plage de Larvotto (Monaco) en novembre 2021 (3).jpg"
-   }
-  },
-  {
-   "id": "mc-8",
-   "date": "2026-11-21T10:00:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Экономика",
-   "title": "Монако начало готовить свой павильон для Expo 2030 в Эр-Рияде",
-   "paras": [
-    "Княжество приступило к работе над национальным павильоном для Всемирной выставки Expo 2030, которая пройдёт в Эр-Рияде."
-   ],
-   "bullets": [
-    "Expo 2030 пройдёт в Эр-Рияде",
-    "Монако готовит свой павильон"
-   ],
-   "img": "img/mc/mc-8.jpg",
-   "src": {
-    "name": "HelloMonaco",
-    "url": "https://www.hellomonaco.com/category/news/"
-   },
-   "tg": "https://www.hellomonaco.com/category/news/",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Monte-Carlo at night harbour",
-   "geo": [
-    43.7408,
-    7.429
-   ],
-   "place": "Монако",
-   "credit": {
-    "by": "FromMorningToMidnight",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Monte-Carlo_harbour_at_night.jpg",
-    "file": "File:Monte-Carlo harbour at night.jpg"
-   }
-  },
-  {
-   "id": "mc-9",
-   "date": "2026-11-27T09:00:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Афиша",
-   "title": "Джазовому фестивалю Монте-Карло 20 лет: финал — 29 ноября",
-   "paras": [
-    "Юбилейный Monte-Carlo Jazz Festival идёт в зале Гарнье Оперы Монте-Карло до 29 ноября. Закроет его шоу JOY хора Soweto Gospel Choir — трёхкратных обладателей «Грэмми».",
-    "Билеты стоят от 60 до 100 евро."
-   ],
-   "bullets": [
-    "До 29 ноября, Опера Монте-Карло",
-    "Финал — Soweto Gospel Choir",
-    "Билеты 60–100 €"
-   ],
-   "img": "img/mc/mc-9.jpg",
-   "src": {
-    "name": "Visit Monaco",
-    "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival"
-   },
-   "tg": "https://www.visitmonaco.com/en/events/monaco-s-major-events/monte-carlo-jazz-festival",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Opéra de Monte-Carlo Salle Garnier",
-   "geo": [
-    43.7394,
-    7.4279
-   ],
-   "place": "Опера Монте-Карло",
-   "start": "2026-11-29T20:00:00+01:00",
-   "end": "2026-11-29T23:30:00+01:00",
-   "credit": {
-    "by": "Diego Delso",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Casino_de_Montecarlo,_M%C3%B3naco,_2016-06-23,_DD_06.jpg",
-    "file": "File:Casino de Montecarlo, Mónaco, 2016-06-23, DD 06.jpg"
+    "by": "W. M. Connolley",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Nice-night-view-with-blurred-cars_1200x900.jpg",
+    "file": "File:Nice-night-view-with-blurred-cars 1200x900.jpg"
    }
   },
   {
@@ -375,116 +816,39 @@
    }
   },
   {
-   "id": "mc-11",
-   "date": "2026-11-25T08:00:00+01:00",
+   "id": "mc-7",
+   "date": "2026-11-23T11:00:00+01:00",
    "views": 0,
-   "city": "Ницца",
+   "city": "Монако",
    "cat": "Общество",
-   "title": "В Ницце жёлтый уровень опасности: ливни и грозы",
+   "title": "Ларвотто: из-за ночного ремонта дороги меняется доступ к парковкам",
    "paras": [
-    "Метрополия Ниццы объявила погодную тревогу на 25 ноября: жёлтый уровень из-за дождей с риском подтоплений и гроз.",
-    "Из-за непогоды на весь день закрыли мусороприёмный пункт Nice Nord."
+    "В районе Ларвотто ночью перекладывают асфальт, поэтому на время работ в Монако изменили въезд на парковки. Если ездите туда вечером, проверьте схему заранее."
    ],
    "bullets": [
-    "Жёлтый уровень: ливни и грозы",
-    "Déchetterie Nice Nord закрыта на день"
+    "Ночной ремонт дороги у Ларвотто",
+    "Изменён доступ к парковкам"
    ],
-   "img": "img/mc/mc-11.jpg",
+   "img": "img/mc/mc-7.jpg",
    "src": {
-    "name": "Métropole Nice Côte d'Azur",
-    "url": "https://www.nicecotedazur.org/"
+    "name": "HelloMonaco",
+    "url": "https://www.hellomonaco.com/category/news/"
    },
-   "tg": "https://www.nicecotedazur.org/",
+   "tg": "https://www.hellomonaco.com/category/news/",
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Baie des Anges Nice",
+   "pic": "Larvotto beach Monaco",
    "geo": [
-    43.696,
-    7.27
+    43.7457,
+    7.4337
    ],
-   "place": "Ницца",
+   "place": "Ларвотто",
    "credit": {
-    "by": "W. M. Connolley",
-    "lic": "CC BY-SA 3.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Nice-night-view-with-blurred-cars_1200x900.jpg",
-    "file": "File:Nice-night-view-with-blurred-cars 1200x900.jpg"
-   }
-  },
-  {
-   "id": "mc-12",
-   "date": "2026-11-27T10:00:00+01:00",
-   "views": 0,
-   "city": "Ницца",
-   "cat": "Общество",
-   "title": "В понедельник между Каннами и Ниццей завоют сирены — это учения",
-   "paras": [
-    "30 ноября власти Приморских Альп проводят масштабные учения на случай цунами. Между Каннами и Ниццей включат сирены оповещения.",
-    "Паниковать не нужно: это тренировка, регион действительно относится к зонам риска землетрясений и наводнений."
-   ],
-   "bullets": [
-    "Понедельник, 30 ноября",
-    "Учения на случай цунами",
-    "Сирены между Каннами и Ниццей"
-   ],
-   "img": "img/mc/mc-12.jpg",
-   "src": {
-    "name": "France 3 Côte d'Azur",
-    "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
-   },
-   "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Cap d'Antibes coast",
-   "geo": [
-    43.62,
-    7.12
-   ],
-   "place": "Побережье Канны — Ницца",
-   "start": "2026-11-30T09:00:00+01:00",
-   "end": "2026-11-30T13:00:00+01:00",
-   "credit": {
-    "by": "Txllxt TxllxT",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Pointe_de_l%27Aiguille_-_Boulevard_de_la_Corniche_d%27Or_-_View_NE_on_Juan-les-Pins,_Cap_d%27Antibes_%26_Ile_Sainte_Marguerite.jpg",
-    "file": "File:Pointe de l'Aiguille - Boulevard de la Corniche d'Or - View NE on Juan-les-Pins, Cap d'Antibes & Ile Sainte Marguerite.jpg"
-   }
-  },
-  {
-   "id": "mc-13",
-   "date": "2026-11-26T22:00:00+01:00",
-   "views": 0,
-   "city": "Ницца",
-   "cat": "Происшествия",
-   "title": "Полиция Ниццы устроила большую проверку на Английской набережной",
-   "paras": [
-    "Вечером 26 ноября на Promenade des Anglais прошла крупная операция дорожной полиции. По словам полицейских, аварии там случаются регулярно — водителям напомнили правила."
-   ],
-   "bullets": [
-    "Вечер 26 ноября",
-    "Проверка водителей на Английской набережной"
-   ],
-   "img": "img/mc/mc-13.jpg",
-   "src": {
-    "name": "France 3 Côte d'Azur",
-    "url": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice"
-   },
-   "tg": "https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/alpes-maritimes/nice",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Promenade des Anglais Nice",
-   "geo": [
-    43.6935,
-    7.256
-   ],
-   "place": "Английская набережная",
-   "credit": {
-    "by": "Uhooep",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Promenade_des_Anglais_(Nice),_plage.jpg",
-    "file": "File:Promenade des Anglais (Nice), plage.jpg"
+    "by": "Benoît Prieur",
+    "lic": "CC0",
+    "url": "https://commons.wikimedia.org/wiki/File:Plage_de_Larvotto_(Monaco)_en_novembre_2021_(3).jpg",
+    "file": "File:Plage de Larvotto (Monaco) en novembre 2021 (3).jpg"
    }
   },
   {
@@ -521,6 +885,80 @@
     "lic": "CC BY-SA 4.0",
     "url": "https://commons.wikimedia.org/wiki/File:Nice-Ville_railway_station.jpg",
     "file": "File:Nice-Ville railway station.jpg"
+   }
+  },
+  {
+   "id": "mc-2",
+   "date": "2026-11-21T23:30:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Спорт",
+   "title": "В Лиге 1 у «Монако» шесть матчей без побед",
+   "paras": [
+    "На «Луи II» команда Филипе Луиса сыграла 1:1 с «Осером» и не выигрывает в чемпионате уже шесть туров подряд.",
+    "Эрик Дайер после игры сказал, что команде нужно лучше вскрывать соперников, которые глубоко обороняются."
+   ],
+   "bullets": [
+    "«Монако» — «Осер» 1:1",
+    "Шесть туров подряд без побед",
+    "Дайер: нужно лучше ломать плотную оборону"
+   ],
+   "img": "img/mc/mc-2.jpg",
+   "src": {
+    "name": "AS Monaco",
+    "url": "https://www.asmonaco.com/en/news"
+   },
+   "tg": "https://www.asmonaco.com/en/news",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "AS Monaco match Louis II",
+   "geo": [
+    43.7276,
+    7.4155
+   ],
+   "place": "Стад Луи II",
+   "credit": {
+    "by": "FromMorningToMidnight",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:OGC_Nice_fans_at_Stade_Louis_II,_Monaco.jpg",
+    "file": "File:OGC Nice fans at Stade Louis II, Monaco.jpg"
+   }
+  },
+  {
+   "id": "mc-8",
+   "date": "2026-11-21T10:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Экономика",
+   "title": "Монако начало готовить свой павильон для Expo 2030 в Эр-Рияде",
+   "paras": [
+    "Княжество приступило к работе над национальным павильоном для Всемирной выставки Expo 2030, которая пройдёт в Эр-Рияде."
+   ],
+   "bullets": [
+    "Expo 2030 пройдёт в Эр-Рияде",
+    "Монако готовит свой павильон"
+   ],
+   "img": "img/mc/mc-8.jpg",
+   "src": {
+    "name": "HelloMonaco",
+    "url": "https://www.hellomonaco.com/category/news/"
+   },
+   "tg": "https://www.hellomonaco.com/category/news/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Monte-Carlo at night harbour",
+   "geo": [
+    43.7408,
+    7.429
+   ],
+   "place": "Монако",
+   "credit": {
+    "by": "FromMorningToMidnight",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monte-Carlo_harbour_at_night.jpg",
+    "file": "File:Monte-Carlo harbour at night.jpg"
    }
   },
   {
@@ -561,246 +999,6 @@
     "lic": "CC BY-SA 3.0",
     "url": "https://commons.wikimedia.org/wiki/File:Carnaval_de_Nice_-_bataille_de_fleurs_-_14.jpg",
     "file": "File:Carnaval de Nice - bataille de fleurs - 14.jpg"
-   }
-  },
-  {
-   "id": "mc-16",
-   "date": "2026-11-28T09:00:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Афиша",
-   "title": "Рождественская деревня в порту Эркюль: с 4 декабря",
-   "paras": [
-    "С 4 декабря 2026 по 3 января 2027 года на набережной Альбера I работает рождественская деревня: домики, угощения, аттракционы и каток.",
-    "В первый день открытие в 16:00. Дальше — с 11:00 до 22:30, по пятницам и субботам до 23:00, 24 декабря до 19:30. 8 декабря в Монако выходной, народу будет больше."
-   ],
-   "bullets": [
-    "4 декабря — 3 января",
-    "Quai Albert Ier, порт Эркюль",
-    "Пт–Сб до 23:00"
-   ],
-   "img": "img/mc/mc-16.jpg",
-   "src": {
-    "name": "Holafly / Mairie de Monaco",
-    "url": "https://esim.holafly.com/fr/conseils-voyage/marche-noel-monaco/"
-   },
-   "tg": "https://esim.holafly.com/fr/conseils-voyage/marche-noel-monaco/",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "when": "4 декабря — 3 января",
-   "pic": "Port Hercule Monaco",
-   "geo": [
-    43.7347,
-    7.4232
-   ],
-   "place": "Набережная Альбера I",
-   "start": "2026-12-04T16:00:00+01:00",
-   "end": "2027-01-03T22:30:00+01:00",
-   "credit": {
-    "by": "Renek78",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Yachts_in_Port_Hercule,_Monaco_(July_2020)_01.jpg",
-    "file": "File:Yachts in Port Hercule, Monaco (July 2020) 01.jpg"
-   }
-  },
-  {
-   "id": "mc-17",
-   "date": "2026-11-28T09:10:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Тусовки",
-   "title": "Новый год в Jimmy'z: главная ночь в Монте-Карло",
-   "paras": [
-    "Легендарный клуб Jimmy'z в Sporting Monte-Carlo устраивает новогоднюю вечеринку 31 декабря. Летом там играли Quavo и Bob Sinclar, так что планка высокая.",
-    "Столы лучше бронировать заранее: +377 98 06 70 68 или jimmyz@sbm.mc."
-   ],
-   "bullets": [
-    "31 декабря, Sporting Monte-Carlo",
-    "Бронь: +377 98 06 70 68"
-   ],
-   "img": "img/mc/mc-17.jpg",
-   "src": {
-    "name": "Monte-Carlo SBM",
-    "url": "https://www.montecarlosbm.com/it/agenda/new-year-at-jimmyz-monte-carlo"
-   },
-   "tg": "https://www.montecarlosbm.com/it/agenda/new-year-at-jimmyz-monte-carlo",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "when": "31 декабря",
-   "pic": "Monte-Carlo Sporting",
-   "geo": [
-    43.7466,
-    7.4364
-   ],
-   "place": "Jimmy'z, Sporting Monte-Carlo",
-   "start": "2026-12-31T23:00:00+01:00",
-   "end": "2027-01-01T05:00:00+01:00",
-   "credit": {
-    "by": "Resilentos",
-    "lic": "CC BY 3.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Monte_Carlo_Sporting_Club_in_2023.jpg",
-    "file": "File:Monte Carlo Sporting Club in 2023.jpg"
-   }
-  },
-  {
-   "id": "mc-18",
-   "date": "2026-11-28T09:20:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Тусовки",
-   "title": "Куда пойти вечером в Монако этой зимой",
-   "paras": [
-    "Bar Américain в Hôtel de Paris до конца года каждый вечер играет живая музыка. В Marlow на площади Принцессы Габриэллы показывают большие матчи под еду и напитки, по выходным там бранч.",
-    "По воскресеньям — бранч в Le Pavyllon от Янника Аллено. Для азарта — ежемесячный челлендж в Casino Café de Paris."
-   ],
-   "bullets": [
-    "Живая музыка — Bar Américain",
-    "Спорт и бранчи — Marlow",
-    "Воскресный бранч — Le Pavyllon"
-   ],
-   "img": "img/mc/mc-18.jpg",
-   "src": {
-    "name": "Monte-Carlo SBM",
-    "url": "https://www.montecarlosbm.com/en/agenda"
-   },
-   "tg": "https://www.montecarlosbm.com/en/agenda",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Hôtel de Paris Monte-Carlo",
-   "geo": [
-    43.7393,
-    7.427
-   ],
-   "place": "Монте-Карло",
-   "credit": {
-    "by": "Arnaud 25",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Paris_Monte-Carlo_001.jpg",
-    "file": "File:Hôtel de Paris Monte-Carlo 001.jpg"
-   }
-  },
-  {
-   "id": "mc-19",
-   "date": "2026-11-28T09:30:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Нетворкинг",
-   "title": "Где заводить полезные знакомства в Монако",
-   "paras": [
-    "International University of Monaco регулярно проводит карьерные события: презентации компаний, воркшопы и нетворкинг со студентами и выпускниками.",
-    "Monaco Boost вместе с Junior Chamber International Monaco устраивает афтерворки для молодых предпринимателей. Monaco Women Network собирает профессионалов на networking happy hour — например, на пляже Ларвотто.",
-    "Раз в год в Grimaldi Forum проходит форум «Monaco pour l'Emploi». Ещё больше встреч в Монако и Ницце — на Eventbrite и Meetup."
-   ],
-   "bullets": [
-    "IUM — карьерные события и нетворкинг",
-    "Monaco Boost + JCI — афтерворки",
-    "Monaco Women Network — happy hours"
-   ],
-   "img": "img/mc/mc-19.jpg",
-   "src": {
-    "name": "Gouvernement Princier / IUM",
-    "url": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost"
-   },
-   "tg": "https://en.gouv.mc/Portail-du-Gouvernement/A-la-Une-du-Portail/Inaugural-Afterwork-Networking-event-at-Monaco-Boost",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "pic": "Grimaldi Forum Monaco",
-   "geo": [
-    43.7437,
-    7.4313
-   ],
-   "place": "Grimaldi Forum / IUM",
-   "credit": {
-    "by": "Grimaldi Forum Monaco",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
-    "file": "File:Grimaldi Forum Monaco - photographe Olivia Marocco.jpg"
-   }
-  },
-  {
-   "id": "mc-20",
-   "date": "2026-11-28T09:40:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Афиша",
-   "title": "Ралли Монте-Карло 2027 откроет сезон WRC",
-   "paras": [
-    "95-е ралли Монте-Карло пройдёт с 21 по 24 января 2027 года и, как всегда, откроет чемпионат мира. Маршрут снова завязан на Гап и горные дороги между Альпами и Лазурным берегом.",
-    "С 27 января по 3 февраля — Rallye Monte-Carlo Historique с машинами, которые участвовали в ралли с 1911 по 1986 год."
-   ],
-   "bullets": [
-    "21–24 января 2027 — WRC",
-    "27 января – 3 февраля — Historique",
-    "Финиш в порту Эркюль"
-   ],
-   "img": "img/mc/mc-20.jpg",
-   "src": {
-    "name": "Visit Monaco",
-    "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
-   },
-   "tg": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "when": "21–24 января",
-   "pic": "Sébastien Ogier Rallye Monte-Carlo",
-   "geo": [
-    43.735,
-    7.424
-   ],
-   "place": "Старт — порт Монако",
-   "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00",
-   "credit": {
-    "by": "Aurélien JEANNE",
-    "lic": "CC BY-SA 2.0",
-    "url": "https://commons.wikimedia.org/wiki/File:2014_Rallye_Monte_Carlo_-_S%C3%A9bastien_Ogier.jpg",
-    "file": "File:2014 Rallye Monte Carlo - Sébastien Ogier.jpg"
-   }
-  },
-  {
-   "id": "mc-21",
-   "date": "2026-11-28T09:50:00+01:00",
-   "views": 0,
-   "city": "Монако",
-   "cat": "Афиша",
-   "title": "Цирковой фестиваль Монте-Карло: с 22 по 31 января",
-   "paras": [
-    "49-й Международный цирковой фестиваль Монте-Карло и 14-й New Generation пройдут под шапито Фонвьей с 22 по 31 января 2027 года. Гала и вручение «Золотых клоунов» — 26 января.",
-    "Билеты от 35 до 110 евро, на гала — от 45 до 210 евро. Онлайн-продажа скоро откроется."
-   ],
-   "bullets": [
-    "22–31 января 2027, шапито Фонвьей",
-    "Гала — 26 января",
-    "Билеты 35–110 €, гала 45–210 €"
-   ],
-   "img": "img/mc/mc-21.jpg",
-   "src": {
-    "name": "Monte-Carlo Festival",
-    "url": "https://www.montecarlofestival.mc/?lang=en"
-   },
-   "tg": "https://www.montecarlofestival.mc/?lang=en",
-   "digest": false,
-   "london": false,
-   "urgent": false,
-   "when": "22–31 января",
-   "pic": "Festival international du cirque de Monte-Carlo",
-   "geo": [
-    43.729,
-    7.417
-   ],
-   "place": "Шапито Фонвьей",
-   "start": "2027-01-22T00:00:00+01:00",
-   "end": "2027-01-31T23:00:00+01:00",
-   "credit": {
-    "by": "Mister No",
-    "lic": "CC BY 3.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Festival_International_du_Cirque_de_Monte-Carlo_-_panoramio.jpg",
-    "file": "File:Festival International du Cirque de Monte-Carlo - panoramio.jpg"
    }
   }
  ]
