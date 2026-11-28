@@ -63,7 +63,7 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Stade Louis II stadium football",
+   "pic": "AS Monaco match Louis II",
    "geo": [
     43.7276,
     7.4155
@@ -277,7 +277,7 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Monaco skyline night",
+   "pic": "Monaco by night",
    "geo": [
     43.7408,
     7.429
@@ -338,7 +338,7 @@
     "8 концертов, вход свободный",
     "Старт — 24 ноября"
    ],
-   "img": "img/mc/mc-10.jpg",
+   "img": null,
    "src": {
     "name": "Monaco Life",
     "url": "https://monacolife.net/"
@@ -347,20 +347,14 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Cathédrale de Monaco",
+   "pic": "Auditorium Rainier III Monaco",
    "geo": [
     43.7303,
     7.4232
    ],
    "place": "Монако, разные площадки",
    "start": "2026-11-24T00:00:00+01:00",
-   "end": "2026-12-06T23:00:00+01:00",
-   "credit": {
-    "by": "Roger Culos",
-    "lic": "CC BY-SA 4.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Retablemonaco.jpg",
-    "file": "File:Retablemonaco.jpg"
-   }
+   "end": "2026-12-06T23:00:00+01:00"
   },
   {
    "id": "mc-11",
@@ -527,7 +521,7 @@
     "56 событий, 45 из них бесплатные",
     "Битвы цветов: 17, 20, 24, 27 февраля"
    ],
-   "img": "img/mc/mc-15.jpg",
+   "img": null,
    "src": {
     "name": "Nice Côte d'Azur Tourisme",
     "url": "https://www.explorenicecotedazur.com/?p=103977"
@@ -536,20 +530,14 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Carnaval de Nice",
+   "pic": "Bataille de fleurs Nice",
    "geo": [
     43.6975,
     7.27
    ],
    "place": "Площадь Массена",
    "start": "2027-02-09T00:00:00+01:00",
-   "end": "2027-02-28T23:00:00+01:00",
-   "credit": {
-    "by": "Agence Rol",
-    "lic": "Public domain",
-    "url": "https://commons.wikimedia.org/wiki/File:Carnaval_de_Nice_1924_Mr_Carnaval.jpg",
-    "file": "File:Carnaval de Nice 1924 Mr Carnaval.jpg"
-   }
+   "end": "2027-02-28T23:00:00+01:00"
   },
   {
    "id": "mc-16",
@@ -725,7 +713,7 @@
     "27 января – 3 февраля — Historique",
     "Финиш в порту Эркюль"
    ],
-   "img": "img/mc/mc-20.jpg",
+   "img": null,
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
@@ -735,20 +723,14 @@
    "london": false,
    "urgent": false,
    "when": "21–24 января",
-   "pic": "Rallye Monte-Carlo",
+   "pic": "Rallye Monte-Carlo 2023 WRC",
    "geo": [
     43.735,
     7.424
    ],
    "place": "Старт — порт Монако",
    "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00",
-   "credit": {
-    "by": "Unknown authorUnknown author",
-    "lic": "Public domain",
-    "url": "https://commons.wikimedia.org/wiki/File:Rallye_Monte_Carlo_v_Dravogradu_1956.jpg",
-    "file": "File:Rallye Monte Carlo v Dravogradu 1956.jpg"
-   }
+   "end": "2027-01-24T23:00:00+01:00"
   },
   {
    "id": "mc-21",
