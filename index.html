@@ -199,6 +199,7 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 .lead{display:block;text-align:left;width:100%}
 .lth,.rth,.sth{display:block;background:var(--card) center/cover no-repeat;position:relative}
 .lth{aspect-ratio:16/9;border-radius:14px;margin-bottom:16px}
+.lthn{display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 30%,#2a2c38 0%,#15161d 75%)}.lthn img{width:62%;max-height:70%;object-fit:contain;opacity:.9}
 .lt{font-family:Unbounded,Onest,sans-serif;font-weight:600;font-size:clamp(22px,2.6vw,30px);line-height:1.18;margin:0 0 12px;text-wrap:balance}
 .lb{list-style:none;padding:0;margin:0 0 12px;color:#cfcfd4;font-size:15px}
 .lb li{position:relative;padding-left:14px;margin:3px 0}.lb li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:#6b6b73}
@@ -466,7 +467,7 @@ body.dz header{background:#15111dee}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let uid=0;
-const flag=(r,cls='fl')=>{const i=++uid;return r==='ch'
+const flag=(r,cls='fl')=>{const i=++uid;if(r==='mc')return `<svg class="${cls}" viewBox="0 0 32 32"><rect width="32" height="16" fill="#CE1126"/><rect y="16" width="32" height="16" fill="#fff"/></svg>`;return r==='ch'
  ?`<svg class="${cls}" viewBox="0 0 32 32"><rect width="32" height="32" fill="#e4232f"/><path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z" fill="#fff"/></svg>`
  :`<svg class="${cls}" viewBox="15 0 30 30" preserveAspectRatio="xMidYMid slice"><clipPath id="t${i}"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#t${i})" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>`};
 
@@ -476,8 +477,6 @@ const NEXT={de:{id:'de',iso:'276',name:'Ne Ordnung',label:'Германия',coo
    hook:'Германия на русском.',desc:'Главные события страны, важные изменения и повседневная жизнь — в одном русскоязычном приложении.'},
  fr:{id:'fr',iso:'250',name:'Ne Provence',label:'Франция',coord:[2.4,46.8],logo:'logo-fr.png',lab:[-12,20],zoom:2.9,
    hook:'Франция на русском.',desc:'Главные события страны, важные изменения и повседневная жизнь — в одном русскоязычном приложении.'},
- mc:{id:'mc',iso:null,name:'Ne Lazurka',label:'Монако',coord:[7.42,43.74],logo:'logo-mc.png',lab:[12,20],zoom:5.5,
-   hook:'Монако и Лазурный берег на русском.',desc:'Главные события региона, важные изменения и повседневная жизнь — в одном русскоязычном приложении.'},
  il:{id:'il',iso:'376',name:'Ne Kosher',label:'Израиль',coord:[35.0,31.4],logo:'logo-il.png',lab:[12,22],zoom:4.6,
    hook:'Израиль на русском.',desc:'Главные события страны, важные изменения и повседневная жизнь — в одном русскоязычном приложении.'}};
 const SOON={'276':'Германия','380':'Италия','250':'Франция','724':'Испания','040':'Австрия','528':'Нидерланды','616':'Польша','203':'Чехия','196':'Кипр','376':'Израиль','840':'США','124':'Канада','792':'Турция','784':'ОАЭ','268':'Грузия','688':'Сербия','499':'Черногория','620':'Португалия','428':'Латвия','233':'Эстония','440':'Литва','246':'Финляндия'};
@@ -487,7 +486,11 @@ const R={
      title:'Ne Alpy — новости Швейцарии на русском'},
  uk:{id:'uk',name:'Ne Mayfair',label:'Лондон и Британия',iso:'826',coord:[-2.2,53.6],tz:'Europe/London',channel:'NeMyfair',subs:'382 подписчика',logo:'logo-uk.png',
      home:'Британия',chips:['Главная','Британия','Лондон','Главное за ночь','Транспорт','Экономика','Происшествия','Политика','Общество','Здоровье','Спорт','Мир','Афиша'],
-     title:'Ne Mayfair — новости Лондона и Британии на русском'}
+     title:'Ne Mayfair — новости Лондона и Британии на русском'},
+ // Ne Lazurka: a site-only region (no Telegram channel). Its posts live in lazurka.json, written in Russian from local sources.
+ mc:{id:'mc',name:'Ne Lazurka',label:'Монако и Ницца',iso:null,coord:[7.42,43.74],tz:'Europe/Monaco',channel:null,site:true,subs:'новости, тусовки и афиша',logo:'logo-mc-head.png',
+     about:'Монако и Ниццы',home:null,cities:['Монако','Ницца'],chips:['Главная','Монако','Ницца','Тусовки','Нетворкинг','Афиша','Спорт','Экономика','Общество','Транспорт','Происшествия'],
+     title:'Ne Lazurka — Монако и Ницца на русском'}
 };
 let DATA=null, region=null, chip='Главная', query='';
 const store={get(){try{return localStorage.getItem('region')}catch(e){return null}},set(v){try{localStorage.setItem('region',v)}catch(e){}}};
@@ -510,6 +513,7 @@ function filtered(){
  let ps=DATA[region].filter(p=>p.tg!==mt&&!seen.has(p.title)&&seen.add(p.title));
  if(chip===r.home)ps=ps.filter(p=>p.cat!=='Мир');
  else if(chip==='Лондон')ps=ps.filter(p=>p.london);
+ else if(r.cities&&r.cities.includes(chip))ps=ps.filter(p=>p.city===chip);
  else if(chip!=='Главная')ps=ps.filter(p=>p.cat===chip);
  if(query){const q=query.toLowerCase();ps=ps.filter(p=>(p.title+' '+p.paras.join(' ')).toLowerCase().includes(q))}
  return ps;
@@ -519,7 +523,7 @@ function thumb(p){
  if(!p.img)return `<div class="thumb none"><img src="${R[region].logo}" alt=""></div>`;
  return `<div class="thumb" style="background-image:url(${p.img})">${p.video?'<span class="play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 4v16l13-8z"/></svg></span>':''}</div>`;
 }
-const meta=p=>`<div class="meta"><span>${when(p.date,R[region].tz)}</span><span>${eye} ${views(p.views)}</span></div>`;
+const meta=p=>`<div class="meta"><span>${when(p.date,R[region].tz)}</span>${p.src?`<span>${esc(p.src.name)}</span>`:`<span>${eye} ${views(p.views)}</span>`}</div>`;
 function card(p){
  if(!p.img)return `<button class="card" data-id="${p.id}"><div class="text"><div class="k">${p.urgent?'Срочно':esc(p.cat)}</div><div class="h">${esc(p.title)}</div></div>${meta(p)}</button>`;
  return `<button class="card" data-id="${p.id}">${thumb(p)}<div class="k">${esc(p.cat)}</div><div class="h">${esc(p.title)}</div>${meta(p)}</button>`;
@@ -548,7 +552,7 @@ function renderFeed(){
   const also=[...pool].filter(p=>p!==lead).sort((a,b)=>score(b)-score(a)).slice(0,3);
   const dig=ps.find(p=>p.digest);
   html+=`<section class="top"><button class="lead" data-id="${lead.id}">
-     ${lead.img?`<span class="lth" style="background-image:url(${lead.img})">${lead.video?'<i class="pl"></i>':''}</span>`:''}
+     ${lead.img?`<span class="lth" style="background-image:url(${lead.img})">${lead.video?'<i class="pl"></i>':''}</span>`:r.site?`<span class="lth lthn"><img src="${r.logo}" alt=""></span>`:''}
      ${lab(lead)}<h2 class="lt">${esc(lead.title)}</h2>
      <ul class="lb">${lead.bullets.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${meta(lead)}</button>
     <aside class="also"><h3 class="sh">Также важно</h3>${also.map(side).join('')}</aside></section>`;
@@ -566,19 +570,19 @@ function applyRegion(){
  $('#logo').innerHTML=`<img src="${r.logo}" alt="${r.name}"><b>${r.name}</b>`;
  {let ic=document.querySelector('link[rel=icon]');if(!ic){ic=document.createElement('link');ic.rel='icon';document.head.appendChild(ic)}ic.href=r.logo}
  $('#logo').href='#'+region;
- $('#foot').innerHTML=`${esc(r.name)} · <a href="https://t.me/${r.channel}">t.me/${r.channel}</a> · ${r.subs}`;
+ $('#foot').innerHTML=r.channel?`${esc(r.name)} · <a href="https://t.me/${r.channel}">t.me/${r.channel}</a> · ${r.subs}`:`${esc(r.name)} · ${esc(r.subs)} · пишем своими словами, со ссылкой на источник`;
  document.title=r.title;
 }
 
 /* ---------- article ---------- */
 function renderPost(p){
  const r=R[region];
- $('#post').innerHTML=`<a class="brandc" href="https://t.me/${r.channel}"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${region==='ch'?'Швейцарии':'Лондона и Британии'} на русском · t.me/${r.channel}</small></span><span class="subs">Подписаться</span></a>
+ $('#post').innerHTML=(r.channel?`<a class="brandc" href="https://t.me/${r.channel}"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${r.about||(region==='ch'?'Швейцарии':'Лондона и Британии')} на русском · t.me/${r.channel}</small></span><span class="subs">Подписаться</span></a>`:`<div class="brandc"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${r.about} на русском</small></span></div>`)+`
   <a class="back" href="#${region}">← Все новости · ${esc(r.label)}</a>
   <div class="cat" style="color:var(--red)">${esc(p.cat)}</div><h1 class="h">${esc(p.title)}</h1>${meta(p)}
   ${p.img?`<figure><img src="${p.img}" alt=""></figure>`:''}
   <div class="body">${p.paras.map(x=>`<p>${x}</p>`).join('')}</div>
-  <a class="tg" href="${p.tg}">Открыть в Telegram ↗</a>`;
+  ${p.src?`<a class="tg" href="${p.src.url}">Источник: ${esc(p.src.name)} ↗</a>`:`<a class="tg" href="${p.tg}">Открыть в Telegram ↗</a>`}`;
 }
 
 /* ---------- Движ ---------- */
@@ -877,7 +881,7 @@ function openZoom(src){
 /* ---------- routing ---------- */
 function route(){
  const h=location.hash.slice(1);
- const m=h.match(/^(ch|uk|eho)(?:-(\d+|dvizh|map))?$/);if(m&&m[1]==='eho'){m[1]='ch';m.dvizh=true}if(m&&m[2]==='dvizh')m.dvizh=true;
+ const m=h.match(/^(ch|uk|mc|eho)(?:-(\d+|dvizh|map))?$/);if(m&&m[1]==='eho'){m[1]='ch';m.dvizh=true}if(m&&m[2]==='dvizh')m.dvizh=true;
  if(!m){ if(h==='globe'||!store.get()){show('picker');return} location.replace('#'+store.get());return }
  if(region!==m[1]){region=m[1];chip='Главная';query='';$('#q').value='';store.set(region);applyRegion()}
  show('feed');
@@ -931,13 +935,13 @@ const globe=(()=>{
    for(const f of nextF){ctx.save();ctx.setLineDash([4,3]);ctx.beginPath();path(f);ctx.strokeStyle='rgba(255,120,128,.85)';ctx.lineWidth=1.2;ctx.stroke();ctx.restore()}
    for(const f of active){ctx.beginPath();path(f);ctx.fillStyle=(hover&&hover.reg===f.reg)?'#ff4652':'#e4232f';ctx.fill()}
    if(labelA>0.01){ctx.save();ctx.globalAlpha=labelA;
-    for(const k of ['ch','uk']){
+    for(const k of Object.keys(R_)){
      const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;
      const [x,y]=proj(c),s=pulse%1;
      ctx.beginPath();ctx.arc(x,y,6+s*18,0,7);ctx.strokeStyle=`rgba(228,35,47,${1-s})`;ctx.lineWidth=2;ctx.stroke();
      ctx.beginPath();ctx.arc(x,y,5,0,7);ctx.fillStyle='#fff';ctx.fill();
      ctx.font='600 13px Onest,sans-serif';const lab=R_[k].label,tw=ctx.measureText(lab).width;
-     let lx=k==='uk'?x-tw-26:x+14,ly=y-(k==='uk'?14:-4);if(lx<6){lx=x+14;ly=y-16}
+     let lx=k==='uk'?x-tw-26:x+14,ly=y-(k==='uk'?14:k==='mc'?-22:-4);if(lx<6){lx=x+14;ly=y-16}
      ctx.fillStyle='rgba(0,0,0,.72)';ctx.beginPath();ctx.roundRect(lx-6,ly-14,tw+12,22,6);ctx.fill();
      ctx.fillStyle='#fff';ctx.fillText(lab,lx,ly+1);
     }
@@ -972,7 +976,7 @@ const globe=(()=>{
  }
  function inSphere(e){return Math.hypot(e.clientX-cx,e.clientY-cy)<R}
  function at(e){if(!countries||!inSphere(e))return null;const p=proj.invert([e.clientX,e.clientY]);if(!p)return null;
-  for(const k of ['ch','uk']){const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<18)return countries.features.find(f=>f.reg===k)}
+  for(const k of Object.keys(R_)){const c=R_[k].coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])>1.45)continue;const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<(k==='mc'?14:18))return countries.features.find(f=>f.reg===k)||R_[k].pseudo||(R_[k].pseudo={reg:k,properties:{}})}
   for(const n of Object.values(NEXT)){const c=n.coord;if(d3.geoDistance(c,[-rot[0],-rot[1]])<1.45){const [x,y]=proj(c);if(Math.hypot(e.clientX-x,e.clientY-y)<14)return nextF.find(f=>f.next===n)||n.pseudo||(n.pseudo={next:n,properties:{}})}}
   return countries.features.find(f=>d3.geoContains(f,p))||null}
  const soon=$('#soon');
@@ -997,7 +1001,7 @@ const globe=(()=>{
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!countries){go();return}
   const c=R_[f.reg].coord;
   flying=true;pk.classList.add('flying');veil.style.transition='none';
-  fly0={t0:performance.now(),d:900,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),R0:R,cx0:cx,cy0:cy,Z:f.reg==='ch'?2.4:2.0,go,done:false};
+  fly0={t0:performance.now(),d:900,ir:d3.interpolate(rot.slice(),[-c[0],-c[1],0]),R0:R,cx0:cx,cy0:cy,Z:f.reg==='ch'?2.4:f.reg==='mc'?3.4:2.0,go,done:false};
  }
  let down=null,moved=false,pinch=null,uzT=null,lastTap=0,tpin=null;const tps=new Map();
  const mid=()=>{const [a,b]=[...tps.values()];return [(a[0]+b[0])/2,(a[1]+b[1])/2,Math.hypot(a[0]-b[0],a[1]-b[1])]};
@@ -1073,7 +1077,7 @@ const globe=(()=>{
 window.nwGlobe=globe;
 
 /* ---------- choices under the globe ---------- */
-$('#choices').innerHTML=['ch','uk'].map(k=>`<button class="choice" data-r="${k}"><img src="${R[k].logo}" alt=""><span><b>${R[k].label}</b><span>${R[k].name} · ${R[k].subs}</span></span></button>`).join('')+
+$('#choices').innerHTML=Object.keys(R).map(k=>`<button class="choice" data-r="${k}"><img src="${R[k].logo}" alt=""><span><b>${R[k].label}</b><span>${R[k].name} · ${R[k].subs}</span></span></button>`).join('')+
  Object.values(NEXT).map(n=>`<button class="choice next" data-next="${n.id}"><img src="${n.logo}" alt=""><span><b>${n.label}</b><span>${n.name}</span></span><i class="badge">скоро</i></button>`).join('')+
  `<div class="soon">Светлее отмечены страны, которые появятся следующими</div>`;
 
@@ -1097,6 +1101,10 @@ addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
 const postsURL=()=>'posts.json?v='+Math.floor(Date.now()/6e4);
+/* Ne Lazurka (site-only region): posts written for the site, kept apart from the bot's posts.json */
+let SITE={};
+const loadSite=()=>fetch('lazurka.json?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():{}).then(j=>{SITE=j||{}}).catch(()=>{});
+const withSite=d=>{for(const k in SITE)d[k]=[...SITE[k]].sort((a,b)=>new Date(b.date)-new Date(a.date));return d};
 /* ---------- live posts: new Telegram posts within ~20-30 s, through the Cloudflare relay (worker/ne-live.js) ----------
    The GitHub bot still archives every post (with its photo) into posts.json; until it does, live posts are kept in LIVEP
    and merged on top. Empty LIVE_RELAY = feature off (only the bot). */
@@ -1110,13 +1118,13 @@ let liveBusy=false;
 function pollLive(){if(!LIVE_RELAY||!DATA||liveBusy||document.visibilityState==='hidden')return;liveBusy=true;
   import('./live/tg-live.mjs').then(m=>m.freshPosts(LIVE_RELAY,DATA,HIDDEN)).then(fr=>{let n=0;
     for(const k in fr){const cur=LIVEP[k]||(LIVEP[k]=[]),ids=new Set(cur.map(p=>p.id));for(const p of fr[k])if(!ids.has(p.id)){cur.push(p);n++}}
-    if(n){DATA=mergeLive(DATA);if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}
+    if(n){DATA=mergeLive(DATA);if(['ch','uk','mc','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}
   }).catch(()=>{}).finally(()=>{liveBusy=false})}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pollLive()});
 // new Telegram posts arrive in posts.json via the bot; pick them up while the page is open
-function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;d=mergeLive(d);if(JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
-  if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
-Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK(),loadCH()]).then(([d])=>{DATA=d;route();pollLive();setInterval(pollLive,25e3);setInterval(()=>{if(new Date().getMinutes()%5===1)loadCH().then(()=>{if(location.hash==='#ch-map')renderMap()})},6e4);setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+function refreshPosts(){Promise.all([fetch(postsURL()).then(r=>r.ok?r.json():null),loadSite()]).then(([d])=>{if(!d)return;d=withSite(mergeLive(d));if(JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
+  if(['ch','uk','mc','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
+Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK(),loadCH(),loadSite()]).then(([d])=>{DATA=withSite(d);route();pollLive();setInterval(pollLive,25e3);setInterval(()=>{if(new Date().getMinutes()%5===1)loadCH().then(()=>{if(location.hash==='#ch-map')renderMap()})},6e4);setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 <script>(()=>{const el=document.getElementById('intro');let seen=false,old=false;try{seen=sessionStorage.getItem('nwIntro');old=localStorage.getItem('nwIntro')}catch(e){}

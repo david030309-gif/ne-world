@@ -14,7 +14,7 @@ The site is in Russian, and David writes in Russian and English.
 | `eho` | ehoschweiz (youth CH, "Движ" tab) | t.me/ehochweiz | live |
 | `de` | Ne Ordnung 🇩🇪 | — | coming soon |
 | `fr` | Ne Provence 🇫🇷 | — | coming soon |
-| `mc` | Ne Lazurka 🇲🇨 (Monaco + Nice) | — | coming soon |
+| `mc` | Ne Lazurka 🇲🇨 (Monaco + Nice) | — (site only) | live since 28.11.2026 |
 | `il` | Ne Kosher 🇮🇱 | — | coming soon |
 Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The old Ne Shalom idea was replaced by Ne Kosher.
 
@@ -23,6 +23,7 @@ Planned later: Ne Zhabka 🇵🇱 (logo in `brand/`, not on the site yet). The o
   - The `R` / regions config holds the live channels. `NEXT` holds the coming-soon channels: their globe label, zoom level, and teaser text (`hook`, `desc`, `tags`) and logo.
   - The globe is a canvas built with d3 (`d3.min.js` and `topojson-client.min.js`, both bundled locally). It also uses `world-110m.json` (country names are in Russian, in `properties.ru`) and `world.json`.
 - `posts.json`: news posts for `ch`, `uk` and `eho`. The bot updates it, so don't rewrite it by hand unless you have to.
+- `lazurka.json`: Ne Lazurka (`mc`) posts. This region has **no Telegram channel**: posts are written straight for the site, in Russian, in our own words, each with `src:{name,url}` linking to the source (no copied photos, `img:null`, the logo shows instead). Cities `Монако`/`Ницца` are chips. A scheduled Claude task updates it twice a day from the sources listed in `docs/HISTORY.md`; it also drops past events and keeps ~60 posts. The Telegram bot never touches this file. Region config: `R.mc` with `site:true`, `channel:null`, `cities`.
 - `hidden.json`: ids of posts that were removed for good (for example `["ch-1101"]`). The bot will never add them back. To remove a post from the site, add its id here and delete it from `posts.json`.
 - `img/`: pictures saved by the bot. `eho/`: ehoschweiz media and the giveaway poster.
 - `logo-*.png`: logos used on the site. They are white on a transparent background. `logo-de/fr/mc/il.png` share the same frame (877×755), so the teaser cards look identical.
