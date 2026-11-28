@@ -607,9 +607,9 @@ function renderFeed(){
   html+=`<section class="top"><button class="lead" data-id="${lead.id}">
      ${lead.img?`<span class="lth" style="background-image:url(${lead.img})">${lead.video?'<i class="pl"></i>':''}</span>`:r.site?`<span class="lth lthn"><img src="${r.logo}" alt=""></span>`:''}
      ${lab(lead)}<h2 class="lt">${esc(lead.title)}</h2>
-     <ul class="lb">${lead.bullets.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${meta(lead)}</button>
+     <ul class="lb">${(lead.bullets||[]).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${meta(lead)}</button>
     <aside class="also"><h3 class="sh">Также важно</h3>${also.map(side).join('')}</aside></section>`;
-  if(dig)html+=`<button class="night" data-id="${dig.id}"><span class="nh"><b>${esc(dig.title.replace(/^.*?(за ночь.*)$/i,(m,x)=>'Британия '+x))}</b><span>${hm(dig.date,tz)}</span></span><ul>${dig.bullets.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></button>`;
+  if(dig)html+=`<button class="night" data-id="${dig.id}"><span class="nh"><b>${esc(dig.title.replace(/^.*?(за ночь.*)$/i,(m,x)=>'Британия '+x))}</b><span>${hm(dig.date,tz)}</span></span><ul>${(dig.bullets||[]).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></button>`;
   const shown=new Set([lead,...also,dig].filter(Boolean));rest=ps.filter(p=>!shown.has(p));
  }
  // the rest: a calm timeline grouped by day
