@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T08:38:53.440Z",
+ "updated": "2026-11-28T09:34:46.519Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,8 +8,20 @@
  },
  "lines": {
   "ok": true,
-  "total": 8,
+  "total": 10,
   "items": [
+   {
+    "id": "lioness",
+    "name": "Lioness",
+    "bg": "#FAA61A",
+    "fg": "#111",
+    "mode": "overground",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "неисправность поезда",
+    "text": "Не ходит на части линии, неисправность поезда",
+    "reason": "Lioness Line: No service between Euston and Kilburn High Road and MINOR DELAYS on the rest of the line while we fix a faulty train at Euston. London Underground are accepting tickets via any reasonable route."
+   },
    {
     "id": "hammersmith-city",
     "name": "Hammersmith & City",
@@ -45,6 +57,18 @@
     "cause": "погода",
     "text": "Закрыта (плановые работы), погода",
     "reason": "Waterloo & City line: service operates 06:00 until 00:30, Monday to Friday only. There is no service on Saturdays, Sundays and on bank/public holidays."
+   },
+   {
+    "id": "circle",
+    "name": "Circle",
+    "bg": "#FFD300",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 5,
+    "status": "Частично закрыта",
+    "cause": "плановые работы",
+    "text": "Частично закрыта, плановые работы",
+    "reason": "Circle Line : Saturday 28 and Sunday 29 November - No service between Hammersmith and Tower Hill, Edgware Road and High Street Kensington due to planned engineering work."
    },
    {
     "id": "district",
@@ -95,22 +119,22 @@
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
    },
    {
-    "id": "circle",
-    "name": "Circle",
-    "bg": "#FFD300",
-    "fg": "#111",
+    "id": "northern",
+    "name": "Northern",
+    "bg": "#000000",
+    "fg": "#fff",
     "mode": "tube",
     "severity": 9,
     "status": "Небольшие задержки",
-    "cause": "плановые работы",
-    "text": "Небольшие задержки, плановые работы",
-    "reason": "Circle Line: No service between Hammersmith and Tower Hill, and between Edgware Road and High Street Kensington due to planned engineering work. MINOR DELAYS between Tower Hill and High Street Kensington due to train cancellations."
+    "cause": "проблема с путями",
+    "text": "Небольшие задержки, проблема с путями",
+    "reason": "Northern Line: Minor delays between Camden Town and Kennington via Charing Cross northbound only while we deal with a track fire at Charing Cross."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 6,
+  "total": 7,
   "items": [
    {
     "badge": "A41",
@@ -157,6 +181,17 @@
     ]
    },
    {
+    "badge": "A4202",
+    "title": "Park Lane (Westminster)",
+    "text": "Мероприятие",
+    "severity": "Moderate",
+    "rank": 3,
+    "ll": [
+     -0.15332,
+     51.504823
+    ]
+   },
+   {
     "badge": "A1010",
     "title": "High Road (Enfield,Haringey)",
     "text": "Дорожные работы",
@@ -165,17 +200,6 @@
     "ll": [
      -0.068175,
      51.605584
-    ]
-   },
-   {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     0.058788,
-     51.554479
     ]
    }
   ]
