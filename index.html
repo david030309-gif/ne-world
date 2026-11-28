@@ -1100,7 +1100,7 @@ const postsURL=()=>'posts.json?v='+Math.floor(Date.now()/6e4);
 /* ---------- live posts: new Telegram posts within ~20-30 s, through the Cloudflare relay (worker/ne-live.js) ----------
    The GitHub bot still archives every post (with its photo) into posts.json; until it does, live posts are kept in LIVEP
    and merged on top. Empty LIVE_RELAY = feature off (only the bot). */
-const LIVE_RELAY=(()=>{try{return localStorage.getItem('nwRelay')||''}catch(e){return ''}})()||'';
+const LIVE_RELAY=(()=>{try{return localStorage.getItem('nwRelay')||''}catch(e){return ''}})()||'https://ne-world.david030309.workers.dev/';
 let LIVEP={},HIDDEN=new Set();
 fetch('hidden.json?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():[]).then(a=>{HIDDEN=new Set(a)}).catch(()=>{});
 function mergeLive(d){for(const k in LIVEP){const list=d[k]||(d[k]=[]),ids=new Set(list.map(p=>p.id));
