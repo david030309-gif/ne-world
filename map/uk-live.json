@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T12:08:36.270Z",
+ "updated": "2026-11-28T13:10:55.204Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -116,13 +116,13 @@
     "status": "Сильные задержки",
     "cause": "неисправность поезда",
     "text": "Сильные задержки, неисправность поезда",
-    "reason": "Central Line: Severe delays while we fix a faulty train at Queensway. Tickets are being accepted on London Buses, Chiltern and Greater Anglia services"
+    "reason": "Central Line: Severe delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to an earlier faulty train at Queensway. GOOD SERVICE on the rest of the line. Tickets are being accepted on London Buses, Chiltern and Greater Anglia services."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 9,
+  "total": 10,
   "items": [
    {
     "badge": "A41",
@@ -202,12 +202,12 @@
    {
     "level": 3,
     "label": "Может подняться вода",
-    "area": "South Devon coast from Start Point to Dawlish Warren",
-    "county": "Devon, Torbay",
-    "river": "South Devon Coast",
+    "area": "River Axe area",
+    "county": "Devon, Dorset Council, Somerset",
+    "river": "River Coly, River Yarty, Umborne Brook",
     "ll": [
-     -3.64452,
-     50.28593
+     -3.01594,
+     50.78851
     ]
    },
    {
