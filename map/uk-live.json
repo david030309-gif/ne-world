@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T14:13:27.544Z",
+ "updated": "2026-11-28T14:59:15.513Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -138,9 +138,9 @@
     "mode": "tube",
     "severity": 9,
     "status": "Небольшие задержки",
-    "cause": "неисправность поезда",
-    "text": "Небольшие задержки, неисправность поезда",
-    "reason": "Central Line: Minor delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to an earlier faulty train at Queensway. GOOD SERVICE on the rest of the line."
+    "cause": "погода",
+    "text": "Небольшие задержки, погода",
+    "reason": "Central Line: Minor delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to train cancellations. GOOD SERVICE on the rest of the line."
    },
    {
     "id": "jubilee",
@@ -158,7 +158,7 @@
  },
  "roads": {
   "ok": true,
-  "total": 15,
+  "total": 14,
   "items": [
    {
     "badge": "A41",
@@ -194,6 +194,17 @@
     ]
    },
    {
+    "badge": "A4202",
+    "title": "Park Lane (Westminster)",
+    "text": "Мероприятие",
+    "severity": "Serious",
+    "rank": 5,
+    "ll": [
+     -0.15332,
+     51.504823
+    ]
+   },
+   {
     "badge": "A4020",
     "title": "Uxbridge Road (Ealing)",
     "text": "Дорожные работы",
@@ -214,26 +225,15 @@
      -0.174278,
      51.520091
     ]
-   },
-   {
-    "badge": "A4202",
-    "title": "Park Lane (Westminster)",
-    "text": "Мероприятие",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     -0.15332,
-     51.504823
-    ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 5,
+  "total": 6,
   "severe": 0,
   "warnings": 0,
-  "alerts": 5,
+  "alerts": 6,
   "items": [
    {
     "level": 3,
@@ -288,6 +288,17 @@
     "ll": [
      -1.09708,
      52.63938
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Rivers Duddon, Crake and Mill Beck",
+    "county": "Cumberland, Westmorland and Furness",
+    "river": "River Duddon, River Crake, Mill Beck",
+    "ll": [
+     -3.21857,
+     54.30575
     ]
    }
   ]
