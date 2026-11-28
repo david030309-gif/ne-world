@@ -274,7 +274,7 @@
     "Expo 2030 пройдёт в Эр-Рияде",
     "Монако готовит свой павильон"
    ],
-   "img": "img/mc/mc-8.jpg",
+   "img": null,
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/category/news/"
@@ -283,18 +283,12 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Monaco by night",
+   "pic": "Monte-Carlo at night harbour",
    "geo": [
     43.7408,
     7.429
    ],
-   "place": "Монако",
-   "credit": {
-    "by": "Martin Falbisoner",
-    "lic": "CC BY-SA 3.0",
-    "url": "https://commons.wikimedia.org/wiki/File:Biergarten_at_Night_2.JPG",
-    "file": "File:Biergarten at Night 2.JPG"
-   }
+   "place": "Монако"
   },
   {
    "id": "mc-9",
@@ -359,7 +353,7 @@
    "digest": false,
    "london": false,
    "urgent": false,
-   "pic": "Auditorium Rainier III Monaco",
+   "pic": "Orchestre philharmonique de Monte-Carlo",
    "geo": [
     43.7303,
     7.4232
@@ -731,7 +725,7 @@
     "27 января – 3 февраля — Historique",
     "Финиш в порту Эркюль"
    ],
-   "img": "img/mc/mc-20.jpg",
+   "img": null,
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
@@ -741,20 +735,14 @@
    "london": false,
    "urgent": false,
    "when": "21–24 января",
-   "pic": "Rallye Monte-Carlo 2023 WRC",
+   "pic": "Sébastien Ogier Rallye Monte-Carlo",
    "geo": [
     43.735,
     7.424
    ],
    "place": "Старт — порт Монако",
    "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00",
-   "credit": {
-    "by": "Unknown authorUnknown author",
-    "lic": "Public domain",
-    "url": "https://commons.wikimedia.org/wiki/File:Rallye_Monte_Carlo_v_Dravogradu_1956.jpg",
-    "file": "File:Rallye Monte Carlo v Dravogradu 1956.jpg"
-   }
+   "end": "2027-01-24T23:00:00+01:00"
   },
   {
    "id": "mc-21",

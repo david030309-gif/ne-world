@@ -407,6 +407,47 @@ body.dz header{background:#15111dee}
 }
 @media(max-width:600px) and (max-height:620px){.ptop p,.soon{display:none}#gslot{--g:max(170px,min(84vw,calc(100svh - 240px)))}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Ne Lazurka */
+.mchero{position:relative;display:block;width:100%;height:170px;border-radius:18px;overflow:hidden;margin-bottom:18px;text-align:left;border:1px solid var(--line);background:#101318}
+.mchero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+.mchero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,14,.88) 0%,rgba(8,10,14,.55) 55%,rgba(8,10,14,.15) 100%)}
+.mcv{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;gap:6px;height:100%;padding:18px 22px}
+.mck{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#cfd3dc}
+.mchero .mcwx{font-size:20px;line-height:1.25}.mhead .mcwx{font-size:13px;color:var(--mut);font-weight:400}.mcs{color:#c9ccd4;font-size:14px}
+.mchero .mgo{position:absolute;right:20px;bottom:16px;background:var(--ink);color:#0c0c0d;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px}
+.mcdz{margin-bottom:22px}.mcdz .sh{margin-bottom:10px}
+.mcrow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}.mcrow::-webkit-scrollbar{display:none}
+.mce{flex:0 0 220px;scroll-snap-align:start;text-align:left;display:flex;flex-direction:column;gap:5px}
+.mci{position:relative;display:block;aspect-ratio:4/3;border-radius:14px;background:#1a1c24 center/cover no-repeat;border:1px solid var(--line)}
+.mci.none{background-size:60%;background-color:#16171e}
+.mcd{position:absolute;left:10px;top:10px;background:rgba(12,12,13,.86);border-radius:10px;padding:5px 9px;text-align:center;font-size:12px;line-height:1.1;text-transform:lowercase;color:#d8d8dc}
+.mcd b{display:block;font-size:20px;color:#fff}
+.mcc{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.mct{font-size:15px;line-height:1.3}.mce small{color:var(--mut);font-size:13px}
+.mce:hover .mct{text-decoration:underline}
+.lmap{height:520px;border-radius:12px;overflow:hidden;background:#0f1116}
+.mcfl{display:flex;gap:6px;overflow-x:auto;margin:10px 0;scrollbar-width:none}
+.mcfl button{flex:0 0 auto;padding:6px 12px;border-radius:999px;background:var(--card2);font-size:13px}.mcfl button.on{background:var(--ink);color:#0c0c0d}
+.mleg i.lnow{background:var(--red);box-shadow:0 0 0 3px rgba(228,35,47,.35)}
+.mcb{background:color-mix(in srgb,var(--c) 22%,transparent)!important;color:var(--c)!important;white-space:nowrap}
+.lic{background:none;border:0}
+.lpin{display:inline-block;transform:translate(-50%,-50%);white-space:nowrap;background:#0c0c0d;color:#fff;border:2px solid var(--c);border-radius:999px;padding:2px 8px;font:700 12px/1.3 Inter,system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.6)}
+.lpin.now{background:var(--red);border-color:#fff;animation:lpulse 1.6s infinite}
+@keyframes lpulse{0%{box-shadow:0 0 0 0 rgba(228,35,47,.6)}100%{box-shadow:0 0 0 14px rgba(228,35,47,0)}}
+.ldot{display:block;width:14px;height:14px;transform:translate(-50%,-50%);border-radius:50%;background:var(--c);border:2px solid #0c0c0d;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.lmap .leaflet-popup-content-wrapper,.lmap .leaflet-popup-tip{background:#1b1b1d;color:var(--ink);border:1px solid var(--line)}
+.lmap .leaflet-popup-content{margin:12px}.lmap a.leaflet-popup-close-button{color:#aaa}
+.lmap.leaflet-container{font-family:Inter,system-ui,sans-serif;background:#0f1116}
+.leaflet-control-attribution{background:rgba(12,12,13,.7)!important;color:#888!important}.leaflet-control-attribution a{color:#aaa!important}
+.lmap .leaflet-bar a{background:#1b1b1d;color:#eee;border-color:#2c2c30}.lmap .leaflet-bar a:hover{background:#242427}
+.lpop{display:flex;flex-direction:column;gap:4px}.lpop img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-bottom:4px}
+.lpop small{font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.04em}.lpop b{font-size:15px;line-height:1.3}.lpop span{color:var(--mut);font-size:13px}
+.lpop a{color:#fff!important;font-weight:700;margin-top:4px}
+figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}.cred a{color:var(--mut)}
+@media(max-width:860px){.lmap{height:62vh}.mchero{height:150px}.mcwx{font-size:17px}.mchero{height:auto}.mcv{padding:16px}.mchero .mgo{position:static;align-self:flex-start;margin-top:6px;font-size:13px}.mce{flex-basis:62vw}.mci{aspect-ratio:16/10}}
+.lwrap{position:relative}.ljump{position:absolute;right:10px;top:10px;z-index:500;display:flex;gap:4px;background:rgba(12,12,13,.8);border-radius:999px;padding:3px}
+.ljump button{padding:5px 10px;border-radius:999px;font-size:12px;color:#ddd}.ljump button.on{background:var(--ink);color:#0c0c0d}
+@media(max-width:860px){.mhead .mcwx{display:none}}
 </style>
 </head>
 <body>
@@ -580,7 +621,7 @@ function renderPost(p){
  $('#post').innerHTML=(r.channel?`<a class="brandc" href="https://t.me/${r.channel}"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${r.about||(region==='ch'?'Швейцарии':'Лондона и Британии')} на русском · t.me/${r.channel}</small></span><span class="subs">Подписаться</span></a>`:`<div class="brandc"><img src="${r.logo}" alt="${r.name}"><span><b>${r.name}</b><small>Новости ${r.about} на русском</small></span></div>`)+`
   <a class="back" href="#${region}">← Все новости · ${esc(r.label)}</a>
   <div class="cat" style="color:var(--red)">${esc(p.cat)}</div><h1 class="h">${esc(p.title)}</h1>${meta(p)}
-  ${p.img?`<figure><img src="${p.img}" alt=""></figure>`:''}
+  ${p.img?`<figure><img src="${p.img}" alt="">${p.credit?`<figcaption class="cred">Фото: <a href="${p.credit.url}">${esc(p.credit.by)}</a>, ${esc(p.credit.lic)} · Wikimedia Commons</figcaption>`:''}</figure>`:''}
   <div class="body">${p.paras.map(x=>`<p>${x}</p>`).join('')}</div>
   ${p.src?`<a class="tg" href="${p.src.url}">Источник: ${esc(p.src.name)} ↗</a>`:`<a class="tg" href="${p.tg}">Открыть в Telegram ↗</a>`}`;
 }
@@ -659,11 +700,12 @@ function chFromLive(J){const groups=[],cnt={};
  Object.assign(MAPS.ch,{updated:J.time||MAPS.ch.updated,groups:groups.length?groups:MAPS.ch.groups,stats,areas:Array.isArray(J.areas)?J.areas:[],errors:J.errors||[],live:true})}
 function loadCH(){return fetch(CHLIVE+'?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).then(j=>{if(j&&Array.isArray(j.items))chFromLive(j)}).catch(()=>{})}
 function mapStrip(){const M=MAPS[region];if(!M||chip!=='Главная'||query)return '';
+ if(region==='mc')return mcTop();
  if(region==='uk'){const U=UKLIVE;if(!U)return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="ms">метро, дороги, погода, наводнения</span><span class="mgo">Карта →</span></button>`;
   return `<button class="mstrip" data-go="uk-map"><i class="live"></i><b>Ne Mayfair Live</b><span class="mt">${hm(U.updated,'Europe/London')}</span><span class="ms">${ukSummary(U)}</span><span class="mgo">Карта →</span></button>`}
  return `<button class="mstrip" data-go="${region}-map"><i class="live"></i><b>${M.title}</b><span class="mt">${M.updated}</span><span class="ms">${M.stats.map(([n,l])=>`${n} ${l}`).join(' · ')}</span><span class="mgo">Карта →</span></button>`}
 let geoCache=null;
-function renderMap(){if(region==='uk')return renderMapUK();const M=MAPS[region];
+function renderMap(){if(region==='uk')return renderMapUK();if(region==='mc')return renderMapMC();const M=MAPS[region];
  const evs=[];M.groups.forEach(([k,,items])=>items.forEach(it=>{if(it.ll)evs.push(Object.assign(it,{k,i:evs.length}))}));
  $('#feed').innerHTML=`<section class="mapv">
   <div class="mapcard">
@@ -877,6 +919,82 @@ function openZoom(src){
  v.querySelector('.zbar').onclick=e=>{const b=e.target.closest('[data-z]');if(!b)return;const k=b.dataset.z;if(k==='x')close();else{const r=v.getBoundingClientRect();z.zoomAt(k==='in'?z.s*1.6:z.s/1.6,r.width/2,r.height/2,1)}};
  setTimeout(()=>{const t=v.querySelector('.ztip');if(t)t.style.opacity=0},2600);
 }
+
+/* ---------- Ne Lazurka: движ и живая карта ---------- */
+MAPS.mc={title:'Лазурка Live'};
+const MCTZ='Europe/Monaco',MC_COL={'Тусовки':'#ff4d8d','Афиша':'#ffb020','Нетворкинг':'#3fa9ff','Спорт':'#2ecc71'};
+const mcCol=c=>MC_COL[c]||'#a9a9b2';
+const MCW={};
+function loadMCW(){if(MCW.t&&Date.now()-MCW.t<6e5)return Promise.resolve();
+ const W='https://api.open-meteo.com/v1/forecast?latitude=43.7384,43.7034&longitude=7.4246,7.2663&current=temperature_2m,weather_code,wind_speed_10m&daily=sunset&timezone=Europe%2FParis&forecast_days=1';
+ const S='https://marine-api.open-meteo.com/v1/marine?latitude=43.72&longitude=7.43&current=sea_surface_temperature,wave_height&timezone=Europe%2FParis';
+ return Promise.all([fetch(W).then(r=>r.json()),fetch(S).then(r=>r.json()).catch(()=>null)]).then(([w,s])=>{const a=Array.isArray(w)?w:[w];
+  Object.assign(MCW,{mc:a[0]&&a[0].current,nice:a[1]&&a[1].current,sunset:a[0]&&a[0].daily&&a[0].daily.sunset&&a[0].daily.sunset[0],sea:s&&s.current,t:Date.now()})}).catch(()=>{})}
+const wIc=c=>c==null?'':c===0?'☀️':c<=2?'🌤':c===3?'☁️':c<=48?'🌫':c<=67?'🌧':c<=77?'🌨':c<=82?'🌦':'⛈';
+const deg=v=>v==null?'—':Math.round(v)+'°';
+function mcWxLine(){if(!MCW.t)return 'погода, море и события на карте';
+ const b=[];if(MCW.mc)b.push(`Монако ${wIc(MCW.mc.weather_code)} ${deg(MCW.mc.temperature_2m)}`);if(MCW.nice)b.push(`Ницца ${deg(MCW.nice.temperature_2m)}`);
+ if(MCW.sea&&MCW.sea.sea_surface_temperature!=null)b.push(`море ${deg(MCW.sea.sea_surface_temperature)}`);return b.join(' · ')}
+function mcWxTiles(){const t=[];
+ if(MCW.mc)t.push([`${wIc(MCW.mc.weather_code)} ${deg(MCW.mc.temperature_2m)}`,'Монако сейчас']);
+ if(MCW.nice)t.push([`${wIc(MCW.nice.weather_code)} ${deg(MCW.nice.temperature_2m)}`,'Ницца сейчас']);
+ if(MCW.sea&&MCW.sea.sea_surface_temperature!=null)t.push([deg(MCW.sea.sea_surface_temperature),'море'+(MCW.sea.wave_height!=null?`, волна ${MCW.sea.wave_height.toFixed(1).replace('.',',')} м`:'')]);
+ if(MCW.sunset)t.push([MCW.sunset.slice(11,16),'закат']);
+ return t.length?t.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join(''):'<div><b>…</b><span>загружаем погоду</span></div>'}
+function mcPaint(){document.querySelectorAll('.mcwx').forEach(e=>e.textContent=mcWxLine());document.querySelectorAll('.mcwt').forEach(e=>e.innerHTML=mcWxTiles())}
+const mcEvents=()=>DATA.mc.filter(p=>p.start&&new Date(p.end||p.start)>Date.now()).sort((a,b)=>new Date(a.start)-new Date(b.start));
+const mcNow=p=>p.start&&new Date(p.start)<=Date.now()&&Date.now()<new Date(p.end||p.start);
+function mcDate(p){const d=new Date(p.start),o=k=>d.toLocaleDateString('ru-RU',{timeZone:MCTZ,...k});return [o({day:'numeric'}),o({month:'short'}).replace('.','')]}
+function mcCard(p){const [d,m]=mcDate(p),now=mcNow(p);
+ return `<button class="mce" data-id="${p.id}"><span class="mci${p.img?'':' none'}" style="${p.img?`background-image:url(${p.img})`:`background-image:url(${R.mc.logo})`}">
+  <span class="mcd"${now?' style="background:var(--red)"':''}>${now?'<b>сейчас</b>':`<b>${d}</b>${m}`}</span></span>
+  <span class="mcc" style="color:${mcCol(p.cat)}">${esc(p.cat)}${p.when?' · '+esc(p.when):''}</span><b class="mct">${esc(p.title)}</b><small>${esc(p.place||p.city)}</small></button>`}
+function mcTop(){const ev=mcEvents();loadMCW().then(mcPaint);
+ return `<button class="mchero" data-go="mc-map"><video src="video/mc.mp4" poster="video/mc.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <span class="mcv"><span class="mck"><i class="live"></i>Лазурка сейчас</span><b class="mcwx">${mcWxLine()}</b>
+  <span class="mcs">${ev.filter(mcNow).length?`${ev.filter(mcNow).length} идёт сейчас · `:''}${ev.length} ${pl(ev.length,['событие','события','событий'])} на карте</span><span class="mgo">Карта движа →</span></span></button>
+  ${ev.length?`<section class="mcdz"><h3 class="sh">Движ — ближайшие события</h3><div class="mcrow">${ev.slice(0,10).map(mcCard).join('')}</div></section>`:''}`}
+function needLeaflet(){if(window.L)return Promise.resolve();return needLeaflet.p||(needLeaflet.p=new Promise((ok,no)=>{
+ const c=document.createElement('link');c.rel='stylesheet';c.href='leaflet/leaflet.css';document.head.appendChild(c);
+ const s=document.createElement('script');s.src='leaflet/leaflet.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)}))}
+const MCB={mc:[[43.724,7.408],[43.750,7.442]],nice:[[43.690,7.245],[43.712,7.285]],all:[[43.684,7.235],[43.752,7.447]]};
+let mcf='Всё',mcMap=null,mcLayer=null,mcMk={};
+const MCF={'Всё':p=>1,'Движ':p=>['Тусовки','Афиша','Нетворкинг'].includes(p.cat),'Тусовки':p=>p.cat==='Тусовки','Афиша':p=>p.cat==='Афиша','Нетворкинг':p=>p.cat==='Нетворкинг','Спорт':p=>p.cat==='Спорт','Новости':p=>!p.start&&!['Тусовки','Афиша','Нетворкинг'].includes(p.cat)};
+function mcPins(){const fresh=p=>p.start?new Date(p.end||p.start)>Date.now():Date.now()-new Date(p.date)<14*864e5||['Тусовки','Нетворкинг'].includes(p.cat);
+ return DATA.mc.filter(p=>p.geo&&fresh(p)&&MCF[mcf](p))}
+function mcEvRow(p){const [d,m]=p.start?mcDate(p):['',''],now=mcNow(p);
+ return `<button class="ev" data-mcev="${p.id}"><span class="bd mcb" style="--c:${mcCol(p.cat)}">${now?'сейчас':p.start?`${d} ${m}`:esc(p.cat)}</span><span><b>${esc(p.title)}</b><small>${esc(p.place||p.city)}${p.when?' · '+esc(p.when):''}</small></span></button>`}
+function renderMapMC(){const ev=mcEvents(),now=ev.filter(mcNow),next=ev.filter(p=>!mcNow(p)),news=DATA.mc.filter(p=>!p.start&&p.geo&&Date.now()-new Date(p.date)<7*864e5).slice(0,8);
+ $('#feed').innerHTML=`<section class="mapv mcmapv">
+  <div class="mapcard"><div class="mhead"><b>Лазурка Live</b><span class="mlive"><i class="live"></i><span class="mcwx">${mcWxLine()}</span></span></div>
+   <div class="mcfl">${Object.keys(MCF).map(k=>`<button class="${k===mcf?'on':''}" data-mcf="${k}">${k}</button>`).join('')}</div>
+   <div class="lwrap"><div class="lmap" id="lmap"></div><div class="ljump"><button data-mcj="mc" class="on">Монако</button><button data-mcj="nice">Ницца</button><button data-mcj="all">Всё</button></div></div>
+   <div class="mleg">${Object.entries(MC_COL).map(([k,c])=>`<span><i style="background:${c}"></i>${k}</span>`).join('')}<span><i style="background:#a9a9b2"></i>Новости</span><span><i class="lnow"></i>Идёт сейчас</span></div>
+   <p class="zline">Нажмите на точку, чтобы открыть событие. Карта — Монако и Ницца.</p></div>
+  <div class="minfo"><div class="mlive"><i class="live"></i>Погода и море — в реальном времени · события обновляются дважды в день</div>
+   <h1 class="h">Лазурка Live</h1><div class="mstats mcwt">${mcWxTiles()}</div>
+   <h3>Сейчас идёт</h3><div class="evl">${now.length?now.map(mcEvRow).join(''):'<p class="more2">Прямо сейчас ничего — смотрите, что дальше.</p>'}</div>
+   <h3>Ближайшие события</h3><div class="evl">${next.map(mcEvRow).join('')||'<p class="more2">Скоро добавим новые.</p>'}</div>
+   ${news.length?`<h3>Новости недели на карте</h3><div class="evl">${news.map(mcEvRow).join('')}</div>`:''}
+   <p class="msrc">Карта © OpenStreetMap, © CARTO · погода и море — Open-Meteo · события — по источникам в каждой статье</p></div></section>`;
+ document.querySelectorAll('[data-mcf]').forEach(b=>b.onclick=()=>{mcf=b.dataset.mcf;document.querySelectorAll('[data-mcf]').forEach(x=>x.classList.toggle('on',x===b));mcDraw()});
+ document.querySelectorAll('[data-mcev]').forEach(b=>b.onclick=()=>{const p=DATA.mc.find(x=>x.id===b.dataset.mcev);if(!p)return;
+  if(!mcMk[p.id]){mcf='Всё';document.querySelectorAll('[data-mcf]').forEach(x=>x.classList.toggle('on',x.dataset.mcf==='Всё'));mcDraw()}
+  $('#lmap').scrollIntoView({behavior:'smooth',block:'center'});const m=mcMk[p.id];if(m&&mcMap){mcMap.flyTo(m.getLatLng(),15,{duration:.8});setTimeout(()=>m.openPopup(),850)}});
+ loadMCW().then(mcPaint);
+ needLeaflet().then(()=>{const el=$('#lmap');if(!el)return;if(mcMap){mcMap.remove();mcMap=null}
+  mcMap=L.map(el,{zoomSnap:.5,attributionControl:true}).fitBounds(MCB.mc);
+  document.querySelectorAll('[data-mcj]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mcj]').forEach(x=>x.classList.toggle('on',x===b));mcMap.flyToBounds(MCB[b.dataset.mcj],{duration:.8})});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(mcMap);
+  mcDraw()}).catch(()=>{const el=$('#lmap');if(el)el.innerHTML='<p class="more2" style="padding:20px">Карта не загрузилась.</p>'})}
+function mcDraw(){if(!mcMap)return;if(mcLayer)mcLayer.remove();mcLayer=L.layerGroup().addTo(mcMap);mcMk={};const seen={};
+ for(const p of mcPins()){const k=p.geo.join(),n=seen[k]=(seen[k]||0)+1,ll=[p.geo[0]+(n-1)*.0009,p.geo[1]+(n-1)*.0011];
+  const now=mcNow(p),c=mcCol(p.cat),[d,m]=p.start?mcDate(p):['',''];
+  const html=p.start?`<span class="lpin${now?' now':''}" style="--c:${c}">${now?'сейчас':`${d} ${m}`}</span>`:`<span class="ldot" style="--c:${c}"></span>`;
+  const mk=L.marker(ll,{icon:L.divIcon({className:'lic',html,iconSize:null}),title:p.title,zIndexOffset:p.start?500:0}).addTo(mcLayer);
+  mk.bindPopup(`<div class="lpop">${p.img?`<img src="${p.img}" alt="">`:''}<small style="color:${c}">${esc(p.cat)}${p.when?' · '+esc(p.when):''}</small><b>${esc(p.title)}</b><span>${esc(p.place||p.city)}</span><a href="#${p.id}">Читать →</a></div>`,{maxWidth:260,minWidth:220});
+  mcMk[p.id]=mk}}
+setInterval(()=>{if(location.hash==='#mc-map'||(location.hash==='#mc'&&chip==='Главная')){MCW.t=0;loadMCW().then(mcPaint)}},6e5);
 
 /* ---------- routing ---------- */
 function route(){

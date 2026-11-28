@@ -1,6 +1,6 @@
 // Ne World service worker: makes the site installable as an app.
 // Network first (news must always be fresh); the cached copy is only a fallback when offline.
-const CACHE = 'ne-world-v7';
+const CACHE = 'ne-world-v8';
 const SHELL = ['./', './index.html', './d3.min.js', './topojson-client.min.js', './world-110m.json', './manifest.webmanifest', './icons/icon-192.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).catch(() => {})); self.skipWaiting(); });
 self.addEventListener('activate', e => {
