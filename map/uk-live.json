@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T18:05:07.535Z",
+ "updated": "2026-11-28T18:52:54.170Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -119,6 +119,18 @@
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
    },
    {
+    "id": "jubilee",
+    "name": "Jubilee",
+    "bg": "#A0A5A9",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 6,
+    "status": "Сильные задержки",
+    "cause": "погода",
+    "text": "Сильные задержки, погода",
+    "reason": "Jubilee Line: Severe delays due to train cancellations. Tickets are being accepted on London Buses, London Overground, DLR, Southeastern and Thameslink services via any reasonable route."
+   },
+   {
     "id": "victoria",
     "name": "Victoria",
     "bg": "#0098D4",
@@ -141,24 +153,12 @@
     "cause": "погода",
     "text": "Небольшие задержки, погода",
     "reason": "Central Line: Minor delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to train cancellations. GOOD SERVICE on the rest of the line."
-   },
-   {
-    "id": "jubilee",
-    "name": "Jubilee",
-    "bg": "#A0A5A9",
-    "fg": "#111",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "",
-    "text": "Небольшие задержки",
-    "reason": "Jubilee Line: Minor delays due to train cancellations."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 14,
+  "total": 13,
   "items": [
    {
     "badge": "A41",
@@ -180,6 +180,17 @@
     "ll": [
      -0.004133,
      51.506783
+    ]
+   },
+   {
+    "badge": "A112",
+    "title": "High Street (Newham)",
+    "text": "Авария, дорога частично перекрыта",
+    "severity": "Serious",
+    "rank": 6,
+    "ll": [
+     0.024582,
+     51.529396
     ]
    },
    {
@@ -214,27 +225,27 @@
      -0.219311,
      51.509197
     ]
-   },
-   {
-    "badge": "A4020",
-    "title": "Uxbridge Road (Ealing)",
-    "text": "Дорожные работы",
-    "severity": "Serious",
-    "rank": 5,
-    "ll": [
-     -0.31411,
-     51.511686
-    ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 11,
+  "total": 13,
   "severe": 0,
-  "warnings": 0,
-  "alerts": 11,
+  "warnings": 1,
+  "alerts": 12,
   "items": [
+   {
+    "level": 2,
+    "label": "Наводнение ожидается",
+    "area": "North Sea coast at Bridlington - Harbour Road and Floral Pavilion",
+    "county": "East Riding of Yorkshire",
+    "river": "North Sea",
+    "ll": [
+     -0.18741,
+     54.08197
+    ]
+   },
    {
     "level": 3,
     "label": "Может подняться вода",
@@ -310,6 +321,17 @@
     "ll": [
      -1.2794,
      52.94101
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "River Maun in Nottinghamshire",
+    "county": "Nottinghamshire",
+    "river": "River Maun",
+    "ll": [
+     -1.05888,
+     53.19738
     ]
    },
    {
