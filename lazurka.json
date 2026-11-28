@@ -754,7 +754,7 @@
     "Балоган забил дважды, победный гол на 90+4",
     "Следующий матч — в воскресенье в Лионе"
    ],
-   "img": null,
+   "img": "img/mc/mc-1.jpg",
    "src": {
     "name": "AS Monaco",
     "url": "https://www.asmonaco.com/en/news/four-in-a-row-after-a-dramatic-finish-for-as-monaco-against-hearts-in-the-conference-league"
@@ -768,7 +768,13 @@
     55.9392,
     -3.2324
    ],
-   "place": "Тайнкасл, Эдинбург"
+   "place": "Тайнкасл, Эдинбург",
+   "credit": {
+    "by": "Paul Henery",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Tynecastle_Park,_January_2018.jpg",
+    "file": "File:Tynecastle Park, January 2018.jpg"
+   }
   },
   {
    "id": "mc-13",
