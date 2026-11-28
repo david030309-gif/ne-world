@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T02:37:02.783Z",
+ "updated": "2026-11-28T03:31:53.765Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 2,
+  "total": 3,
   "items": [
    {
     "id": "northern",
@@ -33,6 +33,18 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
+   },
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "сбой сигнализации",
+    "text": "Небольшие задержки, сбой сигнализации",
+    "reason": "Piccadilly Line: Minor delays while we fix a signal system failure."
    }
   ]
  },
@@ -96,14 +108,14 @@
     ]
    },
    {
-    "badge": "A118",
-    "title": "Romford Road (Newham,Redbridge)",
+    "badge": "A1010",
+    "title": "High Road (Enfield,Haringey)",
     "text": "Дорожные работы",
     "severity": "Moderate",
     "rank": 3,
     "ll": [
-     0.058788,
-     51.554479
+     -0.068175,
+     51.605584
     ]
    }
   ]
