@@ -1097,10 +1097,26 @@ addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 
 const postsURL=()=>'posts.json?v='+Math.floor(Date.now()/6e4);
+/* ---------- live posts: new Telegram posts within ~20-30 s, through the Cloudflare relay (worker/ne-live.js) ----------
+   The GitHub bot still archives every post (with its photo) into posts.json; until it does, live posts are kept in LIVEP
+   and merged on top. Empty LIVE_RELAY = feature off (only the bot). */
+const LIVE_RELAY=(()=>{try{return localStorage.getItem('nwRelay')||''}catch(e){return ''}})()||'';
+let LIVEP={},HIDDEN=new Set();
+fetch('hidden.json?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():[]).then(a=>{HIDDEN=new Set(a)}).catch(()=>{});
+function mergeLive(d){for(const k in LIVEP){const list=d[k]||(d[k]=[]),ids=new Set(list.map(p=>p.id));
+  LIVEP[k]=LIVEP[k].filter(p=>!ids.has(p.id)&&!HIDDEN.has(p.id));   // once the bot has a post, its archived copy wins
+  if(LIVEP[k].length)d[k]=[...LIVEP[k],...list].sort((a,b)=>new Date(b.date)-new Date(a.date))}return d}
+let liveBusy=false;
+function pollLive(){if(!LIVE_RELAY||!DATA||liveBusy||document.visibilityState==='hidden')return;liveBusy=true;
+  import('./live/tg-live.mjs').then(m=>m.freshPosts(LIVE_RELAY,DATA,HIDDEN)).then(fr=>{let n=0;
+    for(const k in fr){const cur=LIVEP[k]||(LIVEP[k]=[]),ids=new Set(cur.map(p=>p.id));for(const p of fr[k])if(!ids.has(p.id)){cur.push(p);n++}}
+    if(n){DATA=mergeLive(DATA);if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}
+  }).catch(()=>{}).finally(()=>{liveBusy=false})}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pollLive()});
 // new Telegram posts arrive in posts.json via the bot; pick them up while the page is open
-function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{if(!d||JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
+function refreshPosts(){fetch(postsURL()).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;d=mergeLive(d);if(JSON.stringify(d)===JSON.stringify(DATA))return;DATA=d;
   if(['ch','uk','ch-dvizh'].includes(location.hash.slice(1))&&scrollY<300)route()}).catch(()=>{})}
-Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK(),loadCH()]).then(([d])=>{DATA=d;route();setInterval(()=>{if(new Date().getMinutes()%5===1)loadCH().then(()=>{if(location.hash==='#ch-map')renderMap()})},6e4);setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
+Promise.all([fetch(postsURL()).then(r=>r.json()),loadUK(),loadCH()]).then(([d])=>{DATA=d;route();pollLive();setInterval(pollLive,25e3);setInterval(()=>{if(new Date().getMinutes()%5===1)loadCH().then(()=>{if(location.hash==='#ch-map')renderMap()})},6e4);setInterval(refreshPosts,12e4);setInterval(()=>loadUK().then(()=>{if(location.hash==='#uk-map')renderMapUK()}),12e4)}).catch(()=>{document.body.insertAdjacentHTML('beforeend','<p class="empty">Не удалось загрузить новости.</p>')});
 }
 </script>
 <script>(()=>{const el=document.getElementById('intro');let seen=false,old=false;try{seen=sessionStorage.getItem('nwIntro');old=localStorage.getItem('nwIntro')}catch(e){}
