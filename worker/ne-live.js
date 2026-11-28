@@ -3,7 +3,8 @@
 // PUBLIC preview page of our channels and hands it to the app with permission to read it.
 // No tokens, no logins, nothing stored. Each channel is fetched from Telegram at most once every 20 seconds.
 //
-// Deploy: Cloudflare dashboard → Workers & Pages → Create → Worker → name it "ne-live" → Deploy →
+// Deployed automatically with the site by Cloudflare from this repository (wrangler.jsonc): https://ne-world.david030309.workers.dev/?c=golosswiss
+// Manual alternative: Cloudflare dashboard → Workers & Pages → Create → Worker → name it "ne-live" → Deploy →
 // Edit code → replace everything with this file → Deploy. Then send the worker address (…workers.dev) to Claude.
 
 const CHANNELS = ['golosswiss', 'NeMyfair', 'ehochweiz'];   // only our channels, nothing else can be fetched
@@ -16,6 +17,8 @@ export default {
     const url = new URL(request.url);
     const channel = url.searchParams.get('c') || '';
     if (!CHANNELS.includes(channel)) {
+      // Deployed together with the site (wrangler.jsonc): everything that is not a relay request is the site itself.
+      if (env && env.ASSETS) return env.ASSETS.fetch(request);
       return new Response(JSON.stringify({ ok: true, channels: CHANNELS }), { headers: { ...cors, 'content-type': 'application/json' } });
     }
     const cache = caches.default;

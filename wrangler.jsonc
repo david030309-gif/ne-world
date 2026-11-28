@@ -1,0 +1,12 @@
+// Cloudflare Workers config: Cloudflare builds this repository on every push to main.
+// The worker (worker/ne-live.js) answers live-relay requests (?c=<channel>) and serves the site files for everything else.
+{
+  "name": "ne-world",
+  "main": "worker/ne-live.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
