@@ -1,6 +1,102 @@
 {
  "mc": [
   {
+   "id": "mc-28",
+   "date": "2026-11-28T19:30:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Транспорт",
+   "title": "Трамвай в Ницце: с 29 ноября по 3 декабря поздно вечером линии 2 и 3 доходят только до Маньяна",
+   "paras": [
+    "Ремонт на трамвайной сети Ниццы переходит в новую фазу. С воскресенья, 29 ноября, по четверг, 3 декабря, поздно вечером, после последних полных рейсов, линии 2 и 3 будут заканчивать маршрут на станции Magnan.",
+    "В эти часы восточная часть линий остаётся без трамвая: шесть остановок от университетского центра до порта. Вместо трамвая между Маньяном и портом ходят автобусы, примерно раз в 10 минут. Линия B работает как обычно."
+   ],
+   "bullets": [
+    "Без трамвая: CUM, Alsace-Lorraine, Jean Médecin, Durandy, Garibaldi, Port Lympia",
+    "Замена — автобус Magnan ↔ Port Lympia, ~каждые 10 мин",
+    "Актуальные изменения — на сайте Lignes d'Azur"
+   ],
+   "img": null,
+   "src": {
+    "name": "Nice Mag",
+    "url": "https://www.nicemag.fr/article/8189/tramway-a-nice-de-nouvelles-restrictions-des-le-15-novembre"
+   },
+   "tg": "https://www.nicemag.fr/article/8189/tramway-a-nice-de-nouvelles-restrictions-des-le-15-novembre",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Tramway de Nice Jean Médecin",
+   "geo": [
+    43.7019,
+    7.2669
+   ],
+   "place": "Станция трамвая Jean Médecin"
+  },
+  {
+   "id": "mc-29",
+   "date": "2026-11-28T19:20:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Транспорт",
+   "title": "BeKing: в воскресенье в порту Монако перекрывают дороги",
+   "paras": [
+    "В воскресенье, 29 ноября, в Монако проходит велособытие BeKing, и район порта с утра до вечера живёт по особым правилам. С 6:00 до 20:00 закрыт проезд по набережной Соединённых Штатов, Route de la Piscine и Darse Sud.",
+    "На бульваре Альбера I полосы с 6:00 до 18:30 отданы участникам и экстренным службам, парковаться там нельзя уже с субботы, 23:00. Набережная Антуана I работает в одну сторону. Автобус № 1 пойдёт в объезд через авеню д'Остенд."
+   ],
+   "bullets": [
+    "Автобус 1 не заходит на Kennedy и Auditorium Rainier III",
+    "Казино и Spélugues — только линиями 5 и 6",
+    "Пешеходам в зоне мероприятия тоже будут ограничения"
+   ],
+   "img": null,
+   "src": {
+    "name": "news.mc",
+    "url": "https://news.mc/2026/11/27/road-closures-and-bus-diversions-announced-ahead-of-beking-monaco-2026/"
+   },
+   "tg": "https://news.mc/2026/11/27/road-closures-and-bus-diversions-announced-ahead-of-beking-monaco-2026/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Boulevard Albert Ier Monaco",
+   "geo": [
+    43.736,
+    7.4232
+   ],
+   "place": "Бульвар Альбера I"
+  },
+  {
+   "id": "mc-32",
+   "date": "2026-11-28T19:10:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Транспорт",
+   "title": "Автовладельцам Монако: продлить регистрацию машины нужно до 31 декабря",
+   "paras": [
+    "Ежегодное продление регистрации автомобилей на 2027 год заканчивается 31 декабря. Наклейку на номер больше не выдают: вместо неё приходит справка об оплате на защищённой бумаге, её нужно возить в машине и показывать при проверке.",
+    "Проще всего продлить онлайн через MonGuichet. Для электромобилей продление по-прежнему бесплатное. А с 16 ноября можно заказать именной номер из букв, но это дорого: 10 000 € за каждую букву и ещё 2 500 € в год."
+   ],
+   "bullets": [
+    "Срок — до 31 декабря",
+    "Онлайн: MonGuichet; офис — Espace Honoré II",
+    "Справку об оплате держать в машине"
+   ],
+   "img": null,
+   "src": {
+    "name": "gouv.mc",
+    "url": "https://www.gouv.mc/en/news/2027-vehicle-registration-renewals-new-procedures-from-1-september"
+   },
+   "tg": "https://www.gouv.mc/en/news/2027-vehicle-registration-renewals-new-procedures-from-1-september",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Monaco car number plate",
+   "geo": [
+    43.7316,
+    7.419
+   ],
+   "place": "Espace Honoré II"
+  },
+  {
    "id": "mc-27",
    "date": "2026-11-28T18:50:00+01:00",
    "views": 0,
@@ -224,6 +320,38 @@
    "start": "2026-12-04T18:00:00+01:00",
    "end": "2027-03-07T22:00:00+01:00",
    "when": "4 декабря — 7 марта"
+  },
+  {
+   "id": "mc-30",
+   "date": "2026-11-28T12:00:00+01:00",
+   "views": 0,
+   "city": "Ницца",
+   "cat": "Транспорт",
+   "title": "Из Ниццы в Марсель от 10 евро: с 15 января запускаются автобусы Paco",
+   "paras": [
+    "Французский стартап Paco, который основали в том числе бывшие сотрудники BlaBlaCar Bus, с 15 января 2027 года запускает дешёвые междугородние автобусы с Лазурного берега. Это кстати: BlaBlaCar Bus в январе отсюда уходит.",
+    "Из аэропорта Ниццы можно будет доехать до Канн, Марселя (в том числе прямо в аэропорт), Монпелье, Тулузы, Бордо и других городов юга. Билеты уже продаются на сайте Paco, Париж обещают позже."
+   ],
+   "bullets": [
+    "Аэропорт Ниццы → Марсель: ~3 ч 10 мин, от 9,99 €",
+    "Ручная кладь и чемодан включены",
+    "В салоне розетки и туалет"
+   ],
+   "img": null,
+   "src": {
+    "name": "Nice Mag",
+    "url": "https://www.nicemag.fr/article/8290/nice-et-cannes-les-autocars-low-cost-paco-debarquent-le-15-janvier"
+   },
+   "tg": "https://www.nicemag.fr/article/8290/nice-et-cannes-les-autocars-low-cost-paco-debarquent-le-15-janvier",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Nice Côte d'Azur Airport",
+   "geo": [
+    43.6584,
+    7.2159
+   ],
+   "place": "Аэропорт Ниццы"
   },
   {
    "id": "mc-21",
@@ -656,6 +784,38 @@
     "url": "https://commons.wikimedia.org/wiki/File:Monaco_02.jpg",
     "file": "File:Monaco 02.jpg"
    }
+  },
+  {
+   "id": "mc-31",
+   "date": "2026-11-26T12:00:00+01:00",
+   "views": 0,
+   "city": "Монако",
+   "cat": "Общество",
+   "title": "Монако доплатит до 20 000 € тем, кто переедет из госквартиры в меньшую",
+   "paras": [
+    "Правительство расширило программу обмена государственного жилья. Если семья переезжает в квартиру на одну комнату меньше, она, как и раньше, получает 10 000 € на переезд и сохраняет прежнюю аренду. Теперь за каждую лишнюю освобождённую комнату дают ещё 5 000 €.",
+    "Впервые в программу попали и семьи без детей, которые меняют трёхкомнатную квартиру на двухкомнатную. Подобрать вариант для обмена можно на портале MonGuichet."
+   ],
+   "bullets": [
+    "Минус 2 комнаты — 15 000 €, минус 3 — 20 000 €",
+    "Новое: переезд из F3 в F2 для семей без детей",
+    "Только для жильцов государственного жилья"
+   ],
+   "img": null,
+   "src": {
+    "name": "HelloMonaco",
+    "url": "https://www.hellomonaco.com/news/latest-news/new-e5000-bonuses-for-trading-apartments-in-monaco/"
+   },
+   "tg": "https://www.hellomonaco.com/news/latest-news/new-e5000-bonuses-for-trading-apartments-in-monaco/",
+   "digest": false,
+   "london": false,
+   "urgent": false,
+   "pic": "Ministère d'État Monaco",
+   "geo": [
+    43.731,
+    7.4205
+   ],
+   "place": "Правительство Монако"
   },
   {
    "id": "mc-3",
