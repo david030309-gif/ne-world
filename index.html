@@ -185,7 +185,8 @@ footer div{max-width:1060px;margin:0 auto;padding:22px 16px;display:flex;flex-wr
 /* ---------- article ---------- */
 #post{max-width:720px;margin:0 auto;padding:18px 16px 60px}
 .pback{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:40;display:inline-flex;align-items:center;gap:4px;padding:12px 18px 12px 12px;box-shadow:0 8px 28px #000b;border-radius:999px;border:1px solid #ffffff1f;background:#16171ccc;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 15px Onest,system-ui,sans-serif;cursor:pointer}
-#post{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
+#post,#feed{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
+#toglobe span{letter-spacing:.01em}
 .pback svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .back{display:inline-flex;align-items:center;gap:6px;color:var(--mut);min-height:44px;font-size:14px}
 #post .h{font-size:clamp(26px,4vw,36px);margin:6px 0 12px}
@@ -511,7 +512,8 @@ figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}
   </header>
   <main id="feed"></main>
   <article id="post" hidden></article>
-  <footer><div><span id="foot"></span><span>Прототип · посты — снимок Telegram-каналов на 27 ноября 2026</span></div></footer>
+  <button id="toglobe" class="pback" data-globe hidden aria-label="Все страны на глобусе"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg><span>Глобус</span></button>
+  <footer><div><span id="foot"></span><span>Ne Globus · Alpine Media Group</span></div></footer>
 </section>
 
 <script src="d3.min.js"></script>
@@ -683,14 +685,14 @@ const MAPS={uk:{title:'Ne Mayfair Live',tg:'https://t.me/NeMyfair'},ch:{title:'�
  geo:'map/ch-cantons.json',
  groups:[
   ['train','Поезда',[{b:'SBB',t:'IR26 · Giubiasco',x:'Техническая неисправность. Поезда опаздывают, часть поездов отменят',u:'до 15:00',ll:[9.006,46.172]},
-                     {b:'RBS',t:'S9 · Bern Felsenau',x:'Техническая неисправность. Поездов меньше обычного',u:'до 12:30',ll:[7.444,46.967]}],'Ещё 1 сбой на местных и горных линиях'],
+                     {b:'RBS',t:'S9 · Bern Felsenau',x:'Техническая неисправность. Поездов меньше обычного',u:'до 12:30',ll:[7.444,46.967]}],'Ещё 1 нарушение на местных и горных линиях'],
   ['road','Дороги',[{b:'A1',t:'Effretikon – км 316.5, на St. Gallen',x:'Участок закрыт после аварии',ll:[8.69,47.43]},
-                    {b:'A14',t:'Zug – Baar, на Walterswil',x:'Пробка, много машин',ll:[8.52,47.19]}],'Ещё 1 событие на дорогах'],
+                    {b:'A14',t:'Zug – Baar, на Walterswil',x:'Пробка, много машин',ll:[8.52,47.19]}],'Ещё 1 затруднение на дорогах'],
   ['warn','Предупреждения властей',[{b:'!',t:'Bristenstrasse',x:'Движение по дороге ограничено, возможны задержки',ll:[8.69,46.77]}],'Ещё 2 предупреждения'],
   ['aval','Горы',[{b:'3/5',t:'Лавинная опасность 3 из 5',x:'Graubünden, Wallis, Bern и ещё 6 кантонов. Вне лыжных трасс опасно'}],'']],
  aval:[23,18,2,4,8,21,5,6,7],
- stats:[['2','сбоя на железной дороге'],['3','события на дорогах'],['3','предупреждения властей'],['3/5','лавинная опасность']],
- what:'Сбои поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей.',
+ stats:[['2','нарушения в работе транспорта'],['3','затруднения на дорогах'],['3','предупреждения властей'],['3/5','лавинная опасность']],
+ what:'Нарушения в движении поездов SBB, BLS и других перевозчиков, аварии и пробки на автобанах, лавинная опасность в горах и предупреждения властей.',
  src:'SBB · ASTRA · SLF · Alertswiss · opentransportdata',
  note:'Данные приходят из официальных источников с небольшой задержкой. Перед поездкой сверяйтесь с приложением SBB, а при тревоге следуйте указаниям властей.'}};
 const KT={1:'ZH',2:'BE',3:'LU',4:'UR',5:'SZ',6:'OW',7:'NW',8:'GL',9:'ZG',10:'FR',11:'SO',12:'BS',13:'BL',14:'SH',15:'AR',16:'AI',17:'SG',18:'GR',19:'AG',20:'TG',21:'TI',22:'VD',23:'VS',24:'NE',25:'GE',26:'JU'};
@@ -707,7 +709,7 @@ function chFromLive(J){const groups=[],cnt={};
    return {b:k==='warn'?'!':(it.op||h||'•'),t:[k==='warn'?'':(it.line||rest.join(' · ')),it.place].filter(Boolean).join(' · ')||h,x,u,ll:at[0]||null}});
   if(rows.length)groups.push([k,name,rows.slice(0,8),rows.length>8?`Ещё ${rows.length-8}`:''])}
  const av=(J.items||[]).find(i=>i.sec==='weather'),lvl=av&&((av.kicker||'').match(/(\d) из 5/)||[])[1];
- const stats=[[cnt.train,pl(cnt.train,['сбой','сбоя','сбоев'])+' на транспорте'],[cnt.road,pl(cnt.road,['событие','события','событий'])+' на дорогах'],[cnt.warn,pl(cnt.warn,['предупреждение','предупреждения','предупреждений'])+' властей']];
+ const stats=[[cnt.train,pl(cnt.train,['нарушение','нарушения','нарушений'])+' в работе транспорта'],[cnt.road,pl(cnt.road,['затруднение','затруднения','затруднений'])+' на дорогах'],[cnt.warn,pl(cnt.warn,['предупреждение','предупреждения','предупреждений'])+' властей']];
  if(lvl)stats.push([lvl+'/5','лавинная опасность']);
  Object.assign(MAPS.ch,{updated:J.time||MAPS.ch.updated,groups:groups.length?groups:MAPS.ch.groups,stats,areas:Array.isArray(J.areas)?J.areas:[],errors:J.errors||[],live:true})}
 function loadCH(){return fetch(CHLIVE+'?v='+Math.floor(Date.now()/6e4)).then(r=>r.ok?r.json():null).then(j=>{if(j&&Array.isArray(j.items))chFromLive(j)}).catch(()=>{})}
@@ -824,10 +826,10 @@ function loadUK(){return Promise.all([fetch('map/uk-live.json?v='+Math.floor(Dat
   if(t){U.lines=t[0];U.roads=t[1];U.updated=new Date().toISOString()}
   UKLIVE=U})}
 function ukSummary(U){const b=[],ln=U.lines&&U.lines.ok?U.lines.total:null,rd=U.roads&&U.roads.ok?U.roads.items.length:null,fl=U.floods&&U.floods.ok?U.floods:null,wx=U.weather&&U.weather.ok?U.weather.total:null;
- if(ln!=null)b.push(ln?`${ln} ${pl(ln,['линия','линии','линий'])} метро со сбоями`:'метро без сбоев');
- if(rd)b.push(`${rd} ${pl(rd,['сбой','сбоя','сбоев'])} на дорогах Лондона`);
+ if(ln!=null)b.push(ln?`${ln} ${pl(ln,['линия','линии','линий'])} метро с нарушениями в работе`:'метро работает без нарушений');
+ if(rd)b.push(`${rd} ${pl(rd,['затруднение','затруднения','затруднений'])} на дорогах Лондона`);
  if(fl&&fl.total)b.push(fl.warnings||fl.severe?`предупреждения о наводнениях: ${fl.warnings+fl.severe}`:`в ${fl.total} ${pl(fl.total,['районе','районах','районах'])} может подняться вода`);
- const mw=U.motorways&&U.motorways.ok?U.motorways.items.length:0;if(mw)b.push(`${mw} ${pl(mw,['событие','события','событий'])} на трассах`);
+ const mw=U.motorways&&U.motorways.ok?U.motorways.items.length:0;if(mw)b.push(`${mw} ${pl(mw,['ограничение','ограничения','ограничений'])} движения на трассах`);
  if(wx)b.push(`${wx} ${pl(wx,['предупреждение','предупреждения','предупреждений'])} Met Office`);return b.join(' · ')}
 const BORO={'Barking and Dagenham':'Баркинг','Barnet':'Барнет','Bexley':'Бексли','Brent':'Брент','Bromley':'Бромли','Camden':'Камден','City of London':'Сити','Croydon':'Кройдон','Ealing':'Илинг','Enfield':'Энфилд','Greenwich':'Гринвич','Hackney':'Хакни','Hammersmith and Fulham':'Хаммерсмит','Haringey':'Харингей','Harrow':'Хэрроу','Havering':'Хаверинг','Hillingdon':'Хиллингдон','Hounslow':'Хаунслоу','Islington':'Ислингтон','Kensington and Chelsea':'Кенсингтон','Kingston upon Thames':'Кингстон','Lambeth':'Ламбет','Lewisham':'Луишем','Merton':'Мертон','Newham':'Ньюэм','Redbridge':'Редбридж','Richmond upon Thames':'Ричмонд','Southwark':'Саутуарк','Sutton':'Саттон','Tower Hamlets':'Тауэр-Хамлетс','Waltham Forest':'Уолтем-Форест','Wandsworth':'Уондсуэрт','Westminster':'Вестминстер'};
 const SMALLB=['City of London','Kensington and Chelsea','Islington','Hackney','Camden','Hammersmith and Fulham','Tower Hamlets','Southwark','Lambeth','Westminster'];
@@ -843,9 +845,9 @@ function renderMapUK(){
   <div class="ukmaps"><div class="ukmap" id="ukE"><span class="ukleg"><i></i>может подняться вода<i class="mw"></i>трассы</span><svg></svg></div>
    <div class="ukmap ldn" id="ukL"><b class="ttl">Лондон</b><svg></svg></div></div>
   <div class="uklists">
-   <section><h3>Метро, Elizabeth line, Overground</h3>${L?(L.items.length?L.items.slice(0,8).map(x=>`<div class="li">${badge(x.name,x.bg,x.fg)}<span>${esc(x.text)}</span></div>`).join('')+(L.items.length>8?`<p class="more3">ещё ${L.items.length-8} ${pl(L.items.length-8,['линия','линии','линий'])} со сбоями</p>`:''):'<p class="okl"><i class="g"></i>Все линии работают нормально</p>'):'<p class="more3">Данные загружаются</p>'}</section>
+   <section><h3>Метро, Elizabeth line, Overground</h3>${L?(L.items.length?L.items.slice(0,8).map(x=>`<div class="li">${badge(x.name,x.bg,x.fg)}<span>${esc(x.text)}</span></div>`).join('')+(L.items.length>8?`<p class="more3">ещё ${L.items.length-8} ${pl(L.items.length-8,['линия','линии','линий'])} с нарушениями в работе</p>`:''):'<p class="okl"><i class="g"></i>Все линии работают нормально</p>'):'<p class="more3">Данные загружаются</p>'}</section>
    <section><h3>Дороги Лондона</h3>${RD?(RD.items.length?RD.items.slice(0,5).map(x=>{const [bg,fg]=rbadge(x.badge);return `<div class="li tall">${badge(x.badge,bg,fg)}<span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span></div>`}).join(''):'<p class="okl"><i class="g"></i>Крупных перекрытий нет</p>'):'<p class="more3">Данные загружаются</p>'}
-    <h3>Трассы</h3>${MW?(MW.items.length?MW.items.slice(0,6).map(x=>{const m=/^M/.test(x.road);return `<div class="li tall">${badge(x.road,m?'#0b5fae':'#00703c',m?'#fff':'#ffd200')}<span><b>${esc(x.what)}</b><small>${esc(x.place)}</small></span></div>`}).join('')+(MW.items.length>6?`<p class="more3">ещё ${MW.items.length-6} ${pl(MW.items.length-6,['событие','события','событий'])} на трассах — <a href="https://t.me/NeMyfair">в Telegram</a></p>`:''):'<p class="okl"><i class="g"></i>Перекрытий на трассах нет</p>'):'<p class="more3">Данные о трассах загружаются…</p>'}</section>
+    <h3>Трассы</h3>${MW?(MW.items.length?MW.items.slice(0,6).map(x=>{const m=/^M/.test(x.road);return `<div class="li tall">${badge(x.road,m?'#0b5fae':'#00703c',m?'#fff':'#ffd200')}<span><b>${esc(x.what)}</b><small>${esc(x.place)}</small></span></div>`}).join('')+(MW.items.length>6?`<p class="more3">ещё ${MW.items.length-6} ${pl(MW.items.length-6,['ограничение','ограничения','ограничений'])} движения на трассах — <a href="https://t.me/NeMyfair">в Telegram</a></p>`:''):'<p class="okl"><i class="g"></i>Перекрытий на трассах нет</p>'):'<p class="more3">Данные о трассах загружаются…</p>'}</section>
    <section class="wxs">
     <div class="wx"><i class="${W&&W.total?'y':'g'}"></i><b>Погода</b><span>${W?(W.total?W.items.map(x=>esc(x.text)).join(' · '):'предупреждений Met Office нет'):'—'}</span></div>
     <div class="wx"><i class="${F&&(F.severe||F.warnings)?'r':F&&F.total?'b':'g'}"></i><b>Наводнения</b><span>${F?(F.severe||F.warnings?`${F.severe+F.warnings} ${pl(F.severe+F.warnings,['предупреждение','предупреждения','предупреждений'])}, ещё в ${F.alerts} ${fp(F.alerts)} может подняться вода`:F.total?`серьёзных предупреждений нет, в ${F.total} ${fp(F.total)} может подняться вода`:'предупреждений нет'):'—'}</span></div>
@@ -1080,7 +1082,7 @@ function route(){
  $('#seg').hidden=tabs.length<2;
  $('#seg').innerHTML=tabs.map(([go,b,sp,on])=>`<button data-go="${go}" class="${on?'on':''}"><b>${b}</b><span>${sp}</span></button>`).join('');
  const p=!dz&&!mp&&m[2]&&DATA[region].find(x=>x.id===h);
- $('#feed').hidden=!!p;$('#post').hidden=!p;$('#chips').hidden=!!p||dz||mp;
+ $('#feed').hidden=!!p;$('#post').hidden=!p;$('#toglobe').hidden=!!p||mp;$('#chips').hidden=!!p||dz||mp;
  document.body.classList.toggle('dz',dz);if(!dz)closeSheet();
  if(dz){renderDvizh(h.startsWith('eho-')?h:null)} else if(mp){renderMap();scrollTo(0,0)} else if(p){renderPost(p);scrollTo(0,0)} else{renderFeed();
   if(isFeedH(h)&&FEEDY[h]!=null&&from.startsWith(h+'-')){const y=FEEDY[h];requestAnimationFrame(()=>{scrollTo(0,y);requestAnimationFrame(()=>scrollTo(0,y))})}}   // back from an article: same place in the feed
@@ -1272,6 +1274,7 @@ $('#choices').innerHTML=Object.keys(R).map(k=>`<button class="choice" data-r="${
 
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
+ if(e.target.closest('[data-globe]')){location.hash='globe';return}
  const bk=e.target.closest('[data-back]');if(bk){const f=bk.dataset.back;if(prevFeed===f&&history.length>1)history.back();else location.hash=f;return}
  const c=e.target.closest('[data-id]');if(c){location.hash=c.dataset.id;return}
  const nx=e.target.closest('[data-next]');if(nx){globe.peek(nx.dataset.next);return}
