@@ -467,6 +467,7 @@ figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}
 </style>
 </head>
 <body>
+<button id="toglobe" class="pback" data-globe hidden aria-label="Все страны на глобусе"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>Все страны</span></button>
 
 <div id="intro" hidden aria-hidden="true">
   <div class="bgl"></div><div class="stars"></div>
@@ -514,7 +515,6 @@ figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}
   </header>
   <main id="feed"></main>
   <article id="post" hidden></article>
-  <button id="toglobe" class="pback" data-globe hidden aria-label="Все страны на глобусе"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>Все страны</span></button>
   <footer><div><span id="foot"></span><span>Ne Globus · Alpine Media Group</span></div></footer>
 </section>
 
@@ -1097,7 +1097,7 @@ let lastView=null;
 function show(v){
  const from=lastView;lastView=v;
  $('#picker').classList.remove('flying','out');
- $('#picker').hidden=v!=='picker';$('#feedview').hidden=v!=='feed';
+ $('#picker').hidden=v!=='picker';$('#feedview').hidden=v!=='feed';if(v!=='feed')$('#toglobe').hidden=true;
  if(from&&from!==v){const el=v==='feed'?$('#feedview'):$('#picker');const c=v==='feed'?'enter':'arrive';el.classList.remove(c);void el.offsetWidth;el.classList.add(c);setTimeout(()=>el.classList.remove(c),1000);if(v==='feed')scrollTo(0,0)}
  document.querySelectorAll('.choice').forEach(c=>c.classList.remove('on'));
  if(v==='picker'){globe.start(from==='feed');document.title='Ne Globus — выберите страну'} else globe.stop();
