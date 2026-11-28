@@ -16,7 +16,7 @@
     "Замена — автобус Magnan ↔ Port Lympia, ~каждые 10 мин",
     "Актуальные изменения — на сайте Lignes d'Azur"
    ],
-   "img": null,
+   "img": "img/mc/mc-28.jpg",
    "src": {
     "name": "Nice Mag",
     "url": "https://www.nicemag.fr/article/8189/tramway-a-nice-de-nouvelles-restrictions-des-le-15-novembre"
@@ -30,7 +30,13 @@
     43.7019,
     7.2669
    ],
-   "place": "Станция трамвая Jean Médecin"
+   "place": "Станция трамвая Jean Médecin",
+   "credit": {
+    "by": "Idris2000",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Jean_M%C3%A9decin_tramway_Nice_2020_07.jpg",
+    "file": "File:Jean Médecin tramway Nice 2020 07.jpg"
+   }
   },
   {
    "id": "mc-29",
@@ -48,7 +54,7 @@
     "Казино и Spélugues — только линиями 5 и 6",
     "Пешеходам в зоне мероприятия тоже будут ограничения"
    ],
-   "img": null,
+   "img": "img/mc/mc-29.jpg",
    "src": {
     "name": "news.mc",
     "url": "https://news.mc/2026/11/27/road-closures-and-bus-diversions-announced-ahead-of-beking-monaco-2026/"
@@ -62,7 +68,13 @@
     43.736,
     7.4232
    ],
-   "place": "Бульвар Альбера I"
+   "place": "Бульвар Альбера I",
+   "credit": {
+    "by": "Zairon",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Monaco_Quai_Antoine_Ier.jpg",
+    "file": "File:Monaco Quai Antoine Ier.jpg"
+   }
   },
   {
    "id": "mc-32",
@@ -80,7 +92,7 @@
     "Онлайн: MonGuichet; офис — Espace Honoré II",
     "Справку об оплате держать в машине"
    ],
-   "img": null,
+   "img": "img/mc/mc-32.jpg",
    "src": {
     "name": "gouv.mc",
     "url": "https://www.gouv.mc/en/news/2027-vehicle-registration-renewals-new-procedures-from-1-september"
@@ -94,7 +106,13 @@
     43.7316,
     7.419
    ],
-   "place": "Espace Honoré II"
+   "place": "Espace Honoré II",
+   "credit": {
+    "by": "Dickelbers",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Maybach_57_car_in_Monaco.jpg",
+    "file": "File:Maybach 57 car in Monaco.jpg"
+   }
   },
   {
    "id": "mc-27",
@@ -337,7 +355,7 @@
     "Ручная кладь и чемодан включены",
     "В салоне розетки и туалет"
    ],
-   "img": null,
+   "img": "img/mc/mc-30.jpg",
    "src": {
     "name": "Nice Mag",
     "url": "https://www.nicemag.fr/article/8290/nice-et-cannes-les-autocars-low-cost-paco-debarquent-le-15-janvier"
@@ -351,7 +369,13 @@
     43.6584,
     7.2159
    ],
-   "place": "Аэропорт Ниццы"
+   "place": "Аэропорт Ниццы",
+   "credit": {
+    "by": "kallerna",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Nice_C%C3%B4te_d%27Azur_Airport_2.jpg",
+    "file": "File:Nice Côte d'Azur Airport 2.jpg"
+   }
   },
   {
    "id": "mc-21",
@@ -801,7 +825,7 @@
     "Новое: переезд из F3 в F2 для семей без детей",
     "Только для жильцов государственного жилья"
    ],
-   "img": null,
+   "img": "img/mc/mc-31.jpg",
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/news/latest-news/new-e5000-bonuses-for-trading-apartments-in-monaco/"
@@ -815,7 +839,13 @@
     43.731,
     7.4205
    ],
-   "place": "Правительство Монако"
+   "place": "Правительство Монако",
+   "credit": {
+    "by": "Uhooep",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Minist%C3%A8re_d%27%C3%89tat,_Monaco.jpg",
+    "file": "File:Ministère d'État, Monaco.jpg"
+   }
   },
   {
    "id": "mc-3",
