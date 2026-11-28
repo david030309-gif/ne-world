@@ -54,7 +54,7 @@
     "Шесть туров подряд без побед",
     "Дайер: нужно лучше ломать плотную оборону"
    ],
-   "img": null,
+   "img": "img/mc/mc-2.jpg",
    "src": {
     "name": "AS Monaco",
     "url": "https://www.asmonaco.com/en/news"
@@ -68,7 +68,13 @@
     43.7276,
     7.4155
    ],
-   "place": "Стад Луи II"
+   "place": "Стад Луи II",
+   "credit": {
+    "by": "FromMorningToMidnight",
+    "lic": "CC BY-SA 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:OGC_Nice_fans_at_Stade_Louis_II,_Monaco.jpg",
+    "file": "File:OGC Nice fans at Stade Louis II, Monaco.jpg"
+   }
   },
   {
    "id": "mc-3",
@@ -268,7 +274,7 @@
     "Expo 2030 пройдёт в Эр-Рияде",
     "Монако готовит свой павильон"
    ],
-   "img": null,
+   "img": "img/mc/mc-8.jpg",
    "src": {
     "name": "HelloMonaco",
     "url": "https://www.hellomonaco.com/category/news/"
@@ -282,7 +288,13 @@
     43.7408,
     7.429
    ],
-   "place": "Монако"
+   "place": "Монако",
+   "credit": {
+    "by": "Martin Falbisoner",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Biergarten_at_Night_2.JPG",
+    "file": "File:Biergarten at Night 2.JPG"
+   }
   },
   {
    "id": "mc-9",
@@ -521,7 +533,7 @@
     "56 событий, 45 из них бесплатные",
     "Битвы цветов: 17, 20, 24, 27 февраля"
    ],
-   "img": null,
+   "img": "img/mc/mc-15.jpg",
    "src": {
     "name": "Nice Côte d'Azur Tourisme",
     "url": "https://www.explorenicecotedazur.com/?p=103977"
@@ -537,7 +549,13 @@
    ],
    "place": "Площадь Массена",
    "start": "2027-02-09T00:00:00+01:00",
-   "end": "2027-02-28T23:00:00+01:00"
+   "end": "2027-02-28T23:00:00+01:00",
+   "credit": {
+    "by": "Zil",
+    "lic": "CC BY-SA 3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Carnaval_de_Nice_-_bataille_de_fleurs_-_14.jpg",
+    "file": "File:Carnaval de Nice - bataille de fleurs - 14.jpg"
+   }
   },
   {
    "id": "mc-16",
@@ -713,7 +731,7 @@
     "27 января – 3 февраля — Historique",
     "Финиш в порту Эркюль"
    ],
-   "img": null,
+   "img": "img/mc/mc-20.jpg",
    "src": {
     "name": "Visit Monaco",
     "url": "https://www.visitmonaco.com/en/events/monaco-s-major-events/wrc-rallye-monte-carlo"
@@ -730,7 +748,13 @@
    ],
    "place": "Старт — порт Монако",
    "start": "2027-01-21T00:00:00+01:00",
-   "end": "2027-01-24T23:00:00+01:00"
+   "end": "2027-01-24T23:00:00+01:00",
+   "credit": {
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:Rallye_Monte_Carlo_v_Dravogradu_1956.jpg",
+    "file": "File:Rallye Monte Carlo v Dravogradu 1956.jpg"
+   }
   },
   {
    "id": "mc-21",
