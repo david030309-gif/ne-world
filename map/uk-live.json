@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T06:30:46.225Z",
+ "updated": "2026-11-28T07:49:56.988Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 9,
+  "total": 8,
   "items": [
    {
     "id": "hammersmith-city",
@@ -54,9 +54,9 @@
     "mode": "tube",
     "severity": 5,
     "status": "Частично закрыта",
-    "cause": "погода",
-    "text": "Частично закрыта, погода",
-    "reason": "CIRCLE LINE: Saturday 28 and Sunday 29 November, no service between Hammersmith / High Street Kensington and Tower Hill (via Kings Cross St Pancras)"
+    "cause": "плановые работы",
+    "text": "Частично закрыта, плановые работы",
+    "reason": "Circle Line : Saturday 28 and Sunday 29 November - No service between Hammersmith and Tower Hill, Edgware Road and High Street Kensington due to planned engineering work. Circle Line: No service between Hammersmith and Tower Hill, and between Edgware Road and High Street Kensington due to planned engineering work. MINOR DELAYS between Tower Hill and High Street Kensington due to train cancellations."
    },
    {
     "id": "district",
@@ -105,18 +105,6 @@
     "cause": "погода",
     "text": "Частично закрыта, погода",
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
-   },
-   {
-    "id": "northern",
-    "name": "Northern",
-    "bg": "#000000",
-    "fg": "#fff",
-    "mode": "tube",
-    "severity": 9,
-    "status": "Небольшие задержки",
-    "cause": "проблема с путями",
-    "text": "Небольшие задержки, проблема с путями",
-    "reason": "Northern Line: Minor delays due to a points failure at Kennington."
    }
   ]
  },
