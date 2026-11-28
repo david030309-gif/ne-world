@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T15:46:45.398Z",
+ "updated": "2026-11-28T16:30:22.365Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,7 +8,7 @@
  },
  "lines": {
   "ok": true,
-  "total": 12,
+  "total": 13,
   "items": [
    {
     "id": "piccadilly",
@@ -150,9 +150,21 @@
     "mode": "tube",
     "severity": 9,
     "status": "Небольшие задержки",
-    "cause": "неисправность поезда",
-    "text": "Небольшие задержки, неисправность поезда",
-    "reason": "Jubilee Line: Minor delays while we fix a faulty train at Waterloo."
+    "cause": "",
+    "text": "Небольшие задержки",
+    "reason": "Jubilee Line: Minor delays due to train cancellations."
+   },
+   {
+    "id": "victoria",
+    "name": "Victoria",
+    "bg": "#0098D4",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "",
+    "text": "Небольшие задержки",
+    "reason": "Victoria Line: Minor delays due to congestion in the Central London area."
    }
   ]
  },
@@ -230,10 +242,10 @@
  },
  "floods": {
   "ok": true,
-  "total": 9,
+  "total": 11,
   "severe": 0,
   "warnings": 0,
-  "alerts": 9,
+  "alerts": 11,
   "items": [
    {
     "level": 3,
@@ -293,6 +305,17 @@
    {
     "level": 3,
     "label": "Может подняться вода",
+    "area": "River Churnet and River Tean",
+    "county": "Staffordshire",
+    "river": "River Churnet, River Tean",
+    "ll": [
+     -1.99927,
+     53.05848
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
     "area": "River Erewash in Derbyshire and Nottinghamshire",
     "county": "Derbyshire, Nottinghamshire",
     "river": "River Erewash",
@@ -332,6 +355,17 @@
     "ll": [
      -3.21857,
      54.30575
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "Rivers Brathay, Rothay and Winster",
+    "county": "Westmorland and Furness",
+    "river": "River Brathay, River Rothay, River Winster",
+    "ll": [
+     -2.97249,
+     54.38244
     ]
    }
   ]
