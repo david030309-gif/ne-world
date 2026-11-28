@@ -28,8 +28,12 @@ async function candidates(pic) {
   return Object.values(j.query?.pages || {}).sort((a, b) => (a.index || 0) - (b.index || 0));
 }
 
-function pick(pages, used, exact) {
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+function pick(pages, used, exact, q = '') {
+  const words = norm(q).split(/[^a-z0-9]+/).filter(w => w.length >= 5);
   for (const p of pages) {
+    // the file name must mention at least one real word of the search (stops random matches)
+    if (!exact && words.length && !words.some(w => norm(p.title).includes(w))) continue;
     const ii = p.imageinfo?.[0]; if (!ii) continue;
     const m = ii.extmetadata || {};
     const lic = strip(m.LicenseShortName?.value);
@@ -53,7 +57,7 @@ let changed = 0;
 for (const p of posts) {
   if (!p.pic || p.img) continue;
   try {
-    const c = pick(await candidates(p.pic), used, /^File:/i.test(p.pic));
+    const c = pick(await candidates(p.pic), used, /^File:/i.test(p.pic), p.pic);
     if (!c) { console.log('no photo for', p.id, p.pic); continue; }
     const r = await fetch(c.thumb, { headers: { 'User-Agent': UA } });
     if (!r.ok) { console.log('download failed', p.id, r.status); continue; }
