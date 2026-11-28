@@ -1069,8 +1069,8 @@ function loadAir(){return fetch('https://air-quality-api.open-meteo.com/v1/air-q
 setInterval(()=>{if(location.hash==='#mc-map'||(location.hash==='#mc'&&chip==='Главная')){MCW.t=0;loadMCW().then(mcPaint)}},6e5);
 
 /* ---------- routing ---------- */
-// back buttons: shown on entry and while scrolling, hidden ~2.5 s after the reader stops
-let navT;function peekNav(){const b=[...document.querySelectorAll('.pback')].filter(x=>!x.hidden&&!x.closest('[hidden]'));b.forEach(x=>x.classList.add('show'));clearTimeout(navT);navT=setTimeout(()=>b.forEach(x=>x.classList.remove('show')),2600)}
+// back buttons: slide in when a screen opens and then stay visible
+let navT;function peekNav(){const b=[...document.querySelectorAll('.pback')].filter(x=>!x.hidden&&!x.closest('[hidden]'));b.forEach(x=>x.classList.add('show'))}
 addEventListener('scroll',()=>{if(!$('#feedview').hidden)peekNav()},{passive:true});
 let prevH='',prevFeed='';const FEEDY={};const isFeedH=h=>/^(ch|uk|mc)$/.test(h);
 function route(){
