@@ -448,6 +448,12 @@ figure .cred,.cred{display:block;color:var(--mut);font-size:12px;margin-top:6px}
 .lwrap{position:relative}.ljump{position:absolute;right:10px;top:10px;z-index:500;display:flex;gap:4px;background:rgba(12,12,13,.8);border-radius:999px;padding:3px}
 .ljump button{padding:5px 10px;border-radius:999px;font-size:12px;color:#ddd}.ljump button.on{background:var(--ink);color:#0c0c0d}
 @media(max-width:860px){.mhead .mcwx{display:none}}
+.osmdark{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.92) saturate(.55)}
+.ldist{display:inline-block;transform:translate(-50%,-50%);white-space:nowrap;font:600 11px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#e8e8ee;text-shadow:0 0 3px #000,0 0 6px #000;opacity:.85}
+.lveh{display:inline-block;transform:translate(-50%,-50%);min-width:20px;text-align:center;background:#fff;color:#111;border:2px solid var(--c);border-radius:6px;padding:0 3px;font:700 10px/15px Inter,system-ui,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.6)}
+.lveh.tram{background:var(--c);color:#fff;border-color:#fff;font-size:11px;line-height:17px;border-radius:8px}
+.ltr{position:absolute;left:54px;top:10px;z-index:500;background:rgba(12,12,13,.85);color:#ddd;border-radius:999px;padding:5px 11px;font-size:12px}.ltr.on{background:#fff;color:#0c0c0d}.ltr b{font-weight:600}
+@media(max-width:860px){.ltr{top:auto;bottom:26px;left:10px}}
 </style>
 </head>
 <body>
@@ -928,7 +934,7 @@ const MCW={};
 function loadMCW(){if(MCW.t&&Date.now()-MCW.t<6e5)return Promise.resolve();
  const W='https://api.open-meteo.com/v1/forecast?latitude=43.7384,43.7034&longitude=7.4246,7.2663&current=temperature_2m,weather_code,wind_speed_10m&daily=sunset&timezone=Europe%2FParis&forecast_days=1';
  const S='https://marine-api.open-meteo.com/v1/marine?latitude=43.72&longitude=7.43&current=sea_surface_temperature,wave_height&timezone=Europe%2FParis';
- return Promise.all([fetch(W).then(r=>r.json()),fetch(S).then(r=>r.json()).catch(()=>null)]).then(([w,s])=>{const a=Array.isArray(w)?w:[w];
+ return Promise.all([fetch(W).then(r=>r.json()),fetch(S).then(r=>r.json()).catch(()=>null),loadAir()]).then(([w,s])=>{const a=Array.isArray(w)?w:[w];
   Object.assign(MCW,{mc:a[0]&&a[0].current,nice:a[1]&&a[1].current,sunset:a[0]&&a[0].daily&&a[0].daily.sunset&&a[0].daily.sunset[0],sea:s&&s.current,t:Date.now()})}).catch(()=>{})}
 const wIc=c=>c==null?'':c===0?'☀️':c<=2?'🌤':c===3?'☁️':c<=48?'🌫':c<=67?'🌧':c<=77?'🌨':c<=82?'🌦':'⛈';
 const deg=v=>v==null?'—':Math.round(v)+'°';
@@ -940,6 +946,7 @@ function mcWxTiles(){const t=[];
  if(MCW.nice)t.push([`${wIc(MCW.nice.weather_code)} ${deg(MCW.nice.temperature_2m)}`,'Ницца сейчас']);
  if(MCW.sea&&MCW.sea.sea_surface_temperature!=null)t.push([deg(MCW.sea.sea_surface_temperature),'море'+(MCW.sea.wave_height!=null?`, волна ${MCW.sea.wave_height.toFixed(1).replace('.',',')} м`:'')]);
  if(MCW.sunset)t.push([MCW.sunset.slice(11,16),'закат']);
+ if(MCW.air){const q=MCW.air.european_aqi,u=MCW.air.uv_index;if(q!=null)t.push([Math.round(q),'воздух (AQI) — '+(q<=20?'отличный':q<=40?'хороший':q<=60?'средний':q<=80?'плохой':'очень плохой')]);if(u!=null)t.push([u.toFixed(1).replace('.',','),'UV-индекс'+(u>=6?' — нужен крем':u>=3?' — умеренный':' — низкий')])}
  return t.length?t.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join(''):'<div><b>…</b><span>загружаем погоду</span></div>'}
 function mcPaint(){document.querySelectorAll('.mcwx').forEach(e=>e.textContent=mcWxLine());document.querySelectorAll('.mcwt').forEach(e=>e.innerHTML=mcWxTiles())}
 const mcEvents=()=>DATA.mc.filter(p=>p.start&&new Date(p.end||p.start)>Date.now()).sort((a,b)=>new Date(a.start)-new Date(b.start));
@@ -957,7 +964,7 @@ function mcTop(){const ev=mcEvents();loadMCW().then(mcPaint);
 function needLeaflet(){if(window.L)return Promise.resolve();return needLeaflet.p||(needLeaflet.p=new Promise((ok,no)=>{
  const c=document.createElement('link');c.rel='stylesheet';c.href='leaflet/leaflet.css';document.head.appendChild(c);
  const s=document.createElement('script');s.src='leaflet/leaflet.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)}))}
-const MCB={mc:[[43.724,7.408],[43.750,7.442]],nice:[[43.690,7.245],[43.712,7.285]],all:[[43.684,7.235],[43.752,7.447]]};
+const MCB={mc:[[43.7265,7.4105],[43.7485,7.4395]],nice:[[43.690,7.245],[43.712,7.285]],all:[[43.684,7.235],[43.752,7.447]]};
 let mcf='Всё',mcMap=null,mcLayer=null,mcMk={};
 const MCF={'Всё':p=>1,'Движ':p=>['Тусовки','Афиша','Нетворкинг'].includes(p.cat),'Тусовки':p=>p.cat==='Тусовки','Афиша':p=>p.cat==='Афиша','Нетворкинг':p=>p.cat==='Нетворкинг','Спорт':p=>p.cat==='Спорт','Новости':p=>!p.start&&!['Тусовки','Афиша','Нетворкинг'].includes(p.cat)};
 function mcPins(){const fresh=p=>p.start?new Date(p.end||p.start)>Date.now():Date.now()-new Date(p.date)<14*864e5||['Тусовки','Нетворкинг'].includes(p.cat);
@@ -968,15 +975,15 @@ function renderMapMC(){const ev=mcEvents(),now=ev.filter(mcNow),next=ev.filter(p
  $('#feed').innerHTML=`<section class="mapv mcmapv">
   <div class="mapcard"><div class="mhead"><b>Лазурка Live</b><span class="mlive"><i class="live"></i><span class="mcwx">${mcWxLine()}</span></span></div>
    <div class="mcfl">${Object.keys(MCF).map(k=>`<button class="${k===mcf?'on':''}" data-mcf="${k}">${k}</button>`).join('')}</div>
-   <div class="lwrap"><div class="lmap" id="lmap"></div><div class="ljump"><button data-mcj="mc" class="on">Монако</button><button data-mcj="nice">Ницца</button><button data-mcj="all">Всё</button></div></div>
-   <div class="mleg">${Object.entries(MC_COL).map(([k,c])=>`<span><i style="background:${c}"></i>${k}</span>`).join('')}<span><i style="background:#a9a9b2"></i>Новости</span><span><i class="lnow"></i>Идёт сейчас</span></div>
+   <div class="lwrap"><div class="lmap" id="lmap"></div><div class="ljump"><button data-mcj="mc" class="on">Монако</button><button data-mcj="nice">Ницца</button><button data-mcj="all">Всё</button></div><button class="ltr on" id="ltr">🚋 Транспорт live <b id="ltrn"></b></button></div>
+   <div class="mleg">${Object.entries(MC_COL).map(([k,c])=>`<span><i style="background:${c}"></i>${k}</span>`).join('')}<span><i style="background:#a9a9b2"></i>Новости</span><span><i class="lnow"></i>Идёт сейчас</span><span><i style="background:#fff;border:2px solid #D20A11"></i>Трамвай / автобус Ниццы live</span></div>
    <p class="zline">Нажмите на точку, чтобы открыть событие. Карта — Монако и Ницца.</p></div>
   <div class="minfo"><div class="mlive"><i class="live"></i>Погода и море — в реальном времени · события обновляются дважды в день</div>
    <h1 class="h">Лазурка Live</h1><div class="mstats mcwt">${mcWxTiles()}</div>
    <h3>Сейчас идёт</h3><div class="evl">${now.length?now.map(mcEvRow).join(''):'<p class="more2">Прямо сейчас ничего — смотрите, что дальше.</p>'}</div>
    <h3>Ближайшие события</h3><div class="evl">${next.map(mcEvRow).join('')||'<p class="more2">Скоро добавим новые.</p>'}</div>
    ${news.length?`<h3>Новости недели на карте</h3><div class="evl">${news.map(mcEvRow).join('')}</div>`:''}
-   <p class="msrc">Карта © OpenStreetMap, © CARTO · погода и море — Open-Meteo · события — по источникам в каждой статье</p></div></section>`;
+   <p class="msrc">Карта © OpenStreetMap · транспорт Ниццы — Lignes d'Azur (открытые данные, обновление каждые 20 с) · погода, море, воздух и UV — Open-Meteo · события — по источникам в каждой статье</p></div></section>`;
  document.querySelectorAll('[data-mcf]').forEach(b=>b.onclick=()=>{mcf=b.dataset.mcf;document.querySelectorAll('[data-mcf]').forEach(x=>x.classList.toggle('on',x===b));mcDraw()});
  document.querySelectorAll('[data-mcev]').forEach(b=>b.onclick=()=>{const p=DATA.mc.find(x=>x.id===b.dataset.mcev);if(!p)return;
   if(!mcMk[p.id]){mcf='Всё';document.querySelectorAll('[data-mcf]').forEach(x=>x.classList.toggle('on',x.dataset.mcf==='Всё'));mcDraw()}
@@ -985,7 +992,8 @@ function renderMapMC(){const ev=mcEvents(),now=ev.filter(mcNow),next=ev.filter(p
  needLeaflet().then(()=>{const el=$('#lmap');if(!el)return;if(mcMap){mcMap.remove();mcMap=null}
   mcMap=L.map(el,{zoomSnap:.5,attributionControl:true}).fitBounds(MCB.mc);
   document.querySelectorAll('[data-mcj]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mcj]').forEach(x=>x.classList.toggle('on',x===b));mcMap.flyToBounds(MCB[b.dataset.mcj],{duration:.8})});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(mcMap);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'osmdark',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · транспорт Ниццы: Lignes d\'Azur (open data)'}).addTo(mcMap);
+  mcDistricts();mcTransit();
   mcDraw()}).catch(()=>{const el=$('#lmap');if(el)el.innerHTML='<p class="more2" style="padding:20px">Карта не загрузилась.</p>'})}
 function mcDraw(){if(!mcMap)return;if(mcLayer)mcLayer.remove();mcLayer=L.layerGroup().addTo(mcMap);mcMk={};const seen={};
  for(const p of mcPins()){const k=p.geo.join(),n=seen[k]=(seen[k]||0)+1,ll=[p.geo[0]+(n-1)*.0009,p.geo[1]+(n-1)*.0011];
@@ -994,6 +1002,40 @@ function mcDraw(){if(!mcMap)return;if(mcLayer)mcLayer.remove();mcLayer=L.layerGr
   const mk=L.marker(ll,{icon:L.divIcon({className:'lic',html,iconSize:null}),title:p.title,zIndexOffset:p.start?500:0}).addTo(mcLayer);
   mk.bindPopup(`<div class="lpop">${p.img?`<img src="${p.img}" alt="">`:''}<small style="color:${c}">${esc(p.cat)}${p.when?' · '+esc(p.when):''}</small><b>${esc(p.title)}</b><span>${esc(p.place||p.city)}</span><a href="#${p.id}">Читать →</a></div>`,{maxWidth:260,minWidth:220});
   mcMk[p.id]=mk}}
+
+const MCD=[['Монако-Вилль',43.7312,7.4205],['Ла-Кондамин',43.7362,7.4198],['Монте-Карло',43.7407,7.4282],['Фонвьей',43.7283,7.4152],['Ларвотто',43.7462,7.4338],['Монегетти',43.7368,7.4142],['Сен-Мишель',43.7428,7.4232],['Порт Эркюль',43.7348,7.4238],
+ ['Старая Ницца',43.6968,7.2763],['Порт Лимпиа',43.6958,7.2862],['Английская наб.',43.6928,7.2545],['пл. Массена',43.6978,7.2705],['Симье',43.7195,7.2765],['Либерасьон',43.7135,7.2615],['Мон-Борон',43.6965,7.2985]];
+function mcDistricts(){const g=L.layerGroup();MCD.forEach(([n,a,b])=>L.marker([a,b],{icon:L.divIcon({className:'lic',html:`<span class="ldist">${n}</span>`,iconSize:null}),interactive:false,zIndexOffset:-1000}).addTo(g));
+ const up=()=>{mcMap.getZoom()>=13.5?g.addTo(mcMap):g.remove()};mcMap.on('zoomend',up);up()}
+// --- Nice buses & trams, live (GTFS-RT through our Cloudflare relay) ---
+let NT=null,ntOn=true,ntLayer=null,ntTimer=null;
+function pbVehicles(buf){const b=new Uint8Array(buf),dv=new DataView(b.buffer),td=new TextDecoder();
+ const vi=p=>{let r=0,s=1,c;do{c=b[p++];r+=(c&127)*s;s*=128}while(c&128);return[r,p]};
+ const walk=(s,e,cb)=>{let p=s;while(p<e){let k;[k,p]=vi(p);const f=k>>>3,w=k&7;
+  if(w===0){let v;[v,p]=vi(p);cb(f,v)}else if(w===5){cb(f,dv.getFloat32(p,true));p+=4}else if(w===1){cb(f,dv.getFloat64(p,true));p+=8}
+  else if(w===2){let l;[l,p]=vi(p);cb(f,[p,p+l]);p+=l}else return}};
+ const str=r=>td.decode(b.subarray(r[0],r[1])),out=[];
+ walk(0,b.length,(f,v)=>{if(f!==2)return;const o={};walk(v[0],v[1],(f2,v2)=>{if(f2!==4)return;
+  walk(v2[0],v2[1],(f3,v3)=>{if(f3===1)walk(v3[0],v3[1],(f4,v4)=>{if(f4===5)o.r=str(v4);if(f4===6)o.d=v4});
+   if(f3===2)walk(v3[0],v3[1],(f4,v4)=>{if(f4===1)o.lat=v4;if(f4===2)o.lng=v4;if(f4===3)o.b=v4});
+   if(f3===8)walk(v3[0],v3[1],(f4,v4)=>{if(f4===1)o.id=str(v4)});if(f3===5)o.ts=v3})});if(o.lat)out.push(o)});return out}
+function mcTransit(){if(!mcMap)return;
+ const relay=(localStorage.getItem('nwRelay')||LIVE_RELAY||'').replace(/\/?$/,'/');
+ const lines=NT?Promise.resolve(NT):fetch('map/nice-transit.json').then(r=>r.json()).then(j=>NT=j).catch(()=>null);
+ lines.then(j=>{if(!j||!mcMap||mcTransit.drawn===mcMap)return;mcTransit.drawn=mcMap;
+  j.trams.forEach(t=>L.polyline(t.p,{color:t.c||'#fff',weight:4,opacity:.85,interactive:false}).addTo(mcMap))});
+ const tick=()=>{if(!mcMap||!document.getElementById('lmap')){clearInterval(ntTimer);ntTimer=null;return}
+  if(!ntOn||!relay||document.hidden)return;
+  Promise.all([lines,fetch(relay+'?t=nice').then(r=>r.ok?r.arrayBuffer():Promise.reject())]).then(([j,buf])=>{
+   const vs=pbVehicles(buf),R2=(j&&j.routes)||{};if(ntLayer)ntLayer.remove();ntLayer=L.layerGroup().addTo(mcMap);
+   vs.forEach(v=>{const rt=R2[v.r]||{n:v.r||'?',t:3,c:'#9a9aa1'},tram=rt.t===0;
+    L.marker([v.lat,v.lng],{icon:L.divIcon({className:'lic',html:`<span class="lveh${tram?' tram':''}" style="--c:${rt.c||'#9a9aa1'}">${esc(rt.n)}</span>`,iconSize:null}),zIndexOffset:tram?300:100})
+     .bindPopup(`<div class="lpop"><small style="color:${rt.c}">${tram?'Трамвай':'Автобус'} ${esc(rt.n)}</small><b>${esc(rt.l||'')}</b><span>Lignes d'Azur · положение обновлено ${v.ts?new Date(v.ts*1000).toLocaleTimeString('ru-RU',{timeZone:MCTZ,hour:'2-digit',minute:'2-digit',second:'2-digit'}):'только что'}</span></div>`,{maxWidth:240}).addTo(ntLayer)});
+   const n=$('#ltrn');if(n)n.textContent=vs.length?`· ${vs.length}`:''}).catch(()=>{const n=$('#ltrn');if(n)n.textContent='· нет данных'})};
+ const bt=$('#ltr');if(bt)bt.onclick=()=>{ntOn=!ntOn;bt.classList.toggle('on',ntOn);if(!ntOn&&ntLayer){ntLayer.remove();ntLayer=null;$('#ltrn').textContent=''}else tick()};
+ clearInterval(ntTimer);tick();ntTimer=setInterval(tick,2e4)}
+// --- air quality and UV (Open-Meteo, no key) ---
+function loadAir(){return fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=43.7384&longitude=7.4246&current=european_aqi,uv_index&timezone=Europe%2FParis').then(r=>r.json()).then(j=>{MCW.air=j.current}).catch(()=>{})}
 setInterval(()=>{if(location.hash==='#mc-map'||(location.hash==='#mc'&&chip==='Главная')){MCW.t=0;loadMCW().then(mcPaint)}},6e5);
 
 /* ---------- routing ---------- */
