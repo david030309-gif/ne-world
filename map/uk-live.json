@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T13:10:55.204Z",
+ "updated": "2026-11-28T14:13:27.544Z",
  "sources": {
   "lines": "ok",
   "roads": "ok",
@@ -8,8 +8,20 @@
  },
  "lines": {
   "ok": true,
-  "total": 9,
+  "total": 12,
   "items": [
+   {
+    "id": "piccadilly",
+    "name": "Piccadilly",
+    "bg": "#003688",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 3,
+    "status": "Не ходит на части линии",
+    "cause": "погода",
+    "text": "Не ходит на части линии, погода",
+    "reason": "Piccadilly Line: No service between Uxbridge and Rayners Lane to prevent damage to train wheels caused by significant leaf fall expected during severe weather conditions. Tickets are being accepted on London Buses. GOOD SERVICE on the rest of the line."
+   },
    {
     "id": "hammersmith-city",
     "name": "Hammersmith & City",
@@ -107,29 +119,53 @@
     "reason": "WINDRUSH LINE: From 0100 Saturday 28 and all day Sunday 29 November, including Friday and Saturday Night Overground, no service between Highbury & Islington and Battersea Park / Clapham Junction / New Cross / New Cross Gate. Use MILDMAY LINE services between Highbury & Islington, Canonbury and Dalston Kingsland. Replacement bus services operate."
    },
    {
+    "id": "bakerloo",
+    "name": "Bakerloo",
+    "bg": "#B36305",
+    "fg": "#fff",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "",
+    "text": "Небольшие задержки",
+    "reason": "Bakerloo Line: Minor delays due to train cancellations."
+   },
+   {
     "id": "central",
     "name": "Central",
     "bg": "#E32017",
     "fg": "#fff",
     "mode": "tube",
-    "severity": 6,
-    "status": "Сильные задержки",
+    "severity": 9,
+    "status": "Небольшие задержки",
     "cause": "неисправность поезда",
-    "text": "Сильные задержки, неисправность поезда",
-    "reason": "Central Line: Severe delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to an earlier faulty train at Queensway. GOOD SERVICE on the rest of the line. Tickets are being accepted on London Buses, Chiltern and Greater Anglia services."
+    "text": "Небольшие задержки, неисправность поезда",
+    "reason": "Central Line: Minor delays between White City and Ealing Broadway/West Ruislip, and between Leytonstone and Epping/Hainault via Newbury Park due to an earlier faulty train at Queensway. GOOD SERVICE on the rest of the line."
+   },
+   {
+    "id": "jubilee",
+    "name": "Jubilee",
+    "bg": "#A0A5A9",
+    "fg": "#111",
+    "mode": "tube",
+    "severity": 9,
+    "status": "Небольшие задержки",
+    "cause": "неисправность поезда",
+    "text": "Небольшие задержки, неисправность поезда",
+    "reason": "Jubilee Line: Minor delays while we fix a faulty train at Waterloo."
    }
   ]
  },
  "roads": {
   "ok": true,
-  "total": 10,
+  "total": 15,
   "items": [
    {
     "badge": "A41",
     "title": "Hendon Way (Barnet)",
     "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Moderate",
-    "rank": 4,
+    "severity": "Serious",
+    "rank": 6,
     "ll": [
      -0.21921,
      51.577073
@@ -139,8 +175,8 @@
     "badge": "A102",
     "title": "Blackwall Tunnel (Greenwich,Tower Hamlets)",
     "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Moderate",
-    "rank": 4,
+    "severity": "Serious",
+    "rank": 6,
     "ll": [
      -0.004133,
      51.506783
@@ -150,11 +186,22 @@
     "badge": "A1080",
     "title": "Westbury Avenue (Haringey)",
     "text": "Дорожные работы, дорога частично перекрыта",
-    "severity": "Moderate",
-    "rank": 4,
+    "severity": "Serious",
+    "rank": 6,
     "ll": [
      -0.098252,
      51.593518
+    ]
+   },
+   {
+    "badge": "A4020",
+    "title": "Uxbridge Road (Ealing)",
+    "text": "Дорожные работы",
+    "severity": "Serious",
+    "rank": 5,
+    "ll": [
+     -0.31411,
+     51.511686
     ]
    },
    {
@@ -178,26 +225,15 @@
      -0.15332,
      51.504823
     ]
-   },
-   {
-    "badge": "A1010",
-    "title": "High Road (Enfield,Haringey)",
-    "text": "Дорожные работы",
-    "severity": "Moderate",
-    "rank": 3,
-    "ll": [
-     -0.068175,
-     51.605584
-    ]
    }
   ]
  },
  "floods": {
   "ok": true,
-  "total": 4,
+  "total": 5,
   "severe": 0,
   "warnings": 0,
-  "alerts": 4,
+  "alerts": 5,
   "items": [
    {
     "level": 3,
@@ -230,6 +266,17 @@
     "ll": [
      -5.40613,
      50.15847
+    ]
+   },
+   {
+    "level": 3,
+    "label": "Может подняться вода",
+    "area": "River Erewash in Derbyshire and Nottinghamshire",
+    "county": "Derbyshire, Nottinghamshire",
+    "river": "River Erewash",
+    "ll": [
+     -1.2794,
+     52.94101
     ]
    },
    {
